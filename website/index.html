@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SENNICARE - HOME PAGE
+  ----------------------------------------------------------------------------
+  This is a plain HTML file. There is no framework and nothing to "build" or
+  "compile" - you can open it straight in a web browser.
+
+  The page is made of sections, in this order:
+    1. Navigation bar (fixed at the top)
+    2. Hero            (big headline + photo)
+    3. Our Integrated Services   (3 cards)
+    4. How Sennicare Works       (3 steps)
+    5. Why Care Homes Choose Sennicare (4 benefits)
+    6. Call-to-action band       (navy)
+    7. Contact form
+    8. Footer
+
+  All the colours, spacing and fonts live in css/styles.css.
+  The small amount of interactivity (mobile menu, form check) is in js/main.js.
+  ============================================================================
+-->
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <!-- This line makes the site work properly on mobile phones. Don't remove it. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sennicare | Operations &amp; Supply Chain Partners for UK Care Homes</title>
+
+  <!-- The description Google shows underneath your link in search results -->
+  <meta name="description" content="Sennicare is an independent operations and supply chain consultancy for UK care homes. We cut costs, control stock and waste, and reduce admin so your team can focus on resident care." />
+
+  <!-- The small icon shown in the browser tab -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+
+  <!-- Our stylesheet (all the visual design) -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       1. NAVIGATION BAR
+       ====================================================================== -->
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner" aria-label="Main navigation">
+
+      <!-- Logo + company name. Clicking it returns to the top of the page. -->
+      <a class="brand" href="#top" aria-label="Sennicare home">
+        <img class="brand__mark" src="assets/logo.svg" alt="Sennicare logo: a house with a heartbeat line" />
+        <span>Sennicare</span>
+      </a>
+
+      <!-- Hamburger button. Only visible on mobile phones. -->
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+
+      <!-- Menu links. The href="#services" style links jump to sections below. -->
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#services">Solutions</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#benefits">Resources</a></li>
+        <li><a href="#about">About</a></li>
+        <!-- This magenta button only appears inside the mobile menu -->
+        <li class="navbar__links-cta"><a class="btn btn--primary" href="#contact">Book a Free Review</a></li>
+      </ul>
+
+      <!-- The magenta button shown on the right on tablets and desktops -->
+      <a class="btn btn--primary btn--nav navbar__cta" href="#contact">Book a Free Review</a>
+    </nav>
+  </header>
+
+
+  <main id="top">
+
+    <!-- ====================================================================
+         2. HERO SECTION
+         To use a real photo: put your image in the "images" folder and change
+         the src="..." below to its filename (e.g. images/hero.jpg).
+         ==================================================================== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero__card">
+
+          <!-- Background photograph (currently a placeholder) -->
+          <img class="hero__image"
+               src="images/hero-caregiver-resident.svg"
+               alt="A care assistant sitting with an elderly resident in a bright care home lounge, both smiling" />
+
+          <!-- Dark tint so the white text is easy to read over the photo -->
+          <div class="hero__overlay"></div>
+
+          <!-- Headline, sub-headline and call-to-action button -->
+          <div class="hero__content">
+            <h1 class="hero__title">Empowering Caregivers</h1>
+            <p class="hero__subtitle">
+              Independent operations and supply chain partners for UK care homes.
+            </p>
+            <a class="btn btn--primary btn--large" href="#contact">Book a Free Review</a>
+          </div>
+
+        </div>
+
+        <!-- Three short trust statements underneath the hero card -->
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>15&ndash;25%</strong>
+            <span>Typical reduction in operational costs</span>
+          </div>
+          <div class="hero__stat">
+            <strong>100% independent</strong>
+            <span>We sell no software and no products</span>
+          </div>
+          <div class="hero__stat">
+            <strong>CQC aware</strong>
+            <span>Built around UK care home requirements</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         3. OUR INTEGRATED SERVICES
+         ==================================================================== -->
+    <section class="section" id="services">
+      <div class="container">
+
+        <div class="section__head">
+          <span class="eyebrow">Our Solutions</span>
+          <h2 class="section__title">Our Integrated Services</h2>
+          <p class="section__subtitle">
+            Three connected services that bring order, savings and calm to the
+            day-to-day running of your care home.
+          </p>
+        </div>
+
+        <div class="services__grid">
+
+          <!-- Card 1: Supply Chain Consolidation (cyan bottom border) -->
+          <article class="service-card">
+            <div class="icon-badge">
+              <!-- Icon: a simple supply network / connected nodes drawn with lines -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="2.5" width="6" height="5" rx="1.2" />
+                <rect x="2" y="16.5" width="6" height="5" rx="1.2" />
+                <rect x="16" y="16.5" width="6" height="5" rx="1.2" />
+                <path d="M12 7.5v4M5 16.5v-2.5h14v2.5" />
+              </svg>
+            </div>
+            <h3>Supply Chain Consolidation</h3>
+            <p>Streamline Procurement, Reduce Costs</p>
+          </article>
+
+          <!-- Card 2: Stock &amp; Waste Control (cyan bottom border) -->
+          <article class="service-card">
+            <div class="icon-badge">
+              <!-- Icon: a delivery box -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7.5 12 3l9 4.5v9L12 21 3 16.5z" />
+                <path d="M3 7.5 12 12l9-4.5M12 12v9" />
+              </svg>
+            </div>
+            <h3>Stock &amp; Waste Control</h3>
+            <p>Real-time Tracking, Minimize Waste</p>
+          </article>
+
+          <!-- Card 3: Workflow Efficiency (magenta bottom border) -->
+          <article class="service-card service-card--magenta">
+            <div class="icon-badge icon-badge--magenta">
+              <!-- Icon: a workflow / process flow -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="3" width="7" height="5" rx="1.2" />
+                <rect x="14.5" y="16" width="7" height="5" rx="1.2" />
+                <path d="M6 8v5.5a2 2 0 0 0 2 2h10M15 12.5l3 3-3 3" />
+              </svg>
+            </div>
+            <h3>Workflow Efficiency</h3>
+            <p>Automate Tasks, Optimize Staffing</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         4. HOW SENNICARE WORKS
+         The step numbers (1, 2, 3) are added automatically by the CSS,
+         so you can add or remove a step without renumbering anything.
+         ==================================================================== -->
+    <section class="section section--grey" id="how-it-works">
+      <div class="container">
+
+        <div class="section__head">
+          <span class="eyebrow">The Process</span>
+          <h2 class="section__title">How Sennicare Works</h2>
+          <p class="section__subtitle">
+            A simple three-step partnership, starting with a free review and no obligation.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Free Operational Review</h3>
+            <p>We assess your current supply chain, stock management, and workflows.</p>
+          </article>
+
+          <article class="step">
+            <h3>Bespoke Improvement Plan</h3>
+            <p>We design a tailored plan to save you money and reduce admin.</p>
+          </article>
+
+          <article class="step">
+            <h3>Ongoing Support &amp; Delivery</h3>
+            <p>We implement the changes and stay to ensure results.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         5. WHY CARE HOMES CHOOSE SENNICARE
+         ==================================================================== -->
+    <section class="section" id="benefits">
+      <div class="container">
+
+        <div class="section__head">
+          <span class="eyebrow">Why Sennicare</span>
+          <h2 class="section__title">Why Care Homes Choose Sennicare</h2>
+        </div>
+
+        <div class="benefits">
+
+          <div class="benefit">
+            <div class="icon-badge icon-badge--navy">
+              <!-- Icon: a shield (independence and trust) -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2.8 20 6v5.5c0 5-3.4 8.3-8 9.7-4.6-1.4-8-4.7-8-9.7V6z" />
+                <path d="M8.6 12.2l2.4 2.4 4.4-4.6" />
+              </svg>
+            </div>
+            <div>
+              <h3>Independent &amp; Unbiased</h3>
+              <p>We don't sell software or products, so our advice is always impartial.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="icon-badge">
+              <!-- Icon: a house (care sector specialists) -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3.5 10.5 12 3.5l8.5 7" />
+                <path d="M5.5 12v8.5h13V12" />
+                <path d="M9 16.5h2.2l1-2 1.4 3.4 1-1.4H15" />
+              </svg>
+            </div>
+            <div>
+              <h3>Care Sector Specialists</h3>
+              <p>We exclusively serve UK care homes and understand CQC requirements.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="icon-badge icon-badge--magenta">
+              <!-- Icon: an upward trend line (measurable savings) -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3.5 20.5h17" />
+                <path d="M6 16l4-4.5 3.5 3 5-6.5" />
+                <path d="M14.5 8h4v4" />
+              </svg>
+            </div>
+            <div>
+              <h3>Measurable Savings</h3>
+              <p>Our clients typically reduce operational costs by 15&ndash;25%.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="icon-badge">
+              <!-- Icon: a heart in a hand (back to what matters) -->
+              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 10.8 9.6 8.4a1.9 1.9 0 0 1 2.4-2.9 1.9 1.9 0 0 1 2.4 2.9z" />
+                <path d="M3.5 13.5h3l3 2.5h3.5a1.5 1.5 0 0 1 0 3H10" />
+                <path d="M6.5 16v5h9l5-4.2a1.6 1.6 0 0 0-2.2-2.3l-3 2.3" />
+              </svg>
+            </div>
+            <div>
+              <h3>Back To What Matters</h3>
+              <p>Less admin means more time for resident care.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         5b. ABOUT
+         ==================================================================== -->
+    <section class="section section--grey" id="about">
+      <div class="container">
+        <div class="section__head">
+          <span class="eyebrow">About Us</span>
+          <h2 class="section__title">Operations people, on your side of the table</h2>
+        </div>
+        <div class="prose">
+          <p>
+            Sennicare is an independent consultancy working exclusively with UK care
+            homes. We are not a supplier, a software vendor or a buying group &mdash; we are
+            paid by you, which means every recommendation we make is in your interest
+            and yours alone.
+          </p>
+          <p>
+            Our work is deliberately practical. We look at what you buy and who you buy
+            it from, at what sits in your stock cupboards, and at the admin your
+            managers and nurses do every week. Then we remove the cost and the wasted
+            hours, and we stay involved to make sure the improvements hold.
+          </p>
+          <p>
+            Every engagement starts the same way: a free, no-obligation operational
+            review of your home.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         6. CALL-TO-ACTION BAND (full-width navy)
+         ==================================================================== -->
+    <section class="cta-band">
+      <div class="container">
+        <h2>Ready to bring order to your operations?</h2>
+        <p>Book your free, no-obligation operational review today.</p>
+        <a class="btn btn--primary btn--large" href="#contact">Book a Free Review</a>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         7. CONTACT FORM
+         IMPORTANT: a plain website cannot send email by itself. Right now the
+         form checks the details are filled in and then opens the visitor's own
+         email program with the message ready to send to you.
+         See README.md ("Making the contact form email you") for the free
+         upgrade to a proper form service - it is a one-line change.
+         ==================================================================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact">
+
+          <!-- Left column: reassurance and contact details -->
+          <div>
+            <span class="eyebrow">Get In Touch</span>
+            <h2 class="section__title">Book your free review</h2>
+            <p>
+              Tell us a little about your home and we'll come back to you within one
+              working day to arrange your free operational review.
+            </p>
+            <ul class="contact__list">
+              <li>
+                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3.5 6.5h17v11h-17z" /><path d="m3.5 7 8.5 6 8.5-6" />
+                </svg>
+                <span><a href="mailto:hello@sennicare.co.uk">hello@sennicare.co.uk</a></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3.5a6.5 6.5 0 0 1 6.5 6.5c0 4.5-6.5 10.5-6.5 10.5S5.5 14.5 5.5 10A6.5 6.5 0 0 1 12 3.5z" />
+                  <path d="M10 10h4" />
+                </svg>
+                <span>Serving care homes across the United Kingdom</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 5.5h16v15H4z" /><path d="M4 9.5h16M8 3.5v4M16 3.5v4" />
+                </svg>
+                <span>Reviews usually arranged within 5 working days</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right column: the form itself -->
+          <form class="form" id="contactForm" novalidate>
+            <div class="form__row">
+              <div class="form__field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required />
+              </div>
+              <div class="form__field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="form__field">
+              <label for="carehome">Care home name</label>
+              <input type="text" id="carehome" name="carehome" required />
+            </div>
+
+            <div class="form__field">
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" rows="5"
+                        placeholder="For example: we use 14 different suppliers and our ordering takes up two days a week."
+                        required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary" style="width:100%">Request My Free Review</button>
+
+            <!-- This paragraph is where JavaScript shows a success or error message -->
+            <p class="form__message" id="formMessage" role="status"></p>
+
+            <p class="form__note">
+              We'll only use your details to arrange your review. No marketing lists, ever.
+            </p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================================
+       8. FOOTER
+       ====================================================================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__top">
+
+        <!-- Logo, name and tagline -->
+        <div>
+          <a class="brand" href="#top">
+            <img class="brand__mark" src="assets/logo-light.svg" alt="Sennicare logo" />
+            <span>Sennicare</span>
+          </a>
+          <p class="footer__tagline">
+            Empowering Caregivers &mdash; independent operations and supply chain
+            partners for UK care homes.
+          </p>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#services">Solutions</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal links -->
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Sennicare. All rights reserved.</span>
+        <span>Registered in England &amp; Wales</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- Our small JavaScript file. It sits at the bottom so the page shows first. -->
+  <script src="js/main.js"></script>
+</body>
+</html>

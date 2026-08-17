@@ -1,0 +1,25 @@
+<!--
+  Sennicare logo mark.
+  Three parts, drawn in this order:
+    1. A magenta heart sitting on the roof peak (made from straight lines + two curves, NO dots/circles)
+    2. A deep navy house outline (open at the bottom so it reads as a home, not a box)
+    3. A cyan heartbeat / ECG line flowing through the middle of the house
+  Colours are hard-coded here so the file works anywhere (e.g. as a favicon).
+  If you change your brand colours, update the three "stroke"/"fill" values below.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Sennicare logo: a house with a heartbeat line and a heart on the roof">
+
+  <!-- 1. Magenta heart accent on the roof peak -->
+  <path d="M32 18 L25.4 11.4 A4.65 4.65 0 0 1 32 4.8 A4.65 4.65 0 0 1 38.6 11.4 Z"
+        fill="#E30B5C" />
+
+  <!-- 2. Navy house outline: roof apex, down both eaves, then the two walls -->
+  <path d="M7 36 L32 17 L57 36 M11 33 L11 58 M53 33 L53 58 M11 58 L53 58"
+        fill="none" stroke="#0A1172" stroke-width="4.5"
+        stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- 3. Cyan heartbeat line running through the house -->
+  <path d="M15 47 H22 L26.5 38 L31 55 L35.5 44 L39 47 H49"
+        fill="none" stroke="#00B2D9" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round" />
+</svg>
