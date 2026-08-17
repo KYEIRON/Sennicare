@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---------------------------------------------------------------------------
+# Sennicare platform
+# ---------------------------------------------------------------------------
+# The live database holds real subscriber accounts, care home details and
+# requests. It must NEVER be committed to git. Back it up by copying the file
+# somewhere safe instead.
+platform/data/sennicare.db
+platform/data/sennicare.db-journal
+*.db
+
+# Your real supplier catalogue may contain commercially sensitive pricing.
+# Uncomment the next line if you would rather keep it off GitHub entirely.
+# platform/data/suppliers.csv

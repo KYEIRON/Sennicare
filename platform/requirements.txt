@@ -1,0 +1,17 @@
+# Sennicare platform - the Python packages this app needs.
+#
+# Install them all with one command (see the README):
+#     pip install -r requirements.txt
+#
+# Only two packages, both very widely used:
+#   streamlit - turns Python into a web app
+#   pandas    - reads the supplier spreadsheet and does the table work
+#
+# Everything else the app uses (the database, passwords, dates) is built into
+# Python itself, so there is nothing more to install.
+#
+# The version numbers below mean "at least this version, but stay on the same
+# major release" - which keeps things working without surprise changes.
+
+streamlit>=1.40,<2.0
+pandas>=2.0,<4.0

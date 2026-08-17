@@ -1,7 +1,10 @@
 # Sennicare
 
-Website and operational toolkit for **Sennicare** — independent operations and supply
-chain partners for UK care homes.
+**Sennicare** — procurement for UK care homes. Two things live in this repo:
+
+- **The website** (`website/`) — the public marketing site and savings calculator.
+- **The platform** (`platform/`) — the self-service app care home managers subscribe to,
+  log into, and use themselves to find, compare and order supplies.
 
 **Brand colours:** Deep Navy `#0A1172` · Magenta Pink `#E30B5C` · Cyan `#00B2D9` ·
 White `#FFFFFF` · Light Grey `#F5F7FA`
@@ -12,9 +15,19 @@ White `#FFFFFF` · Light Grey `#F5F7FA`
 
 | Phase | What it is | Status |
 |-------|------------|--------|
-| **Phase 1** | Marketing website (plain HTML/CSS/JavaScript) | ✅ Done — in the `website` folder |
+| **Phase 1** | Marketing website (plain HTML/CSS/JavaScript) | ✅ Done — `website/` |
 | **Phase 2** | Savings calculator page | ✅ Done — `website/savings-calculator.html` |
-| **Phase 3** | Internal Streamlit tools (supply chain analyser, stock planner, proposal generator) | ⏳ Later |
+| **Phase 3** | **The procurement platform** (Python + Streamlit + SQLite) — accounts, private profiles, supplier search, top-recommendation engine, auto-written requests, subscription tiers | ✅ Done — `platform/`, see [platform/README.md](platform/README.md) |
+
+### The one thing standing between the platform and real customers
+
+The software is finished and tested. It currently searches **fictional sample supplier
+data**, and says so in an orange banner on every search. Replacing that with real
+supplier prices — one spreadsheet, `platform/data/suppliers.csv` — is what turns it into
+a business. See [platform/data/README.md](platform/data/README.md).
+
+Also read the hosting warning in [platform/README.md](platform/README.md) before charging
+anyone: free Streamlit hosting wipes stored accounts when it restarts.
 
 ---
 
