@@ -6,6 +6,22 @@ This is not a tool you operate on their behalf. They drive it.
 
 ---
 
+## The screens
+
+| Screen | What it's for |
+|---|---|
+| **Dashboard** | Greeting, what they've ordered, and a search box front and centre |
+| **Search Suppliers** | Filter rail on the left, results as cards on the right, top recommendation highlighted |
+| **Review & Send** | The written request, beside a summary of what they're ordering |
+| **My Requests** | What they've sent, with status tracking |
+| **Saved Suppliers** | Suppliers they've bookmarked with the ☆ button |
+| **Care Home Profile** | Their private details, with the privacy card and quick actions |
+| **Subscription** | Their plan and the others available |
+| **My Account** | Password, data download, account deletion |
+| **Admin** | Yours only — catalogue health check, subscribers, plan changes |
+
+---
+
 ## What a manager does
 
 | Step | What happens |
@@ -79,6 +95,8 @@ set SENNICARE_ADMIN_EMAILS=you@sennicare.co.uk
 platform/
 ├── app.py                    ← every screen a manager sees
 ├── requirements.txt          ← the two packages to install
+├── .streamlit/
+│   └── config.toml           ← brand colours for Streamlit's own buttons and panels
 ├── data/
 │   ├── suppliers_sample.csv  ← fictional example catalogue (swap for your own)
 │   ├── README.md             ← how to build your real catalogue
@@ -91,8 +109,32 @@ platform/
     ├── matching.py           ← searches, scores, picks the top recommendation
     ├── request_writer.py     ← writes the supply request
     ├── money.py              ← £ and DD/MM/YYYY formatting, other currencies
-    └── branding.py           ← the Sennicare colours
+    └── branding.py           ← the whole look: colours, cards, product tiles
 ```
+
+---
+
+## The design
+
+Calm and modern, in the brand palette:
+
+- **Deep navy sidebar**, steady and quiet, with the current page marked by a soft cyan pill
+- **Soft off-white page** with white cards, generous spacing and thin borders
+- **Magenta used sparingly** — one primary action per screen. It's the loudest colour we own,
+  so it only marks the thing we want the manager to do next
+- **Product tiles** instead of photographs. We don't have photos of supplier products, and
+  inventing them would mislead, so each card gets a tinted tile with a line drawing that
+  suits its category (see `CATEGORY_ICONS` in `branding.py`)
+
+Two files control it:
+
+| File | What it sets |
+|---|---|
+| `.streamlit/config.toml` | Streamlit's own parts — buttons, panels, sliders, borders |
+| `sennicare/branding.py` | Everything we draw ourselves — cards, tiles, the sidebar menu |
+
+Set colours in **both** if you change the palette: the config file makes Streamlit's built-in
+widgets match, and `branding.py` handles our own cards.
 
 ---
 

@@ -131,9 +131,30 @@ def set_up_database():
             )
         """)
 
+        # ---- Suppliers they've bookmarked to come back to ------------------
+        connection.execute("""
+            CREATE TABLE IF NOT EXISTS saved_suppliers (
+                id             INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id        INTEGER NOT NULL,
+                supplier_name  TEXT NOT NULL,
+                supplier_email TEXT NOT NULL DEFAULT '',
+                product_name   TEXT NOT NULL,
+                unit_price     REAL NOT NULL DEFAULT 0,
+                delivery_days  INTEGER NOT NULL DEFAULT 0,
+                quality_rating REAL NOT NULL DEFAULT 0,
+                note           TEXT NOT NULL DEFAULT '',
+                created_at     TEXT NOT NULL,
+                -- One bookmark per supplier+product per user, so clicking the
+                -- save button twice doesn't create a duplicate.
+                UNIQUE (user_id, supplier_name, product_name),
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        """)
+
         # Indexes make "find everything belonging to this user" fast.
         connection.execute("CREATE INDEX IF NOT EXISTS idx_searches_user ON searches(user_id)")
         connection.execute("CREATE INDEX IF NOT EXISTS idx_requests_user ON requests(user_id)")
+        connection.execute("CREATE INDEX IF NOT EXISTS idx_saved_user ON saved_suppliers(user_id)")
 
     connection.close()
 
@@ -297,6 +318,123 @@ def delete_request(user_id, request_id):
     connection.close()
 
 
+# ==========================================================================
+# SAVED SUPPLIERS - the bookmarks a manager keeps
+# ==========================================================================
+
+def save_supplier(user_id, option, note=""):
+    """
+    Bookmarks a supplier's product for this user.
+    "ON CONFLICT ... DO UPDATE" means saving the same one twice just refreshes
+    it rather than creating a duplicate.
+    """
+    connection = get_connection()
+    with connection:
+        connection.execute("""
+            INSERT INTO saved_suppliers (user_id, supplier_name, supplier_email, product_name,
+                                         unit_price, delivery_days, quality_rating, note, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(user_id, supplier_name, product_name) DO UPDATE SET
+                unit_price = excluded.unit_price,
+                delivery_days = excluded.delivery_days,
+                quality_rating = excluded.quality_rating,
+                created_at = excluded.created_at
+        """, (
+            user_id, option["supplier_name"], option.get("supplier_email", ""),
+            option["product_name"], option["price_per_unit"], option["delivery_days"],
+            option["quality_rating"], note, now_iso(),
+        ))
+    connection.close()
+
+
+def list_saved_suppliers(user_id):
+    """This user's bookmarks, newest first."""
+    connection = get_connection()
+    rows = connection.execute(
+        "SELECT * FROM saved_suppliers WHERE user_id = ? ORDER BY created_at DESC", (user_id,)
+    ).fetchall()
+    connection.close()
+    return [dict(row) for row in rows]
+
+
+def is_supplier_saved(user_id, supplier_name, product_name):
+    """True if this user has already bookmarked this supplier's product."""
+    connection = get_connection()
+    row = connection.execute(
+        """SELECT 1 FROM saved_suppliers
+           WHERE user_id = ? AND supplier_name = ? AND product_name = ?""",
+        (user_id, supplier_name, product_name),
+    ).fetchone()
+    connection.close()
+    return row is not None
+
+
+def delete_saved_supplier(user_id, saved_id):
+    """Removes one of this user's own bookmarks."""
+    connection = get_connection()
+    with connection:
+        connection.execute(
+            "DELETE FROM saved_suppliers WHERE id = ? AND user_id = ?", (saved_id, user_id)
+        )
+    connection.close()
+
+
+# ==========================================================================
+# DASHBOARD FIGURES
+# ==========================================================================
+
+def dashboard_figures(user_id):
+    """
+    The headline numbers for this user's dashboard.
+
+    "This quarter" means the last 90 days, which is simpler to explain to a
+    manager than calendar quarters and avoids a near-empty figure every January.
+    """
+    from datetime import timedelta
+    ninety_days_ago = (datetime.now(timezone.utc) - timedelta(days=90)).isoformat(timespec="seconds")
+
+    connection = get_connection()
+
+    requests_quarter = connection.execute(
+        """SELECT COUNT(*) AS count, COALESCE(SUM(total_cost), 0) AS spend
+           FROM requests WHERE user_id = ? AND created_at >= ?""",
+        (user_id, ninety_days_ago),
+    ).fetchone()
+
+    all_time = connection.execute(
+        """SELECT COUNT(*) AS count, COALESCE(SUM(total_cost), 0) AS spend
+           FROM requests WHERE user_id = ?""",
+        (user_id,),
+    ).fetchone()
+
+    searches_quarter = connection.execute(
+        "SELECT COUNT(*) AS count FROM searches WHERE user_id = ? AND created_at >= ?",
+        (user_id, ninety_days_ago),
+    ).fetchone()
+
+    saved = connection.execute(
+        "SELECT COUNT(*) AS count FROM saved_suppliers WHERE user_id = ?", (user_id,)
+    ).fetchone()
+
+    recent_searches = connection.execute(
+        """SELECT product, quantity, created_at FROM searches
+           WHERE user_id = ? ORDER BY created_at DESC LIMIT 5""",
+        (user_id,),
+    ).fetchall()
+
+    connection.close()
+
+    return {
+        "requests_quarter": requests_quarter["count"],
+        "spend_quarter": requests_quarter["spend"],
+        "requests_all_time": all_time["count"],
+        "spend_all_time": all_time["spend"],
+        "searches_quarter": searches_quarter["count"],
+        "saved_suppliers": saved["count"],
+        "recent_searches": [dict(row) for row in recent_searches],
+    }
+
+
 def export_user_data(user_id):
     """
     Everything we hold about one subscriber, so they can take a copy at any time
@@ -316,6 +454,7 @@ def export_user_data(user_id):
         "care_home_profile": get_profile(user_id),
         "searches": [dict(row) for row in searches],
         "requests": list_requests(user_id),
+        "saved_suppliers": list_saved_suppliers(user_id),
     }
 
 

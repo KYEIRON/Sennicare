@@ -1,0 +1,32 @@
+# ===========================================================================
+# Sennicare - Streamlit settings
+# ---------------------------------------------------------------------------
+# This file tells Streamlit our brand colours. Setting them HERE (rather than
+# only in CSS) means Streamlit's own built-in parts - buttons, sliders, panels,
+# borders - come out in Sennicare colours automatically, instead of us having to
+# fight its defaults.
+#
+# The finer design touches (cards, product tiles, the sidebar menu) are in
+# sennicare/branding.py.
+# ===========================================================================
+
+[theme]
+# A light interface to build on
+base = "light"
+
+# Magenta: Streamlit uses this for anything marked as the main action
+primaryColor = "#E30B5C"
+
+# The soft off-white page, and white for the panels and cards sitting on it
+backgroundColor = "#FAFBFD"
+secondaryBackgroundColor = "#FFFFFF"
+
+# Navy-grey body text - softer to read than pure black
+textColor = "#454B66"
+
+# Clean modern sans-serif, same as the website
+font = "sans-serif"
+
+[browser]
+# Don't send usage statistics anywhere
+gatherUsageStats = false
