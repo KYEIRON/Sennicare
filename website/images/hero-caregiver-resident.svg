@@ -1,0 +1,21 @@
+<!--
+  PLACEHOLDER IMAGE ONLY.
+  Replace this file with a real photograph of a caregiver and an elderly resident
+  in a warm care-home setting. Suggested size: 1600 x 900 pixels (landscape).
+  To swap it: save your photo into this "images" folder, then in index.html change
+  the src="images/hero-caregiver-resident.svg" to your new filename (e.g. hero.jpg).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8D9CB" />
+      <stop offset="55%" stop-color="#CBB6A4" />
+      <stop offset="100%" stop-color="#8E7A6B" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#warm)" />
+  <g fill="#FFFFFF" opacity="0.55" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
+    <text x="800" y="430" font-size="52" font-weight="bold">Placeholder image</text>
+    <text x="800" y="490" font-size="30">Replace with a photo of a caregiver and resident</text>
+  </g>
+</svg>
