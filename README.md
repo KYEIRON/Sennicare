@@ -13,7 +13,7 @@ White `#FFFFFF` · Light Grey `#F5F7FA`
 | Phase | What it is | Status |
 |-------|------------|--------|
 | **Phase 1** | Marketing website (plain HTML/CSS/JavaScript) | ✅ Done — in the `website` folder |
-| **Phase 2** | Savings calculator to embed on the website | ⏳ Next |
+| **Phase 2** | Savings calculator page | ✅ Done — `website/savings-calculator.html` |
 | **Phase 3** | Internal Streamlit tools (supply chain analyser, stock planner, proposal generator) | ⏳ Later |
 
 ---
@@ -24,13 +24,15 @@ White `#FFFFFF` · Light Grey `#F5F7FA`
 
 ```
 website/
-├── index.html      ← the home page (all the sections: hero, services, how it works, benefits, contact)
+├── index.html               ← the home page (hero, services, how it works, benefits, contact)
+├── savings-calculator.html  ← the savings calculator page (Phase 2)
 ├── privacy.html    ← starter Privacy Policy page
 ├── terms.html      ← starter Terms of Service page
 ├── css/
 │   └── styles.css  ← every colour, font and spacing decision lives here
 ├── js/
-│   └── main.js     ← mobile menu, navbar shadow, contact form check
+│   ├── main.js       ← mobile menu, navbar shadow, contact form check
+│   └── calculator.js ← the savings calculator sums
 ├── assets/
 │   ├── logo.svg        ← the Sennicare logo (navy house, cyan heartbeat, magenta heart)
 │   └── logo-light.svg  ← white version of the logo, for the navy footer
@@ -106,6 +108,72 @@ To update the site later, drag the folder on again (Netlify → Deploys → drag
 > GitHub Pages serves from the repository root, which is why `/website/` appears in the
 > address. If you'd prefer a clean address, tell me and I'll move the site files to the
 > root of the repo.
+
+---
+
+## Phase 2 — The savings calculator
+
+A new page at `website/savings-calculator.html`, linked from the menu and the footer on
+every page. The visitor answers four questions and the numbers update **as they type or
+drag** — there is no "Calculate" button.
+
+### The four questions and the four answers
+
+| Question | Type |
+|---|---|
+| Number of suppliers you currently use | Slider, 1–30 |
+| Approximate monthly spend on consumables (£) | Type a number |
+| Staff hours spent weekly on ordering & admin | Type a number |
+| Current estimated stock waste (%) | Slider, 0–30% |
+
+| Result shown | How it's worked out |
+|---|---|
+| Annual saving from supply consolidation | monthly spend × 12 × **15%** |
+| Annual saving from waste reduction | monthly spend × 12 × waste % × **50%** |
+| Staff time given back each year | weekly hours × 52 × **30%** |
+| **Total estimated annual benefit** (magenta) | the two cash savings + the time valued at **£15/hour** |
+
+Worked example — the figures the page loads with (12 suppliers, £8,000/month, 10 hours/week,
+8% waste): £14,400 + £3,840 + 156 hours (worth £2,340) = **£20,580 a year**.
+
+### Changing the assumptions yourself
+
+Open `js/calculator.js`. The very first block is called `SETTINGS` and everything you'd
+want to adjust is in it:
+
+```js
+CONSOLIDATION_SAVING: 0.15,   // 15% off consumables spend
+ADMIN_TIME_SAVING:    0.30,   // 30% less admin time
+WASTE_CUT:            0.50,   // we remove half of current waste
+HOURLY_RATE:          15,     // £15 per hour
+```
+
+`0.15` means 15%. Change it to `0.18` and the whole page switches to an 18% assumption —
+including the small print, which reads the same setting.
+
+### The two buttons under the results
+
+- **"Want a detailed breakdown? Book your free review"** (big magenta button) — opens an
+  email to you, with the subject line already written and **all of the visitor's figures
+  in the message**, plus blank lines for their name, home and phone number.
+- **"Or email these results to yourself"** (small link) — the same summary, but with no
+  recipient, so they can send it to themselves or to their owner/finance manager.
+
+### Extra things I added (say if you'd rather not have them)
+
+1. **A consolidation recommendation** in a navy box above the results, e.g. *"We would
+   typically consolidate 12 suppliers down to around 5 core partners…"*. Your brief had
+   suppliers as an input but no output using it, so this gives it a purpose. It suggests
+   keeping ~40% of current suppliers, never fewer than 3. If someone already has 3 or
+   fewer, the message changes to say their supply chain is already tight.
+2. **The waste slider shows the £ figure** underneath — "That is about £7,680 of stock
+   wasted a year" — so a percentage becomes something real.
+3. **"Reset to example figures"** link, to get back to the starting numbers.
+4. **A "How we work these numbers out" panel** at the bottom, plus the line that these are
+   estimates and not a guarantee. Worth keeping — it protects you and it builds trust.
+5. **The menu switches to the hamburger button earlier now** (below 980px instead of
+   700px). Five links plus the button no longer fit on one line on a tablet, so it would
+   otherwise have wrapped onto two rows.
 
 ### Design assumptions I made (change any of these — just say)
 
