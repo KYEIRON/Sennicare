@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SENNICARE - SAVINGS CALCULATOR PAGE
+  ----------------------------------------------------------------------------
+  A visitor answers four questions and immediately sees an estimate of what
+  Sennicare could save them. The numbers update as they type or drag a slider -
+  there is no "Calculate" button to press.
+
+  The maths lives in js/calculator.js. The design lives in css/styles.css
+  (in the section titled "6. SAVINGS CALCULATOR").
+  ============================================================================
+-->
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Savings Calculator | Sennicare</title>
+  <meta name="description" content="Estimate what your care home could save on supplies, waste and admin time. Free instant calculator from Sennicare, independent operations partners for UK care homes." />
+
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       NAVIGATION BAR (identical to the home page, but the links point back
+       to index.html because we are on a different page now)
+       ====================================================================== -->
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner" aria-label="Main navigation">
+
+      <a class="brand" href="index.html" aria-label="Sennicare home">
+        <img class="brand__mark" src="assets/logo.svg" alt="Sennicare logo: a house with a heartbeat line" />
+        <span>Sennicare</span>
+      </a>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="index.html#services">Solutions</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="savings-calculator.html">Savings Calculator</a></li>
+        <li><a href="index.html#benefits">Resources</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li class="navbar__links-cta"><a class="btn btn--primary" href="index.html#contact">Book a Free Review</a></li>
+      </ul>
+
+      <a class="btn btn--primary btn--nav navbar__cta" href="index.html#contact">Book a Free Review</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ====================================================================
+         PAGE HEADER
+         ==================================================================== -->
+    <div class="page-header">
+      <div class="container">
+        <span class="eyebrow">Free Instant Estimate</span>
+        <h1>Savings Calculator</h1>
+        <p style="max-width:640px">
+          Answer four quick questions about how your home runs today. We'll show you
+          straight away what consolidating your supply chain, cutting waste and
+          streamlining admin could be worth over a year.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- ====================================================================
+         THE CALCULATOR
+         Left column  = the four questions
+         Right column = the live results
+         ==================================================================== -->
+    <section class="section">
+      <div class="container">
+
+        <div class="calc">
+
+          <!-- ============================================================
+               LEFT: INPUTS
+               Every input has an id (e.g. id="suppliers") which the
+               JavaScript uses to read its value.
+               ============================================================ -->
+          <div class="calc__inputs">
+            <h2>Your home today</h2>
+            <p class="calc__intro">
+              Rough figures are fine &mdash; estimates still give a useful picture.
+            </p>
+
+            <!-- QUESTION 1: number of suppliers (slider, 1 to 30) -->
+            <div class="calc-field">
+              <div class="calc-field__top">
+                <label class="calc-field__label" for="suppliers">
+                  Number of suppliers you currently use
+                </label>
+                <span class="calc-field__value" id="suppliersValue">12</span>
+              </div>
+              <input type="range" id="suppliers" min="1" max="30" step="1" value="12" />
+              <div class="calc-field__scale"><span>1</span><span>30</span></div>
+            </div>
+
+            <!-- QUESTION 2: monthly consumables spend (typed number, in £) -->
+            <div class="calc-field">
+              <div class="calc-field__top">
+                <label class="calc-field__label" for="spend">
+                  Approximate monthly spend on consumables
+                </label>
+              </div>
+              <div class="calc-money">
+                <span class="calc-money__symbol">&pound;</span>
+                <input type="number" id="spend" min="0" step="100" value="8000" inputmode="numeric" />
+              </div>
+              <p class="calc-field__hint">
+                Continence products, gloves, cleaning supplies, catering, stationery and so on.
+              </p>
+            </div>
+
+            <!-- QUESTION 3: weekly admin hours (typed number) -->
+            <div class="calc-field">
+              <div class="calc-field__top">
+                <label class="calc-field__label" for="hours">
+                  Staff hours spent weekly on ordering &amp; admin
+                </label>
+              </div>
+              <input type="number" id="hours" min="0" max="200" step="0.5" value="10" inputmode="decimal" />
+              <p class="calc-field__hint">
+                Across everyone &mdash; placing orders, chasing deliveries, checking invoices, stock counts.
+              </p>
+            </div>
+
+            <!-- QUESTION 4: stock waste (slider, 0% to 30%) -->
+            <div class="calc-field">
+              <div class="calc-field__top">
+                <label class="calc-field__label" for="waste">
+                  Current estimated stock waste
+                </label>
+                <span class="calc-field__value" id="wasteValue">8%</span>
+              </div>
+              <input type="range" id="waste" min="0" max="30" step="1" value="8" />
+              <div class="calc-field__scale"><span>0%</span><span>30%</span></div>
+              <p class="calc-field__hint" id="wasteHint">
+                Stock thrown away, expired or over-ordered, as a share of your spend.
+              </p>
+            </div>
+
+            <!-- A link to put every question back to its starting figure -->
+            <button type="button" class="calc__reset" id="calcReset">Reset to example figures</button>
+          </div>
+
+
+          <!-- ============================================================
+               RIGHT: RESULTS
+               These start with the figures for the example inputs above, and
+               are rewritten by JavaScript every time an input changes.
+               ============================================================ -->
+          <div class="calc__results">
+
+            <!-- Our consolidation recommendation, written in plain English -->
+            <div class="calc-recommend" id="recommendBox">
+              Loading your estimate&hellip;
+            </div>
+
+            <!-- Result 1: supply chain consolidation -->
+            <div class="result">
+              <span class="result__label">Annual saving from supply consolidation</span>
+              <span class="result__value" id="resultConsolidation">&pound;0</span>
+              <span class="result__note">Based on a 15% reduction in what you spend</span>
+            </div>
+
+            <!-- Result 2: waste reduction -->
+            <div class="result">
+              <span class="result__label">Annual saving from waste reduction</span>
+              <span class="result__value" id="resultWaste">&pound;0</span>
+              <span class="result__note" id="resultWasteNote">Based on halving your current waste</span>
+            </div>
+
+            <!-- Result 3: time given back -->
+            <div class="result">
+              <span class="result__label">Staff time given back each year</span>
+              <span class="result__value" id="resultHours">0 hours</span>
+              <span class="result__note" id="resultHoursNote">
+                A 30% cut in admin time, worth &pound;0 at &pound;15 per hour
+              </span>
+            </div>
+
+            <!-- The headline total, highlighted in magenta -->
+            <div class="result result--total">
+              <span class="result__label">Total estimated annual benefit</span>
+              <span class="result__value" id="resultTotal">&pound;0</span>
+              <span class="result__note" id="resultTotalNote">
+                including 0 hours of staff time given back
+              </span>
+            </div>
+
+            <!-- Call to action. The email link is written by the JavaScript so
+                 that it already contains the visitor's own figures. -->
+            <div class="calc-cta">
+              <a class="btn btn--primary btn--large" id="ctaBookReview" href="mailto:hello@sennicare.co.uk">
+                Want a detailed breakdown? Book your free review
+              </a>
+              <a class="calc-cta__secondary" id="ctaEmailResults" href="mailto:hello@sennicare.co.uk">
+                Or email these results to yourself
+              </a>
+            </div>
+
+          </div>
+
+        </div><!-- /.calc -->
+
+
+        <!-- ==============================================================
+             SMALL PRINT: where the percentages come from
+             ============================================================== -->
+        <div class="calc-assumptions">
+          <h3>How we work these numbers out</h3>
+          <ul>
+            <li><strong>Supply consolidation &mdash; 15%:</strong> your annual consumables spend &times; 15%. Homes buying from many suppliers usually pay more per item and lose volume discounts.</li>
+            <li><strong>Waste reduction &mdash; half:</strong> your annual spend &times; your waste percentage &times; 50%. Better par levels and stock rotation typically remove around half of avoidable waste.</li>
+            <li><strong>Admin time &mdash; 30%:</strong> your weekly admin hours &times; 52 &times; 30%, valued at &pound;15 per hour. Fewer suppliers and simpler ordering means far less chasing.</li>
+            <li><strong>Total:</strong> the two cash savings plus the money value of the time given back.</li>
+          </ul>
+          <p style="margin:14px 0 0">
+            These are estimates based on typical results across UK care homes, not a
+            guarantee. Your free operational review gives you figures based on your
+            actual invoices and stock. All figures in pounds sterling (&pound;).
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         CALL-TO-ACTION BAND (same as the home page)
+         ==================================================================== -->
+    <section class="cta-band">
+      <div class="container">
+        <h2>Ready to bring order to your operations?</h2>
+        <p>Book your free, no-obligation operational review today.</p>
+        <a class="btn btn--primary btn--large" href="index.html#contact">Book a Free Review</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================================
+       FOOTER (identical to the home page)
+       ====================================================================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__top">
+        <div>
+          <a class="brand" href="index.html">
+            <img class="brand__mark" src="assets/logo-light.svg" alt="Sennicare logo" />
+            <span>Sennicare</span>
+          </a>
+          <p class="footer__tagline">
+            Empowering Caregivers &mdash; independent operations and supply chain
+            partners for UK care homes.
+          </p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#services">Solutions</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="savings-calculator.html">Savings Calculator</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Sennicare. All rights reserved.</span>
+        <span>Registered in England &amp; Wales</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- main.js runs the mobile menu and navbar shadow on every page -->
+  <script src="js/main.js"></script>
+  <!-- calculator.js runs the sums on this page only -->
+  <script src="js/calculator.js"></script>
+</body>
+</html>

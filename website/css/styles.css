@@ -620,12 +620,18 @@ textarea:focus-visible {
   .footer__top { grid-template-columns: 1fr 1fr; }
 }
 
-/* --- Mobile phones --- */
-@media (max-width: 700px) {
-  body { font-size: 16px; }
-  .section { padding: 60px 0; }
+/* --- Small laptops and tablets: slightly tighter menu spacing ---
+   This keeps the five menu links on one line for as long as possible. */
+@media (max-width: 1150px) {
+  .navbar__links { gap: 24px; }
+  .navbar__links a { font-size: 16px; }
+}
 
-  /* Show the hamburger button, hide the desktop menu */
+/* --- Tablets and phones: swap the menu for the hamburger button ---
+   Below 980 pixels there isn't room for five links plus the button, so we
+   collapse them into the drop-down menu. */
+@media (max-width: 979px) {
+  /* Show the hamburger button, hide the desktop menu and desktop button */
   .navbar__toggle { display: block; }
   .navbar__cta { display: none; }
 
@@ -645,11 +651,17 @@ textarea:focus-visible {
   }
   .navbar__links.is-open { display: flex; }
   .navbar__links li { border-bottom: 1px solid var(--border); }
-  .navbar__links a { display: block; padding: 14px 0; border-bottom: none; }
+  .navbar__links a { display: block; padding: 14px 0; border-bottom: none; font-size: 17px; }
   /* Show the magenta CTA at the bottom of the open mobile menu */
   .navbar__links-cta { display: block; border-bottom: none !important; margin-top: 16px; }
-  .navbar__links-cta a { color: var(--white); font-weight: 700; padding: 15px 30px; }
+  .navbar__links-cta a { color: var(--white); font-weight: 700; padding: 15px 30px; text-align: center; }
   .navbar__links-cta a:hover { color: var(--white); }
+}
+
+/* --- Mobile phones --- */
+@media (max-width: 700px) {
+  body { font-size: 16px; }
+  .section { padding: 60px 0; }
 
   /* Everything stacks into a single column */
   .services__grid,
@@ -681,4 +693,261 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+}
+
+
+/* ==========================================================================
+   6. SAVINGS CALCULATOR (used by savings-calculator.html)
+   These styles are only used on the calculator page. They reuse the same
+   brand colours and fonts defined at the top of this file.
+   ========================================================================== */
+
+/* The overall two-column layout: inputs on the left, results on the right.
+   "1fr 1fr" means two equal columns. On mobile this becomes one column
+   (see the media query at the bottom of this section). */
+.calc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  align-items: start;
+}
+
+/* ---- Left column: the input panel ---- */
+.calc__inputs {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow-soft);
+}
+.calc__inputs h2 { font-size: 24px; margin-bottom: 6px; }
+.calc__intro { font-size: 16px; margin-bottom: 26px; }
+
+/* One question (label + input) */
+.calc-field { margin-bottom: 26px; }
+.calc-field:last-of-type { margin-bottom: 8px; }
+
+/* The label sits on one line, with the current value shown on the right */
+.calc-field__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.calc-field__label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+}
+/* The live value shown beside a slider, e.g. "14 suppliers" or "8%" */
+.calc-field__value {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--cyan);
+  white-space: nowrap;
+}
+.calc-field__hint {
+  font-size: 14px;
+  color: var(--text-body);
+  margin: 8px 0 0;
+}
+
+/* A text box for typing a number, with a £ symbol tucked inside on the left */
+.calc-money {
+  position: relative;
+}
+.calc-money__symbol {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  pointer-events: none;   /* clicks pass through to the input behind it */
+}
+.calc-field input[type="number"] {
+  width: 100%;
+  padding: 13px 14px;
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+.calc-money input[type="number"] { padding-left: 32px; }   /* room for the £ */
+.calc-field input[type="number"]:focus { border-color: var(--cyan); }
+
+/* ---- Sliders ----
+   Sliders need a few browser-specific lines to look the same everywhere.
+   "appearance: none" removes the browser's default look so ours shows. */
+.calc-field input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  margin: 6px 0;
+  border-radius: 999px;
+  background: var(--border);   /* the track the handle slides along */
+  cursor: pointer;
+}
+/* The round handle - Chrome, Edge and Safari */
+.calc-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 4px solid var(--white);
+  box-shadow: 0 2px 8px rgba(10, 17, 114, 0.28);
+  cursor: pointer;
+}
+/* The round handle - Firefox */
+.calc-field input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border: 4px solid var(--white);
+  box-shadow: 0 2px 8px rgba(10, 17, 114, 0.28);
+  cursor: pointer;
+}
+/* Small "1" and "30" labels under a slider, showing its range */
+.calc-field__scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-body);
+  margin-top: 2px;
+}
+
+/* The little "Reset" link at the bottom of the inputs panel */
+.calc__reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 6px;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cyan);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ---- Right column: the results panel ---- */
+/* "sticky" keeps the results visible on screen while you scroll the inputs. */
+.calc__results {
+  position: sticky;
+  top: calc(var(--nav-height) + 20px);
+}
+
+/* A single result: big number + label */
+.result {
+  background: var(--grey-light);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 16px;
+  border-left: 4px solid var(--cyan);
+}
+.result__label {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-body);
+  margin-bottom: 4px;
+}
+.result__value {
+  display: block;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.result__note {
+  display: block;
+  font-size: 14px;
+  color: var(--text-body);
+  margin-top: 6px;
+}
+
+/* The headline total, highlighted in magenta */
+.result--total {
+  background: rgba(227, 11, 92, 0.06);   /* very pale magenta tint */
+  border: 2px solid var(--magenta);
+  border-left-width: 6px;
+  padding: 28px;
+}
+.result--total .result__label {
+  color: var(--magenta-dark);
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.result--total .result__value {
+  color: var(--magenta);
+  font-size: 54px;
+}
+/* The "plus X hours given back" line under the total */
+.result--total .result__note {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-top: 10px;
+}
+
+/* The consolidation recommendation box */
+.calc-recommend {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+.calc-recommend strong { color: var(--white); }
+
+/* The call-to-action block underneath the results */
+.calc-cta {
+  margin-top: 22px;
+  text-align: center;
+}
+.calc-cta .btn { width: 100%; }
+.calc-cta__secondary {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+/* Small print explaining where the percentages come from */
+.calc-assumptions {
+  margin-top: 40px;
+  padding: 26px 28px;
+  background: var(--grey-light);
+  border-radius: var(--radius);
+  font-size: 15px;
+}
+.calc-assumptions h3 { font-size: 18px; margin-bottom: 12px; }
+.calc-assumptions ul { margin: 0; padding-left: 20px; }
+.calc-assumptions li { margin-bottom: 8px; }
+
+/* ---- Calculator: mobile and tablet ---- */
+@media (max-width: 980px) {
+  .calc { grid-template-columns: 1fr; }   /* stack into one column */
+  /* Sticky results make no sense once stacked, so switch it off */
+  .calc__results { position: static; }
+}
+@media (max-width: 700px) {
+  .calc__inputs { padding: 24px 20px; }
+  .result__value { font-size: 32px; }
+  .result--total { padding: 24px 20px; }
+  .result--total .result__value { font-size: 42px; }
 }
