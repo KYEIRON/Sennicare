@@ -239,6 +239,7 @@ its CSS embedded: open it by double-clicking, upload it anywhere, no build step.
 | `website/home.html` | Homepage — hero, trust bar, Stressed→Empowered, the Sennicare Engine, Built for the People of Care, final CTA |
 | `website/product.html` | Product — frequency-aware algorithm, testimonial banner, consolidation intelligence, quality vetting |
 | `website/pricing.html` | Pricing — Free Forever / Professional, "No Savings, No Fee" banner |
+| `website/suppliers.html` | For Suppliers — supplier advantage, product categories carousel, supplier portal mock, standards, application requirements |
 
 **To make one of these your live homepage:** rename it to `index.html`.
 
@@ -278,7 +279,12 @@ can check. Honest alternatives are suggested in the code comments beside each on
 - **Three homepages exist.** `index.html` (the "Buy Smarter. Care Better." version),
   `home.html` (this set), and the old design still used by `savings-calculator.html`,
   `privacy.html` and `terms.html`. Tell me which direction wins and I'll consolidate.
-- **The CSS is duplicated** across the three standalone files, because you asked for
-  standalone files. That means a colour change is three edits. If you'd rather change it
+- **The CSS is duplicated** across the four standalone files, because you asked for
+  standalone files. That means a colour change is four edits. If you'd rather change it
   once, I can pull the shared CSS into a single `sennicare-brand.css` — the pages stop
   being single-file, but stay just as simple to host.
+- **Two different navigation menus now exist.** `home.html`, `product.html` and
+  `pricing.html` share one set of links; `suppliers.html` uses the supplier-audience set
+  from its design (Platform · For Suppliers · Solutions · Intelligence · Resources, with
+  Partner Login and Join Network). That was what the design showed, but a visitor moving
+  between the two will notice the menu change. Say which set should win and I'll unify them.

@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SENNICARE — FOR SUPPLIERS (standalone)
+  ============================================================================
+  One file, like home.html, product.html and pricing.html. Same colours,
+  typeface and navigation styling.
+
+  ── THE PAGE, IN ORDER ───────────────────────────────────────────────────
+  1. Navigation             5. Your Warehouse, Our Intelligence
+  2. Hero                   6. Uncompromising Standards (dark navy)
+  3. The Supplier Advantage 7. Join the Network of Excellence
+  4. Premium Product        8. Footer
+     Categories (carousel)
+
+  ── EDITING ──────────────────────────────────────────────────────────────
+  · WORDS   — everything between > and < is text. Change it freely.
+  · COLOURS — the "BRAND COLOURS" block near the top of the CSS.
+  · PHOTOS  — search for "PHOTO" to find all four.
+  ============================================================================
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>For Suppliers | Sennicare</title>
+<meta name="description" content="Connect your inventory to the procurement heartbeat of thousands of UK care homes. Sennicare streamlines your sales, automates your invoicing, and puts your products in front of the right buyers." />
+<meta name="theme-color" content="#0a1172" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>/* ==========================================================================
+   BRAND COLOURS  —  change a value here and it updates the whole page
+   ========================================================================== */
+:root {
+  --navy:            #0a1172;   /* Deep Navy — hero and footer, headings */
+  --navy-grad-end:   #1a228f;   /* the lighter end of the navy gradient */
+  --raspberry:       #e30b5c;   /* Primary Raspberry — buttons and badges */
+  --raspberry-dark:  #b70048;   /* darker raspberry, for button hover */
+  --cyan:            #00b2d9;   /* Cyber Cyan — secondary accents, data */
+  --teal:            #00647b;   /* Success teal — ticks and positives */
+  --coral:           #ba1a1a;   /* Warning coral — the "old way" crosses */
+  --lavender:        #faf8ff;   /* Lavender-White — the page background */
+  --white:           #ffffff;   /* card backgrounds */
+  --text:            #131b2e;   /* Dark Text — body copy */
+  --text-muted:      #5c3f43;   /* Muted Text — secondary copy */
+  --surface-low:     #f2f3ff;   /* very soft panels */
+  --surface-variant: #dae2fd;   /* borders and dividers */
+  --tertiary-fixed:  #b6ebff;   /* pale cyan badge background */
+  --tertiary-ink:    #001f28;   /* text on the pale cyan badge */
+
+  /* ---- Spacing (an 8px base unit, as per the brand spec) ---- */
+  --sp-xs: 4px;  --sp-sm: 12px;  --sp-md: 24px;  --sp-lg: 48px;  --sp-xl: 80px;
+  --margin-desktop: 40px;
+  --margin-mobile: 16px;
+  --max-width: 1200px;
+
+  /* ---- Shape ---- */
+  --radius-button: 4px;    /* precise, tool-like */
+  --radius-card: 8px;      /* softer for larger surfaces */
+  --radius-pill: 9999px;
+
+  /* ---- Shadows: soft, and tinted with navy rather than grey ---- */
+  --shadow-card:  0 1px 4px rgba(10, 17, 114, 0.05);
+  --shadow-lift:  0 6px 18px rgba(10, 17, 114, 0.10);
+  --shadow-photo: 0 18px 40px rgba(10, 17, 114, 0.16);
+  --shadow-nav:   0 1px 3px rgba(10, 17, 114, 0.06);
+}
+
+
+/* ==========================================================================
+   PAGE BASICS
+   ========================================================================== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--lavender);
+  color: var(--text);
+  font-family: "Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; color: var(--text); }
+
+/* Type scale, straight from the brand spec */
+h1 { font-size: 48px; font-weight: 800; line-height: 1.1;  letter-spacing: -0.02em; }
+h2 { font-size: 32px; font-weight: 700; line-height: 1.2;  letter-spacing: -0.01em; }
+h3 { font-size: 24px; font-weight: 700; line-height: 1.2; }
+
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* A visible outline for anyone navigating by keyboard */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: var(--radius-button);
+}
+
+/* Centres the content and keeps the outer margins right */
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+}
+
+/* 80px of air between sections */
+.section { padding: var(--sp-xl) 0; }
+
+/* Icons are drawn, so they take their colour from the text around them */
+.ico {
+  width: 20px; height: 20px; flex-shrink: 0;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.ico--sm { width: 16px; height: 16px; }
+.ico--lg { width: 26px; height: 26px; }
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px;
+  min-height: 44px;                       /* comfortable to tap on a phone */
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-button);
+  font-family: inherit;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color .18s ease, box-shadow .18s ease,
+              transform .18s ease, border-color .18s ease, color .18s ease;
+}
+
+/* Solid raspberry — the main action */
+.btn--primary { background: var(--raspberry); color: var(--white); }
+.btn--primary:hover {
+  background: var(--raspberry-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+.btn--primary:active { transform: scale(.97); }
+
+/* Outline — the quieter action beside it */
+.btn--outline {
+  background: var(--white);
+  color: var(--text);
+  border-color: var(--surface-variant);
+}
+.btn--outline:hover {
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn--sm { padding: 10px 18px; font-size: 14px; }
+.btn--lg { padding: 16px 32px; font-size: 16px; }
+
+
+/* ==========================================================================
+   1. NAVIGATION BAR — sticky, white
+   ========================================================================== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--surface-variant);
+  box-shadow: var(--shadow-nav);
+}
+.nav__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-md);
+}
+.logo {
+  font-size: 21px; font-weight: 800; letter-spacing: -0.03em;
+  color: var(--raspberry);
+  display: flex; align-items: center; gap: 8px;
+}
+.nav__links { display: flex; align-items: center; gap: var(--sp-md); }
+.nav__links a {
+  font-size: 15px; font-weight: 500; color: var(--text);
+  padding: 6px 0; border-bottom: 2px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.nav__links a:hover { color: var(--raspberry); border-bottom-color: var(--raspberry); }
+
+.nav__right { display: flex; align-items: center; gap: var(--sp-sm); }
+.nav__login { font-size: 15px; font-weight: 600; color: var(--raspberry); }
+
+/* The hamburger button, shown only on small screens */
+.nav__burger {
+  display: none;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; color: var(--navy);
+  border-radius: var(--radius-button);
+}
+
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.hero { background: var(--lavender); padding: var(--sp-lg) 0 var(--sp-xl); }
+.hero__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+.hero__copy { display: flex; flex-direction: column; gap: var(--sp-md); max-width: 620px; }
+
+/* The small pale-cyan badge above the headline */
+.badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  width: max-content;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--tertiary-fixed);
+  color: var(--tertiary-ink);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+}
+.badge .ico { color: var(--teal); }
+
+/* "Financial Intelligence." in raspberry */
+.hero h1 .highlight { color: var(--raspberry); }
+
+.hero__sub { font-size: 18px; color: var(--text-muted); max-width: 34em; }
+.hero__buttons { display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+
+/* The hero photograph */
+.hero__photo {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 4 / 3;
+}
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ==========================================================================
+   3. TRUST BAR
+   ========================================================================== */
+.trust {
+  border-top: 1px solid var(--surface-variant);
+  border-bottom: 1px solid var(--surface-variant);
+  background: var(--lavender);
+  padding: var(--sp-md) 0;
+}
+.trust__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: var(--sp-md);
+}
+.trust__item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+.trust__item .ico { color: var(--text-muted); }
+
+
+/* ==========================================================================
+   4. FROM STRESSED TO EMPOWERED
+   ========================================================================== */
+.section--white { background: var(--white); }
+
+.section-head { text-align: center; max-width: 640px; margin: 0 auto var(--sp-lg); }
+.section-head p { color: var(--text-muted); margin-top: var(--sp-sm); }
+
+.two-col { display: grid; grid-template-columns: 1fr; gap: var(--sp-lg); }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-md);
+  display: flex; flex-direction: column; gap: var(--sp-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+/* The two story cards get a faint tint: warm for the old way, cool for ours */
+.card--old { background: #fff7f7; }
+.card--new { background: #f4f6ff; }
+
+.card__head { display: flex; align-items: center; gap: 10px; }
+.card__head .ico { width: 26px; height: 26px; }
+.card--old .card__head .ico { color: var(--coral); }
+.card--new .card__head .ico { color: var(--raspberry); }
+
+.card__photo {
+  border-radius: var(--radius-card); overflow: hidden;
+  height: 220px; margin: var(--sp-xs) 0 var(--sp-sm);
+}
+.card__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.point-list { display: flex; flex-direction: column; gap: 10px; }
+.point {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 15px; color: var(--text-muted);
+}
+.point .ico { margin-top: 4px; width: 15px; height: 15px; }
+.point--bad .ico  { color: var(--coral); }
+.point--good .ico { color: var(--teal); }
+.point strong { color: var(--text); font-weight: 700; }
+
+
+/* ==========================================================================
+   5. INTELLIGENT RECOMMENDATIONS
+   ========================================================================== */
+.engine__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+/* The device mock sits on a soft raspberry mat, as in the design */
+.engine__mock {
+  background: linear-gradient(140deg, rgba(227, 11, 92, .10), rgba(0, 178, 217, .10));
+  border-radius: 16px;
+  padding: var(--sp-md);
+}
+.engine__mock img {
+  width: 100%; border-radius: var(--radius-card);
+  box-shadow: var(--shadow-photo);
+}
+.engine__copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.engine__copy p { color: var(--text-muted); }
+
+/* The pale raspberry badge on this section */
+.badge--engine { background: #ffe4ec; color: var(--raspberry-dark); }
+.badge--engine .ico { color: var(--raspberry); }
+
+/* The three little feature cards */
+.trio { display: grid; grid-template-columns: 1fr; gap: var(--sp-sm); }
+.trio-card {
+  background: var(--white);
+  border: 1px solid var(--surface-variant);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.trio-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.trio-card .ico { color: var(--cyan); }
+.trio-card strong { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.trio-card span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+
+/* ==========================================================================
+   6. BUILT FOR THE PEOPLE OF CARE
+   ========================================================================== */
+.people__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+.people__copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.people__copy > p { color: var(--text-muted); }
+
+.role { display: flex; gap: var(--sp-sm); align-items: flex-start; }
+.role__icon {
+  width: 40px; height: 40px; border-radius: var(--radius-card);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.role__icon--manager { background: #ffe4ec; color: var(--raspberry); }
+.role__icon--finance { background: #dff4fb; color: var(--teal); }
+.role strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.role span { font-size: 14.5px; color: var(--text-muted); }
+
+.people__photo {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 4 / 3;
+}
+.people__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ==========================================================================
+   7. FINAL CALL TO ACTION — deep navy
+   ========================================================================== */
+.final {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-grad-end) 100%);
+  padding: var(--sp-xl) 0;
+  text-align: center;
+}
+.final h2 { color: var(--white); font-size: 36px; }
+.final p {
+  color: rgba(255, 255, 255, .82);
+  max-width: 30em; margin: var(--sp-sm) auto var(--sp-md);
+}
+
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, .74);
+  padding: var(--sp-lg) 0 var(--sp-md);
+  font-size: 14.5px;
+}
+.footer__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-md);
+}
+.footer .logo { color: var(--white); margin-bottom: 10px; }
+.footer__tagline { max-width: 24em; }
+.footer__copyright { margin-top: var(--sp-md); font-size: 13px; color: rgba(255,255,255,.55); }
+.footer h4 {
+  margin: 0 0 14px;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--raspberry);
+}
+.footer ul { display: flex; flex-direction: column; gap: 10px; }
+.footer a { color: rgba(255, 255, 255, .74); }
+.footer a:hover { color: var(--white); text-decoration: underline; }
+
+
+/* ==========================================================================
+   WIDER SCREENS
+   Everything above is written for a phone first. These rules add the
+   side-by-side layouts once there is room for them.
+   ========================================================================== */
+@media (min-width: 700px) {
+  .wrap, .nav__inner { padding: 0 var(--margin-desktop); }
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .trio { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 940px) {
+  h1 { font-size: 48px; }
+  .hero__grid   { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
+  .engine__grid { grid-template-columns: 1fr 1fr; }
+  .people__grid { grid-template-columns: 1fr 1fr; }
+  .footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--sp-lg); }
+  .nav__burger  { display: none; }
+}
+
+/* ---- Phones and small tablets: swap the menu for a drop-down ---- */
+@media (max-width: 939px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  .final h2 { font-size: 26px; }
+
+  .nav__burger { display: flex; }
+  .nav__login { display: none; }
+
+  .nav__links {
+    display: none;
+    position: absolute; top: 68px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--surface-variant);
+    box-shadow: var(--shadow-lift);
+    padding: 8px var(--margin-mobile) 16px;
+  }
+  .nav__links.is-open { display: flex; }
+  .nav__links a {
+    padding: 14px 0; border-bottom: 1px solid var(--surface-low);
+  }
+  .nav__links a:last-child { border-bottom: none; }
+
+  .trust__inner { gap: var(--sp-sm); }
+  .trust__item { width: 100%; }
+  .hero__buttons .btn { flex: 1 1 auto; }
+}
+
+/* ---- Anyone who prefers less movement ---- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .btn:hover, .card:hover, .trio-card:hover { transform: none; }
+}
+
+/* ==========================================================================
+   FOR SUPPLIERS PAGE ONLY — everything above is shared with the other pages
+   ========================================================================== */
+
+.nav__links a.is-current { color: var(--raspberry); border-bottom-color: var(--raspberry); }
+
+/* ---- Hero: a faint graph-paper grid, as in the design ---- */
+.sup-hero { position: relative; background: var(--lavender); padding: var(--sp-lg) 0 var(--sp-xl); overflow: hidden; }
+.sup-hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .55;
+  background-image:
+    linear-gradient(to right, #e2e7ff 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e7ff 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+/* Two very soft colour washes for depth */
+.sup-hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(46% 52% at 88% 4%, rgba(150,158,253,.20), transparent 62%),
+    radial-gradient(42% 48% at 2% 96%, rgba(255,217,221,.42), transparent 62%);
+}
+.sup-hero > * { position: relative; z-index: 1; }
+/* "UK Care Sector" in the raspberry gradient */
+.grad-rasp {
+  background: linear-gradient(135deg, #e30b5c, #900037);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--raspberry);
+}
+
+/* ---- The three advantage cards ---- */
+.adv { display: grid; grid-template-columns: 1fr; gap: var(--sp-md); }
+.adv-card {
+  background: var(--white);
+  border: 1px solid var(--surface-variant);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-md);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.adv-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.adv-card__icon {
+  width: 52px; height: 52px; border-radius: var(--radius-card);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .2s ease;
+}
+.adv-card:hover .adv-card__icon { transform: scale(1.08); }
+.adv-card__icon--teal { background: rgba(182,235,255,.5);  color: var(--teal); }
+.adv-card__icon--rasp { background: rgba(255,217,221,.55); color: var(--raspberry); }
+.adv-card__icon--blue { background: rgba(224,224,255,.7);  color: #4e55af; }
+.adv-card h3 { font-size: 21px; }
+.adv-card p { color: var(--text-muted); font-size: 15px; }
+
+/* ---- Product categories, scrolled sideways by the arrows ---- */
+.cats__head {
+  display: flex; flex-direction: column; gap: var(--sp-md);
+  justify-content: space-between; margin-bottom: var(--sp-lg);
+}
+.cats__arrows { display: none; gap: 10px; }
+.cats__arrow {
+  width: 46px; height: 46px; border-radius: var(--radius-pill);
+  border: 1px solid var(--surface-variant); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); cursor: pointer; box-shadow: var(--shadow-card);
+  transition: background .15s ease, border-color .15s ease;
+}
+.cats__arrow:hover { background: var(--surface-low); border-color: var(--raspberry); color: var(--raspberry); }
+.cats__arrow:disabled { opacity: .4; cursor: default; }
+
+.cats {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 86%;
+  gap: var(--sp-md);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: var(--sp-sm);
+  scrollbar-width: none;
+}
+.cats::-webkit-scrollbar { display: none; }
+.cat { scroll-snap-align: start; cursor: pointer; }
+.cat__photo {
+  height: 240px; border-radius: var(--radius-card); overflow: hidden;
+  border: 1px solid var(--surface-variant); box-shadow: var(--shadow-card);
+  margin-bottom: 14px; background: var(--white);
+}
+.cat__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.cat:hover .cat__photo img { transform: scale(1.03); }
+.cat h3 { font-size: 20px; margin-bottom: 4px; transition: color .15s ease; }
+.cat:hover h3 { color: var(--raspberry); }
+.cat p { color: var(--text-muted); font-size: 15px; }
+
+/* Dots under the carousel, for phones */
+.cats__dots { display: flex; justify-content: center; gap: 4px; margin-top: 4px; }
+/* The button is 44px tall so it is easy to tap; the visible dot inside it
+   stays small. Tapping anywhere in that invisible area works. */
+.cats__dot {
+  width: 32px; height: 44px;
+  background: none; border: none; padding: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.cats__dot::after {
+  content: ""; display: block;
+  width: 8px; height: 8px; border-radius: var(--radius-pill);
+  background: var(--surface-variant);
+  transition: width .2s ease, background .2s ease;
+}
+.cats__dot.is-active::after { background: var(--raspberry); width: 22px; }
+
+/* ---- The supplier dashboard mock ---- */
+.portal {
+  background: var(--white);
+  border: 1px solid var(--surface-variant);
+  border-radius: 14px;
+  box-shadow: var(--shadow-photo);
+  padding: var(--sp-md);
+  max-width: 500px;
+}
+.portal__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; margin-bottom: var(--sp-md);
+  border-bottom: 1px solid var(--surface-low);
+}
+.portal__brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+.portal__logo {
+  width: 30px; height: 30px; border-radius: 6px; background: var(--raspberry);
+  color: var(--white); display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 13px;
+}
+.portal__dots { display: flex; gap: 6px; }
+.portal__dots i { width: 10px; height: 10px; border-radius: var(--radius-pill); display: block; }
+
+.portal__figures { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: var(--sp-md); }
+.portal__figure {
+  background: var(--surface-low); border: 1px solid var(--surface-variant);
+  border-radius: 10px; padding: 16px;
+}
+.portal__label { font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; }
+.portal__value { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+.portal__trend { font-size: 12.5px; color: var(--raspberry); font-weight: 600;
+                 display: flex; align-items: center; gap: 5px; }
+
+.portal__ship {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  border: 1px solid var(--surface-variant); border-radius: 10px;
+  padding: 12px 14px; margin-top: 10px;
+}
+.portal__ship-left { display: flex; align-items: center; gap: 12px; }
+.portal__ship-icon {
+  width: 36px; height: 36px; border-radius: 8px; background: #eaedff;
+  color: var(--text-muted); display: flex; align-items: center; justify-content: center;
+}
+.portal__ship strong { display: block; font-size: 14px; font-weight: 600; }
+.portal__ship span { font-size: 12.5px; color: var(--text-muted); }
+.portal__chip {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap;
+}
+.portal__chip--transit { background: rgba(182,235,255,.55); color: var(--teal); }
+.portal__chip--done { background: #e2e7ff; color: var(--text-muted); }
+
+/* The tick list beside the dashboard */
+.ticks { display: flex; flex-direction: column; gap: 14px; margin-top: var(--sp-sm); }
+.tick { display: flex; align-items: center; gap: 14px; font-size: 15.5px; }
+.tick__ring {
+  width: 26px; height: 26px; border-radius: var(--radius-pill);
+  border: 1px solid var(--raspberry); color: var(--raspberry);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+/* ---- Uncompromising Standards, on dark navy ---- */
+.standards { background: #283044; color: rgba(255,255,255,.72); padding: var(--sp-xl) 0; }
+.standards h2 { color: var(--white); }
+.standards > .wrap > .standards__grid > div > p { color: rgba(255,255,255,.7); }
+.standards__grid { display: grid; grid-template-columns: 1fr; gap: var(--sp-lg); align-items: center; }
+.standards__badges { display: grid; grid-template-columns: 1fr; gap: var(--sp-md); margin-top: var(--sp-sm); }
+.std-badge { display: flex; align-items: center; gap: 14px; }
+.std-badge__icon {
+  width: 46px; height: 46px; border-radius: 10px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.std-badge span { font-size: 16px; font-weight: 600; color: var(--white); }
+
+.requirements {
+  position: relative; overflow: hidden;
+  background: var(--lavender); color: var(--text);
+  border-radius: 14px; padding: var(--sp-lg) var(--sp-md);
+  box-shadow: var(--shadow-photo);
+}
+.requirements::before {
+  content: ""; position: absolute; top: 0; right: 0;
+  width: 120px; height: 120px; background: var(--raspberry);
+  opacity: .18; border-radius: 0 14px 0 100%;
+}
+.requirements h3 { font-size: 22px; margin-bottom: var(--sp-md); position: relative; }
+.requirements ul { position: relative; display: flex; flex-direction: column; }
+.requirements li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid var(--surface-variant);
+  font-size: 15.5px;
+}
+.requirements li:last-child { border-bottom: none; }
+.requirements li .ico { color: rgba(227,11,92,.45); width: 17px; height: 17px; }
+
+/* ---- Final call to action ---- */
+.sup-final { background: #eaedff; padding: var(--sp-xl) 0; text-align: center; }
+.sup-final h2 { font-size: 34px; }
+.sup-final p { color: var(--text-muted); font-size: 18px; max-width: 40em; margin: var(--sp-sm) auto var(--sp-md); }
+
+/* ---- This page's footer is one row, as in the design ---- */
+.sup-footer { background: #283044; color: var(--white); padding: var(--sp-lg) 0; }
+.sup-footer__inner {
+  display: flex; flex-direction: column; align-items: center; gap: var(--sp-md);
+  text-align: center;
+}
+.sup-footer .logo { color: var(--white); }
+.sup-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-md); }
+.sup-footer a { color: rgba(255,255,255,.6); font-size: 14px; }
+.sup-footer a:hover { color: var(--white); }
+.sup-footer__copy { font-size: 14px; color: rgba(255,255,255,.4); }
+
+@media (min-width: 700px) {
+  .adv { grid-template-columns: repeat(3, 1fr); }
+  .cats { grid-auto-columns: calc((100% - 2 * var(--sp-md)) / 3); }
+  .cats__dots { display: none; }
+  .standards__badges { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 940px) {
+  .cats__head { flex-direction: row; align-items: flex-end; }
+  .cats__arrows { display: flex; }
+  .standards__grid { grid-template-columns: 1fr 1fr; }
+  .sup-footer__inner { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <nav class="nav__inner" aria-label="Main">
+    <a class="logo" href="home.html">Sennicare</a>
+
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="product.html">Platform</a></li>
+      <li><a class="is-current" href="suppliers.html" aria-current="page">For Suppliers</a></li>
+      <li><a href="product.html#care-homes">Solutions</a></li>
+      <li><a href="product.html#sourcing">Intelligence</a></li>
+      <li><a href="product.html#resources">Resources</a></li>
+    </ul>
+
+    <div class="nav__right">
+      <a class="nav__login" href="#apply">Partner Login</a>
+      <a class="btn btn--primary btn--sm" href="#apply">Join Network</a>
+    </div>
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- ======================================================================
+       2. HERO
+       ====================================================================== -->
+  <section class="sup-hero">
+    <div class="wrap hero__grid">
+
+      <div class="hero__copy">
+        <h1>
+          Accelerate Your Growth<br />
+          in the <span class="grad-rasp">UK Care Sector</span>
+        </h1>
+
+        <p class="hero__sub">
+          Connect your inventory directly to the procurement heartbeat of thousands of care
+          homes. Sennicare streamlines your sales, automates your invoicing, and puts your
+          products in front of the right buyers at the right time.
+        </p>
+
+        <div class="hero__buttons">
+          <a class="btn btn--primary btn--lg" href="#apply">
+            Become a Partner
+            <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--outline btn--lg" href="#advantage">View Supplier Guide</a>
+        </div>
+      </div>
+
+      <!-- PHOTO 1 of 4 — REPLACE ME
+           Wanted: two supply chain professionals reviewing a tablet in a bright
+           modern warehouse. Safety vests, warm light, clean industrial setting. -->
+      <div class="hero__photo">
+        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e6edfb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d5e2f7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%230a1172%22%20stroke-width%3D%227%22%20opacity%3D%22.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%230a1172%22%20opacity%3D%22.82%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%230a1172%22%20opacity%3D%22.6%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3ETwo%20staff%20with%20a%20tablet%20in%20a%20warehouse%3C%2Ftext%3E%3C%2Fsvg%3E"
+             alt="Two warehouse staff in safety vests reviewing an order on a tablet" />
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       3. THE SUPPLIER ADVANTAGE
+       ====================================================================== -->
+  <section class="section" id="advantage" style="background:var(--surface-low)">
+    <div class="wrap">
+
+      <div class="section-head">
+        <h2>The Supplier Advantage</h2>
+        <p>
+          Elevate your distribution with a platform designed to remove friction and amplify
+          your reach across the healthcare landscape.
+        </p>
+      </div>
+
+      <div class="adv">
+
+        <article class="adv-card">
+          <div class="adv-card__icon adv-card__icon--teal">
+            <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l3.5-4.5 3 2.5L18 8"/></svg>
+          </div>
+          <h3>High-Volume Demand</h3>
+          <p>
+            Access consolidated orders from nationwide care groups. Our intelligent platform
+            aggregates demand, allowing you to fulfil larger, more predictable shipments.
+          </p>
+        </article>
+
+        <article class="adv-card">
+          <div class="adv-card__icon adv-card__icon--rasp">
+            <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9.5 7h5M9.5 11h5M9.5 15h3"/></svg>
+          </div>
+          <h3>Frictionless Billing</h3>
+          <p>
+            Automated, CQC-aligned invoicing that eliminates payment delays. Seamlessly sync
+            with major accounting software to ensure you get paid on time, every time.
+          </p>
+        </article>
+
+        <article class="adv-card">
+          <div class="adv-card__icon adv-card__icon--blue">
+            <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+          </div>
+          <h3>Intelligence-Led Growth</h3>
+          <p>
+            Gain real-time insights into regional product demand and competitor pricing
+            trends. Use data to optimise your inventory and pricing strategy.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       4. PREMIUM PRODUCT CATEGORIES
+       The three cards sit in a row that scrolls sideways. The arrows and the
+       dots both work - see the script at the bottom of this file.
+       ====================================================================== -->
+  <section class="section">
+    <div class="wrap">
+
+      <div class="cats__head">
+        <div class="section-head" style="text-align:left;margin:0;max-width:640px">
+          <h2>Premium Product Categories</h2>
+          <p>
+            We facilitate the distribution of high-specification healthcare essentials,
+            ensuring care homes have access to the industry&rsquo;s most reliable supplies.
+          </p>
+        </div>
+
+        <div class="cats__arrows">
+          <button class="cats__arrow" id="catsPrev" aria-label="Previous categories">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <button class="cats__arrow" id="catsNext" aria-label="Next categories">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="cats" id="cats">
+
+        <!-- PHOTO 2 of 4 — REPLACE ME
+             Wanted: blood pressure monitor, thermometers, medical supplies. -->
+        <article class="cat">
+          <div class="cat__photo">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e4f4f8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d2eaf2%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%2300647b%22%20stroke-width%3D%227%22%20opacity%3D%22.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%2300647b%22%20opacity%3D%22.82%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%2300647b%22%20opacity%3D%22.6%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3EMedical%20%26amp%3B%20hygiene%20supplies%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Clinical consumables: blood pressure monitor, thermometers and dressings" />
+          </div>
+          <h3>Medical &amp; Hygiene</h3>
+          <p>Clinical-grade consumables and infection control solutions.</p>
+        </article>
+
+        <!-- PHOTO 3 of 4 — REPLACE ME
+             Wanted: premium nutritional supplements and care catering products. -->
+        <article class="cat">
+          <div class="cat__photo">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23efe6f7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dcd2ee%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%235c3f43%22%20stroke-width%3D%227%22%20opacity%3D%22.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%235c3f43%22%20opacity%3D%22.82%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%235c3f43%22%20opacity%3D%22.6%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3ENutrition%20%26amp%3B%20catering%20products%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Nutritional supplement bottles and care catering products on a shelf" />
+          </div>
+          <h3>Nutrition &amp; Catering</h3>
+          <p>Specialist dietary supplements and premium care catering.</p>
+        </article>
+
+        <!-- PHOTO 4 of 4 — REPLACE ME
+             Wanted: a smart monitoring device or modern care technology. -->
+        <article class="cat">
+          <div class="cat__photo">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbe6ee%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5d3e0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b70048%22%20stroke-width%3D%227%22%20opacity%3D%22.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b70048%22%20opacity%3D%22.82%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b70048%22%20opacity%3D%22.6%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3EMobility%20%26amp%3B%20monitoring%20technology%3C%2Ftext%3E%3C%2Fsvg%3E" alt="A smart monitoring device used in modern care settings" />
+          </div>
+          <h3>Mobility &amp; Technology</h3>
+          <p>Smart monitoring devices and advanced mobility equipment.</p>
+        </article>
+
+      </div>
+
+      <div class="cats__dots" id="catsDots">
+        <button class="cats__dot is-active" aria-label="Show Medical and Hygiene"></button>
+        <button class="cats__dot" aria-label="Show Nutrition and Catering"></button>
+        <button class="cats__dot" aria-label="Show Mobility and Technology"></button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       5. YOUR WAREHOUSE, OUR INTELLIGENCE
+       The dashboard is drawn in HTML and CSS - it is an illustration of the
+       supplier portal, not a screenshot.
+       ====================================================================== -->
+  <section class="section" style="background:var(--surface-low)">
+    <div class="wrap engine__grid">
+
+      <div class="portal">
+        <div class="portal__bar">
+          <div class="portal__brand">
+            <span class="portal__logo">S</span>
+            Supplier Portal
+          </div>
+          <div class="portal__dots">
+            <i style="background:#ba1a1a"></i>
+            <i style="background:#e30b5c"></i>
+            <i style="background:#00647b"></i>
+          </div>
+        </div>
+
+        <div class="portal__figures">
+          <div class="portal__figure">
+            <div class="portal__label">Active Orders</div>
+            <div class="portal__value">1,248</div>
+            <div class="portal__trend">
+              <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+              +12% this week
+            </div>
+          </div>
+          <div class="portal__figure">
+            <div class="portal__label">Revenue</div>
+            <div class="portal__value">&pound;84.2k</div>
+            <div class="portal__trend">
+              <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+              +5% this week
+            </div>
+          </div>
+        </div>
+
+        <div class="portal__label">Recent Shipments</div>
+
+        <div class="portal__ship">
+          <div class="portal__ship-left">
+            <span class="portal__ship-icon">
+              <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16V7h11v9M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg>
+            </span>
+            <div>
+              <strong>Order #ORD-992</strong>
+              <span>Sunrise Care Group</span>
+            </div>
+          </div>
+          <span class="portal__chip portal__chip--transit">In Transit</span>
+        </div>
+
+        <div class="portal__ship">
+          <div class="portal__ship-left">
+            <span class="portal__ship-icon">
+              <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+            </span>
+            <div>
+              <strong>Order #ORD-991</strong>
+              <span>Oaktree Home</span>
+            </div>
+          </div>
+          <span class="portal__chip portal__chip--done">Delivered</span>
+        </div>
+      </div>
+
+      <div class="engine__copy">
+        <h2>Your Warehouse,<br /><span style="color:var(--raspberry)">Our Intelligence.</span></h2>
+        <p>
+          Our supplier dashboard integrates directly with your existing ERP or warehouse
+          management systems. Track order volumes, monitor delivery SLA performance, and
+          forecast demand without manual data entry.
+        </p>
+
+        <div class="ticks">
+          <div class="tick"><span class="tick__ring"><svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Direct API integration with major ERPs</div>
+          <div class="tick"><span class="tick__ring"><svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Automated product catalogue syncing</div>
+          <div class="tick"><span class="tick__ring"><svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span> Predictive stock alerts based on regional demand</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       6. UNCOMPROMISING STANDARDS
+
+       ⚠️  The four badges below describe standards a SUPPLIER must meet to
+       join, not certifications Sennicare holds. Keep that distinction — if
+       the page reads as Sennicare claiming ISO certification itself, it
+       becomes a claim you would have to evidence.
+       ====================================================================== -->
+  <section class="standards">
+    <div class="wrap">
+      <div class="standards__grid">
+
+        <div>
+          <h2>Uncompromising Standards</h2>
+          <p style="color:rgba(255,255,255,.7);margin-top:var(--sp-sm)">
+            We connect care homes with only the most reliable, compliant, and quality-driven
+            suppliers. Partnering with Sennicare signals your commitment to excellence in
+            healthcare procurement.
+          </p>
+
+          <div class="standards__badges">
+            <div class="std-badge">
+              <span class="std-badge__icon" style="color:#ffd9dd">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+              </span>
+              <span>ISO-Certified</span>
+            </div>
+            <div class="std-badge">
+              <span class="std-badge__icon" style="color:#b6ebff">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg>
+              </span>
+              <span>NHS Supply Aligned</span>
+            </div>
+            <div class="std-badge">
+              <span class="std-badge__icon" style="color:#e0e0ff">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>
+              </span>
+              <span>Rigorous Vetting</span>
+            </div>
+            <div class="std-badge">
+              <span class="std-badge__icon" style="color:rgba(255,255,255,.6)">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/></svg>
+              </span>
+              <span>CQC Compliant</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="requirements">
+          <h3>Supplier Application Requirements</h3>
+          <ul>
+            <li>Company Registration
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </li>
+            <li>Public Liability Insurance
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </li>
+            <li>Product Quality Certifications
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </li>
+            <li>Delivery SLA Agreement
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       7. FINAL CALL TO ACTION
+       ====================================================================== -->
+  <section class="sup-final" id="apply">
+    <div class="wrap">
+      <h2>Join the Network of Excellence.</h2>
+      <p>
+        Start supplying top-tier care homes across the UK and transform your procurement
+        process.
+      </p>
+      <a class="btn btn--primary btn--lg" href="mailto:hello@sennicare.co.uk?subject=Supplier%20Partner%20Application">
+        Apply to Become a Partner
+        <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ========================================================================
+     8. FOOTER
+     ======================================================================== -->
+<footer class="sup-footer">
+  <div class="wrap sup-footer__inner">
+    <div class="logo">Sennicare</div>
+
+    <nav aria-label="Footer">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="product.html#resources">Compliance</a>
+      <a href="mailto:hello@sennicare.co.uk">Contact Support</a>
+      <a href="product.html#resources">API Documentation</a>
+    </nav>
+
+    <div class="sup-footer__copy">&copy; 2026 Sennicare. Healthcare Procurement Intelligence.</div>
+  </div>
+</footer>
+
+
+<script>
+/* ------------------------------------------------------------------
+   1. The mobile menu — same as the other pages.
+   ------------------------------------------------------------------ */
+(function () {
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navLinks');
+  if (!burger || !links) { return; }
+
+  burger.addEventListener('click', function () {
+    var open = links.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  links.addEventListener('click', function (event) {
+    if (event.target.tagName === 'A') {
+      links.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+    }
+  });
+})();
+
+/* ------------------------------------------------------------------
+   2. The product category carousel.
+   The cards sit in a row that can scroll sideways. The arrows scroll it
+   by one card, and the dots show which card you are on. Everything still
+   works by swiping if this script never runs.
+   ------------------------------------------------------------------ */
+(function () {
+  var track = document.getElementById('cats');
+  var prev = document.getElementById('catsPrev');
+  var next = document.getElementById('catsNext');
+  var dots = document.getElementById('catsDots');
+  if (!track) { return; }
+
+  var cards = track.querySelectorAll('.cat');
+
+  var step = function () {
+    /* How far one card is from the next, including the gap. */
+    if (cards.length < 2) { return track.clientWidth; }
+    return cards[1].offsetLeft - cards[0].offsetLeft;
+  };
+
+  if (prev) { prev.addEventListener('click', function () { track.scrollLeft -= step(); }); }
+  if (next) { next.addEventListener('click', function () { track.scrollLeft += step(); }); }
+
+  if (dots) {
+    var buttons = dots.querySelectorAll('.cats__dot');
+
+    /* Clicking a dot scrolls to that card. */
+    buttons.forEach(function (button, index) {
+      button.addEventListener('click', function () {
+        track.scrollLeft = index * step();
+      });
+    });
+
+    /* Scrolling updates which dot is filled in. */
+    track.addEventListener('scroll', update);
+  }
+
+  /* Grey out an arrow when there is nothing further that way. On a wide screen
+     all three cards fit at once, so both arrows are correctly disabled - which
+     is why this has to run on load and on resize, not only when scrolling. */
+  function update() {
+    var atStart = track.scrollLeft < 5;
+    var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+    if (prev) { prev.disabled = atStart; }
+    if (next) { next.disabled = atEnd; }
+
+    if (dots) {
+      var current = Math.round(track.scrollLeft / step());
+      dots.querySelectorAll('.cats__dot').forEach(function (button, index) {
+        button.classList.toggle('is-active', index === current);
+      });
+    }
+  }
+
+  update();
+  window.addEventListener('resize', update);
+})();
+</script>
+
+</body>
+</html>
