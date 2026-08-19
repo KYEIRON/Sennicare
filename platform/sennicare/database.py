@@ -68,7 +68,7 @@ def set_up_database():
                 password_hash  TEXT    NOT NULL,
                 password_salt  TEXT    NOT NULL,
                 full_name      TEXT    NOT NULL DEFAULT '',
-                tier           TEXT    NOT NULL DEFAULT 'starter',
+                tier           TEXT    NOT NULL DEFAULT 'free',
                 created_at     TEXT    NOT NULL
             )
         """)
@@ -244,7 +244,7 @@ def log_search(user_id, product, quantity, budget, within_days, results_found):
 def count_searches_this_month(user_id):
     """
     How many searches this user has run since the 1st of the current month.
-    Used to enforce the Starter tier's monthly allowance.
+    Used to enforce a plan's monthly search allowance, where one applies.
     """
     first_of_month = datetime.now(timezone.utc).strftime("%Y-%m-01")
     connection = get_connection()

@@ -256,8 +256,8 @@ def show_welcome_screen():
             # ------------- CREATE ACCOUNT -------------
             with register_tab:
                 st.caption(
-                    "Starter plan, £49/month. No card needed during our pilot — create an "
-                    "account and start searching straight away."
+                    "Free Forever plan, £0/month. No card needed — create an account "
+                    "and start searching straight away."
                 )
                 with st.form("register_form"):
                     full_name = st.text_input("Your name")
@@ -1276,8 +1276,8 @@ def show_requests_page(user, profile):
 
     if not subscriptions.has_feature(user["tier"], "request_history"):
         st.info(
-            "Request history is included on the **Professional** plan. On Starter you can "
-            "still write and send requests — they just aren't kept here.",
+            "Request history is included on the **Professional** plan. You can still "
+            "write and send requests — they just aren't kept here.",
             icon="ℹ️",
         )
 
@@ -1481,49 +1481,50 @@ def show_subscription_page(user):
 
     figures = st.columns(3, gap="medium")
     with figures[0]:
-        branding.stat_card("Your plan", current_plan["name"],
-                           f'£{current_plan["monthly_price"]} per month')
+        branding.stat_card(
+            "Your plan", current_plan["name"],
+            "Free forever" if current_plan["monthly_price"] == 0
+            else f'£{current_plan["monthly_price"]} per month',
+        )
     with figures[1]:
         branding.stat_card("Searches this month", str(used))
     with figures[2]:
+        # Both plans currently include unlimited searching, so this reads
+        # "Unlimited" rather than counting down to a limit that isn't there.
         branding.stat_card(
             "Remaining", "Unlimited" if left is None else str(left), tone="accent"
         )
 
     st.markdown('<div style="height:18px"></div>', unsafe_allow_html=True)
 
+    # The plan cards show the SAME wording as the website's pricing page, so a
+    # manager who read the site sees exactly what they expect in the app.
+    current_tier = subscriptions.get_plan(user["tier"])["id"]
+
     columns = st.columns(len(subscriptions.PLANS), gap="medium")
     for column, plan in zip(columns, subscriptions.PLANS):
-        is_current = plan["id"] == user["tier"]
+        is_current = plan["id"] == current_tier
 
         with column:
-            allowance = ("Unlimited searches" if plan["searches"] is None
-                         else f'{plan["searches"]} searches a month')
             features = "".join(
-                f'<div class="sc-row"><span class="sc-row__label">'
-                f'{subscriptions.FEATURE_NAMES.get(feature, feature)}</span>'
+                f'<div class="sc-row"><span class="sc-row__label">{escape(line)}</span>'
                 f'<span class="sc-row__value" style="color:{branding.GREEN}">✓</span></div>'
-                for feature in plan["features"]
+                for line in plan["website_features"]
             )
+
+            price = "Free" if plan["monthly_price"] == 0 else f'£{plan["monthly_price"]}'
 
             st.markdown(
                 f'<div class="sc-card{" sc-card--top" if is_current else ""}">'
                 + (('<span class="sc-chip sc-chip--top">Your plan</span>')
-                   if is_current else '<span class="sc-chip sc-chip--option">Available</span>')
+                   if is_current else '<span class="sc-chip sc-chip--option">Most popular</span>')
                 + f'<div class="sc-card__product" style="font-size:21px">{plan["name"]}</div>'
                 + f'<div class="sc-card__price{" sc-card__price--top" if is_current else ""}" '
-                  f'style="margin-top:8px">£{plan["monthly_price"]}</div>'
+                  f'style="margin-top:8px">{price}</div>'
                 + '<div class="sc-card__unit">per month</div>'
                 + f'<p style="font-size:14px;color:{branding.TEXT_MUTED};line-height:1.55;'
-                  f'margin:0 0 6px">{plan["blurb"]}</p>'
-                + '<div class="sc-rows">'
-                + f'<div class="sc-row"><span class="sc-row__label">{allowance}</span>'
-                  f'<span class="sc-row__value" style="color:{branding.GREEN}">✓</span></div>'
-                + f'<div class="sc-row"><span class="sc-row__label">'
-                  f'{plan["homes"]} care home{"s" if plan["homes"] > 1 else ""}</span>'
-                  f'<span class="sc-row__value" style="color:{branding.GREEN}">✓</span></div>'
-                + features
-                + "</div></div>",
+                  f'margin:0 0 6px">{escape(plan["blurb"])}</p>'
+                + f'<div class="sc-rows">{features}</div></div>',
                 unsafe_allow_html=True,
             )
 
@@ -1731,7 +1732,9 @@ def show_admin_page(user):
         with figures[1]:
             branding.stat_card(
                 "On a paid tier",
-                str(len([r for r in rows if r["tier"] != "starter"])), tone="accent",
+                str(len([r for r in rows
+                         if subscriptions.get_plan(r["tier"])["monthly_price"] > 0])),
+                tone="accent",
             )
         with figures[2]:
             branding.stat_card("Total searches", str(sum(r["searches"] for r in rows)))

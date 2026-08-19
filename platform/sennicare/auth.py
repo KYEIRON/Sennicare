@@ -116,7 +116,7 @@ def register(email, password, password_again, full_name):
         with connection:
             cursor = connection.execute("""
                 INSERT INTO users (email, password_hash, password_salt, full_name, tier, created_at)
-                VALUES (?, ?, ?, ?, 'starter', ?)
+                VALUES (?, ?, ?, ?, 'free', ?)
             """, (email, hashed, salt, full_name, database.now_iso()))
             user_id = cursor.lastrowid
     except database.sqlite3.IntegrityError:
@@ -125,7 +125,7 @@ def register(email, password, password_again, full_name):
         return False, "There is already an account using that email address. Try logging in."
     connection.close()
 
-    return True, {"id": user_id, "email": email, "full_name": full_name, "tier": "starter"}
+    return True, {"id": user_id, "email": email, "full_name": full_name, "tier": "free"}
 
 
 def log_in(email, password):

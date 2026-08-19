@@ -164,13 +164,33 @@ QUALITY_FLOOR = 3.5    # below this, never recommended - however cheap
 
 ### 3. The plans and prices
 
-Open `sennicare/subscriptions.py`. Everything about the plans is in one list at the top — price, how many searches a month, what each plan unlocks. Change a number there and the whole app follows.
+Open `sennicare/subscriptions.py`. Everything about the plans is in one list at the top — price, limits, what each plan unlocks, and the exact wording shown on the website. Change it there and both the app and its Subscription screen follow.
 
-| Plan | Price | Searches | Includes |
-|---|---|---|---|
-| Starter | £49/mo | 25/month | Search, top recommendation, request writing |
-| Professional | £99/mo | Unlimited | + request history, spreadsheet export, price benchmarks |
-| Group | £249/mo | Unlimited | + up to 10 homes, priority support |
+Accounts created before the move to two plans (stored as `starter` or `group`) are mapped
+onto the current plans automatically by `LEGACY_TIERS`, so nobody is locked out.
+
+| Plan | Price | Includes |
+|---|---|---|
+| Free Forever | £0/mo | Up to 2 user accounts · basic supplier directory access · monthly spend summary reports · standard email support |
+| Professional | £49/mo | Unlimited user accounts · full market intelligence dashboard · automated price discrepancy alerts · API integrations & export · priority 24/7 support |
+
+These match `website/pricing.html` and `website/index.html` word for word. Change one and
+change the others.
+
+**What the app actually enforces today**, as opposed to what the plans advertise:
+
+| Advertised | Built? |
+|---|---|
+| Supplier search, top recommendation, request writing | ✅ Both plans |
+| Request history | ✅ Both plans |
+| Spreadsheet export / API | ✅ Professional only |
+| Full market intelligence dashboard (price benchmarks) | ✅ Professional only |
+| Automated price discrepancy alerts | ❌ **Not built yet** |
+| Multiple user accounts (2 vs unlimited) | ❌ **Not built yet** — one login per account |
+| Priority 24/7 support | Not software — that's you |
+
+The two unbuilt items appear on the pricing page *and* in the app's Subscription screen.
+Build them, or take them off both, before charging for Professional.
 
 ---
 
@@ -215,7 +235,9 @@ Free cloud hosting is perfect for **demos and pilot feedback**. When you're read
 | **Card payments** | Plans are changed by hand from the Admin page. Stripe would call `auth.set_tier()` after payment — that's the only join. |
 | **Password reset emails** | Needs an email service (Resend or SendGrid, both have free tiers). Until then, you reset a locked-out manager by hand. |
 | **Email verification** | Same — needs an email service. |
-| **Multiple homes per account** | The Group plan advertises it and the database supports it (`profiles` is keyed by user). The screens still assume one home. |
+| **Multiple homes per account** | The database supports it (`profiles` is keyed by user); the screens still assume one home. |
+| **Multiple user accounts** | Advertised on both plans (2 vs unlimited). Not built — one login per account. |
+| **Automated price discrepancy alerts** | Advertised on Professional. Not built. |
 | **Currency conversion** | A home works in its own currency and the catalogue is priced in it. Converting needs live exchange rates. |
 | **Sending the email for them** | On purpose. The request goes from the care home's own mailbox, so the supplier's reply comes straight back to them — and Sennicare never sits in the middle of their supplier relationship. |
 
