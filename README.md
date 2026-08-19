@@ -18,6 +18,39 @@ White `#FFFFFF` · Light Grey `#F5F7FA`
 
 ---
 
+## The new homepage (in review)
+
+`website/index.html` has been rebuilt as a conversion-focused homepage for the platform
+positioning — **Buy Smarter. Care Better.** It uses a new stylesheet, `css/sennicare.css`,
+and a new script, `js/site.js`. Plain HTML, CSS and JavaScript: no build step, no framework.
+
+**What's on it:** announcement bar · hero with the drawn product illustration · trust strip ·
+four problem cards · three-step how-it-works · four features · the quality-rule panel ·
+savings-calculator teaser · three pricing plans · pilot/proof section · seven-question FAQ ·
+sign-up form · footer.
+
+**Deliberate choices worth knowing about:**
+
+- **One magenta action per screenful.** Verified by test: scrolling the whole page never puts
+  two magenta buttons in view at once. The navigation button is deliberately outlined, not
+  magenta, so it never competes with the hero.
+- **No invented social proof.** The proof section holds clearly-marked amber dashed
+  placeholders, not fabricated testimonials. Instructions for replacing them are in the
+  HTML comment above that section, with a template to copy. No CQC or NHS logos are shown
+  and the footer states plainly that Sennicare is not affiliated with either.
+- **Content never depends on JavaScript.** The fade-in effect only applies when JavaScript
+  has confirmed it is running. With JavaScript blocked, every section is visible.
+- **"No savings, no fee" is not on the page.** It was in the brief as a conversion trigger,
+  but it is a promise you would have to honour. Say the word and I'll add it.
+
+**Still on the old design:** `savings-calculator.html`, `privacy.html` and `terms.html` use
+the previous stylesheet (`css/styles.css`) and the old "Book a Free Review" wording. The old
+section anchors (`#services`, `#how-it-works`, `#benefits`, `#about`, `#contact`) are all
+preserved on the new homepage, so every existing link still lands somewhere sensible. Once
+you approve the homepage direction, the remaining pages get migrated to match.
+
+---
+
 ## Phase 1 — The website
 
 ### What's in the folder
@@ -192,3 +225,60 @@ including the small print, which reads the same setting.
 6. **Privacy and Terms pages are starter templates** with `[SQUARE BRACKETS]` where your
    details go. They are not legal advice — have them checked before relying on them.
 7. **Dates shown in UK format (DD/MM/YYYY)** and all currency in £, as agreed.
+
+---
+
+## The Hanken Grotesk pages (home, product, pricing)
+
+Three standalone pages built to the `DESIGN.md` brand specification — Hanken Grotesk,
+raspberry `#e30b5c`, lavender-white `#faf8ff`, navy `#0a1172`. Each is **one file** with
+its CSS embedded: open it by double-clicking, upload it anywhere, no build step.
+
+| File | Page |
+|---|---|
+| `website/home.html` | Homepage — hero, trust bar, Stressed→Empowered, the Sennicare Engine, Built for the People of Care, final CTA |
+| `website/product.html` | Product — frequency-aware algorithm, testimonial banner, consolidation intelligence, quality vetting |
+| `website/pricing.html` | Pricing — Free Forever / Professional, "No Savings, No Fee" banner |
+
+**To make one of these your live homepage:** rename it to `index.html`.
+
+### Photographs
+
+Every photo slot holds a **drawn placeholder that says what belongs there** — built into
+the file, so the pages work with no internet and no photo can be mistaken for real. Search
+any file for `PHOTO` to find them; each has a note describing the shot wanted. Replace by
+saving your image beside the file and changing that one `src="..."`.
+
+I did not use random stock-photo services: they return unrelated images, so a landscape
+would appear where your nurse should be.
+
+### ⚠️ Claims to verify before these pages go live
+
+Each is flagged in a comment at the relevant place in the code:
+
+| Claim | Where | What it needs |
+|---|---|---|
+| "ISO 27001 Certified" | home, trust bar | An accredited certification body and a certificate number |
+| "NHS Data Standards Compliant" | home, trust bar | The specific standard met (e.g. DSPT, DCB0129) |
+| "500+ UK Care Homes" | home, trust bar | Your real number |
+| "Trusted by CQC Registered Homes" | home, trust bar | At least one such home actually using Sennicare |
+| "Join hundreds of UK care homes already saving" | home, final CTA | Existing customers |
+| "the leading UK care homes relying on Sennicare" | product, final CTA | Existing customers |
+| Unattributed testimonial quote | product, banner | A real name and home, with written permission |
+| "25% commission on verified savings" | pricing, guarantee | A written definition of "verified saving", who verifies it, and over what period — then link it to your terms |
+
+These are statements of fact a care home manager, or the Advertising Standards Authority,
+can check. Honest alternatives are suggested in the code comments beside each one.
+
+### Known inconsistencies to resolve
+
+- **Two price lists exist.** These pages say Free £0 / Professional £49. The platform app
+  (`platform/sennicare/subscriptions.py`) says Starter £49 / Professional £99 / Group £249.
+  Pick one and I'll align the other.
+- **Three homepages exist.** `index.html` (the "Buy Smarter. Care Better." version),
+  `home.html` (this set), and the old design still used by `savings-calculator.html`,
+  `privacy.html` and `terms.html`. Tell me which direction wins and I'll consolidate.
+- **The CSS is duplicated** across the three standalone files, because you asked for
+  standalone files. That means a colour change is three edits. If you'd rather change it
+  once, I can pull the shared CSS into a single `sennicare-brand.css` — the pages stop
+  being single-file, but stay just as simple to host.

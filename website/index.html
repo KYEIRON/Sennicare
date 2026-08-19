@@ -1,429 +1,833 @@
 <!DOCTYPE html>
 <!--
   ============================================================================
-  SENNICARE - HOME PAGE
+  SENNICARE — HOMEPAGE
+  Buy Smarter. Care Better.
   ----------------------------------------------------------------------------
-  This is a plain HTML file. There is no framework and nothing to "build" or
-  "compile" - you can open it straight in a web browser.
+  Plain HTML. No build step, no framework. Open it in a browser and it works.
 
-  The page is made of sections, in this order:
-    1. Navigation bar (fixed at the top)
-    2. Hero            (big headline + photo)
-    3. Our Integrated Services   (3 cards)
-    4. How Sennicare Works       (3 steps)
-    5. Why Care Homes Choose Sennicare (4 benefits)
-    6. Call-to-action band       (navy)
-    7. Contact form
-    8. Footer
+  THE PAGE, IN ORDER
+    1.  Announcement bar   — pilot programme (soft scarcity)
+    2.  Navigation         — sticky; the ONLY magenta here is nowhere, on purpose
+    3.  Hero               — loss aversion headline + the one magenta action
+    4.  Trust strip        — what we are and are not
+    5.  The problem        — four costs of the way it works today
+    6.  How it works       — three steps
+    7.  Features           — what the platform actually does   (id="services")
+    8.  Quality promise    — the differentiator                (id="benefits")
+    9.  Savings calculator — progressive commitment
+    10. Pricing            — three plans, one "Most popular"
+    11. Proof              — PLACEHOLDERS. Read the note above that section.
+    12. FAQ                — objection handling
+    13. Start free         — the form                          (id="start")
+    14. Footer                                                 (id="about")
 
-  All the colours, spacing and fonts live in css/styles.css.
-  The small amount of interactivity (mobile menu, form check) is in js/main.js.
+  EDITING THE WORDS: everything between > and < is text you can change safely.
   ============================================================================
 -->
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
-  <!-- This line makes the site work properly on mobile phones. Don't remove it. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sennicare | Operations &amp; Supply Chain Partners for UK Care Homes</title>
+  <title>Sennicare | Procurement Intelligence for UK Care Homes</title>
+  <meta name="description" content="Sennicare compares every supplier on price, delivery speed and suitability for elderly residents, then writes the order for you. Built for UK care homes. Free to start, no credit card." />
 
-  <!-- The description Google shows underneath your link in search results -->
-  <meta name="description" content="Sennicare is an independent operations and supply chain consultancy for UK care homes. We cut costs, control stock and waste, and reduce admin so your team can focus on resident care." />
+  <link rel="canonical" href="https://sennicare.co.uk/" />
+  <meta name="theme-color" content="#0A1172" />
 
-  <!-- The small icon shown in the browser tab -->
+  <!-- How the page looks when shared on LinkedIn, WhatsApp or X -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sennicare" />
+  <meta property="og:title" content="Sennicare | Buy Smarter. Care Better." />
+  <meta property="og:description" content="Procurement intelligence for UK care homes. Compare every supplier on price, speed and safety for elderly residents — then send the order in one click." />
+  <meta property="og:url" content="https://sennicare.co.uk/" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:image" content="https://sennicare.co.uk/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sennicare | Buy Smarter. Care Better." />
+  <meta name="twitter:description" content="Procurement intelligence for UK care homes." />
+
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
 
-  <!-- Our stylesheet (all the visual design) -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Figtree, loaded from Google Fonts. preconnect makes it arrive sooner. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/sennicare.css" />
+
+  <!-- Switches the fade-in effect on. It lives here, before the page is drawn,
+       so there is no flicker. If JavaScript is off, this never runs and the
+       page simply shows everything straight away - which is what we want. -->
+  <script>document.documentElement.classList.add('js-reveal');</script>
+
+  <!-- Tells Google what this business is. Helps with search results. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sennicare",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Procurement intelligence platform for UK care homes. Compares suppliers on price, delivery speed and suitability for elderly care.",
+    "url": "https://sennicare.co.uk/",
+    "areaServed": { "@type": "Country", "name": "United Kingdom" },
+    "offers": [
+      { "@type": "Offer", "name": "Starter", "price": "49", "priceCurrency": "GBP" },
+      { "@type": "Offer", "name": "Professional", "price": "99", "priceCurrency": "GBP" },
+      { "@type": "Offer", "name": "Group", "price": "249", "priceCurrency": "GBP" }
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
-  <!-- ======================================================================
-       1. NAVIGATION BAR
-       ====================================================================== -->
-  <header class="navbar" id="navbar">
-    <nav class="navbar__inner" aria-label="Main navigation">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-      <!-- Logo + company name. Clicking it returns to the top of the page. -->
-      <a class="brand" href="#top" aria-label="Sennicare home">
-        <img class="brand__mark" src="assets/logo.svg" alt="Sennicare logo: a house with a heartbeat line" />
-        <span>Sennicare</span>
+  <!-- ======================================================================
+       1. ANNOUNCEMENT BAR — soft scarcity, dismissible
+       ====================================================================== -->
+  <div class="announce" id="announce">
+    <div class="announce__inner">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.9 2.9M16.2 16.2l2.9 2.9M2 12h4M18 12h4M4.9 19.1l2.9-2.9M16.2 7.8l2.9-2.9"/></svg>
+      <span>Pilot programme open &mdash; limited places, with one-to-one onboarding. <a href="#start">Claim a place</a></span>
+      <button class="announce__close" id="announceClose" aria-label="Close announcement">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       2. NAVIGATION
+       Note: no magenta button here. The hero owns the single magenta action,
+       so the two never compete in the same eyeful.
+       ====================================================================== -->
+  <header class="nav" id="nav">
+    <nav class="nav__inner" aria-label="Main">
+      <a class="brand" href="#top">
+        <img class="brand__mark" src="assets/logo.svg" alt="" />
+        <span class="brand__name">Sennicare</span>
+        <span class="sr-only">Sennicare home</span>
       </a>
 
-      <!-- Hamburger button. Only visible on mobile phones. -->
-      <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" />
-        </svg>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
 
-      <!-- Menu links. The href="#services" style links jump to sections below. -->
-      <ul class="navbar__links" id="navLinks">
-        <li><a href="#services">Solutions</a></li>
-        <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="savings-calculator.html">Savings Calculator</a></li>
-        <li><a href="#benefits">Resources</a></li>
-        <li><a href="#about">About</a></li>
-        <!-- This magenta button only appears inside the mobile menu -->
-        <li class="navbar__links-cta"><a class="btn btn--primary" href="#contact">Book a Free Review</a></li>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#services">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="savings-calculator.html">Savings calculator</a></li>
+        <li><a class="nav__mobile-signin" href="#start">Start free</a></li>
       </ul>
 
-      <!-- The magenta button shown on the right on tablets and desktops -->
-      <a class="btn btn--primary btn--nav navbar__cta" href="#contact">Book a Free Review</a>
+      <div class="nav__actions">
+        <a class="nav__signin" href="#start">Sign in</a>
+        <a class="btn btn--outline btn--sm" href="#start">Start free</a>
+      </div>
     </nav>
   </header>
 
 
-  <main id="top">
+  <main id="main">
+    <span id="top"></span>
 
     <!-- ====================================================================
-         2. HERO SECTION
-         To use a real photo: put your image in the "images" folder and change
-         the src="..." below to its filename (e.g. images/hero.jpg).
+         3. HERO — loss aversion, then the single magenta action
          ==================================================================== -->
     <section class="hero">
-      <div class="container">
-        <div class="hero__card">
+      <div class="container hero__inner">
 
-          <!-- Background photograph (currently a placeholder) -->
-          <img class="hero__image"
-               src="images/hero-caregiver-resident.svg"
-               alt="A care assistant sitting with an elderly resident in a bright care home lounge, both smiling" />
+        <div>
+          <span class="eyebrow">The care home&rsquo;s procurement brain</span>
 
-          <!-- Dark tint so the white text is easy to read over the photo -->
-          <div class="hero__overlay"></div>
+          <h1>Stop overpaying for the supplies your home <span class="accent">can&rsquo;t do without</span>.</h1>
 
-          <!-- Headline, sub-headline and call-to-action button -->
-          <div class="hero__content">
-            <h1 class="hero__title">Empowering Caregivers</h1>
-            <p class="hero__subtitle">
-              Independent operations and supply chain partners for UK care homes.
-            </p>
-            <a class="btn btn--primary btn--large" href="#contact">Book a Free Review</a>
+          <p class="hero__sub">
+            Sennicare compares every supplier on price, delivery speed and suitability for
+            elderly residents &mdash; then writes the order for you.
+          </p>
+
+          <div class="hero__actions">
+            <!-- THE magenta action for this screen -->
+            <a class="btn btn--primary btn--lg" href="#start">
+              Start free &mdash; no card needed
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#how-it-works">See how it works</a>
           </div>
 
+          <p class="cta-note">
+            <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Free plan, forever</span>
+            <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No credit card</span>
+            <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Two minutes to set up</span>
+          </p>
+
+          <div class="hero__proof">
+            <span class="pill"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/></svg> UK care homes only</span>
+            <span class="pill"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/></svg> No supplier commission</span>
+            <span class="pill"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Priced in £</span>
+          </div>
         </div>
 
-        <!-- Three short trust statements underneath the hero card -->
-        <div class="hero__stats">
-          <div class="hero__stat">
-            <strong>15&ndash;25%</strong>
-            <span>Typical reduction in operational costs</span>
+        <!-- The product, drawn rather than photographed. No stock imagery. -->
+        <div class="reveal">
+          <div class="demo" role="img" aria-label="Illustration of Sennicare comparing three suppliers of continence pads. The recommended option costs £249.90 and arrives in two working days. A cheaper option at £173.40 is rejected as unsuitable for elderly care.">
+            <div class="demo__bar">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <span class="demo__query">continence pads &middot; 500 units &middot; within 3 days</span>
+            </div>
+
+            <div class="demo__pick">
+              <span class="demo__flag">Top recommendation</span>
+              <div class="demo__row" style="padding-top:0">
+                <div>
+                  <div class="demo__name">Shaped Pad with Fixation Pants</div>
+                  <div class="demo__meta">Meridian Medical &middot; 2 working days &middot; 4.6/5 for elderly care</div>
+                </div>
+                <div class="demo__price">&pound;249.90</div>
+              </div>
+              <p class="demo__why">
+                Not the cheapest. The £173.40 option has low absorbency and no wetness
+                indicator &mdash; a skin-integrity risk for immobile residents.
+              </p>
+            </div>
+
+            <div class="demo__row demo__rejected">
+              <div>
+                <div class="demo__name">Economy Slip</div>
+                <div class="demo__warn">
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                  Not suitable for elderly care
+                </div>
+              </div>
+              <div class="demo__price demo__strike">&pound;173.40</div>
+            </div>
+
+            <div class="demo__row">
+              <div>
+                <div class="demo__name">Slip Maxi (Large)</div>
+                <div class="demo__meta">Sterling Nursing &middot; 3 working days &middot; 4.8/5</div>
+              </div>
+              <div class="demo__price">&pound;307.44</div>
+            </div>
+
+            <div class="demo__tag">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Saves &pound;66.30
+            </div>
           </div>
-          <div class="hero__stat">
-            <strong>100% independent</strong>
-            <span>We sell no software and no products</span>
-          </div>
-          <div class="hero__stat">
-            <strong>CQC aware</strong>
-            <span>Built around UK care home requirements</span>
-          </div>
+          <p style="font-size:13px;color:var(--muted);margin-top:34px;text-align:center">
+            Illustration of the comparison view. Figures shown are from a sample catalogue.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         4. TRUST STRIP — authority, stated honestly
+         ==================================================================== -->
+    <section class="trust">
+      <div class="container trust__inner">
+        <div class="trust__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/><path d="m8.7 12.2 2.3 2.3 4.3-4.5"/></svg>
+          <div>Independent<span>We take no commission from any supplier</span></div>
+        </div>
+        <div class="trust__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h2"/></svg>
+          <div>Built around CQC expectations<span>Records you can show an inspector</span></div>
+        </div>
+        <div class="trust__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+          <div>Your data stays yours<span>Private to your account, never sold</span></div>
+        </div>
+        <div class="trust__item">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div>Set up in two minutes<span>No implementation project, no training week</span></div>
         </div>
       </div>
     </section>
 
 
     <!-- ====================================================================
-         3. OUR INTEGRATED SERVICES
+         5. THE PROBLEM — loss aversion. Name the cost, don't sell yet.
+         ==================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow eyebrow--magenta">The way it works today</span>
+          <h2>Four ways a care home quietly loses money every month</h2>
+          <p>None of them are anyone&rsquo;s fault. They are what happens when ordering is
+             spread across a dozen suppliers and nobody has time to check.</p>
+        </div>
+
+        <div class="grid grid-4">
+          <article class="problem-card reveal">
+            <div class="icon-tile icon-tile--danger icon-tile--sm" style="margin-bottom:14px">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>
+            </div>
+            <h3>Twelve suppliers, twelve invoices</h3>
+            <p>A separate login, a separate delivery and a separate invoice to check for every
+               category. Volume gets split, so no one gives you a volume price.</p>
+            <span class="problem-cost">Typically 15&ndash;25% above a consolidated price</span>
+          </article>
+
+          <article class="problem-card reveal reveal-delay-1">
+            <div class="icon-tile icon-tile--danger icon-tile--sm" style="margin-bottom:14px">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>
+            </div>
+            <h3>Nobody knows if the price is fair</h3>
+            <p>Without a benchmark you are taking a rep&rsquo;s word for it. Prices drift upward
+               between contract reviews and nothing flags it.</p>
+            <span class="problem-cost">Invisible until someone checks</span>
+          </article>
+
+          <article class="problem-card reveal reveal-delay-2">
+            <div class="icon-tile icon-tile--danger icon-tile--sm" style="margin-bottom:14px">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3>Two days a week on ordering</h3>
+            <p>Placing orders, chasing deliveries, checking invoices, counting stock. Senior
+               time that should be on the floor with residents.</p>
+            <span class="problem-cost">About &pound;7,800 a year at 10 hours a week</span>
+          </article>
+
+          <article class="problem-card reveal reveal-delay-3">
+            <div class="icon-tile icon-tile--danger icon-tile--sm" style="margin-bottom:14px">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+            </div>
+            <h3>The cheapest option can be unsafe</h3>
+            <p>Powdered latex gloves. A pad with no wetness indicator. A perfumed wash on
+               fragile skin. Buying on price alone reaches residents.</p>
+            <span class="problem-cost">A cost that never shows on the invoice</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         6. HOW IT WORKS — a genuine three-step sequence
+         ==================================================================== -->
+    <section class="section section--white" id="how-it-works">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Three minutes, start to order</h2>
+          <p>No implementation project. No data migration. No training week.</p>
+        </div>
+
+        <div class="grid grid-3 steps">
+          <article class="step reveal">
+            <div class="step__body">
+              <h3>Tell it what you need</h3>
+              <p>Product, quantity, budget and when you need it. Rough figures are fine
+                 &mdash; &ldquo;gloves, 1,000, under £60, this week&rdquo; is enough.</p>
+            </div>
+          </article>
+
+          <article class="step reveal reveal-delay-1">
+            <div class="step__body">
+              <h3>See every option, ranked</h3>
+              <p>Total cost, delivery time and a quality rating for elderly care, side by side.
+                 One option is flagged as the best balance &mdash; with the reason why.</p>
+            </div>
+          </article>
+
+          <article class="step reveal reveal-delay-2">
+            <div class="step__body">
+              <h3>Send the order in one click</h3>
+              <p>The request is written for you from your home&rsquo;s saved details. Edit
+                 anything, then send it from your own inbox so the reply comes to you.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         7. FEATURES  (id="services" keeps older links working)
          ==================================================================== -->
     <section class="section" id="services">
       <div class="container">
-
-        <div class="section__head">
-          <span class="eyebrow">Our Solutions</span>
-          <h2 class="section__title">Our Integrated Services</h2>
-          <p class="section__subtitle">
-            Three connected services that bring order, savings and calm to the
-            day-to-day running of your care home.
-          </p>
+        <div class="section-head reveal">
+          <span class="eyebrow">What it does</span>
+          <h2>Four jobs, done for you</h2>
+          <p>The work a procurement manager would do, if a care home could justify hiring one.</p>
         </div>
 
-        <div class="services__grid">
-
-          <!-- Card 1: Supply Chain Consolidation (cyan bottom border) -->
-          <article class="service-card">
-            <div class="icon-badge">
-              <!-- Icon: a simple supply network / connected nodes drawn with lines -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="9" y="2.5" width="6" height="5" rx="1.2" />
-                <rect x="2" y="16.5" width="6" height="5" rx="1.2" />
-                <rect x="16" y="16.5" width="6" height="5" rx="1.2" />
-                <path d="M12 7.5v4M5 16.5v-2.5h14v2.5" />
-              </svg>
-            </div>
-            <h3>Supply Chain Consolidation</h3>
-            <p>Streamline Procurement, Reduce Costs</p>
-          </article>
-
-          <!-- Card 2: Stock &amp; Waste Control (cyan bottom border) -->
-          <article class="service-card">
-            <div class="icon-badge">
-              <!-- Icon: a delivery box -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 7.5 12 3l9 4.5v9L12 21 3 16.5z" />
-                <path d="M3 7.5 12 12l9-4.5M12 12v9" />
-              </svg>
-            </div>
-            <h3>Stock &amp; Waste Control</h3>
-            <p>Real-time Tracking, Minimize Waste</p>
-          </article>
-
-          <!-- Card 3: Workflow Efficiency (magenta bottom border) -->
-          <article class="service-card service-card--magenta">
-            <div class="icon-badge icon-badge--magenta">
-              <!-- Icon: a workflow / process flow -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2.5" y="3" width="7" height="5" rx="1.2" />
-                <rect x="14.5" y="16" width="7" height="5" rx="1.2" />
-                <path d="M6 8v5.5a2 2 0 0 0 2 2h10M15 12.5l3 3-3 3" />
-              </svg>
-            </div>
-            <h3>Workflow Efficiency</h3>
-            <p>Automate Tasks, Optimize Staffing</p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ====================================================================
-         4. HOW SENNICARE WORKS
-         The step numbers (1, 2, 3) are added automatically by the CSS,
-         so you can add or remove a step without renumbering anything.
-         ==================================================================== -->
-    <section class="section section--grey" id="how-it-works">
-      <div class="container">
-
-        <div class="section__head">
-          <span class="eyebrow">The Process</span>
-          <h2 class="section__title">How Sennicare Works</h2>
-          <p class="section__subtitle">
-            A simple three-step partnership, starting with a free review and no obligation.
-          </p>
-        </div>
-
-        <div class="steps">
-          <article class="step">
-            <h3>Free Operational Review</h3>
-            <p>We assess your current supply chain, stock management, and workflows.</p>
-          </article>
-
-          <article class="step">
-            <h3>Bespoke Improvement Plan</h3>
-            <p>We design a tailored plan to save you money and reduce admin.</p>
-          </article>
-
-          <article class="step">
-            <h3>Ongoing Support &amp; Delivery</h3>
-            <p>We implement the changes and stay to ensure results.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ====================================================================
-         5. WHY CARE HOMES CHOOSE SENNICARE
-         ==================================================================== -->
-    <section class="section" id="benefits">
-      <div class="container">
-
-        <div class="section__head">
-          <span class="eyebrow">Why Sennicare</span>
-          <h2 class="section__title">Why Care Homes Choose Sennicare</h2>
-        </div>
-
-        <div class="benefits">
-
-          <div class="benefit">
-            <div class="icon-badge icon-badge--navy">
-              <!-- Icon: a shield (independence and trust) -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2.8 20 6v5.5c0 5-3.4 8.3-8 9.7-4.6-1.4-8-4.7-8-9.7V6z" />
-                <path d="M8.6 12.2l2.4 2.4 4.4-4.6" />
-              </svg>
+        <div class="grid grid-2" style="gap:var(--s-6) var(--s-8)">
+          <div class="feature reveal">
+            <div class="icon-tile">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1.2"/><rect x="2" y="16.5" width="6" height="5" rx="1.2"/><rect x="16" y="16.5" width="6" height="5" rx="1.2"/><path d="M12 7.5v4M5 16.5v-2.5h14v2.5"/></svg>
             </div>
             <div>
-              <h3>Independent &amp; Unbiased</h3>
-              <p>We don't sell software or products, so our advice is always impartial.</p>
+              <h3>Supply consolidation analysis</h3>
+              <p>Shows how many suppliers you could drop and what it would be worth &mdash;
+                 without losing a source for anything you actually need.</p>
             </div>
           </div>
 
-          <div class="benefit">
-            <div class="icon-badge">
-              <!-- Icon: a house (care sector specialists) -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3.5 10.5 12 3.5l8.5 7" />
-                <path d="M5.5 12v8.5h13V12" />
-                <path d="M9 16.5h2.2l1-2 1.4 3.4 1-1.4H15" />
-              </svg>
+          <div class="feature reveal reveal-delay-1">
+            <div class="icon-tile icon-tile--magenta">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/><path d="m8.7 12.2 2.3 2.3 4.3-4.5"/></svg>
             </div>
             <div>
-              <h3>Care Sector Specialists</h3>
-              <p>We exclusively serve UK care homes and understand CQC requirements.</p>
+              <h3>Quality vetting for elderly care</h3>
+              <p>Every product carries a rating and a suitability flag. Anything wrong for
+                 older residents is shown, priced &mdash; and never recommended.</p>
             </div>
           </div>
 
-          <div class="benefit">
-            <div class="icon-badge icon-badge--magenta">
-              <!-- Icon: an upward trend line (measurable savings) -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3.5 20.5h17" />
-                <path d="M6 16l4-4.5 3.5 3 5-6.5" />
-                <path d="M14.5 8h4v4" />
-              </svg>
+          <div class="feature reveal reveal-delay-2">
+            <div class="icon-tile">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5h17"/><path d="M6 16l4-4.5 3.5 3 5-6.5"/><path d="M14.5 8h4v4"/></svg>
             </div>
             <div>
-              <h3>Measurable Savings</h3>
-              <p>Our clients typically reduce operational costs by 15&ndash;25%.</p>
+              <h3>Price benchmarking</h3>
+              <p>Every quote sits next to what that item typically costs, so you can see at a
+                 glance whether you are being looked after or leaned on.</p>
             </div>
           </div>
 
-          <div class="benefit">
-            <div class="icon-badge">
-              <!-- Icon: a heart in a hand (back to what matters) -->
-              <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 10.8 9.6 8.4a1.9 1.9 0 0 1 2.4-2.9 1.9 1.9 0 0 1 2.4 2.9z" />
-                <path d="M3.5 13.5h3l3 2.5h3.5a1.5 1.5 0 0 1 0 3H10" />
-                <path d="M6.5 16v5h9l5-4.2a1.6 1.6 0 0 0-2.2-2.3l-3 2.3" />
-              </svg>
+          <div class="feature reveal reveal-delay-3">
+            <div class="icon-tile">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6M9 9h1"/></svg>
             </div>
             <div>
-              <h3>Back To What Matters</h3>
-              <p>Less admin means more time for resident care.</p>
+              <h3>Requests written for you</h3>
+              <p>Your address, contact, standards and payment terms go in automatically.
+                 A professional order, without typing your details for the hundredth time.</p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
 
     <!-- ====================================================================
-         5b. ABOUT
+         8. QUALITY PROMISE  (id="benefits" keeps older links working)
+         This is the section that separates Sennicare from a price comparison
+         site. Do not water it down.
          ==================================================================== -->
-    <section class="section section--grey" id="about">
+    <section class="section section--white" id="benefits">
       <div class="container">
-        <div class="section__head">
-          <span class="eyebrow">About Us</span>
-          <h2 class="section__title">Operations people, on your side of the table</h2>
-        </div>
-        <div class="prose">
-          <p>
-            Sennicare is an independent consultancy working exclusively with UK care
-            homes. We are not a supplier, a software vendor or a buying group &mdash; we are
-            paid by you, which means every recommendation we make is in your interest
-            and yours alone.
-          </p>
-          <p>
-            Our work is deliberately practical. We look at what you buy and who you buy
-            it from, at what sits in your stock cupboards, and at the admin your
-            managers and nurses do every week. Then we remove the cost and the wasted
-            hours, and we stay involved to make sure the improvements hold.
-          </p>
-          <p>
-            Every engagement starts the same way: a free, no-obligation operational
-            review of your home.
-          </p>
+        <div class="promise reveal">
+          <div class="promise__inner">
+            <div>
+              <span class="eyebrow eyebrow--on-navy">Our one hard rule</span>
+              <h2>We will never recommend the cheapest option if it isn&rsquo;t right for your residents.</h2>
+              <p>
+                Price, delivery speed and suitability for elderly care count equally. On top of
+                that sits a rule nothing overrides: anything unsuitable for older people is
+                never put forward, however cheap it is.
+              </p>
+              <p style="margin-bottom:0">
+                It still appears in your results, priced, so the decision stays yours. We just
+                tell you plainly why we didn&rsquo;t pick it.
+              </p>
+            </div>
+
+            <div class="promise__example">
+              <div class="promise__line promise__line--no">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                <div>
+                  <strong>&pound;28.00 &mdash; powdered latex gloves</strong>
+                  <span>Cheapest by £21. Allergy and dermatitis risk in a care setting. Not recommended.</span>
+                </div>
+              </div>
+              <div class="promise__line promise__line--yes">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+                <div>
+                  <strong>&pound;49.00 &mdash; powder-free nitrile, EN 455</strong>
+                  <span>Latex-free, next working day, rated 4.7/5 for elderly care. Recommended.</span>
+                </div>
+              </div>
+              <div class="promise__line">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#7FE3FF"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/></svg>
+                <div>
+                  <strong>Both are shown to you</strong>
+                  <span>Nothing is hidden. You see the price you are turning down, and why.</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
 
     <!-- ====================================================================
-         6. CALL-TO-ACTION BAND (full-width navy)
+         9. SAVINGS CALCULATOR — progressive commitment
          ==================================================================== -->
-    <section class="cta-band">
+    <section class="section">
       <div class="container">
-        <h2>Ready to bring order to your operations?</h2>
-        <p>Book your free, no-obligation operational review today.</p>
-        <a class="btn btn--primary btn--large" href="#contact">Book a Free Review</a>
-      </div>
-    </section>
-
-
-    <!-- ====================================================================
-         7. CONTACT FORM
-         IMPORTANT: a plain website cannot send email by itself. Right now the
-         form checks the details are filled in and then opens the visitor's own
-         email program with the message ready to send to you.
-         See README.md ("Making the contact form email you") for the free
-         upgrade to a proper form service - it is a one-line change.
-         ==================================================================== -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact">
-
-          <!-- Left column: reassurance and contact details -->
+        <div class="calc-teaser reveal">
           <div>
-            <span class="eyebrow">Get In Touch</span>
-            <h2 class="section__title">Book your free review</h2>
-            <p>
-              Tell us a little about your home and we'll come back to you within one
-              working day to arrange your free operational review.
+            <span class="eyebrow">Free, no sign-up</span>
+            <h2>What is this actually worth to your home?</h2>
+            <p style="color:var(--muted);font-size:17.5px">
+              Four questions about how you buy today &mdash; suppliers, monthly spend, admin
+              hours and waste. The figures update as you type. Nothing to fill in, nobody to
+              email.
             </p>
-            <ul class="contact__list">
-              <li>
-                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M3.5 6.5h17v11h-17z" /><path d="m3.5 7 8.5 6 8.5-6" />
-                </svg>
-                <span><a href="mailto:hello@sennicare.co.uk">hello@sennicare.co.uk</a></span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M12 3.5a6.5 6.5 0 0 1 6.5 6.5c0 4.5-6.5 10.5-6.5 10.5S5.5 14.5 5.5 10A6.5 6.5 0 0 1 12 3.5z" />
-                  <path d="M10 10h4" />
-                </svg>
-                <span>Serving care homes across the United Kingdom</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 5.5h16v15H4z" /><path d="M4 9.5h16M8 3.5v4M16 3.5v4" />
-                </svg>
-                <span>Reviews usually arranged within 5 working days</span>
-              </li>
-            </ul>
+            <a class="btn btn--primary btn--lg" href="savings-calculator.html">
+              Work out my savings
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
           </div>
 
-          <!-- Right column: the form itself -->
-          <form class="form" id="contactForm" novalidate>
-            <div class="form__row">
-              <div class="form__field">
-                <label for="name">Your name</label>
-                <input type="text" id="name" name="name" autocomplete="name" required />
-              </div>
-              <div class="form__field">
-                <label for="email">Email address</label>
-                <input type="email" id="email" name="email" autocomplete="email" required />
-              </div>
-            </div>
-
-            <div class="form__field">
-              <label for="carehome">Care home name</label>
-              <input type="text" id="carehome" name="carehome" required />
-            </div>
-
-            <div class="form__field">
-              <label for="message">How can we help?</label>
-              <textarea id="message" name="message" rows="5"
-                        placeholder="For example: we use 14 different suppliers and our ordering takes up two days a week."
-                        required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn--primary" style="width:100%">Request My Free Review</button>
-
-            <!-- This paragraph is where JavaScript shows a success or error message -->
-            <p class="form__message" id="formMessage" role="status"></p>
-
-            <p class="form__note">
-              We'll only use your details to arrange your review. No marketing lists, ever.
+          <div class="calc-teaser__figures" aria-label="Example calculator result">
+            <p style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--s-3)">
+              Example &mdash; a 42-bed home
             </p>
-          </form>
-
+            <div class="calc-row">
+              <span class="calc-row__label">Supply consolidation</span>
+              <span class="calc-row__value">&pound;14,400</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-row__label">Waste reduction</span>
+              <span class="calc-row__value">&pound;3,840</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-row__label">Admin time given back</span>
+              <span class="calc-row__value">156 hours</span>
+            </div>
+            <div class="calc-row calc-row--total">
+              <span class="calc-row__label">Estimated annual benefit</span>
+              <span class="calc-row__value">&pound;20,580</span>
+            </div>
+            <p style="font-size:12.5px;color:var(--muted);margin:var(--s-4) 0 0">
+              Based on 12 suppliers, £8,000 monthly spend, 10 admin hours a week and 8% waste.
+              An estimate, not a guarantee.
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         10. PRICING — one "Most popular", one magenta button
+         ==================================================================== -->
+    <section class="section section--grey" id="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2>Costs less than the first order it fixes</h2>
+          <p>Start free and stay free for as long as you like. Upgrade when the savings are
+             obvious, not before.</p>
+        </div>
+
+        <div class="grid grid-3 plans">
+          <!-- Starter -->
+          <article class="plan reveal">
+            <div>
+              <div class="plan__name">Starter</div>
+              <p class="plan__blurb">One home, 25 searches a month. Everything you need to see whether this works.</p>
+            </div>
+            <div class="plan__price">&pound;49<span> / month</span></div>
+            <ul class="plan__features">
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 25 supplier searches a month</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Top recommendation with reasoning</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Requests written for you</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> One care home</li>
+            </ul>
+            <a class="btn btn--outline btn--block" href="#start">Start free</a>
+          </article>
+
+          <!-- Professional — the one we want chosen -->
+          <article class="plan plan--featured reveal reveal-delay-1">
+            <span class="badge-popular">Most popular</span>
+            <div>
+              <div class="plan__name">Professional</div>
+              <p class="plan__blurb">Unlimited searching, full history and the exports your finance meeting wants.</p>
+            </div>
+            <div class="plan__price">&pound;99<span> / month</span></div>
+            <ul class="plan__features">
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <strong>Unlimited</strong> searches</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Full request history and status tracking</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Spreadsheet exports</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Price benchmarks</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Saved suppliers</li>
+            </ul>
+            <!-- THE magenta action for this screen -->
+            <a class="btn btn--primary btn--block" href="#start">Start free</a>
+          </article>
+
+          <!-- Group -->
+          <article class="plan reveal reveal-delay-2">
+            <div>
+              <div class="plan__name">Group</div>
+              <p class="plan__blurb">For groups running several homes, with someone on the end of the phone.</p>
+            </div>
+            <div class="plan__price">&pound;249<span> / month</span></div>
+            <ul class="plan__features">
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Everything in Professional</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Up to 10 care homes</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Group-level spend reporting</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li>
+            </ul>
+            <a class="btn btn--outline btn--block" href="#start">Talk to us</a>
+          </article>
+        </div>
+
+        <p class="pricing-note">
+          Cancel any time &mdash; no contract, no notice period. Prices exclude VAT.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         11. PROOF
+         ────────────────────────────────────────────────────────────────────
+         ⚠️  READ THIS BEFORE THE SITE GOES LIVE  ⚠️
+
+         The three cards below are PLACEHOLDERS, styled with a dashed amber
+         border so they can never be mistaken for real quotes. Sennicare has
+         no customers yet, and inventing testimonials from named managers at
+         named homes would be fabricating evidence — the fastest way to lose
+         a care home manager's trust, and a legal risk under the CAP Code.
+
+         WHEN YOU HAVE A REAL QUOTE:
+           1. Get it in writing, with permission to publish name and home.
+           2. Replace one placeholder card with the "REAL QUOTE TEMPLATE"
+              commented out below.
+           3. Delete the placeholder cards you haven't replaced yet.
+         ==================================================================== -->
+    <section class="section" id="proof">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Early access</span>
+          <h2>We&rsquo;re in pilot, and we say so</h2>
+          <p>Sennicare is new. Rather than borrow someone else&rsquo;s logos, here is exactly
+             where we are &mdash; and what a pilot place gets you.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="quote quote--placeholder reveal">
+            <span class="placeholder-tag">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+              Placeholder
+            </span>
+            <p>Your first pilot testimonial goes here. Ask for it after their first month,
+               once they have a real saving to point at.</p>
+            <div class="quote__who">
+              <div class="quote__avatar" aria-hidden="true">?</div>
+              <div>
+                <div class="quote__name">Name, once given</div>
+                <div class="quote__role">Role, care home</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote quote--placeholder reveal reveal-delay-1">
+            <span class="placeholder-tag">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+              Placeholder
+            </span>
+            <p>The strongest quotes name a number and a feeling: what they saved, and what
+               they stopped dreading on a Monday morning.</p>
+            <div class="quote__who">
+              <div class="quote__avatar" aria-hidden="true">?</div>
+              <div>
+                <div class="quote__name">Name, once given</div>
+                <div class="quote__role">Role, care home</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- This third card is real content, not a placeholder -->
+          <div class="quote reveal reveal-delay-2" style="background:var(--surface-2);border-style:solid">
+            <span class="quote__mark">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/><path d="m8.7 12.2 2.3 2.3 4.3-4.5"/></svg>
+            </span>
+            <p style="font-style:normal">
+              <strong style="color:var(--navy)">What a pilot place includes:</strong>
+              one-to-one setup of your home&rsquo;s profile, your current suppliers loaded for
+              you, a walkthrough with whoever does the ordering, and a direct line to us for
+              the first three months.
+            </p>
+            <div class="quote__who">
+              <div class="quote__avatar" style="background:var(--magenta-050);color:var(--magenta)" aria-hidden="true">S</div>
+              <div>
+                <div class="quote__name">Limited places</div>
+                <div class="quote__role">So we can give each one proper attention</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--
+          REAL QUOTE TEMPLATE — copy this, fill it in, and paste it in place of
+          a placeholder card above. Use their real words. Don't tidy them up.
+
+          <div class="quote reveal">
+            <span class="quote__mark">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9a4 4 0 0 1-4 4"/><path d="M19 11h-3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9a4 4 0 0 1-4 4"/></svg>
+            </span>
+            <p>&ldquo;Their exact words, unedited.&rdquo;</p>
+            <div class="quote__who">
+              <div class="quote__avatar" aria-hidden="true">JB</div>
+              <div>
+                <div class="quote__name">Jane Bell</div>
+                <div class="quote__role">Registered Manager, Oak Lodge Care Home</div>
+              </div>
+            </div>
+          </div>
+        -->
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         12. FAQ — the objections a manager raises before they trust you
+         ==================================================================== -->
+    <section class="section section--white">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Questions</span>
+          <h2>The things managers ask us first</h2>
+        </div>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Do suppliers pay you to be recommended?</summary>
+            <div class="faq__answer">
+              <p>No. We take no commission, no listing fee and no referral payment from any
+                 supplier, ever. You pay us, which is exactly why our ranking can be trusted.
+                 If that ever changed, this page would say so.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What happens to our existing suppliers and contracts?</summary>
+            <div class="faq__answer">
+              <p>Nothing, unless you decide otherwise. Sennicare shows you what else is
+                 available at what price &mdash; it does not cancel anything or contact anyone
+                 on your behalf. Plenty of homes use it to check that their current supplier is
+                 still competitive, and stay put.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>We already use a buying group. Is this the same thing?</summary>
+            <div class="faq__answer">
+              <p>No. A buying group negotiates on your behalf and usually earns a rebate from
+                 the suppliers in it, so its list is the list you get. Sennicare has no
+                 financial relationship with any supplier and shows you everything, including
+                 options your buying group doesn&rsquo;t carry.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Is our data safe?</summary>
+            <div class="faq__answer">
+              <p>Your care home details, searches and orders sit in your own account and are
+                 visible only to you. No other subscriber can see them. Nothing is shared with
+                 a supplier until you choose to send a request &mdash; and when you do, it goes
+                 from your own email, so their reply comes straight back to you. You can
+                 download or delete everything we hold at any time.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>How do you decide what is &ldquo;suitable for elderly care&rdquo;?</summary>
+            <div class="faq__answer">
+              <p>Every product carries a rating out of five and a plain yes or no on
+                 suitability, based on the things that matter in a care setting: latex and
+                 fragrance in skin-contact products, absorbency and wetness indicators in
+                 continence products, dignity in dining products, and the relevant standards
+                 such as EN 455 or ISO 13485. Anything rated below our floor is shown but never
+                 recommended.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Will this help at our next CQC inspection?</summary>
+            <div class="faq__answer">
+              <p>It gives you a written record of what you ordered, from whom, at what price
+                 and against what standards &mdash; which is the sort of evidence inspectors ask
+                 for when they look at how a home is run. We are not affiliated with the CQC
+                 and cannot speak for them.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What does &ldquo;free&rdquo; actually mean?</summary>
+            <div class="faq__answer">
+              <p>You can create an account, set up your home and run searches without giving us
+                 a card. Paid plans lift the monthly search limit and add history, exports and
+                 multiple homes. There is no contract and no notice period &mdash; cancel from
+                 inside your account.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         13. START FREE — the form. Minimum fields, maximum reassurance.
+         id="contact" is kept so older links still land here.
+         ==================================================================== -->
+    <section class="final-cta" id="start">
+      <span id="contact"></span>
+      <div class="container">
+        <span class="eyebrow eyebrow--on-navy">Start free</span>
+        <h2>Find out what your home is overpaying.</h2>
+        <p>
+          Two minutes to set up. No card, no contract, no sales call unless you ask for one.
+        </p>
+
+        <!--
+          The form opens the visitor's own email app with everything filled in.
+          To have enquiries land straight in your inbox instead, sign up at
+          formspree.io (free) and change the <form> tag to:
+              <form class="signup" action="https://formspree.io/f/YOURCODE" method="POST">
+          then delete id="signupForm".
+        -->
+        <form class="signup" id="signupForm" novalidate
+              style="max-width:560px;margin:0 auto var(--s-5);text-align:left">
+          <div class="grid grid-2" style="gap:var(--s-3)">
+            <div>
+              <label for="name" style="display:block;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:6px">Your name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required
+                     style="width:100%;padding:14px 15px;border-radius:var(--r-md);border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font);font-size:16px" />
+            </div>
+            <div>
+              <label for="carehome" style="display:block;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:6px">Care home</label>
+              <input type="text" id="carehome" name="carehome" required
+                     style="width:100%;padding:14px 15px;border-radius:var(--r-md);border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font);font-size:16px" />
+            </div>
+          </div>
+          <div style="margin-top:var(--s-3)">
+            <label for="email" style="display:block;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:6px">Work email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required
+                   style="width:100%;padding:14px 15px;border-radius:var(--r-md);border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font);font-size:16px" />
+          </div>
+
+          <!-- THE magenta action for this screen -->
+          <button type="submit" class="btn btn--primary btn--lg btn--block" style="margin-top:var(--s-4)">
+            Create my free account
+          </button>
+
+          <p class="form-message" id="formMessage" role="status"
+             style="display:none;margin-top:var(--s-3);padding:13px 15px;border-radius:var(--r-md);font-size:15px"></p>
+        </form>
+
+        <p class="cta-note cta-note--on-navy">
+          <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No credit card</span>
+          <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Cancel any time</span>
+          <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> We never sell your data</span>
+        </p>
       </div>
     </section>
 
@@ -431,46 +835,49 @@
 
 
   <!-- ======================================================================
-       8. FOOTER
+       14. FOOTER
        ====================================================================== -->
-  <footer class="footer">
+  <footer class="footer" id="about">
     <div class="container">
-
       <div class="footer__top">
-
-        <!-- Logo, name and tagline -->
         <div>
           <a class="brand" href="#top">
-            <img class="brand__mark" src="assets/logo-light.svg" alt="Sennicare logo" />
-            <span>Sennicare</span>
+            <img class="brand__mark" src="assets/logo-light.svg" alt="" />
+            <span class="brand__name">Sennicare</span>
           </a>
           <p class="footer__tagline">
-            Empowering Caregivers &mdash; independent operations and supply chain
-            partners for UK care homes.
+            Buy Smarter. Care Better. Procurement intelligence built only for UK care homes
+            &mdash; independent, and paid for by you, never by suppliers.
           </p>
         </div>
 
-        <!-- Quick links -->
         <div>
-          <h4>Quick Links</h4>
+          <h4>Product</h4>
           <ul>
-            <li><a href="#services">Solutions</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="savings-calculator.html">Savings Calculator</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#services">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="savings-calculator.html">Savings calculator</a></li>
           </ul>
         </div>
 
-        <!-- Legal links -->
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#benefits">Our quality rule</a></li>
+            <li><a href="#proof">Pilot programme</a></li>
+            <li><a href="#start">Start free</a></li>
+            <li><a href="mailto:hello@sennicare.co.uk">hello@sennicare.co.uk</a></li>
+          </ul>
+        </div>
+
         <div>
           <h4>Legal</h4>
           <ul>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of service</a></li>
           </ul>
         </div>
-
       </div>
 
       <div class="footer__bottom">
@@ -478,11 +885,15 @@
         <span>Registered in England &amp; Wales</span>
       </div>
 
+      <p class="footer__disclaimer">
+        Savings figures shown on this site are estimates based on typical results across UK
+        care homes, not a guarantee. Actual results depend on your current contracts and
+        purchasing patterns. Sennicare is an independent company and is not affiliated with,
+        endorsed by, or acting on behalf of the Care Quality Commission or the NHS.
+      </p>
     </div>
   </footer>
 
-
-  <!-- Our small JavaScript file. It sits at the bottom so the page shows first. -->
-  <script src="js/main.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

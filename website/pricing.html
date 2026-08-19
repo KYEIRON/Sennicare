@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SENNICARE — PRICING PAGE (standalone)
+  ============================================================================
+  One file, like home.html and product.html. Same colours, typeface and
+  navigation.
+
+  ── EDITING PRICES ───────────────────────────────────────────────────────
+  Search for "plan__amount" — the two prices are right there, as plain text.
+  The feature lists are just below each price.
+
+  NOTE: the styles are the same as home.html with a "PRICING PAGE ONLY" block
+  at the end. If you change a brand colour, change it in all three files.
+  ============================================================================
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Pricing | Sennicare</title>
+<meta name="description" content="Simple, transparent pricing designed to scale with your care home's operational complexity. Start free, upgrade when you're ready." />
+<meta name="theme-color" content="#0a1172" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>/* ==========================================================================
+   BRAND COLOURS  —  change a value here and it updates the whole page
+   ========================================================================== */
+:root {
+  --navy:            #0a1172;   /* Deep Navy — hero and footer, headings */
+  --navy-grad-end:   #1a228f;   /* the lighter end of the navy gradient */
+  --raspberry:       #e30b5c;   /* Primary Raspberry — buttons and badges */
+  --raspberry-dark:  #b70048;   /* darker raspberry, for button hover */
+  --cyan:            #00b2d9;   /* Cyber Cyan — secondary accents, data */
+  --teal:            #00647b;   /* Success teal — ticks and positives */
+  --coral:           #ba1a1a;   /* Warning coral — the "old way" crosses */
+  --lavender:        #faf8ff;   /* Lavender-White — the page background */
+  --white:           #ffffff;   /* card backgrounds */
+  --text:            #131b2e;   /* Dark Text — body copy */
+  --text-muted:      #5c3f43;   /* Muted Text — secondary copy */
+  --surface-low:     #f2f3ff;   /* very soft panels */
+  --surface-variant: #dae2fd;   /* borders and dividers */
+  --tertiary-fixed:  #b6ebff;   /* pale cyan badge background */
+  --tertiary-ink:    #001f28;   /* text on the pale cyan badge */
+
+  /* ---- Spacing (an 8px base unit, as per the brand spec) ---- */
+  --sp-xs: 4px;  --sp-sm: 12px;  --sp-md: 24px;  --sp-lg: 48px;  --sp-xl: 80px;
+  --margin-desktop: 40px;
+  --margin-mobile: 16px;
+  --max-width: 1200px;
+
+  /* ---- Shape ---- */
+  --radius-button: 4px;    /* precise, tool-like */
+  --radius-card: 8px;      /* softer for larger surfaces */
+  --radius-pill: 9999px;
+
+  /* ---- Shadows: soft, and tinted with navy rather than grey ---- */
+  --shadow-card:  0 1px 4px rgba(10, 17, 114, 0.05);
+  --shadow-lift:  0 6px 18px rgba(10, 17, 114, 0.10);
+  --shadow-photo: 0 18px 40px rgba(10, 17, 114, 0.16);
+  --shadow-nav:   0 1px 3px rgba(10, 17, 114, 0.06);
+}
+
+
+/* ==========================================================================
+   PAGE BASICS
+   ========================================================================== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--lavender);
+  color: var(--text);
+  font-family: "Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; color: var(--text); }
+
+/* Type scale, straight from the brand spec */
+h1 { font-size: 48px; font-weight: 800; line-height: 1.1;  letter-spacing: -0.02em; }
+h2 { font-size: 32px; font-weight: 700; line-height: 1.2;  letter-spacing: -0.01em; }
+h3 { font-size: 24px; font-weight: 700; line-height: 1.2; }
+
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* A visible outline for anyone navigating by keyboard */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: var(--radius-button);
+}
+
+/* Centres the content and keeps the outer margins right */
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+}
+
+/* 80px of air between sections */
+.section { padding: var(--sp-xl) 0; }
+
+/* Icons are drawn, so they take their colour from the text around them */
+.ico {
+  width: 20px; height: 20px; flex-shrink: 0;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.ico--sm { width: 16px; height: 16px; }
+.ico--lg { width: 26px; height: 26px; }
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px;
+  min-height: 44px;                       /* comfortable to tap on a phone */
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-button);
+  font-family: inherit;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color .18s ease, box-shadow .18s ease,
+              transform .18s ease, border-color .18s ease, color .18s ease;
+}
+
+/* Solid raspberry — the main action */
+.btn--primary { background: var(--raspberry); color: var(--white); }
+.btn--primary:hover {
+  background: var(--raspberry-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+.btn--primary:active { transform: scale(.97); }
+
+/* Outline — the quieter action beside it */
+.btn--outline {
+  background: var(--white);
+  color: var(--text);
+  border-color: var(--surface-variant);
+}
+.btn--outline:hover {
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn--sm { padding: 10px 18px; font-size: 14px; }
+.btn--lg { padding: 16px 32px; font-size: 16px; }
+
+
+/* ==========================================================================
+   1. NAVIGATION BAR — sticky, white
+   ========================================================================== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--surface-variant);
+  box-shadow: var(--shadow-nav);
+}
+.nav__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-md);
+}
+.logo {
+  font-size: 21px; font-weight: 800; letter-spacing: -0.03em;
+  color: var(--raspberry);
+  display: flex; align-items: center; gap: 8px;
+}
+.nav__links { display: flex; align-items: center; gap: var(--sp-md); }
+.nav__links a {
+  font-size: 15px; font-weight: 500; color: var(--text);
+  padding: 6px 0; border-bottom: 2px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.nav__links a:hover { color: var(--raspberry); border-bottom-color: var(--raspberry); }
+
+.nav__right { display: flex; align-items: center; gap: var(--sp-sm); }
+.nav__login { font-size: 15px; font-weight: 600; color: var(--raspberry); }
+
+/* The hamburger button, shown only on small screens */
+.nav__burger {
+  display: none;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; color: var(--navy);
+  border-radius: var(--radius-button);
+}
+
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.hero { background: var(--lavender); padding: var(--sp-lg) 0 var(--sp-xl); }
+.hero__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+.hero__copy { display: flex; flex-direction: column; gap: var(--sp-md); max-width: 620px; }
+
+/* The small pale-cyan badge above the headline */
+.badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  width: max-content;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--tertiary-fixed);
+  color: var(--tertiary-ink);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+}
+.badge .ico { color: var(--teal); }
+
+/* "Financial Intelligence." in raspberry */
+.hero h1 .highlight { color: var(--raspberry); }
+
+.hero__sub { font-size: 18px; color: var(--text-muted); max-width: 34em; }
+.hero__buttons { display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+
+/* The hero photograph */
+.hero__photo {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 4 / 3;
+}
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ==========================================================================
+   3. TRUST BAR
+   ========================================================================== */
+.trust {
+  border-top: 1px solid var(--surface-variant);
+  border-bottom: 1px solid var(--surface-variant);
+  background: var(--lavender);
+  padding: var(--sp-md) 0;
+}
+.trust__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: var(--sp-md);
+}
+.trust__item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+.trust__item .ico { color: var(--text-muted); }
+
+
+/* ==========================================================================
+   4. FROM STRESSED TO EMPOWERED
+   ========================================================================== */
+.section--white { background: var(--white); }
+
+.section-head { text-align: center; max-width: 640px; margin: 0 auto var(--sp-lg); }
+.section-head p { color: var(--text-muted); margin-top: var(--sp-sm); }
+
+.two-col { display: grid; grid-template-columns: 1fr; gap: var(--sp-lg); }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-md);
+  display: flex; flex-direction: column; gap: var(--sp-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+/* The two story cards get a faint tint: warm for the old way, cool for ours */
+.card--old { background: #fff7f7; }
+.card--new { background: #f4f6ff; }
+
+.card__head { display: flex; align-items: center; gap: 10px; }
+.card__head .ico { width: 26px; height: 26px; }
+.card--old .card__head .ico { color: var(--coral); }
+.card--new .card__head .ico { color: var(--raspberry); }
+
+.card__photo {
+  border-radius: var(--radius-card); overflow: hidden;
+  height: 220px; margin: var(--sp-xs) 0 var(--sp-sm);
+}
+.card__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.point-list { display: flex; flex-direction: column; gap: 10px; }
+.point {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 15px; color: var(--text-muted);
+}
+.point .ico { margin-top: 4px; width: 15px; height: 15px; }
+.point--bad .ico  { color: var(--coral); }
+.point--good .ico { color: var(--teal); }
+.point strong { color: var(--text); font-weight: 700; }
+
+
+/* ==========================================================================
+   5. INTELLIGENT RECOMMENDATIONS
+   ========================================================================== */
+.engine__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+/* The device mock sits on a soft raspberry mat, as in the design */
+.engine__mock {
+  background: linear-gradient(140deg, rgba(227, 11, 92, .10), rgba(0, 178, 217, .10));
+  border-radius: 16px;
+  padding: var(--sp-md);
+}
+.engine__mock img {
+  width: 100%; border-radius: var(--radius-card);
+  box-shadow: var(--shadow-photo);
+}
+.engine__copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.engine__copy p { color: var(--text-muted); }
+
+/* The pale raspberry badge on this section */
+.badge--engine { background: #ffe4ec; color: var(--raspberry-dark); }
+.badge--engine .ico { color: var(--raspberry); }
+
+/* The three little feature cards */
+.trio { display: grid; grid-template-columns: 1fr; gap: var(--sp-sm); }
+.trio-card {
+  background: var(--white);
+  border: 1px solid var(--surface-variant);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.trio-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.trio-card .ico { color: var(--cyan); }
+.trio-card strong { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.trio-card span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+
+/* ==========================================================================
+   6. BUILT FOR THE PEOPLE OF CARE
+   ========================================================================== */
+.people__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+.people__copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.people__copy > p { color: var(--text-muted); }
+
+.role { display: flex; gap: var(--sp-sm); align-items: flex-start; }
+.role__icon {
+  width: 40px; height: 40px; border-radius: var(--radius-card);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.role__icon--manager { background: #ffe4ec; color: var(--raspberry); }
+.role__icon--finance { background: #dff4fb; color: var(--teal); }
+.role strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.role span { font-size: 14.5px; color: var(--text-muted); }
+
+.people__photo {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 4 / 3;
+}
+.people__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ==========================================================================
+   7. FINAL CALL TO ACTION — deep navy
+   ========================================================================== */
+.final {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-grad-end) 100%);
+  padding: var(--sp-xl) 0;
+  text-align: center;
+}
+.final h2 { color: var(--white); font-size: 36px; }
+.final p {
+  color: rgba(255, 255, 255, .82);
+  max-width: 30em; margin: var(--sp-sm) auto var(--sp-md);
+}
+
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, .74);
+  padding: var(--sp-lg) 0 var(--sp-md);
+  font-size: 14.5px;
+}
+.footer__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-md);
+}
+.footer .logo { color: var(--white); margin-bottom: 10px; }
+.footer__tagline { max-width: 24em; }
+.footer__copyright { margin-top: var(--sp-md); font-size: 13px; color: rgba(255,255,255,.55); }
+.footer h4 {
+  margin: 0 0 14px;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--raspberry);
+}
+.footer ul { display: flex; flex-direction: column; gap: 10px; }
+.footer a { color: rgba(255, 255, 255, .74); }
+.footer a:hover { color: var(--white); text-decoration: underline; }
+
+
+/* ==========================================================================
+   WIDER SCREENS
+   Everything above is written for a phone first. These rules add the
+   side-by-side layouts once there is room for them.
+   ========================================================================== */
+@media (min-width: 700px) {
+  .wrap, .nav__inner { padding: 0 var(--margin-desktop); }
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .trio { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 940px) {
+  h1 { font-size: 48px; }
+  .hero__grid   { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
+  .engine__grid { grid-template-columns: 1fr 1fr; }
+  .people__grid { grid-template-columns: 1fr 1fr; }
+  .footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--sp-lg); }
+  .nav__burger  { display: none; }
+}
+
+/* ---- Phones and small tablets: swap the menu for a drop-down ---- */
+@media (max-width: 939px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  .final h2 { font-size: 26px; }
+
+  .nav__burger { display: flex; }
+  .nav__login { display: none; }
+
+  .nav__links {
+    display: none;
+    position: absolute; top: 68px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--surface-variant);
+    box-shadow: var(--shadow-lift);
+    padding: 8px var(--margin-mobile) 16px;
+  }
+  .nav__links.is-open { display: flex; }
+  .nav__links a {
+    padding: 14px 0; border-bottom: 1px solid var(--surface-low);
+  }
+  .nav__links a:last-child { border-bottom: none; }
+
+  .trust__inner { gap: var(--sp-sm); }
+  .trust__item { width: 100%; }
+  .hero__buttons .btn { flex: 1 1 auto; }
+}
+
+/* ---- Anyone who prefers less movement ---- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .btn:hover, .card:hover, .trio-card:hover { transform: none; }
+}
+/* ---- Added for the pricing page ---- */
+:root {
+  --blue:  #4e55af;   /* Secondary Blue — the Free tier edge */
+  --green: #0d9669;   /* Checkmark Green — the feature ticks */
+}
+
+/* ==========================================================================
+   PRICING PAGE ONLY — everything above this line is shared with the homepage
+   ========================================================================== */
+
+.nav__links a.is-current { color: var(--raspberry); border-bottom-color: var(--raspberry); }
+
+/* ---- Hero ---- */
+.price-hero { background: var(--lavender); padding: var(--sp-xl) 0 var(--sp-lg); text-align: center; }
+.price-hero h1 { max-width: 16em; margin: 0 auto; }
+.price-hero p {
+  color: var(--text-muted); font-size: 18px;
+  max-width: 34em; margin: var(--sp-md) auto 0;
+}
+
+/* ---- The two plan cards ---- */
+.plans {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-md);
+  align-items: stretch;
+  padding-bottom: var(--sp-xl);
+}
+.plan {
+  position: relative;
+  background: var(--white);
+  border: 2px solid var(--surface-variant);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-md);
+  display: flex; flex-direction: column; gap: var(--sp-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.plan:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+/* Free tier: soft blue edge, with a stronger bar along the top */
+.plan--free { border-color: rgba(78, 85, 175, .45); }
+.plan--free::before {
+  content: ""; position: absolute; left: -2px; right: -2px; top: -2px; height: 4px;
+  background: var(--blue); border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+/* Professional: raspberry edge, so it reads as the recommended choice */
+.plan--pro { border-color: var(--raspberry); box-shadow: var(--shadow-lift); }
+
+/* The "Most Popular" pill, tucked into the top-right corner */
+.plan__badge {
+  position: absolute; top: -2px; right: -2px;
+  background: var(--raspberry); color: var(--white);
+  font-size: 12px; font-weight: 700; letter-spacing: .02em;
+  padding: 6px 14px;
+  border-radius: 0 var(--radius-card) 0 var(--radius-card);
+}
+
+.plan__name { font-size: 24px; font-weight: 700; }
+.plan__sub { color: var(--text-muted); font-size: 15px; }
+.plan__price {
+  display: flex; align-items: baseline; gap: 6px;
+  margin: var(--sp-sm) 0 var(--sp-xs);
+}
+.plan__amount { font-size: 48px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.plan__period { font-size: 15px; color: var(--text-muted); }
+
+.plan__features {
+  display: flex; flex-direction: column; gap: 14px;
+  margin: var(--sp-sm) 0 var(--sp-md);
+  flex: 1;                              /* pushes the button to the bottom */
+}
+.plan__features li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 15px; color: var(--text-muted);
+}
+.plan__features .ico { color: var(--green); margin-top: 3px; width: 18px; height: 18px; }
+
+/* The Free card's outline button carries the blue edge */
+.btn--outline-blue {
+  background: transparent;
+  color: var(--text);
+  border-color: rgba(78, 85, 175, .5);
+}
+.btn--outline-blue:hover {
+  border-color: var(--blue); color: var(--blue);
+  transform: translateY(-2px); box-shadow: var(--shadow-lift);
+}
+
+/* ---- The guarantee banner ---- */
+.guarantee {
+  background: var(--white);
+  border: 1px solid var(--surface-variant);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-md);
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-md);
+  align-items: center;
+}
+.guarantee__main { display: flex; gap: var(--sp-sm); align-items: flex-start; }
+.guarantee__icon {
+  width: 48px; height: 48px; border-radius: var(--radius-card);
+  background: #e7e9ff; color: var(--blue);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.guarantee h2 { font-size: 22px; margin-bottom: 6px; }
+.guarantee p { color: var(--text-muted); font-size: 15px; max-width: 46em; }
+.guarantee__link {
+  display: inline-flex; align-items: center; gap: 7px;
+  color: var(--raspberry); font-weight: 700; font-size: 14.5px;
+  white-space: nowrap;
+}
+.guarantee__link:hover { text-decoration: underline; }
+
+@media (min-width: 820px) {
+  .plans { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
+  .plan { padding: var(--sp-lg) var(--sp-md); }
+  .guarantee { grid-template-columns: 1fr auto; padding: var(--sp-lg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================================================================
+     NAVIGATION BAR — same as the other pages, with Pricing marked as current
+     ======================================================================== -->
+<header class="nav">
+  <nav class="nav__inner" aria-label="Main">
+    <a class="logo" href="home.html">Sennicare</a>
+
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="product.html">Product</a></li>
+      <li><a href="product.html#care-homes">For Care Homes</a></li>
+      <li><a href="product.html#suppliers">For Suppliers</a></li>
+      <li><a href="product.html#resources">Resources</a></li>
+      <li><a class="is-current" href="pricing.html" aria-current="page">Pricing</a></li>
+    </ul>
+
+    <div class="nav__right">
+      <a class="btn btn--primary btn--sm" href="#start">Start Free</a>
+    </div>
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- ======================================================================
+       HERO
+       ====================================================================== -->
+  <section class="price-hero">
+    <div class="wrap">
+      <h1>Start Free. Upgrade When You&rsquo;re Ready.</h1>
+      <p>
+        Simple, transparent pricing designed to scale with your care home&rsquo;s
+        operational complexity.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       THE TWO PLANS
+       ====================================================================== -->
+  <section id="start">
+    <div class="wrap plans">
+
+      <!-- ---------- Free Forever ---------- -->
+      <article class="plan plan--free">
+        <div class="plan__name">Free Forever</div>
+        <p class="plan__sub">Essential procurement visibility.</p>
+
+        <div class="plan__price">
+          <span class="plan__amount">&pound;0</span>
+          <span class="plan__period">/month</span>
+        </div>
+
+        <ul class="plan__features">
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Up to 2 User Accounts</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Basic Supplier Directory Access</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Monthly Spend Summary Reports</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Standard Email Support</li>
+        </ul>
+
+        <a class="btn btn--outline-blue" href="mailto:hello@sennicare.co.uk?subject=Start%20Free">
+          Start Free
+        </a>
+      </article>
+
+      <!-- ---------- Professional ---------- -->
+      <article class="plan plan--pro">
+        <span class="plan__badge">Most Popular</span>
+
+        <div class="plan__name">Professional</div>
+        <p class="plan__sub">Advanced analytics &amp; automated savings.</p>
+
+        <div class="plan__price">
+          <span class="plan__amount">&pound;49</span>
+          <span class="plan__period">/month</span>
+        </div>
+
+        <ul class="plan__features">
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Unlimited User Accounts</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Full Market Intelligence Dashboard</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Automated Price Discrepancy Alerts</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> API Integrations &amp; Export</li>
+        <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority 24/7 Support</li>
+        </ul>
+
+        <a class="btn btn--primary" href="mailto:hello@sennicare.co.uk?subject=Start%20Professional%20Trial">
+          Start Professional Trial
+          <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       GUARANTEE BANNER
+
+       ⚠️  This is a commercial promise, not marketing copy. Before publishing,
+       be sure you can define and honour it:
+         · what counts as a "verified, tangible saving"
+         · who verifies it, and against what baseline
+         · over what period the 25% is charged
+       Put those answers in your terms of service, and link this to them.
+       ====================================================================== -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="guarantee">
+
+        <div class="guarantee__main">
+          <div class="guarantee__icon">
+            <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/><path d="m8.7 12.2 2.3 2.3 4.3-4.5"/></svg>
+          </div>
+          <div>
+            <h2>No Savings, No Fee</h2>
+            <p>
+              Prefer to pay nothing unless we find you savings? We offer a
+              performance-based model where we take a 25% commission only on verified,
+              tangible savings we deliver to your bottom line. If we find nothing, you pay
+              absolutely nothing.
+            </p>
+          </div>
+        </div>
+
+        <a class="guarantee__link" href="mailto:hello@sennicare.co.uk?subject=Performance%20Model">
+          Learn about Performance Model
+          <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ========================================================================
+     FOOTER
+     ======================================================================== -->
+<footer class="footer">
+  <div class="wrap footer__grid">
+
+    <div>
+      <div class="logo">Sennicare</div>
+      <p class="footer__tagline">
+        Elevating procurement intelligence for the UK care home sector.
+      </p>
+      <p class="footer__copyright">&copy; 2024 Sennicare. Buy Smarter. Care Better.</p>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="privacy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="mailto:hello@sennicare.co.uk">Contact Us</a></li>
+        <li><a href="product.html#resources">Help Center</a></li>
+      </ul>
+    </div>
+
+    <div></div>
+
+  </div>
+</footer>
+
+
+<script>
+/* The mobile menu — the only JavaScript on the page. */
+(function () {
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navLinks');
+  if (!burger || !links) { return; }
+
+  burger.addEventListener('click', function () {
+    var open = links.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  links.addEventListener('click', function (event) {
+    if (event.target.tagName === 'A') {
+      links.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

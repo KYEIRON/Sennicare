@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  SENNICARE — HOMEPAGE (standalone)
+  ============================================================================
+  One file. Everything is in here: the HTML, the CSS, and the small amount of
+  JavaScript for the mobile menu. Nothing to install, nothing to build.
+
+  TO OPEN IT:      double-click this file
+  TO PUT IT ONLINE: upload this one file to any hosting, or drag it onto
+                    app.netlify.com/drop
+  TO MAKE IT THE MAIN PAGE: rename it to index.html
+
+  ── HOW TO EDIT ──────────────────────────────────────────────────────────
+  · WORDS      — everything between > and < is text. Change it freely.
+  · COLOURS    — the "BRAND COLOURS" block near the top of the CSS.
+                 Change a value there and it updates everywhere on the page.
+  · PHOTOS     — search this file for "PHOTO" to find all five images. Each
+                 one is a drawn placeholder saying what belongs there, and
+                 carries a note telling you what to replace it with. They are
+                 built into this file, so the page works with no internet.
+
+  ── THE PAGE, IN ORDER ───────────────────────────────────────────────────
+  1. Navigation bar          5. Intelligent Recommendations
+  2. Hero                    6. Built for the People of Care
+  3. Trust bar               7. Final call to action
+  4. From Stressed to        8. Footer
+     Empowered
+  ============================================================================
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Sennicare — World Class Care Home Procurement</title>
+<meta name="description" content="Empower your care facility to reduce costs, ensure compliance, and streamline operations. Intelligent sourcing built exclusively for the UK care sector." />
+<meta name="theme-color" content="#0a1172" />
+
+<!-- Hanken Grotesk, the Sennicare typeface. The only thing this page loads
+     from anywhere else. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ==========================================================================
+   BRAND COLOURS  —  change a value here and it updates the whole page
+   ========================================================================== */
+:root {
+  --navy:            #0a1172;   /* Deep Navy — hero and footer, headings */
+  --navy-grad-end:   #1a228f;   /* the lighter end of the navy gradient */
+  --raspberry:       #e30b5c;   /* Primary Raspberry — buttons and badges */
+  --raspberry-dark:  #b70048;   /* darker raspberry, for button hover */
+  --cyan:            #00b2d9;   /* Cyber Cyan — secondary accents, data */
+  --teal:            #00647b;   /* Success teal — ticks and positives */
+  --coral:           #ba1a1a;   /* Warning coral — the "old way" crosses */
+  --lavender:        #faf8ff;   /* Lavender-White — the page background */
+  --white:           #ffffff;   /* card backgrounds */
+  --text:            #131b2e;   /* Dark Text — body copy */
+  --text-muted:      #5c3f43;   /* Muted Text — secondary copy */
+  --surface-low:     #f2f3ff;   /* very soft panels */
+  --surface-variant: #dae2fd;   /* borders and dividers */
+  --tertiary-fixed:  #b6ebff;   /* pale cyan badge background */
+  --tertiary-ink:    #001f28;   /* text on the pale cyan badge */
+
+  /* ---- Spacing (an 8px base unit, as per the brand spec) ---- */
+  --sp-xs: 4px;  --sp-sm: 12px;  --sp-md: 24px;  --sp-lg: 48px;  --sp-xl: 80px;
+  --margin-desktop: 40px;
+  --margin-mobile: 16px;
+  --max-width: 1200px;
+
+  /* ---- Shape ---- */
+  --radius-button: 4px;    /* precise, tool-like */
+  --radius-card: 8px;      /* softer for larger surfaces */
+  --radius-pill: 9999px;
+
+  /* ---- Shadows: soft, and tinted with navy rather than grey ---- */
+  --shadow-card:  0 1px 4px rgba(10, 17, 114, 0.05);
+  --shadow-lift:  0 6px 18px rgba(10, 17, 114, 0.10);
+  --shadow-photo: 0 18px 40px rgba(10, 17, 114, 0.16);
+  --shadow-nav:   0 1px 3px rgba(10, 17, 114, 0.06);
+}
+
+
+/* ==========================================================================
+   PAGE BASICS
+   ========================================================================== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--lavender);
+  color: var(--text);
+  font-family: "Hanken Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; color: var(--text); }
+
+/* Type scale, straight from the brand spec */
+h1 { font-size: 48px; font-weight: 800; line-height: 1.1;  letter-spacing: -0.02em; }
+h2 { font-size: 32px; font-weight: 700; line-height: 1.2;  letter-spacing: -0.01em; }
+h3 { font-size: 24px; font-weight: 700; line-height: 1.2; }
+
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* A visible outline for anyone navigating by keyboard */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: var(--radius-button);
+}
+
+/* Centres the content and keeps the outer margins right */
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+}
+
+/* 80px of air between sections */
+.section { padding: var(--sp-xl) 0; }
+
+/* Icons are drawn, so they take their colour from the text around them */
+.ico {
+  width: 20px; height: 20px; flex-shrink: 0;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.ico--sm { width: 16px; height: 16px; }
+.ico--lg { width: 26px; height: 26px; }
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px;
+  min-height: 44px;                       /* comfortable to tap on a phone */
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-button);
+  font-family: inherit;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color .18s ease, box-shadow .18s ease,
+              transform .18s ease, border-color .18s ease, color .18s ease;
+}
+
+/* Solid raspberry — the main action */
+.btn--primary { background: var(--raspberry); color: var(--white); }
+.btn--primary:hover {
+  background: var(--raspberry-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+.btn--primary:active { transform: scale(.97); }
+
+/* Outline — the quieter action beside it */
+.btn--outline {
+  background: var(--white);
+  color: var(--text);
+  border-color: var(--surface-variant);
+}
+.btn--outline:hover {
+  border-color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn--sm { padding: 10px 18px; font-size: 14px; }
+.btn--lg { padding: 16px 32px; font-size: 16px; }
+
+
+/* ==========================================================================
+   1. NAVIGATION BAR — sticky, white
+   ========================================================================== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid var(--surface-variant);
+  box-shadow: var(--shadow-nav);
+}
+.nav__inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-md);
+}
+.logo {
+  font-size: 21px; font-weight: 800; letter-spacing: -0.03em;
+  color: var(--raspberry);
+  display: flex; align-items: center; gap: 8px;
+}
+.nav__links { display: flex; align-items: center; gap: var(--sp-md); }
+.nav__links a {
+  font-size: 15px; font-weight: 500; color: var(--text);
+  padding: 6px 0; border-bottom: 2px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.nav__links a:hover { color: var(--raspberry); border-bottom-color: var(--raspberry); }
+
+.nav__right { display: flex; align-items: center; gap: var(--sp-sm); }
+.nav__login { font-size: 15px; font-weight: 600; color: var(--raspberry); }
+
+/* The hamburger button, shown only on small screens */
+.nav__burger {
+  display: none;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer; color: var(--navy);
+  border-radius: var(--radius-button);
+}
+
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.hero { background: var(--lavender); padding: var(--sp-lg) 0 var(--sp-xl); }
+.hero__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+.hero__copy { display: flex; flex-direction: column; gap: var(--sp-md); max-width: 620px; }
+
+/* The small pale-cyan badge above the headline */
+.badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  width: max-content;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--tertiary-fixed);
+  color: var(--tertiary-ink);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+}
+.badge .ico { color: var(--teal); }
+
+/* "Financial Intelligence." in raspberry */
+.hero h1 .highlight { color: var(--raspberry); }
+
+.hero__sub { font-size: 18px; color: var(--text-muted); max-width: 34em; }
+.hero__buttons { display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+
+/* The hero photograph */
+.hero__photo {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 4 / 3;
+}
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ==========================================================================
+   3. TRUST BAR
+   ========================================================================== */
+.trust {
+  border-top: 1px solid var(--surface-variant);
+  border-bottom: 1px solid var(--surface-variant);
+  background: var(--lavender);
+  padding: var(--sp-md) 0;
+}
+.trust__inner {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: var(--sp-md);
+}
+.trust__item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+.trust__item .ico { color: var(--text-muted); }
+
+
+/* ==========================================================================
+   4. FROM STRESSED TO EMPOWERED
+   ========================================================================== */
+.section--white { background: var(--white); }
+
+.section-head { text-align: center; max-width: 640px; margin: 0 auto var(--sp-lg); }
+.section-head p { color: var(--text-muted); margin-top: var(--sp-sm); }
+
+.two-col { display: grid; grid-template-columns: 1fr; gap: var(--sp-lg); }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-md);
+  display: flex; flex-direction: column; gap: var(--sp-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+/* The two story cards get a faint tint: warm for the old way, cool for ours */
+.card--old { background: #fff7f7; }
+.card--new { background: #f4f6ff; }
+
+.card__head { display: flex; align-items: center; gap: 10px; }
+.card__head .ico { width: 26px; height: 26px; }
+.card--old .card__head .ico { color: var(--coral); }
+.card--new .card__head .ico { color: var(--raspberry); }
+
+.card__photo {
+  border-radius: var(--radius-card); overflow: hidden;
+  height: 220px; margin: var(--sp-xs) 0 var(--sp-sm);
+}
+.card__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.point-list { display: flex; flex-direction: column; gap: 10px; }
+.point {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 15px; color: var(--text-muted);
+}
+.point .ico { margin-top: 4px; width: 15px; height: 15px; }
+.point--bad .ico  { color: var(--coral); }
+.point--good .ico { color: var(--teal); }
+.point strong { color: var(--text); font-weight: 700; }
+
+
+/* ==========================================================================
+   5. INTELLIGENT RECOMMENDATIONS
+   ========================================================================== */
+.engine__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+/* The device mock sits on a soft raspberry mat, as in the design */
+.engine__mock {
+  background: linear-gradient(140deg, rgba(227, 11, 92, .10), rgba(0, 178, 217, .10));
+  border-radius: 16px;
+  padding: var(--sp-md);
+}
+.engine__mock img {
+  width: 100%; border-radius: var(--radius-card);
+  box-shadow: var(--shadow-photo);
+}
+.engine__copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.engine__copy p { color: var(--text-muted); }
+
+/* The pale raspberry badge on this section */
+.badge--engine { background: #ffe4ec; color: var(--raspberry-dark); }
+.badge--engine .ico { color: var(--raspberry); }
+
+/* The three little feature cards */
+.trio { display: grid; grid-template-columns: 1fr; gap: var(--sp-sm); }
+.trio-card {
+  background: var(--white);
+  border: 1px solid var(--surface-variant);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.trio-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.trio-card .ico { color: var(--cyan); }
+.trio-card strong { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+.trio-card span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+
+/* ==========================================================================
+   6. BUILT FOR THE PEOPLE OF CARE
+   ========================================================================== */
+.people__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-lg);
+  align-items: center;
+}
+.people__copy { display: flex; flex-direction: column; gap: var(--sp-md); }
+.people__copy > p { color: var(--text-muted); }
+
+.role { display: flex; gap: var(--sp-sm); align-items: flex-start; }
+.role__icon {
+  width: 40px; height: 40px; border-radius: var(--radius-card);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.role__icon--manager { background: #ffe4ec; color: var(--raspberry); }
+.role__icon--finance { background: #dff4fb; color: var(--teal); }
+.role strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.role span { font-size: 14.5px; color: var(--text-muted); }
+
+.people__photo {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-photo);
+  aspect-ratio: 4 / 3;
+}
+.people__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* ==========================================================================
+   7. FINAL CALL TO ACTION — deep navy
+   ========================================================================== */
+.final {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-grad-end) 100%);
+  padding: var(--sp-xl) 0;
+  text-align: center;
+}
+.final h2 { color: var(--white); font-size: 36px; }
+.final p {
+  color: rgba(255, 255, 255, .82);
+  max-width: 30em; margin: var(--sp-sm) auto var(--sp-md);
+}
+
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--navy);
+  color: rgba(255, 255, 255, .74);
+  padding: var(--sp-lg) 0 var(--sp-md);
+  font-size: 14.5px;
+}
+.footer__grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--sp-md);
+}
+.footer .logo { color: var(--white); margin-bottom: 10px; }
+.footer__tagline { max-width: 24em; }
+.footer__copyright { margin-top: var(--sp-md); font-size: 13px; color: rgba(255,255,255,.55); }
+.footer h4 {
+  margin: 0 0 14px;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--raspberry);
+}
+.footer ul { display: flex; flex-direction: column; gap: 10px; }
+.footer a { color: rgba(255, 255, 255, .74); }
+.footer a:hover { color: var(--white); text-decoration: underline; }
+
+
+/* ==========================================================================
+   WIDER SCREENS
+   Everything above is written for a phone first. These rules add the
+   side-by-side layouts once there is room for them.
+   ========================================================================== */
+@media (min-width: 700px) {
+  .wrap, .nav__inner { padding: 0 var(--margin-desktop); }
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .trio { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 940px) {
+  h1 { font-size: 48px; }
+  .hero__grid   { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
+  .engine__grid { grid-template-columns: 1fr 1fr; }
+  .people__grid { grid-template-columns: 1fr 1fr; }
+  .footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--sp-lg); }
+  .nav__burger  { display: none; }
+}
+
+/* ---- Phones and small tablets: swap the menu for a drop-down ---- */
+@media (max-width: 939px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  .final h2 { font-size: 26px; }
+
+  .nav__burger { display: flex; }
+  .nav__login { display: none; }
+
+  .nav__links {
+    display: none;
+    position: absolute; top: 68px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--surface-variant);
+    box-shadow: var(--shadow-lift);
+    padding: 8px var(--margin-mobile) 16px;
+  }
+  .nav__links.is-open { display: flex; }
+  .nav__links a {
+    padding: 14px 0; border-bottom: 1px solid var(--surface-low);
+  }
+  .nav__links a:last-child { border-bottom: none; }
+
+  .trust__inner { gap: var(--sp-sm); }
+  .trust__item { width: 100%; }
+  .hero__buttons .btn { flex: 1 1 auto; }
+}
+
+/* ---- Anyone who prefers less movement ---- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .btn:hover, .card:hover, .trio-card:hover { transform: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================================================================
+     1. NAVIGATION BAR
+     ======================================================================== -->
+<header class="nav">
+  <nav class="nav__inner" aria-label="Main">
+    <a class="logo" href="#top">Sennicare</a>
+
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#product">Product</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#get-started">Login</a></li>
+    </ul>
+
+    <div class="nav__right">
+      <a class="nav__login" href="#get-started">Login</a>
+      <a class="btn btn--primary btn--sm" href="#get-started">Get Started</a>
+    </div>
+  </nav>
+</header>
+
+
+<main id="top">
+
+  <!-- ======================================================================
+       2. HERO
+       ====================================================================== -->
+  <section class="hero" id="product">
+    <div class="wrap hero__grid">
+
+      <div class="hero__copy">
+        <span class="badge">
+          <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+          Intelligent Procurement Platform
+        </span>
+
+        <h1>
+          Master Your Care Home Procurement with
+          <span class="highlight">Financial Intelligence.</span>
+        </h1>
+
+        <p class="hero__sub">
+          Empower your care facility to reduce costs, ensure compliance, and streamline
+          operations. Intelligent sourcing built exclusively for the UK care sector.
+        </p>
+
+        <div class="hero__buttons">
+          <a class="btn btn--primary btn--lg" href="#get-started">
+            Start Free Trial
+            <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--outline btn--lg" href="#get-started">
+            Book a Demo
+            <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PHOTO 1 of 5 — REPLACE ME
+           Wanted: a care home nurse talking kindly with an elderly lady.
+           Warm, bright, professional. About 1200 x 900 pixels.
+           To swap: save your photo next to this file and change the src below
+           to its filename, e.g. src="hero-nurse.jpg" -->
+      <div class="hero__photo">
+        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23efe6f7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dcd2ee%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%235c3f43%22%20stroke-width%3D%227%22%20opacity%3D%22.55%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%235c3f43%22%20opacity%3D%22.85%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%235c3f43%22%20opacity%3D%22.62%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3ENurse%20with%20an%20elderly%20resident%3C%2Ftext%3E%3C%2Fsvg%3E"
+             alt="A care home nurse sitting with an elderly lady, talking warmly with her in a bright lounge" />
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       3. TRUST BAR
+
+       ⚠️  BEFORE THIS PAGE GOES LIVE, CHECK THESE FOUR CLAIMS  ⚠️
+       All four are statements of fact that a care home manager, or the
+       Advertising Standards Authority, can check:
+
+         "Trusted by CQC Registered Homes"   — needs at least one such home
+                                                actually using Sennicare
+         "NHS Data Standards Compliant"      — name the standard you meet
+                                                (e.g. DSPT, DCB0129)
+         "ISO 27001 Certified"               — only true once an accredited
+                                                body has certified you, with
+                                                a certificate number
+         "500+ UK Care Homes"                — needs to be your real number
+
+       If any is not yet true, swap it for something that is. Honest
+       alternatives that still build trust:
+         "Built for CQC Registered Homes"
+         "Data handled to UK GDPR standards"
+         "Independent — no supplier commission"
+         "Pilot programme now open"
+       ====================================================================== -->
+  <section class="trust">
+    <div class="wrap trust__inner">
+      <div class="trust__item">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+        Trusted by CQC Registered Homes
+      </div>
+      <div class="trust__item">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg>
+        NHS Data Standards Compliant
+      </div>
+      <div class="trust__item">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/></svg>
+        ISO 27001 Certified
+      </div>
+      <div class="trust__item">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.8"/></svg>
+        500+ UK Care Homes
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       4. FROM STRESSED TO EMPOWERED
+       ====================================================================== -->
+  <section class="section section--white" id="resources">
+    <div class="wrap">
+
+      <div class="section-head">
+        <h2>From Stressed to Empowered</h2>
+        <p>
+          Procurement shouldn&rsquo;t be a source of anxiety. We&rsquo;ve completely reimagined
+          how care homes source their essential supplies.
+        </p>
+      </div>
+
+      <div class="two-col">
+
+        <!-- The Old Way -->
+        <article class="card card--old">
+          <div class="card__head">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            <h3>The Old Way</h3>
+          </div>
+
+          <!-- PHOTO 2 of 5 — REPLACE ME
+               Wanted: a stressed manager at a desk surrounded by stacks of
+               paper, invoices and files. -->
+          <div class="card__photo">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23efe6f7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dcd2ee%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%235c3f43%22%20stroke-width%3D%227%22%20opacity%3D%22.55%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%235c3f43%22%20opacity%3D%22.85%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%235c3f43%22%20opacity%3D%22.62%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3EManager%20buried%20in%20paperwork%3C%2Ftext%3E%3C%2Fsvg%3E"
+                 alt="A care home manager at a desk buried under stacks of paper invoices and files" />
+          </div>
+
+          <ul class="point-list">
+            <li class="point point--bad">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+              Manual invoice processing and endless paperwork.
+            </li>
+            <li class="point point--bad">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+              Unpredictable pricing and hidden supplier fees.
+            </li>
+            <li class="point point--bad">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+              Hours wasted on the phone chasing delayed deliveries.
+            </li>
+          </ul>
+        </article>
+
+        <!-- The Sennicare Way -->
+        <article class="card card--new">
+          <div class="card__head">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+            <h3>The Sennicare Way</h3>
+          </div>
+
+          <!-- PHOTO 3 of 5 — REPLACE ME
+               Wanted: a smiling care team outdoors with a resident.
+               Happy, relaxed, human. -->
+          <div class="card__photo">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e6edfb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d5e2f7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%230a1172%22%20stroke-width%3D%227%22%20opacity%3D%22.55%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%230a1172%22%20opacity%3D%22.85%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%230a1172%22%20opacity%3D%22.62%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3ECare%20team%20outdoors%20with%20a%20resident%3C%2Ftext%3E%3C%2Fsvg%3E"
+                 alt="Two smiling care staff outdoors in a garden with an elderly resident" />
+          </div>
+
+          <ul class="point-list">
+            <li class="point point--good">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>Automated:</strong> AI-driven invoice matching and ordering.</span>
+            </li>
+            <li class="point point--good">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>Insightful:</strong> Real-time analytics and transparent pricing.</span>
+            </li>
+            <li class="point point--good">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>Calm:</strong> Focus on what matters&mdash;delivering exceptional care.</span>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       5. INTELLIGENT RECOMMENDATIONS
+       ====================================================================== -->
+  <section class="section">
+    <div class="wrap engine__grid">
+
+      <!-- PHOTO 4 of 5 — REPLACE ME
+           Wanted: a tablet or laptop showing the Sennicare platform — a clean
+           dashboard with icons and charts. A real screenshot of your app is
+           far more convincing here than a stock photo. -->
+      <div class="engine__mock">
+        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fbe6ee%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5d3e0%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23b70048%22%20stroke-width%3D%227%22%20opacity%3D%22.55%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b70048%22%20opacity%3D%22.85%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%23b70048%22%20opacity%3D%22.62%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3ESennicare%20on%20a%20tablet%3C%2Ftext%3E%3C%2Fsvg%3E"
+             alt="A tablet displaying the Sennicare procurement dashboard with charts and supplier cards" />
+      </div>
+
+      <div class="engine__copy">
+        <span class="badge badge--engine">
+          <svg class="ico ico--sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v2M14 3v2M10 19v2M14 19v2M3 10h2M3 14h2M19 10h2M19 14h2"/></svg>
+          The Sennicare Engine
+        </span>
+
+        <h2>Intelligent Recommendations at Your Fingertips</h2>
+
+        <p>
+          Our proprietary algorithm analyses thousands of data points to ensure you always
+          make the best procurement decision for your specific facility needs.
+        </p>
+
+        <div class="trio">
+          <div class="trio-card">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16l3.5-4 3 2.5L18 8"/></svg>
+            <strong>Optimal Price</strong>
+            <span>Lowest cost without compromising care standards.</span>
+          </div>
+          <div class="trio-card">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
+            <strong>CQC Quality</strong>
+            <span>Pre-vetted items that meet stringent UK guidelines.</span>
+          </div>
+          <div class="trio-card">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16V7h11v9M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg>
+            <strong>Reliable Speed</strong>
+            <span>Next-day guarantees from trusted regional suppliers.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       6. BUILT FOR THE PEOPLE OF CARE
+       ====================================================================== -->
+  <section class="section section--white" id="about">
+    <div class="wrap people__grid">
+
+      <div class="people__copy">
+        <h2>Built for the People of Care</h2>
+        <p>
+          Sennicare isn&rsquo;t just software; it&rsquo;s a supportive partner for every role in
+          your organisation, fostering collaboration and reducing administrative friction.
+        </p>
+
+        <div class="role">
+          <div class="role__icon role__icon--manager">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 12v8.5h13V12"/></svg>
+          </div>
+          <div>
+            <strong>For Care Home Managers</strong>
+            <span>
+              Reclaim hours spent on administration. Ensure your home never runs short of
+              vital supplies while staying effortlessly within budget.
+            </span>
+          </div>
+        </div>
+
+        <div class="role">
+          <div class="role__icon role__icon--finance">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <strong>For Finance Directors</strong>
+            <span>
+              Gain absolute visibility into group-wide spend. Automate reconciliation and
+              identify strategic savings opportunities instantly.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO 5 of 5 — REPLACE ME
+           Wanted: a professional, diverse team around a table reviewing the
+           platform together. Collaborative and trustworthy. -->
+      <div class="people__photo">
+        <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20600%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23e6edfb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d5e2f7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%230a1172%22%20stroke-width%3D%227%22%20opacity%3D%22.55%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%22330%22%20y%3D%22243%22%20width%3D%22140%22%20height%3D%22104%22%20rx%3D%2214%22%2F%3E%3Ccircle%20cx%3D%22400%22%20cy%3D%22295%22%20r%3D%2230%22%2F%3E%3Cpath%20d%3D%22M366%20243l14-20h40l14%2020%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22400%22%20y%3D%22404%22%20text-anchor%3D%22middle%22%20fill%3D%22%230a1172%22%20opacity%3D%22.85%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2227%22%20font-weight%3D%22700%22%3EPhoto%20goes%20here%3C%2Ftext%3E%3Ctext%20x%3D%22400%22%20y%3D%22440%22%20text-anchor%3D%22middle%22%20fill%3D%22%230a1172%22%20opacity%3D%22.62%22%20font-family%3D%22Hanken%20Grotesk%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%3ETeam%20reviewing%20the%20platform%3C%2Ftext%3E%3C%2Fsvg%3E"
+             alt="A diverse team of care home staff around a table, reviewing the Sennicare platform on a laptop together" />
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       7. FINAL CALL TO ACTION
+
+       NOTE: "hundreds of UK care homes already saving" is the same kind of
+       claim as the trust bar above. Make sure it is true before publishing,
+       or change it to something like "Be one of the first UK care homes to
+       save time and money with Sennicare."
+       ====================================================================== -->
+  <section class="final" id="get-started">
+    <div class="wrap">
+      <h2>Ready to transform your procurement?</h2>
+      <p>Join hundreds of UK care homes already saving time and money with Sennicare.</p>
+      <a class="btn btn--primary btn--lg" href="mailto:hello@sennicare.co.uk?subject=Start%20Saving%20Today">
+        Start Saving Today
+      </a>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ========================================================================
+     8. FOOTER
+     ======================================================================== -->
+<footer class="footer" id="pricing">
+  <div class="wrap footer__grid">
+
+    <div>
+      <div class="logo">Sennicare</div>
+      <p class="footer__tagline">
+        Empowering the UK Care Sector with Financial Intelligence.
+      </p>
+      <p class="footer__copyright">&copy; 2024 Sennicare. All rights reserved.</p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#product">Product Tour</a></li>
+        <li><a href="#resources">Case Studies</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#resources">Resource Center</a></li>
+        <li><a href="#resources">Compliance Guide</a></li>
+        <li><a href="#resources">Blog</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+/* The mobile menu. This is the only JavaScript on the page — everything else
+   works without it. */
+(function () {
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navLinks');
+  if (!burger || !links) { return; }
+
+  burger.addEventListener('click', function () {
+    var open = links.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  /* Tapping a link closes the menu again. */
+  links.addEventListener('click', function (event) {
+    if (event.target.tagName === 'A') {
+      links.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Sennicare platform — the live database holds real subscriber accounts.
+# It must never be committed. Back it up by copying the file instead.
+platform/data/sennicare.db
+platform/data/sennicare.db-journal
+*.db
