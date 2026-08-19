@@ -16,7 +16,7 @@
     7.  Features           — what the platform actually does   (id="services")
     8.  Quality promise    — the differentiator                (id="benefits")
     9.  Savings calculator — progressive commitment
-    10. Pricing            — three plans, one "Most popular"
+    10. Pricing            — two plans, one "Most popular"
     11. Proof              — PLACEHOLDERS. Read the note above that section.
     12. FAQ                — objection handling
     13. Start free         — the form                          (id="start")
@@ -74,9 +74,8 @@
     "url": "https://sennicare.co.uk/",
     "areaServed": { "@type": "Country", "name": "United Kingdom" },
     "offers": [
-      { "@type": "Offer", "name": "Starter", "price": "49", "priceCurrency": "GBP" },
-      { "@type": "Offer", "name": "Professional", "price": "99", "priceCurrency": "GBP" },
-      { "@type": "Offer", "name": "Group", "price": "249", "priceCurrency": "GBP" }
+      { "@type": "Offer", "name": "Free Forever", "price": "0", "priceCurrency": "GBP" },
+      { "@type": "Offer", "name": "Professional", "price": "49", "priceCurrency": "GBP" }
     ]
   }
   </script>
@@ -514,7 +513,7 @@
 
 
     <!-- ====================================================================
-         10. PRICING — one "Most popular", one magenta button
+         10. PRICING — two plans, one "Most popular", one magenta button
          ==================================================================== -->
     <section class="section section--grey" id="pricing">
       <div class="container">
@@ -525,19 +524,20 @@
              obvious, not before.</p>
         </div>
 
-        <div class="grid grid-3 plans">
-          <!-- Starter -->
+        <div class="grid grid-2 plans plans--two">
+
+          <!-- Free Forever -->
           <article class="plan reveal">
             <div>
-              <div class="plan__name">Starter</div>
-              <p class="plan__blurb">One home, 25 searches a month. Everything you need to see whether this works.</p>
+              <div class="plan__name">Free Forever</div>
+              <p class="plan__blurb">Essential procurement visibility.</p>
             </div>
-            <div class="plan__price">&pound;49<span> / month</span></div>
+            <div class="plan__price">&pound;0<span> / month</span></div>
             <ul class="plan__features">
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 25 supplier searches a month</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Top recommendation with reasoning</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Requests written for you</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> One care home</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Up to 2 User Accounts</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Basic Supplier Directory Access</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Monthly Spend Summary Reports</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Standard Email Support</li>
             </ul>
             <a class="btn btn--outline btn--block" href="#start">Start free</a>
           </article>
@@ -547,35 +547,20 @@
             <span class="badge-popular">Most popular</span>
             <div>
               <div class="plan__name">Professional</div>
-              <p class="plan__blurb">Unlimited searching, full history and the exports your finance meeting wants.</p>
+              <p class="plan__blurb">Advanced analytics &amp; automated savings.</p>
             </div>
-            <div class="plan__price">&pound;99<span> / month</span></div>
+            <div class="plan__price">&pound;49<span> / month</span></div>
             <ul class="plan__features">
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> <strong>Unlimited</strong> searches</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Full request history and status tracking</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Spreadsheet exports</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Price benchmarks</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Saved suppliers</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Unlimited User Accounts</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Full Market Intelligence Dashboard</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Automated Price Discrepancy Alerts</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> API Integrations &amp; Export</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority 24/7 Support</li>
             </ul>
             <!-- THE magenta action for this screen -->
-            <a class="btn btn--primary btn--block" href="#start">Start free</a>
+            <a class="btn btn--primary btn--block" href="#start">Start Professional trial</a>
           </article>
 
-          <!-- Group -->
-          <article class="plan reveal reveal-delay-2">
-            <div>
-              <div class="plan__name">Group</div>
-              <p class="plan__blurb">For groups running several homes, with someone on the end of the phone.</p>
-            </div>
-            <div class="plan__price">&pound;249<span> / month</span></div>
-            <ul class="plan__features">
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Everything in Professional</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Up to 10 care homes</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Group-level spend reporting</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li>
-            </ul>
-            <a class="btn btn--outline btn--block" href="#start">Talk to us</a>
-          </article>
         </div>
 
         <p class="pricing-note">
@@ -763,10 +748,12 @@
           <details>
             <summary>What does &ldquo;free&rdquo; actually mean?</summary>
             <div class="faq__answer">
-              <p>You can create an account, set up your home and run searches without giving us
-                 a card. Paid plans lift the monthly search limit and add history, exports and
-                 multiple homes. There is no contract and no notice period &mdash; cancel from
-                 inside your account.</p>
+              <p>Free Forever means exactly that: no card, no trial clock, no expiry. You get
+                 up to two user accounts, the supplier directory and a monthly spend summary.
+                 Professional, at &pound;49 a month, adds unlimited users, the full market
+                 intelligence dashboard, price discrepancy alerts, exports and priority
+                 support. There is no contract and no notice period &mdash; cancel from inside
+                 your account.</p>
             </div>
           </details>
         </div>

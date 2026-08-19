@@ -716,6 +716,10 @@ textarea:focus-visible, select:focus-visible, summary:focus-visible,
   width: 18px; height: 18px; color: var(--success);
   flex-shrink: 0; margin-top: 3px;
 }
+/* Two plans instead of three: keep them from stretching across the full
+   width, which would leave each card looking empty. */
+.plans--two { max-width: 820px; margin: 0 auto; }
+
 .pricing-note {
   text-align: center; margin-top: var(--s-6);
   font-size: 15px; color: var(--muted);

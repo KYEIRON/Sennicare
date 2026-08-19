@@ -272,9 +272,9 @@ can check. Honest alternatives are suggested in the code comments beside each on
 
 ### Known inconsistencies to resolve
 
-- **Two price lists exist.** These pages say Free £0 / Professional £49. The platform app
-  (`platform/sennicare/subscriptions.py`) says Starter £49 / Professional £99 / Group £249.
-  Pick one and I'll align the other.
+- ~~Two price lists exist.~~ **Resolved: Free £0 / Professional £49 is the pricing.**
+  `pricing.html` and `index.html` both use it. The platform app is aligned on the
+  `claude/sennicare-procurement-platform` branch, which is where `platform/` lives.
 - **Three homepages exist.** `index.html` (the "Buy Smarter. Care Better." version),
   `home.html` (this set), and the old design still used by `savings-calculator.html`,
   `privacy.html` and `terms.html`. Tell me which direction wins and I'll consolidate.
