@@ -32,8 +32,17 @@ def svg_uri(p):
     with open(os.path.join(WEB, p), "rb") as f:
         return "data:image/svg+xml;base64," + base64.b64encode(f.read()).decode()
 
-# Assets shared by the older pages, inlined once each.
+def img_uri(rel):
+    kind = "jpeg" if rel.lower().endswith((".jpg", ".jpeg")) else rel.rsplit(".", 1)[-1].lower()
+    with open(os.path.join(WEB, rel), "rb") as f:
+        return f"data:image/{kind};base64," + base64.b64encode(f.read()).decode()
+
+# Everything the pages point at, inlined once each so the preview is one file.
 ASSETS = {p: svg_uri(p) for p in ("assets/logo.svg", "assets/logo-light.svg")}
+if os.path.isdir(os.path.join(WEB, "images")):
+    for name in sorted(os.listdir(os.path.join(WEB, "images"))):
+        if name.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".svg")):
+            ASSETS["images/" + name] = img_uri("images/" + name)
 
 # Injected into every page: makes links between pages switch the tab in the
 # preview shell instead of failing inside the iframe.
@@ -63,7 +72,7 @@ def inline(page_html):
         return "<script>\n" + read(m.group(1)) + "\n</script>"
     page_html = re.sub(r'<script[^>]*src="(js/[^"]+)"[^>]*>\s*</script>', js_sub, page_html)
 
-    # 3. logo files -> data URIs
+    # 3. logo and photo files -> data URIs
     for path, uri in ASSETS.items():
         page_html = page_html.replace('"' + path + '"', '"' + uri + '"')
 
