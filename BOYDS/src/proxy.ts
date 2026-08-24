@@ -22,6 +22,7 @@ const PROTECTED_PREFIXES = [
   '/jobs',
   '/dispatch',
   '/customers',
+  '/reports',
   '/vehicles',
   '/drivers',
   '/settings',

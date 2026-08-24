@@ -75,21 +75,30 @@ pretending a file was saved.
 
 **Done:** 441 tests passing — 318 unit and guard, 123 against real PostgreSQL.
 
-### Phase 5 — Mileage, fuel, expenses, POD
+### Phase 5 — Mileage, fuel, expenses, POD ✅ complete
 
-`mileage_logs`, `fuel_transactions`, `job_expenses`, `documents`. Loaded/empty
-classification. Odometer validation. Private storage buckets and signed URLs.
-Receipt and POD capture from the driver app.
-**Done when:** loaded + empty = total is enforced and every guard is tested.
+Delivered with Phase 4: `mileage_logs`, `fuel_transactions`, `job_expenses` and
+`documents`, loaded/empty classification, odometer validation, private storage
+with signed URLs, and receipt and POD capture from the driver app.
 
-### Phase 6 — Profitability engine
+### Phase 6 — Profitability engine ✅ complete
 
-`src/services/finance/`. Cost stack, contribution, contribution per mile, margin,
-empty mileage percentage, true cost per mile, the configurable vehicle cost
-model, `ACTUAL` vs `BEST_AVAILABLE` bases. The `job_profitability` view and the
-test asserting it agrees with the TypeScript engine.
-**Done when:** every worked example in `FINANCIAL_ENGINE.md` passes, including
-the $300 → $60 case and the `DATA INCOMPLETE` case.
+Migration 0018 adds `vehicle_cost_entries` and `maintenance_records`. True cost
+per mile is **derived** from real recorded costs and real recorded mileage —
+there is no field anywhere for a manually entered flat rate — and every derived
+rate reports which cost lines it covers, so a partial figure can never be read
+as the whole picture. Completed maintenance with a cost becomes a cost entry
+automatically, so the rate reflects work actually done.
+
+Customer, vehicle and period profitability, average contribution per job,
+contribution per mile, margin and empty mileage share. Loss-making jobs are
+listed separately from jobs whose costs are merely unknown — an unmeasured job
+is not a profitable one, and BOYD'S does not let the two blur.
+
+The Reports screen shows all of it, and names the jobs blocking any figure it
+cannot state.
+
+**Done:** 491 tests passing — 356 unit and guard, 135 against real PostgreSQL.
 
 ### Phase 7 — Command Centre
 

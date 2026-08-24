@@ -347,3 +347,143 @@ export async function listDriverJobs(
     ? err(queryFailed('your jobs'))
     : ok((data ?? []) as unknown as DriverJobRow[]);
 }
+
+// --- Profitability -----------------------------------------------------------
+
+/** Job columns the profitability engine needs, plus the grouping keys. */
+const PROFITABILITY_COLUMNS = `${JOB_COLUMNS}, completed_at`;
+
+export interface ProfitabilityJobRow extends JobRow {
+  completed_at: string | null;
+}
+
+export async function listJobsForProfitability(
+  client: SupabaseClient,
+  options: { from?: string; to?: string } = {},
+): Promise<Result<ProfitabilityJobRow[]>> {
+  let query = client.from('jobs').select(PROFITABILITY_COLUMNS);
+
+  if (options.from) query = query.gte('completed_at', options.from);
+  if (options.to) query = query.lt('completed_at', options.to);
+
+  const { data, error } = await query.order('completed_at', {
+    ascending: false,
+    nullsFirst: false,
+  });
+
+  return error
+    ? err(queryFailed('profitability data'))
+    : ok((data ?? []) as unknown as ProfitabilityJobRow[]);
+}
+
+// --- Vehicle cost model ------------------------------------------------------
+
+export interface VehicleCostEntry {
+  id: string;
+  vehicleId: string;
+  costLine: string;
+  period: string;
+  amountCents: number;
+  includedInCostPerMile: boolean;
+  effectiveFrom: string;
+  effectiveTo: string | null;
+  notes: string | null;
+}
+
+export async function listVehicleCostEntries(
+  client: SupabaseClient,
+  vehicleId?: string,
+): Promise<Result<VehicleCostEntry[]>> {
+  let query = client
+    .from('vehicle_cost_entries')
+    .select(
+      'id, vehicle_id, cost_line, period, amount_cents, included_in_cost_per_mile, effective_from, effective_to, notes',
+    );
+
+  if (vehicleId) query = query.eq('vehicle_id', vehicleId);
+
+  const { data, error } = await query.order('effective_from', { ascending: false });
+
+  if (error) return err(queryFailed('vehicle costs'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      vehicleId: row.vehicle_id,
+      costLine: row.cost_line,
+      period: row.period,
+      amountCents: row.amount_cents,
+      includedInCostPerMile: row.included_in_cost_per_mile,
+      effectiveFrom: row.effective_from,
+      effectiveTo: row.effective_to,
+      notes: row.notes,
+    })),
+  );
+}
+
+/** Real miles a vehicle covered in a window, from completed jobs. */
+export async function vehicleMilesInWindow(
+  client: SupabaseClient,
+  vehicleId: string,
+  from: string,
+  to: string,
+): Promise<number> {
+  const { data } = await client
+    .from('jobs')
+    .select('actual_miles_tenths')
+    .eq('vehicle_id', vehicleId)
+    .eq('status', 'COMPLETED')
+    .gte('completed_at', from)
+    .lt('completed_at', to);
+
+  return (data ?? []).reduce<number>(
+    (sum, row) => sum + (row.actual_miles_tenths ?? 0),
+    0,
+  );
+}
+
+// --- Maintenance -------------------------------------------------------------
+
+export interface MaintenanceRecord {
+  id: string;
+  vehicleId: string;
+  maintenanceType: string;
+  description: string | null;
+  dueDate: string | null;
+  dueOdometerTenths: number | null;
+  completedDate: string | null;
+  costCents: number | null;
+}
+
+export async function listMaintenance(
+  client: SupabaseClient,
+  options: { outstandingOnly?: boolean } = {},
+): Promise<Result<MaintenanceRecord[]>> {
+  let query = client
+    .from('maintenance_records')
+    .select(
+      'id, vehicle_id, maintenance_type, description, due_date, due_odometer_tenths, completed_date, cost_cents',
+    );
+
+  if (options.outstandingOnly) query = query.is('completed_date', null);
+
+  const { data, error } = await query.order('due_date', {
+    ascending: true,
+    nullsFirst: false,
+  });
+
+  if (error) return err(queryFailed('maintenance'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      vehicleId: row.vehicle_id,
+      maintenanceType: row.maintenance_type,
+      description: row.description,
+      dueDate: row.due_date,
+      dueOdometerTenths: row.due_odometer_tenths,
+      completedDate: row.completed_date,
+      costCents: row.cost_cents,
+    })),
+  );
+}

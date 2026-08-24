@@ -34,6 +34,35 @@ import { emptyMileageBps } from '@/lib/distance';
 import type { CostState } from '@/types/operations';
 import type { LabourCostTreatment } from '@/types/economics';
 
+/**
+ * The stored job columns the financial engine reads.
+ *
+ * Defined here, in the domain, so nothing in `services/` needs to reach up into
+ * a UI feature for a type. See ARCHITECTURE.md — the dependency rule is enforced
+ * by lint, and it caught exactly that mistake.
+ */
+export interface JobFinancialRow {
+  readonly id: string;
+  readonly job_number: string;
+  readonly status: string;
+  readonly won_price_cents: number | null;
+  readonly actual_miles_tenths: number | null;
+  readonly loaded_miles_tenths: number | null;
+  readonly empty_miles_tenths: number | null;
+  readonly fuel_cost_estimated_cents: number | null;
+  readonly fuel_cost_actual_cents: number | null;
+  readonly driver_cost_estimated_cents: number | null;
+  readonly driver_cost_actual_cents: number | null;
+  readonly vehicle_cost_estimated_cents: number | null;
+  readonly vehicle_cost_actual_cents: number | null;
+  readonly toll_cost_estimated_cents: number | null;
+  readonly toll_cost_actual_cents: number | null;
+  readonly parking_cost_estimated_cents: number | null;
+  readonly parking_cost_actual_cents: number | null;
+  readonly other_cost_estimated_cents: number | null;
+  readonly other_cost_actual_cents: number | null;
+}
+
 /** One cost line as stored on a job: both figures, plus the derived state. */
 export interface JobCostLine {
   readonly estimated: Cents | null;

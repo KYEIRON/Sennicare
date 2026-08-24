@@ -65,7 +65,7 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 4 complete** — the driver application is built and verified.
+**Phase 6 complete** — the profitability engine is built and verified.
 
 | Gate             | Result                      |
 | ---------------- | --------------------------- |
@@ -75,7 +75,7 @@ so expansion costs a database row rather than a release.
 | Production build | passing                     |
 | `npm audit`      | 0 vulnerabilities           |
 
-Phase 5 (mileage, fuel, expenses and POD reporting) is next.
+Phase 7 (Command Centre reporting) and Phase 8 (CRM and quoting) are next.
 See [ROADMAP](docs/ROADMAP.md).
 
 ## Running it

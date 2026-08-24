@@ -29,30 +29,18 @@ import {
   calculateContribution,
   costInputsFromRow,
   type CostBasis,
+  type JobFinancialRow,
 } from '@/services/finance/job-costs';
 import type { JobStatus } from '@/types/operations';
 
-/** The subset of a job row these figures need. */
-export interface SummaryJob {
-  id: string;
-  job_number: string;
-  status: JobStatus;
-  won_price_cents: number | null;
-  actual_miles_tenths: number | null;
-  loaded_miles_tenths: number | null;
-  empty_miles_tenths: number | null;
-  fuel_cost_estimated_cents: number | null;
-  fuel_cost_actual_cents: number | null;
-  driver_cost_estimated_cents: number | null;
-  driver_cost_actual_cents: number | null;
-  vehicle_cost_estimated_cents: number | null;
-  vehicle_cost_actual_cents: number | null;
-  toll_cost_estimated_cents: number | null;
-  toll_cost_actual_cents: number | null;
-  parking_cost_estimated_cents: number | null;
-  parking_cost_actual_cents: number | null;
-  other_cost_estimated_cents: number | null;
-  other_cost_actual_cents: number | null;
+/**
+ * The subset of a job row these figures need.
+ *
+ * The financial columns come from the domain; this adds only the operational
+ * status the Command Centre groups by.
+ */
+export interface SummaryJob extends JobFinancialRow {
+  readonly status: JobStatus;
 }
 
 /**
