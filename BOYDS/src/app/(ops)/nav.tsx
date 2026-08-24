@@ -8,6 +8,7 @@ import Link from 'next/link';
  */
 const SECTIONS = [
   { href: '/command-centre', label: 'Command Centre' },
+  { href: '/requests', label: 'Requests' },
   { href: '/jobs', label: 'Jobs' },
   { href: '/dispatch', label: 'Dispatch' },
   { href: '/customers', label: 'Customers' },

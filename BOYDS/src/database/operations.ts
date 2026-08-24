@@ -786,3 +786,110 @@ export async function listContracts(
     })),
   );
 }
+
+// --- Notifications -----------------------------------------------------------
+
+export interface NotificationRow {
+  id: string;
+  notificationType: string;
+  severity: 'INFO' | 'ATTENTION' | 'URGENT';
+  title: string;
+  body: string | null;
+  entityTable: string | null;
+  entityId: string | null;
+  readAt: string | null;
+  createdAt: string;
+}
+
+export async function listNotifications(
+  client: SupabaseClient,
+  options: { unreadOnly?: boolean; limit?: number } = {},
+): Promise<Result<NotificationRow[]>> {
+  let query = client
+    .from('notifications')
+    .select(
+      'id, notification_type, severity, title, body, entity_table, entity_id, read_at, created_at',
+    );
+
+  if (options.unreadOnly) query = query.is('read_at', null);
+
+  const { data, error } = await query
+    .order('created_at', { ascending: false })
+    .limit(options.limit ?? 50);
+
+  if (error) return err(queryFailed('notifications'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      notificationType: row.notification_type,
+      severity: row.severity,
+      title: row.title,
+      body: row.body,
+      entityTable: row.entity_table,
+      entityId: row.entity_id,
+      readAt: row.read_at,
+      createdAt: row.created_at,
+    })),
+  );
+}
+
+/** Requests that have arrived and not yet been reviewed. */
+export interface JobRequestRow {
+  id: string;
+  requestNumber: string;
+  status: string;
+  source: string;
+  companyName: string | null;
+  contactName: string | null;
+  contactEmail: string | null;
+  contactPhone: string | null;
+  pickupAddress: string | null;
+  pickupCity: string | null;
+  deliveryAddress: string | null;
+  deliveryCity: string | null;
+  description: string | null;
+  urgency: string | null;
+  isRecurring: boolean | null;
+  isAfterHours: boolean;
+  receivedAt: string;
+}
+
+export async function listJobRequests(
+  client: SupabaseClient,
+  options: { newOnly?: boolean } = {},
+): Promise<Result<JobRequestRow[]>> {
+  let query = client
+    .from('job_requests')
+    .select(
+      'id, request_number, status, source, company_name, contact_name, contact_email, contact_phone, pickup_address, pickup_city, delivery_address, delivery_city, description, urgency, is_recurring, is_after_hours, received_at',
+    );
+
+  if (options.newOnly) query = query.eq('status', 'NEW');
+
+  const { data, error } = await query.order('received_at', { ascending: false });
+
+  if (error) return err(queryFailed('requests'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      requestNumber: row.request_number,
+      status: row.status,
+      source: row.source,
+      companyName: row.company_name,
+      contactName: row.contact_name,
+      contactEmail: row.contact_email,
+      contactPhone: row.contact_phone,
+      pickupAddress: row.pickup_address,
+      pickupCity: row.pickup_city,
+      deliveryAddress: row.delivery_address,
+      deliveryCity: row.delivery_city,
+      description: row.description,
+      urgency: row.urgency,
+      isRecurring: row.is_recurring,
+      isAfterHours: row.is_after_hours,
+      receivedAt: row.received_at,
+    })),
+  );
+}

@@ -20,6 +20,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 const PROTECTED_PREFIXES = [
   '/command-centre',
   '/jobs',
+  '/requests',
   '/dispatch',
   '/customers',
   '/crm',

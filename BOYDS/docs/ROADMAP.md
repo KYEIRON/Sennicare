@@ -204,13 +204,28 @@ also be the case that looks most authoritative.
 
 **Done:** 649 tests passing — 442 unit and guard, 207 against real PostgreSQL.
 
-### Phase 13 — Maps and notifications
+### Phase 13 — Maps and notifications ✅ complete
 
-Maps provider adapter — geocoding, routing, mileage, vehicle location. The
-notification system across all events in the specification, with email and SMS
-adapters.
-**Needs from Ronald:** maps, email, and SMS provider accounts.
-**Done when:** every unconfigured provider shows an explicit unavailable state.
+Maps, email and SMS abstractions, each with an explicitly unavailable adapter
+and **no approximate fallback** (D-025). There is no straight-line distance
+standing in for a route, no last-known position standing in for a live one, and
+no "queued" reporting as "sent" — an approximation in maps would flow into a
+fuel estimate, a cost and a price, and reach a customer as a number nobody could
+trace back to a guess.
+
+Migration 0022 adds notifications, raised by database trigger on new requests,
+after-hours arrivals, urgent requests, driver acceptance, delivery, proof of
+delivery and job failure. One row per partner rather than a shared one, so
+nothing is read for Ronald because Moh looked at it. Delivery is recorded per
+channel: `IN_APP` only, because that is the only channel BOYD'S has. Nothing
+claims an email went out.
+
+A Requests screen surfaces what has arrived and states plainly that nothing has
+been quoted, scheduled or confirmed. The Settings screen reports each
+integration's real state, read from the adapter itself rather than a hardcoded
+status that could drift.
+
+**Done:** 663 tests passing — 442 unit and guard, 221 against real PostgreSQL.
 
 ### Phase 14 — Advanced automation
 

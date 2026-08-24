@@ -410,3 +410,57 @@ opens.
 test (`tests/guards/driver-boundary.test.ts`) additionally asserts the driver
 source contains no price, cost, contribution or margin reference, never imports
 the profitability engine, and never reads the `jobs` table directly.
+
+## D-023 — The AI's limits are architectural, not instructional
+
+**Date:** 2026-08-24
+**Decision:** BOYD'S AI reaches data only through a registry of named tools.
+Each declares a Zod schema and a minimum role, runs through the caller's
+session-bound client, and returns the same `Calculation` states the rest of the
+system uses. The public receptionist is constructed with `publicTools` only —
+internal tools are **absent from its registry**, not merely denied to it. The
+surface is chosen server-side from the session; no request parameter can move a
+caller between them.
+**Reason:** A prompt is guidance, and a model can be talked out of guidance. The
+instructions tell the AI not to invent a price; the architecture makes it
+impossible for the public AI to reach one. The distinction between absent and
+denied matters too: a denied tool is something an attacker can probe for and
+learn from, an absent one is not there to find.
+**Alternatives:** one registry with role checks (a check is a line of code that
+can be forgotten on the next tool); giving the AI read-only database access
+(fastest to build, and it would hand a language model the customer list).
+**Impact:** Adding an internal tool is deliberate. The AI is handed
+`DATA INCOMPLETE` rather than a number it could round off, so it can only report
+what it was actually given. The conversation loop is bounded — four tool rounds,
+forty messages — because an unbounded public AI is a bill and a database load
+anyone can trigger.
+
+## D-024 — An untagged AI statement is treated as DATA_INCOMPLETE
+
+**Date:** 2026-08-24
+**Decision:** `parseTaggedResponse` classifies any statement the model produces
+without a `FACT` / `ESTIMATE` / `RECOMMENDATION` / `DATA INCOMPLETE` prefix as
+`DATA_INCOMPLETE`.
+**Reason:** The tag is what tells a partner whether a figure can be relied on.
+Defaulting an untagged statement to `FACT` would mean the one case where the
+model ignored its instructions is also the case that looks most authoritative.
+Failing the other way costs a little confidence in a correct answer and prevents
+a wrong one being trusted.
+**Impact:** A model that drops its tags produces cautious output rather than
+confident-looking output.
+
+## D-025 — Unconfigured integrations have no approximate fallback
+
+**Date:** 2026-08-24
+**Decision:** The maps, email and SMS adapters fail explicitly when no provider
+is configured. There is no straight-line distance standing in for a route, no
+last-known position standing in for a live one, and no "queued" that reports as
+"sent".
+**Reason:** An approximation in maps does not stay in maps: an estimated
+distance flows into a fuel estimate, into a cost, into a price, and reaches a
+customer as a number nobody could trace back to a guess. An email believed sent
+but never sent is an invoice BOYD'S waits for and never chases. The failure is
+silent in both cases, which is what makes it dangerous.
+**Impact:** Mileage is entered manually, and the interface says why. Outbound
+messages become notifications a partner acts on. Every caller has handled the
+unavailable case from the start, so connecting a real provider changes one file.

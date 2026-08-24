@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { requirePartner } from '@/lib/auth/session';
 import { capabilityReport } from '@/lib/env';
+import { getMaps } from '@/integrations/maps';
+import { getEmail } from '@/integrations/email';
+import { getSms } from '@/integrations/sms';
+import { isAiConfigured } from '@/ai/registry';
 import { Panel } from '@/components/ui/kpi-card';
 import { DataBadge } from '@/components/ui/data-badge';
 import { BUSINESS_SETTINGS } from '@/lib/configured';
@@ -41,6 +45,35 @@ export default async function SettingsPage() {
 
   const capabilities = capabilityReport();
 
+  // The real state of each integration, read from the adapter that would use
+  // it. Nothing here is a hardcoded status that could drift from reality.
+  const integrations = [
+    {
+      name: 'Maps and live tracking',
+      available: getMaps().available,
+      requires: 'A maps provider API key',
+      whenLive: 'Routing, mileage and vehicle position',
+    },
+    {
+      name: 'BOYD’S AI',
+      available: isAiConfigured(),
+      requires: 'An AI provider API key',
+      whenLive: 'The receptionist and the internal assistant',
+    },
+    {
+      name: 'Outbound email',
+      available: getEmail().available,
+      requires: 'An email provider account',
+      whenLive: 'Quotes and invoices sent automatically',
+    },
+    {
+      name: 'Outbound SMS',
+      available: getSms().available,
+      requires: 'An SMS provider account',
+      whenLive: 'Driver and customer alerts',
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <Panel title="Connected capabilities">
@@ -66,12 +99,7 @@ export default async function SettingsPage() {
             </li>
           ))}
 
-          {[
-            { name: 'Maps and live tracking', requires: 'A maps provider API key' },
-            { name: 'BOYD’S AI', requires: 'An AI provider API key' },
-            { name: 'Outbound email', requires: 'An email provider account' },
-            { name: 'Outbound SMS', requires: 'An SMS provider account' },
-          ].map((capability) => (
+          {integrations.map((capability) => (
             <li
               key={capability.name}
               className="flex flex-wrap items-center justify-between gap-2 rounded border border-boyd-navy-700 p-3"
@@ -80,9 +108,17 @@ export default async function SettingsPage() {
                 <p className="text-sm font-semibold text-boyd-light-100">
                   {capability.name}
                 </p>
-                <p className="text-xs text-boyd-light-400">{capability.requires}</p>
+                <p className="text-xs text-boyd-light-400">
+                  {capability.available ? capability.whenLive : capability.requires}
+                </p>
               </div>
-              <DataBadge kind="UNAVAILABLE" />
+              {capability.available ? (
+                <span className="rounded bg-boyd-positive/15 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-boyd-positive">
+                  CONNECTED
+                </span>
+              ) : (
+                <DataBadge kind="UNAVAILABLE" />
+              )}
             </li>
           ))}
         </ul>
