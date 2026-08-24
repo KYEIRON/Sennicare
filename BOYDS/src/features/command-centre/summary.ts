@@ -10,13 +10,7 @@
  * names the jobs responsible.
  */
 
-import {
-  cents,
-  milesTenths,
-  type Bps,
-  type Cents,
-  type MilesTenths,
-} from '@/types/branded';
+import { cents, type Bps, type Cents, type MilesTenths } from '@/types/branded';
 import {
   calcIncomplete,
   calcOk,
@@ -28,6 +22,8 @@ import { addMiles, emptyMileageBps } from '@/lib/distance';
 import {
   calculateContribution,
   costInputsFromRow,
+  parseStoredCents,
+  parseStoredMiles,
   type CostBasis,
   type JobFinancialRow,
 } from '@/services/finance/job-costs';
@@ -50,11 +46,12 @@ export interface SummaryJob extends JobFinancialRow {
  * an incomplete input, because "no price recorded" is not "free".
  */
 export function totalRevenue(jobs: readonly SummaryJob[]): Calculation<Cents> {
-  const parts = jobs.map((job) =>
-    job.won_price_cents === null
+  const parts = jobs.map((job) => {
+    const revenue = parseStoredCents(job.won_price_cents);
+    return revenue === null
       ? calcIncomplete<Cents>([`${job.job_number}: won_price`])
-      : calcOk(cents(job.won_price_cents)),
-  );
+      : calcOk(revenue);
+  });
 
   return combineCalculations(parts, (values) => addCents(...values));
 }
@@ -100,21 +97,23 @@ export function totalCostAcrossJobs(
 
 /** Total miles driven on these jobs. */
 export function totalMiles(jobs: readonly SummaryJob[]): Calculation<MilesTenths> {
-  const parts = jobs.map((job) =>
-    job.actual_miles_tenths === null
+  const parts = jobs.map((job) => {
+    const miles = parseStoredMiles(job.actual_miles_tenths);
+    return miles === null
       ? calcIncomplete<MilesTenths>([`${job.job_number}: actual_miles`])
-      : calcOk(milesTenths(job.actual_miles_tenths)),
-  );
+      : calcOk(miles);
+  });
 
   return combineCalculations(parts, (values) => addMiles(...values));
 }
 
 export function totalEmptyMiles(jobs: readonly SummaryJob[]): Calculation<MilesTenths> {
-  const parts = jobs.map((job) =>
-    job.empty_miles_tenths === null
+  const parts = jobs.map((job) => {
+    const miles = parseStoredMiles(job.empty_miles_tenths);
+    return miles === null
       ? calcIncomplete<MilesTenths>([`${job.job_number}: empty_miles`])
-      : calcOk(milesTenths(job.empty_miles_tenths)),
-  );
+      : calcOk(miles);
+  });
 
   return combineCalculations(parts, (values) => addMiles(...values));
 }

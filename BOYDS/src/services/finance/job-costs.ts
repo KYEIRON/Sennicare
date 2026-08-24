@@ -42,26 +42,31 @@ import type { LabourCostTreatment } from '@/types/economics';
  * by lint, and it caught exactly that mistake.
  */
 export interface JobFinancialRow {
-  readonly id: string;
+  readonly id?: string;
   readonly job_number: string;
   readonly status: string;
-  readonly won_price_cents: number | null;
-  readonly actual_miles_tenths: number | null;
-  readonly loaded_miles_tenths: number | null;
-  readonly empty_miles_tenths: number | null;
-  readonly fuel_cost_estimated_cents: number | null;
-  readonly fuel_cost_actual_cents: number | null;
-  readonly driver_cost_estimated_cents: number | null;
-  readonly driver_cost_actual_cents: number | null;
-  readonly vehicle_cost_estimated_cents: number | null;
-  readonly vehicle_cost_actual_cents: number | null;
-  readonly toll_cost_estimated_cents: number | null;
-  readonly toll_cost_actual_cents: number | null;
-  readonly parking_cost_estimated_cents: number | null;
-  readonly parking_cost_actual_cents: number | null;
-  readonly other_cost_estimated_cents: number | null;
-  readonly other_cost_actual_cents: number | null;
+  // A stored bigint arrives as a STRING from PostgreSQL. These types admit both
+  // forms so the engine reads real rows rather than only test fixtures.
+  readonly won_price_cents: StoredNumber;
+  readonly actual_miles_tenths: StoredNumber;
+  readonly loaded_miles_tenths: StoredNumber;
+  readonly empty_miles_tenths: StoredNumber;
+  readonly fuel_cost_estimated_cents: StoredNumber;
+  readonly fuel_cost_actual_cents: StoredNumber;
+  readonly driver_cost_estimated_cents: StoredNumber;
+  readonly driver_cost_actual_cents: StoredNumber;
+  readonly vehicle_cost_estimated_cents: StoredNumber;
+  readonly vehicle_cost_actual_cents: StoredNumber;
+  readonly toll_cost_estimated_cents: StoredNumber;
+  readonly toll_cost_actual_cents: StoredNumber;
+  readonly parking_cost_estimated_cents: StoredNumber;
+  readonly parking_cost_actual_cents: StoredNumber;
+  readonly other_cost_estimated_cents: StoredNumber;
+  readonly other_cost_actual_cents: StoredNumber;
 }
+
+/** A numeric column as it arrives from the database: number, string, or null. */
+export type StoredNumber = number | string | null;
 
 /** One cost line as stored on a job: both figures, plus the derived state. */
 export interface JobCostLine {
@@ -273,47 +278,82 @@ export function validateMileageSplit(
   return calcOk(total);
 }
 
+/**
+ * Read a stored money value.
+ *
+ * Postgres returns `bigint` columns as STRINGS, not numbers — the range exceeds
+ * what JavaScript can represent safely, so the driver refuses to guess. Every
+ * cost column in BOYD'S is a bigint, so this is the boundary where stored money
+ * becomes `Cents`.
+ *
+ * A value that cannot be read exactly is treated as MISSING rather than
+ * coerced. A silently wrong cost is worse than an absent one: an absent cost
+ * shows DATA INCOMPLETE, and a wrong one shows a confident, incorrect
+ * contribution.
+ */
+export function parseStoredCents(
+  value: number | string | null | undefined,
+): Cents | null {
+  const parsed = parseStoredInteger(value);
+  return parsed === null ? null : cents(parsed);
+}
+
+/** Read a stored distance. Same reasoning as parseStoredCents. */
+export function parseStoredMiles(
+  value: number | string | null | undefined,
+): MilesTenths | null {
+  const parsed = parseStoredInteger(value);
+  return parsed === null ? null : milesTenths(parsed);
+}
+
+/**
+ * Read a stored integer, or null if it cannot be read exactly.
+ *
+ * The empty-string case matters more than it looks: `Number('')` is 0, so a
+ * blank column would quietly become a recorded cost of zero — the precise
+ * failure the whole system is built to prevent. It is rejected explicitly.
+ */
+function parseStoredInteger(value: number | string | null | undefined): number | null {
+  if (value === null || value === undefined) return null;
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    // Digits only, with an optional sign. Anything else — a blank, a decimal,
+    // scientific notation — is not a value BOYD'S will guess at.
+    if (!/^-?\d+$/.test(trimmed)) return null;
+
+    const parsed = Number(trimmed);
+    return Number.isSafeInteger(parsed) ? parsed : null;
+  }
+
+  return Number.isSafeInteger(value) ? value : null;
+}
+
 /** An empty cost line — a cost BOYD'S has not recorded. */
 export function missingCost(): JobCostLine {
   return { estimated: null, actual: null, state: 'MISSING' };
 }
 
 /** Build a cost line from stored values, deriving the state exactly as the database does. */
-export function costLine(estimated: number | null, actual: number | null): JobCostLine {
+export function costLine(estimated: StoredNumber, actual: StoredNumber): JobCostLine {
+  const estimatedCents = parseStoredCents(estimated);
+  const actualCents = parseStoredCents(actual);
+
   return {
-    estimated: estimated === null ? null : cents(estimated),
-    actual: actual === null ? null : cents(actual),
-    state: actual !== null ? 'ACTUAL' : estimated !== null ? 'ESTIMATED' : 'MISSING',
+    estimated: estimatedCents,
+    actual: actualCents,
+    state:
+      actualCents !== null ? 'ACTUAL' : estimatedCents !== null ? 'ESTIMATED' : 'MISSING',
   };
 }
 
 /** Assemble cost inputs from a stored job row. */
-export function costInputsFromRow(row: {
-  won_price_cents: number | null;
-  actual_miles_tenths: number | null;
-  loaded_miles_tenths: number | null;
-  empty_miles_tenths: number | null;
-  fuel_cost_estimated_cents: number | null;
-  fuel_cost_actual_cents: number | null;
-  driver_cost_estimated_cents: number | null;
-  driver_cost_actual_cents: number | null;
-  vehicle_cost_estimated_cents: number | null;
-  vehicle_cost_actual_cents: number | null;
-  toll_cost_estimated_cents: number | null;
-  toll_cost_actual_cents: number | null;
-  parking_cost_estimated_cents: number | null;
-  parking_cost_actual_cents: number | null;
-  other_cost_estimated_cents: number | null;
-  other_cost_actual_cents: number | null;
-}): JobCostInputs {
+export function costInputsFromRow(row: JobFinancialRow): JobCostInputs {
   return {
-    revenue: row.won_price_cents === null ? null : cents(row.won_price_cents),
-    actualMiles:
-      row.actual_miles_tenths === null ? null : milesTenths(row.actual_miles_tenths),
-    loadedMiles:
-      row.loaded_miles_tenths === null ? null : milesTenths(row.loaded_miles_tenths),
-    emptyMiles:
-      row.empty_miles_tenths === null ? null : milesTenths(row.empty_miles_tenths),
+    revenue: parseStoredCents(row.won_price_cents),
+    actualMiles: parseStoredMiles(row.actual_miles_tenths),
+    loadedMiles: parseStoredMiles(row.loaded_miles_tenths),
+    emptyMiles: parseStoredMiles(row.empty_miles_tenths),
     costs: {
       fuel_cost: costLine(row.fuel_cost_estimated_cents, row.fuel_cost_actual_cents),
       driver_cost: costLine(

@@ -227,21 +227,43 @@ status that could drift.
 
 **Done:** 663 tests passing — 442 unit and guard, 221 against real PostgreSQL.
 
-### Phase 14 — Advanced automation
+### Phase 14 — Advanced automation — deliberately not built
 
-The return-load engine (current location, destination, available jobs, radius,
-revenue, mileage, estimated cost, contribution, ranking). Empty-mile reduction
-insights. The `ACCEPT` / `REVIEW` / `DECLINE` decision path — built, tested, and
-left disabled until the underlying data is trustworthy. Customer portal
-foundations.
+The return-load engine and the `ACCEPT` / `REVIEW` / `DECLINE` decision path are
+**not implemented**, and that is the correct state. Both need real vehicle
+location, real availability and trusted pricing — none of which BOYD'S has.
+Building them now would mean feeding them invented inputs, and an automated
+decision made from invented inputs is worse than no automation: it would commit
+BOYD'S to work nobody checked.
 
-### Phase 15 — Production hardening
+The architecture is ready for them. `company_settings.auto_acceptance_enabled`
+defaults to `false` at the database, the maps abstraction is in place with an
+honest unavailable adapter, and the profitability engine already produces the
+figures such a decision would need.
 
-Rate limiting, error monitoring, backups and restore rehearsal, performance
-budgets, accessibility audit, a security review, a load check, and the deployment
-runbook.
+### Phase 15 — Production hardening ✅ substantially complete
 
----
+**The required end-to-end test** (`tests/integration/full-job-lifecycle.test.ts`)
+runs the whole business through real PostgreSQL: Ronald creates a customer and a
+quote, the quote is accepted, a job is created and dispatched, Moh accepts it,
+drives it, captures proof, records mileage, fuel and expenses, and the job
+completes. Every step runs as the person who would really perform it, so the
+security boundary is exercised by the same test as the workflow. It asserts
+$300 revenue against a $240 cost stack yields $60 contribution — and never $300
+profit — plus contribution per mile, margin, empty mileage, the invoice, the
+payment, and the complete audit trail.
+
+It found two real bugs on its first run: PostgreSQL returns `bigint` as strings,
+so the financial engine threw on live data (D-026), and an empty string was
+parsing to zero — the "missing treated as free" failure arriving through a type
+coercion.
+
+**Still outstanding for production:** rate limiting on public endpoints, error
+monitoring, a backup and restore rehearsal, an accessibility audit, and a
+Playwright suite covering the same journey through the interface. These need a
+deployed environment.
+
+**Done:** 704 tests passing — 446 unit and guard, 258 against real PostgreSQL.
 
 ## Order of value
 

@@ -26,6 +26,7 @@ import { addMiles, emptyMileageBps } from '@/lib/distance';
 import {
   calculateContribution,
   costInputsFromRow,
+  parseStoredMiles,
   type CostBasis,
   type JobFinancialRow,
 } from './job-costs';
@@ -82,7 +83,8 @@ export function calculateProfitability(
       return contribution as Calculation<ProfitabilityResult>;
     }
 
-    if (job.actual_miles_tenths === null) {
+    const totalMiles = parseStoredMiles(job.actual_miles_tenths);
+    if (totalMiles === null) {
       return calcIncomplete<ProfitabilityResult>([`${job.job_number}: actual_miles`]);
     }
 
@@ -92,9 +94,9 @@ export function calculateProfitability(
         revenue: contribution.value.revenue,
         totalCost: contribution.value.totalCost,
         contribution: contribution.value.contribution,
-        totalMiles: milesTenths(job.actual_miles_tenths),
-        loadedMiles: milesTenths(job.loaded_miles_tenths ?? 0),
-        emptyMiles: milesTenths(job.empty_miles_tenths ?? 0),
+        totalMiles,
+        loadedMiles: parseStoredMiles(job.loaded_miles_tenths) ?? milesTenths(0),
+        emptyMiles: parseStoredMiles(job.empty_miles_tenths) ?? milesTenths(0),
       },
       contribution.usedEstimates,
     );

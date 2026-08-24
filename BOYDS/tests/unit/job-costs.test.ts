@@ -300,6 +300,8 @@ describe('mileage split', () => {
 describe('reading a stored job row', () => {
   it('assembles inputs with the same state rules as the database', () => {
     const inputs = costInputsFromRow({
+      job_number: 'TEST-ROW',
+      status: 'COMPLETED',
       won_price_cents: 30_000,
       actual_miles_tenths: 247,
       loaded_miles_tenths: 190,
@@ -322,5 +324,62 @@ describe('reading a stored job row', () => {
     expect(inputs.costs.vehicle_cost.state).toBe('ESTIMATED');
     expect(inputs.costs.toll_cost.state).toBe('MISSING');
     expect(calculateContribution(inputs, 'ACTUAL').status).toBe('DATA_INCOMPLETE');
+  });
+});
+
+describe('stored values arrive from PostgreSQL as strings', () => {
+  it('reads a bigint returned as a string', () => {
+    // Postgres returns bigint columns as STRINGS — their range exceeds what
+    // JavaScript can represent safely, so the driver refuses to guess. Every
+    // cost column in BOYD'S is a bigint, so this is not an edge case: it is
+    // what every real row looks like.
+    const line = costLine('8500', '8000');
+
+    expect(line.estimated).toBe(8_500);
+    expect(line.actual).toBe(8_000);
+    expect(line.state).toBe('ACTUAL');
+  });
+
+  it('computes contribution correctly from a string-valued row', () => {
+    const inputs = costInputsFromRow({
+      job_number: 'STRING-ROW',
+      status: 'COMPLETED',
+      won_price_cents: '30000',
+      actual_miles_tenths: '247',
+      loaded_miles_tenths: '190',
+      empty_miles_tenths: '57',
+      fuel_cost_estimated_cents: null,
+      fuel_cost_actual_cents: '8000',
+      driver_cost_estimated_cents: null,
+      driver_cost_actual_cents: '7000',
+      vehicle_cost_estimated_cents: null,
+      vehicle_cost_actual_cents: '4000',
+      toll_cost_estimated_cents: null,
+      toll_cost_actual_cents: '2000',
+      parking_cost_estimated_cents: null,
+      parking_cost_actual_cents: '1000',
+      other_cost_estimated_cents: null,
+      other_cost_actual_cents: '2000',
+    });
+
+    const result = calculateContribution(inputs, 'ACTUAL');
+    expect(result.status).toBe('OK');
+    if (result.status === 'OK') {
+      expect(result.value.revenue).toBe(30_000);
+      expect(result.value.totalCost).toBe(24_000);
+      expect(result.value.contribution).toBe(6_000);
+    }
+  });
+
+  it('treats a value it cannot read exactly as MISSING, never as a guess', () => {
+    // A silently wrong cost is worse than an absent one: absent shows DATA
+    // INCOMPLETE, wrong shows a confident and incorrect contribution.
+    for (const unreadable of ['not-a-number', '1.5', '', '9007199254740993']) {
+      expect(costLine(null, unreadable).state).toBe('MISSING');
+    }
+  });
+
+  it('reads a plain number just as well', () => {
+    expect(costLine(null, 8_000).actual).toBe(8_000);
   });
 });

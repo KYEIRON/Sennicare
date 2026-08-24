@@ -464,3 +464,46 @@ silent in both cases, which is what makes it dangerous.
 **Impact:** Mileage is entered manually, and the interface says why. Outbound
 messages become notifications a partner acts on. Every caller has handled the
 unavailable case from the start, so connecting a real provider changes one file.
+
+## D-026 — Stored numbers are parsed at the engine boundary
+
+**Date:** 2026-08-24
+**Decision:** `parseStoredCents` and `parseStoredMiles` convert a stored value
+into a branded quantity, accepting a number or a digit-string and returning
+`null` for anything else. `JobFinancialRow` types every numeric column as
+`number | string | null`.
+**Reason:** Found by the end-to-end test. PostgreSQL returns `bigint` columns as
+**strings** — their range exceeds what JavaScript can represent safely, so the
+driver refuses to guess — and every money and distance column in BOYD'S is a
+bigint. The financial engine threw on the first real row it was given. Unit
+tests had passed throughout because their fixtures used numbers.
+
+The empty-string case is the sharper half. `Number('')` is `0`, so a blank
+column would have become a recorded cost of zero: the exact "missing treated as
+free" failure the entire system exists to prevent, arriving through a type
+coercion rather than through anyone's decision. The parser rejects it
+explicitly, along with decimals and scientific notation.
+**Alternatives:** configuring the driver to parse bigints globally (fixes the
+integration tests and not Supabase's JSON responses, which are a separate path);
+coercing with `Number()` (accepts the empty string, and that is the bug).
+**Impact:** A value the system cannot read exactly is `MISSING`, so it surfaces
+as `DATA INCOMPLETE`. A silently wrong cost would show a confident, incorrect
+contribution; an absent one shows that something needs recording.
+
+## D-027 — The end-to-end test runs against the database, not the browser
+
+**Date:** 2026-08-24
+**Decision:** The required full-lifecycle test (`full-job-lifecycle.test.ts`)
+runs against real PostgreSQL, performing each step as the person who would
+really perform it — Ronald through a partner session, Moh through a driver
+session. A Playwright suite covering the same journey through the interface is
+deferred until a Supabase project exists.
+**Reason:** BOYD'S has no Supabase project yet, so a browser test would have
+nothing to authenticate against. Waiting would have left the most important test
+in the system unwritten during the phase that most needed it. The database test
+exercises every trigger, policy, constraint and state transition, and runs each
+step under the right session — so it proves the workflow and the security
+boundary together.
+**Impact:** It caught two real bugs on its first run: the bigint parsing above,
+and a missing-proof case the unit tests could not have reached. What it does not
+cover is the interface layer, which the Playwright suite will add.

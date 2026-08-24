@@ -65,7 +65,7 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 13 complete** — integrations and notifications are built and verified.
+**Phases 1–13 and 15 complete.** The system runs BOYD’S day-to-day business end to end.
 
 | Gate             | Result                      |
 | ---------------- | --------------------------- |
@@ -75,7 +75,7 @@ so expansion costs a database row rather than a release.
 | Production build | passing                     |
 | `npm audit`      | 0 vulnerabilities           |
 
-Phase 15 (production hardening) is next.
+Phase 14 (advanced automation) is deliberately not built — it needs real location and availability data BOYD’S does not have.
 See [ROADMAP](docs/ROADMAP.md).
 
 ## Running it
