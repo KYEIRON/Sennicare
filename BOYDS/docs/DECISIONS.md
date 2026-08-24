@@ -528,3 +528,39 @@ explicitly not trusted for anything but rate limiting — a client can send any
 header, and someone who spoofs one to get a fresh allowance has achieved only
 that. Unidentifiable callers share one bucket, which limits more rather than
 less.
+
+## D-029 — Function EXECUTE is revoked from PUBLIC explicitly
+
+**Date:** 2026-08-24
+**Decision:** Migration 0023 revokes `EXECUTE` from `PUBLIC`, `anon` and
+`authenticated` on every function BOYD'S wrote, then grants back only what is
+needed. `create_public_job_request` is the single public entry point.
+**Reason:** Found by a security review, not by any test. PostgreSQL grants
+`EXECUTE` on every new function to `PUBLIC` by default. BOYD'S had carefully
+revoked table access from `anon` and then handed it every `SECURITY DEFINER`
+function in the schema. Two mattered:
+
+- `notify_partners(...)` — an anonymous visitor could raise fabricated
+  notifications, burying real ones and, at 2am, waking the partners for work
+  that does not exist.
+- `find_dispatch_conflicts(...)` — returns job numbers and detail, so an
+  anonymous caller could enumerate BOYD'S schedule.
+
+**Two things were tried and rejected.** A blanket revoke across the whole schema
+broke ordinary queries: it caught the `citext` extension's comparison functions,
+which `anon` needs to read a citext column at all. And `ALTER DEFAULT
+PRIVILEGES ... REVOKE EXECUTE FROM PUBLIC` is a silent no-op — PostgreSQL stores
+an empty ACL as NULL, indistinguishable from the built-in default, so revoking
+the only default privilege records nothing. It is deliberately **not** in the
+migration: a line that looks like protection and is not is worse than no line.
+
+The four RLS helpers (`is_partner`, `is_driver`, `current_app_user_id`,
+`current_app_user_role`) _are_ granted to `anon`, because policies call them
+during evaluation as the querying role and the query fails outright without it.
+For an anonymous caller they return `false` and `null` — the answer the policies
+need, and nothing the caller did not already know.
+
+**Impact:** The guarantee is a test.
+`tests/integration/function-permissions.test.ts` enumerates every function
+`anon` may execute and asserts the exact list, so a new function added without a
+revoke fails the build and is named in the failure.
