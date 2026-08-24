@@ -148,14 +148,30 @@ partner must send it themselves. Nothing claims an email went out.
 
 **Done:** 561 tests passing — 383 unit and guard, 178 against real PostgreSQL.
 
-### Phase 10 — Public website
+### Phase 10 — Public website ✅ complete
 
-The `(site)` route group: home, services, service pages, service areas, about,
-request a quote, request a delivery, contact, FAQ, privacy, terms. SEO
-architecture, location pages generated from `service_areas`, sitemap, robots,
-structured data, Open Graph. Public forms writing real leads and job requests.
-**Needs from Ronald:** a domain name and a Vercel account to go live.
-**Done when:** no unverified claim appears anywhere, asserted by a content test.
+Home, services index, seven service pages, service areas index, seven location
+pages, request a delivery, about, FAQ, contact, privacy and terms. Sitemap,
+robots, per-page metadata, canonical URLs, Open Graph, and JSON-LD for services
+and the FAQ — with no fabricated rating or review, because structured data is
+the form search engines treat as authoritative.
+
+**Every claim on the site is true.** A standing guard test
+(`tests/guards/website-claims.test.ts`) fails the build on any claim of
+certification, compliance, licensing, insurance or bonding; any superlative;
+any implied office; any guaranteed delivery time; any 24/7 claim; any overstated
+fleet size; any published price; and any fabricated testimonial or rating. This
+is not stylistic — a medical courier claiming compliance it does not hold is
+making a representation a customer may rely on.
+
+The site says BOYD'S runs one van, and turns that into the reason to use it. The
+contact page shows no phone number because BOYD'S has not supplied one, and an
+invented number would send a customer nowhere.
+
+Migration 0021 adds the public intake: one `SECURITY DEFINER` function, no table
+grants, and no read-back. A request is never a job.
+
+**Done:** 613 tests passing — 406 unit and guard, 207 against real PostgreSQL.
 
 ### Phase 11 — BOYD'S AI (internal)
 
