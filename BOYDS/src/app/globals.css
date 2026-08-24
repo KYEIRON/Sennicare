@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+
+/**
+ * BOYD'S design tokens.
+ *
+ * Dark navy, blue, orange, light neutral — professional, modern, premium,
+ * technology enabled. The Command Centre should read as a logistics control
+ * room, not a generic courier dashboard.
+ *
+ * No component may hardcode a colour. When Ronald supplies the final BOYD'S
+ * brand assets, these values change and nothing else does.
+ */
+@theme {
+  /* Core surfaces — the dark navy control-room ground */
+  --color-boyd-navy-950: #050d1a;
+  --color-boyd-navy-900: #0a1628;
+  --color-boyd-navy-850: #0e1c33;
+  --color-boyd-navy-800: #12233d;
+  --color-boyd-navy-700: #1b3050;
+  --color-boyd-navy-600: #274069;
+
+  /* Blue — primary action, active state, data */
+  --color-boyd-blue-600: #1d4ed8;
+  --color-boyd-blue-500: #2563eb;
+  --color-boyd-blue-400: #3b82f6;
+  --color-boyd-blue-300: #60a5fa;
+
+  /* Orange — BOYD'S accent, urgency, attention */
+  --color-boyd-orange-600: #ea580c;
+  --color-boyd-orange-500: #f97316;
+  --color-boyd-orange-400: #fb923c;
+
+  /* Light neutrals — text and light surfaces */
+  --color-boyd-light-50: #f8fafc;
+  --color-boyd-light-100: #f1f5f9;
+  --color-boyd-light-300: #cbd5e1;
+  --color-boyd-light-400: #94a3b8;
+  --color-boyd-light-500: #64748b;
+
+  /* Semantic — status and money.
+     Positive and negative are deliberately distinct hues rather than shades,
+     so a loss is never mistaken for a small profit at a glance. */
+  --color-boyd-positive: #10b981;
+  --color-boyd-negative: #ef4444;
+  --color-boyd-warning: #f59e0b;
+  --color-boyd-info: #06b6d4;
+
+  /* Data-state colours. Every figure BOYD'S cannot fully stand behind is
+     rendered in one of these, never in the same style as a solid figure. */
+  --color-boyd-incomplete: #f59e0b;
+  --color-boyd-unavailable: #64748b;
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-boyd-navy-950);
+  color: var(--color-boyd-light-100);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Money and mileage read as tabular data — figures must align down a column
+   so a partner can scan a list of jobs without misreading a magnitude. */
+.figure {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}

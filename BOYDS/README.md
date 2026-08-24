@@ -14,44 +14,44 @@ North Carolina, USA.
 
 BOYD'S optimises for **profitable work, not revenue**.
 
-The system exists to answer one question honestly, job by job: *did this make
-money?* Revenue is never presented as profit. Costs are never hidden. When a cost
+The system exists to answer one question honestly, job by job: _did this make
+money?_ Revenue is never presented as profit. Costs are never hidden. When a cost
 is missing, the system says `DATA INCOMPLETE` instead of guessing.
 
 ---
 
 ## Where things are
 
-| Path | What it is |
-|---|---|
-| `CLAUDE.md` | Project rules — **read first** |
-| `docs/` | The full specification, architecture, and plans |
-| `src/app/(site)` | Public marketing website |
-| `src/app/(ops)` | Partner operations OS and Command Centre |
-| `src/app/(driver)` | Moh's mobile driver application |
-| `src/services/` | The domain — profitability engine, pricing, state machine |
-| `src/database/` | Repositories — the only place database queries live |
-| `supabase/migrations/` | Database schema |
-| `tests/` | Unit, integration, and end-to-end tests |
+| Path                   | What it is                                                |
+| ---------------------- | --------------------------------------------------------- |
+| `CLAUDE.md`            | Project rules — **read first**                            |
+| `docs/`                | The full specification, architecture, and plans           |
+| `src/app/(site)`       | Public marketing website                                  |
+| `src/app/(ops)`        | Partner operations OS and Command Centre                  |
+| `src/app/(driver)`     | Moh's mobile driver application                           |
+| `src/services/`        | The domain — profitability engine, pricing, state machine |
+| `src/database/`        | Repositories — the only place database queries live       |
+| `supabase/migrations/` | Database schema                                           |
+| `tests/`               | Unit, integration, and end-to-end tests                   |
 
 ## Documentation
 
-| Document | What it covers |
-|---|---|
+| Document                                                 | What it covers                                      |
+| -------------------------------------------------------- | --------------------------------------------------- |
 | [BUSINESS_SPECIFICATION](docs/BUSINESS_SPECIFICATION.md) | The company, the rules, the open business decisions |
-| [ARCHITECTURE](docs/ARCHITECTURE.md) | How the system is built and why |
-| [DATABASE](docs/DATABASE.md) | Every table, every enum, RLS, the state machine |
-| [BUSINESS_RULES](docs/BUSINESS_RULES.md) | The 43 rules the software enforces |
-| [FINANCIAL_ENGINE](docs/FINANCIAL_ENGINE.md) | The money maths, exactly |
-| [DRIVER_APP](docs/DRIVER_APP.md) | Moh's application |
-| [CRM](docs/CRM.md) | Leads, pipeline, quotes |
-| [WEBSITE](docs/WEBSITE.md) | Public site and SEO |
-| [AI](docs/AI.md) | BOYD'S AI, both surfaces, and the 2 AM scenario |
-| [SECURITY](docs/SECURITY.md) | Auth, permissions, the driver and public boundaries |
-| [TESTING](docs/TESTING.md) | What is tested and how |
-| [INTEGRATIONS](docs/INTEGRATIONS.md) | Maps, email, SMS, AI, storage, payments |
-| [DECISIONS](docs/DECISIONS.md) | Architectural decision log |
-| [ROADMAP](docs/ROADMAP.md) | The 15 phases |
+| [ARCHITECTURE](docs/ARCHITECTURE.md)                     | How the system is built and why                     |
+| [DATABASE](docs/DATABASE.md)                             | Every table, every enum, RLS, the state machine     |
+| [BUSINESS_RULES](docs/BUSINESS_RULES.md)                 | The 43 rules the software enforces                  |
+| [FINANCIAL_ENGINE](docs/FINANCIAL_ENGINE.md)             | The money maths, exactly                            |
+| [DRIVER_APP](docs/DRIVER_APP.md)                         | Moh's application                                   |
+| [CRM](docs/CRM.md)                                       | Leads, pipeline, quotes                             |
+| [WEBSITE](docs/WEBSITE.md)                               | Public site and SEO                                 |
+| [AI](docs/AI.md)                                         | BOYD'S AI, both surfaces, and the 2 AM scenario     |
+| [SECURITY](docs/SECURITY.md)                             | Auth, permissions, the driver and public boundaries |
+| [TESTING](docs/TESTING.md)                               | What is tested and how                              |
+| [INTEGRATIONS](docs/INTEGRATIONS.md)                     | Maps, email, SMS, AI, storage, payments             |
+| [DECISIONS](docs/DECISIONS.md)                           | Architectural decision log                          |
+| [ROADMAP](docs/ROADMAP.md)                               | The 15 phases                                       |
 
 ---
 
@@ -65,6 +65,22 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 0 complete** — repository inspected, BOYD'S boundary established,
-documentation and plans written. Phase 1 (foundation) is next.
-See [ROADMAP](docs/ROADMAP.md).
+**Phase 1 complete** — the project foundation is built and verified.
+
+| Gate             | Result                      |
+| ---------------- | --------------------------- |
+| Unit tests       | 85 passed, 0 failed         |
+| Type check       | passing (TypeScript strict) |
+| Lint             | passing                     |
+| Production build | passing                     |
+| `npm audit`      | 0 vulnerabilities           |
+
+Phase 2 (authentication and roles) is next. See [ROADMAP](docs/ROADMAP.md).
+
+## Running it
+
+```bash
+npm install
+npm run dev       # development server
+npm run verify    # the full gate: format, lint, types, tests, build
+```

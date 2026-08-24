@@ -5,14 +5,14 @@ where correctness is worth the most. The test suite is weighted accordingly.
 
 ## Tooling
 
-| Layer | Tool |
-|---|---|
-| Unit / domain | Vitest |
+| Layer                  | Tool                                     |
+| ---------------------- | ---------------------------------------- |
+| Unit / domain          | Vitest                                   |
 | Integration (DB + RLS) | Vitest against a local Supabase instance |
-| End-to-end | Playwright |
-| Types | `tsc --noEmit` |
-| Lint | ESLint |
-| Build | `next build` |
+| End-to-end             | Playwright                               |
+| Types                  | `tsc --noEmit`                           |
+| Lint                   | ESLint                                   |
+| Build                  | `next build`                             |
 
 `npm run verify` runs the whole gate. A phase is not complete until it passes.
 

@@ -61,15 +61,15 @@ database engineer, or DevOps engineer.
 
 ## 4. Business locale — never deviate
 
-| Setting   | Value              |
-|-----------|--------------------|
-| Country   | United States      |
-| Currency  | USD (`$`)          |
-| Distance  | miles              |
-| Fuel      | gallons            |
-| Fuel price| USD per gallon     |
-| Time zone | `America/New_York` |
-| Locale    | `en-US`            |
+| Setting    | Value              |
+| ---------- | ------------------ |
+| Country    | United States      |
+| Currency   | USD (`$`)          |
+| Distance   | miles              |
+| Fuel       | gallons            |
+| Fuel price | USD per gallon     |
+| Time zone  | `America/New_York` |
+| Locale     | `en-US`            |
 
 Initial operating state is North Carolina, but **North Carolina must never be
 hardcoded**. Service areas are database rows, not constants. The system must

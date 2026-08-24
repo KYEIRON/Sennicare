@@ -114,7 +114,7 @@ Financial calculations return a discriminated union:
 type Calculation<T> =
   | { status: 'OK'; value: T }
   | { status: 'DATA_INCOMPLETE'; missing: string[] }
-  | { status: 'NOT_CALCULABLE'; reason: string }   // e.g. division by zero
+  | { status: 'NOT_CALCULABLE'; reason: string }; // e.g. division by zero
 ```
 
 This makes "we do not know" a first-class value that the type system forces every
@@ -129,7 +129,7 @@ Each integration is an interface in `src/integrations/<name>/types.ts` with:
 - a **live adapter** (used when credentials are present),
 - an **unavailable adapter** (used when they are not) that returns an explicit
   `UNAVAILABLE` result the UI renders as `GPS NOT CONNECTED` / `Live tracking
-  unavailable`,
+unavailable`,
 - a **fake adapter** used **only** by the test suite, never reachable in a
   development or production runtime.
 
@@ -164,18 +164,18 @@ architecturally locked to one AI vendor.
 
 ## 8. Technology
 
-| Concern | Choice |
-|---|---|
-| Framework | Next.js (App Router) |
-| Language | TypeScript, `strict` |
-| UI | React + Tailwind CSS + shadcn/ui |
-| Database | PostgreSQL via Supabase |
-| Auth | Supabase Auth |
-| Storage | Supabase Storage (private buckets) |
-| Validation | Zod |
-| Unit tests | Vitest |
-| E2E tests | Playwright |
-| Deployment | Vercel |
+| Concern    | Choice                             |
+| ---------- | ---------------------------------- |
+| Framework  | Next.js (App Router)               |
+| Language   | TypeScript, `strict`               |
+| UI         | React + Tailwind CSS + shadcn/ui   |
+| Database   | PostgreSQL via Supabase            |
+| Auth       | Supabase Auth                      |
+| Storage    | Supabase Storage (private buckets) |
+| Validation | Zod                                |
+| Unit tests | Vitest                             |
+| E2E tests  | Playwright                         |
+| Deployment | Vercel                             |
 
 ---
 

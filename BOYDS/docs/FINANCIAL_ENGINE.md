@@ -7,12 +7,12 @@ No other file in the codebase may compute a cost, a contribution, or a margin.
 
 ## 1. Representation
 
-| Quantity | Stored as | TypeScript |
-|---|---|---|
-| Money | integer cents | `Cents` (branded `number`) |
-| Distance | integer tenths of a mile | `MilesTenths` (branded `number`) |
-| Fuel volume | integer thousandths of a gallon | `GallonsThousandths` |
-| Percentage | basis points (1% = 100 bps) | `Bps` (branded `number`) |
+| Quantity    | Stored as                       | TypeScript                       |
+| ----------- | ------------------------------- | -------------------------------- |
+| Money       | integer cents                   | `Cents` (branded `number`)       |
+| Distance    | integer tenths of a mile        | `MilesTenths` (branded `number`) |
+| Fuel volume | integer thousandths of a gallon | `GallonsThousandths`             |
+| Percentage  | basis points (1% = 100 bps)     | `Bps` (branded `number`)         |
 
 Floating point never touches a stored value. Rounding happens once, at the point
 of display, in `src/lib/format.ts`, using `Intl.NumberFormat('en-US', …)`.
@@ -25,9 +25,9 @@ Every function in the engine returns:
 
 ```ts
 type Calculation<T> =
-  | { status: 'OK';               value: T }
-  | { status: 'DATA_INCOMPLETE';  missing: string[]; partial?: T }
-  | { status: 'NOT_CALCULABLE';   reason: string }
+  | { status: 'OK'; value: T }
+  | { status: 'DATA_INCOMPLETE'; missing: string[]; partial?: T }
+  | { status: 'NOT_CALCULABLE'; reason: string };
 ```
 
 - `OK` — every required input was present and actual (or explicitly accepted as
@@ -77,11 +77,11 @@ friendlier number.
 
 Each cost carries `estimated`, `actual`, and a derived `state`:
 
-| actual | estimated | state |
-|---|---|---|
-| present | any | `ACTUAL` |
-| null | present | `ESTIMATED` |
-| null | null | `MISSING` |
+| actual  | estimated | state       |
+| ------- | --------- | ----------- |
+| present | any       | `ACTUAL`    |
+| null    | present   | `ESTIMATED` |
+| null    | null      | `MISSING`   |
 
 The engine takes a `basis` argument:
 
@@ -97,26 +97,79 @@ by an estimate. Both values persist for the life of the job.
 
 ---
 
-## 5. Vehicle cost allocation
+## 5. Driver labour — economic cost, not compensation
 
-The per-job vehicle cost is not invented. It is derived from
-`vehicle_cost_model` rows the partners have configured:
+**These are two different questions and the system never conflates them.**
+
+_Economic cost of driving labour_ is a management-accounting question: what does
+it cost BOYD'S to have this driving done? It feeds pricing and profitability.
+
+_Partner compensation_ is a legal and accounting question: how is Moh actually
+paid? Draw, guaranteed payment, distribution, wage — that belongs to a different
+ledger, and the profitability engine has no access to it.
+
+`DriverLabourCostBasis` (in `src/types/economics.ts`) offers four bases:
+
+| Basis                    | Meaning                                  |
+| ------------------------ | ---------------------------------------- |
+| `PER_HOUR`               | notional hourly rate for time on the job |
+| `PER_MILE`               | notional rate per mile driven            |
+| `PER_JOB`                | flat notional amount per job             |
+| `EXCLUDED_FROM_JOB_COST` | labour deliberately not charged to jobs  |
+
+`EXCLUDED_FROM_JOB_COST` is a legitimate management choice for an owner-operated
+business, and it is **not the same as the cost being zero**. Every contribution
+figure therefore carries a `LabourCostTreatment`:
+
+- `LABOUR_COSTED` — driving labour has been charged to the job.
+- `BEFORE_LABOUR_COST` — it has not. Every figure derived from it is labelled
+  _contribution before labour cost_, so it can never be read as a fully-costed
+  result, and pricing built on it is understood to be pricing that has not yet
+  paid for the driver's time.
+
+The basis is `NOT CONFIGURED` until the partners decide. Until then, job
+contribution reports `NOT_CONFIGURED` for the driver cost line rather than
+assuming any of the four. See docs/DECISIONS.md D-011.
+
+---
+
+## 6. Vehicle cost allocation — derived, never declared
+
+**There is no field for a manually entered cost per mile.** A typed-in rate is a
+guess that looks like a measurement, and every job would inherit it invisibly.
+
+The rate is derived from `VehicleCostEntry` rows — real costs BOYD'S actually
+pays — and real recorded mileage:
 
 ```
 monthly lines  → annualised → per-mile via trailing 12-month vehicle miles
 annual lines   → per-mile via trailing 12-month vehicle miles
 per-mile lines → used directly
 
-vehicle_allocation = per_mile_rate * job_miles
+vehicle_allocation = derived_per_mile_rate * job_miles
 ```
 
-If no cost model rows are configured, or trailing mileage is zero, allocation is
-`MISSING` — **not zero**. A missing cost is not a free cost, and the difference
-matters: treating it as zero would overstate contribution.
+The result (`DerivedCostPerMile`) always carries its provenance:
+
+```
+costPerMile
+linesIncluded                  which cost lines the figure covers
+linesExcludedForMissingData    which lines had no recorded data
+milesBasis                     the real mileage it was divided by
+periodStart, periodEnd         the window it covers
+```
+
+`linesExcludedForMissingData` is what stops a partial figure being read as a
+complete one. A cost per mile covering only fuel and insurance is a real number,
+but it is not the vehicle's _true_ cost per mile, and the interface says so.
+
+If no cost entries exist, or trailing mileage is zero, allocation is `MISSING` —
+**not zero**. A missing cost is not a free cost; treating it as zero would
+overstate contribution. See docs/DECISIONS.md D-012.
 
 ---
 
-## 6. Pricing engine
+## 7. Pricing engine
 
 `src/services/finance/pricing.ts`. Fully transparent — every output carries the
 breakdown that produced it.
@@ -145,7 +198,7 @@ substitute an industry default. (See open business decisions 1 and 2.)
 
 ---
 
-## 7. Worked examples — these are tests, not illustrations
+## 8. Worked examples — these are tests, not illustrations
 
 **`finance.test.ts` — profitable job**
 
@@ -180,11 +233,12 @@ true_cost_per_mile with 0 miles        → NOT_CALCULABLE
 ```
 revenue $150 · total cost $240 → contribution -$90, margin -60.00%
 ```
+
 Asserted to render as a loss, not as zero.
 
 ---
 
-## 8. Aggregates
+## 9. Aggregates
 
 Customer, vehicle, and period profitability follow the same rule: if **any**
 constituent job is `DATA_INCOMPLETE`, the aggregate is `DATA_INCOMPLETE` and

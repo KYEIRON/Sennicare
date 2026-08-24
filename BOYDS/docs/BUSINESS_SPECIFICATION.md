@@ -7,14 +7,14 @@ This document restates those requirements in the form the engineering work follo
 
 ## 1. The company
 
-| | |
-|---|---|
-| Legal entity | BOYD'S Logistics LLC |
-| Status | Legally registered |
-| Country | United States |
-| Initial market | North Carolina |
-| Fleet | 1 vehicle — `BOYD-001` |
-| Drivers | 1 — Moh |
+|                |                        |
+| -------------- | ---------------------- |
+| Legal entity   | BOYD'S Logistics LLC   |
+| Status         | Legally registered     |
+| Country        | United States          |
+| Initial market | North Carolina         |
+| Fleet          | 1 vehicle — `BOYD-001` |
+| Drivers        | 1 — Moh                |
 
 ### Partners
 
@@ -86,30 +86,30 @@ actually verified.** This is a legal exposure, not a marketing preference.
 
 ## 6. System modules
 
-| Code | Module | Phase |
-|---|---|---|
-| A | Command Centre | 7 |
-| B | Job Management | 3 |
-| C | Dispatch | 3 |
-| D | Moh Driver Application | 4 |
-| E | Customer Management | 3 |
-| F | CRM | 8 |
-| G | Quoting | 8 |
-| H | Expense Management | 5 |
-| I | Mileage | 5 |
-| J | Fuel | 5 |
-| K | Vehicle Management | 3 |
-| L | Profitability Engine | 6 |
-| M | Invoicing | 9 |
-| N | Contracts | 9 |
-| O | Maintenance | 9 |
-| P | Documents | 5 |
-| Q | Reporting | 7 / 9 |
-| R | BOYD'S AI (internal) | 11 |
-| S | Public Marketing Website | 10 |
-| T | AI Receptionist | 12 |
-| U | 24/7 Job Request Intake | 12 |
-| V | Integration Layer | 1 (interfaces) / 13 (live) |
+| Code | Module                   | Phase                      |
+| ---- | ------------------------ | -------------------------- |
+| A    | Command Centre           | 7                          |
+| B    | Job Management           | 3                          |
+| C    | Dispatch                 | 3                          |
+| D    | Moh Driver Application   | 4                          |
+| E    | Customer Management      | 3                          |
+| F    | CRM                      | 8                          |
+| G    | Quoting                  | 8                          |
+| H    | Expense Management       | 5                          |
+| I    | Mileage                  | 5                          |
+| J    | Fuel                     | 5                          |
+| K    | Vehicle Management       | 3                          |
+| L    | Profitability Engine     | 6                          |
+| M    | Invoicing                | 9                          |
+| N    | Contracts                | 9                          |
+| O    | Maintenance              | 9                          |
+| P    | Documents                | 5                          |
+| Q    | Reporting                | 7 / 9                      |
+| R    | BOYD'S AI (internal)     | 11                         |
+| S    | Public Marketing Website | 10                         |
+| T    | AI Receptionist          | 12                         |
+| U    | 24/7 Job Request Intake  | 12                         |
+| V    | Integration Layer        | 1 (interfaces) / 13 (live) |
 
 ---
 
@@ -196,20 +196,59 @@ pricing integrations exist and are trusted.
 
 ---
 
-## 11. Open business decisions for Ronald
+## 11. Open business decisions — confirmed NOT CONFIGURED
 
-These require BOYD'S business policy and will not be invented:
+Ronald confirmed on 2026-08-24 that all of these remain **NOT CONFIGURED** until
+the partners decide. The system stores no value and displays `NOT CONFIGURED`,
+naming the decision required. It does not fall back to an invented default —
+see docs/DECISIONS.md D-010.
 
-1. **Minimum acceptable contribution** per job (dollar floor and/or per-mile floor).
-2. **Target contribution margin** used by the pricing engine.
-3. **Driver cost basis** — how Moh's time is costed into a job (per hour, per mile,
-   per job, or a partner drawing that is excluded from job cost).
-4. **Vehicle cost allocation basis** — per mile, per job, or per day.
-5. **Service area radius** from base, and named counties/metros in scope.
-6. **Medical courier limitations** — what BOYD'S will and will not carry, pending
-   verified certification.
-7. **Standard payment terms** for invoices (net 7 / 14 / 30) and quote validity period.
-8. **Automatic acceptance thresholds** — not needed until Phase 14.
+| #   | Decision                                    | Status                                      |
+| --- | ------------------------------------------- | ------------------------------------------- |
+| 1   | Minimum acceptable contribution per job     | **NOT CONFIGURED**                          |
+| 2   | Target contribution margin                  | **NOT CONFIGURED**                          |
+| 3   | Driver labour cost basis (economic costing) | **NOT CONFIGURED**                          |
+| 4   | Vehicle cost allocation basis               | **NOT CONFIGURED**                          |
+| 5   | Exact service area radius and counties      | **Configurable — North Carolina initially** |
+| 6   | Medical courier limitations                 | **NOT CONFIGURED**                          |
+| 7   | Payment terms and quote validity            | **NOT CONFIGURED**                          |
+| 8   | Automatic acceptance thresholds             | **DISABLED**                                |
 
-Until each is answered the system stores a null and shows `NOT CONFIGURED`. It
-does not fall back to an invented default.
+Notes on specific items:
+
+**5. Service area.** North Carolina is the initial market. The detailed radius,
+counties and metros stay configurable in `service_areas`. Nothing about North
+Carolina is hardcoded, so setting the detail later — or adding another state —
+costs a database row.
+
+**6. Medical courier.** No limits configured beyond the standing rule that **no
+unsupported certification or compliance claim may be made anywhere** in the
+product or on the website. That rule is not a placeholder awaiting a decision; it
+is permanent, and it applies regardless of what limits are eventually set.
+
+**8. Automatic acceptance.** DISABLED. `company_settings.auto_acceptance_enabled`
+defaults to `false` at the database level, and the AI decision path refuses to
+run when any required input is unavailable. See docs/DECISIONS.md D-009.
+
+---
+
+## 12. Operational profitability vs partner compensation
+
+Confirmed by Ronald on 2026-08-24 as a standing requirement:
+
+> Keep operational profitability separate from partner compensation and
+> accounting treatment.
+
+The system must be able to calculate the **economic cost of driver labour** for
+management profitability analysis **without assuming how Moh is legally
+compensated as a partner**. These are two different questions — one is
+management accounting, the other is legal and tax treatment — and the software
+keeps them in separate types, with the profitability engine having access only to
+the first.
+
+Correspondingly, for vehicle economics the system tracks the **underlying costs**
+separately and **derives** true cost per mile from them and from real recorded
+mileage. There is no permanent manually entered flat rate.
+
+See docs/FINANCIAL_ENGINE.md sections 5 and 6, and docs/DECISIONS.md D-011 and
+D-012.

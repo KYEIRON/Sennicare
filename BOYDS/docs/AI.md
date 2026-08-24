@@ -33,12 +33,12 @@ prompt that reaches them.
 
 Every AI statement carries one of:
 
-| Tag | Meaning |
-|---|---|
-| `FACT` | Read directly from BOYD'S data |
-| `ESTIMATE` | Derived, with stated assumptions |
-| `RECOMMENDATION` | A suggested action, clearly the AI's opinion |
-| `DATA INCOMPLETE` | The data needed does not exist yet |
+| Tag               | Meaning                                      |
+| ----------------- | -------------------------------------------- |
+| `FACT`            | Read directly from BOYD'S data               |
+| `ESTIMATE`        | Derived, with stated assumptions             |
+| `RECOMMENDATION`  | A suggested action, clearly the AI's opinion |
+| `DATA INCOMPLETE` | The data needed does not exist yet           |
 
 Example:
 
@@ -71,8 +71,8 @@ plausible value.
 
 ### Recurring business
 
-Where appropriate: *"Is this a one-time delivery or something you need
-regularly?"* If recurring, it collects frequency, routes, shipment type,
+Where appropriate: _"Is this a one-time delivery or something you need
+regularly?"_ If recurring, it collects frequency, routes, shipment type,
 preferred days, preferred times, and estimated volume, and raises a
 `CONTRACT_OPPORTUNITY`.
 

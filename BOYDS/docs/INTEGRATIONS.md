@@ -4,11 +4,11 @@ Nothing has been purchased. No credential is assumed to exist. Every integration
 is an interface with three adapters, selected once at startup by whether the
 required environment variables are present.
 
-| Adapter | When | Behaviour |
-|---|---|---|
-| `live` | credentials present | real calls |
-| `unavailable` | credentials absent | returns `UNAVAILABLE`; UI shows an explicit unavailable state |
-| `fake` | test suite only | deterministic, unreachable outside tests |
+| Adapter       | When                | Behaviour                                                     |
+| ------------- | ------------------- | ------------------------------------------------------------- |
+| `live`        | credentials present | real calls                                                    |
+| `unavailable` | credentials absent  | returns `UNAVAILABLE`; UI shows an explicit unavailable state |
+| `fake`        | test suite only     | deterministic, unreachable outside tests                      |
 
 There is no fourth option. Nothing simulates a real service in a running
 application.
@@ -17,9 +17,9 @@ application.
 
 ```ts
 interface MapsProvider {
-  geocode(address): Promise<Result<Coordinates>>
-  route(stops):     Promise<Result<{ miles: MilesTenths; durationMinutes: number }>>
-  vehicleLocation(vehicleId): Promise<Result<Coordinates>>
+  geocode(address): Promise<Result<Coordinates>>;
+  route(stops): Promise<Result<{ miles: MilesTenths; durationMinutes: number }>>;
+  vehicleLocation(vehicleId): Promise<Result<Coordinates>>;
 }
 ```
 
@@ -59,16 +59,16 @@ Every variable appears in `.env.example` with a comment. The application starts
 successfully with none of the optional ones set — it simply reports which
 capabilities are unavailable, on a settings page Ronald can read.
 
-| Variable | Required | Purpose |
-|---|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | yes | Database and auth |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | yes | Browser client |
-| `SUPABASE_SERVICE_ROLE_KEY` | yes | Server-only privileged paths |
-| `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL` | no | BOYD'S AI |
-| `MAPS_PROVIDER`, `MAPS_API_KEY` | no | Geocoding, routing, tracking |
-| `EMAIL_PROVIDER`, `EMAIL_API_KEY`, `EMAIL_FROM` | no | Outbound email |
-| `SMS_PROVIDER`, `SMS_API_KEY`, `SMS_FROM` | no | Outbound SMS |
-| `NEXT_PUBLIC_SITE_URL` | yes | Canonical URLs, sitemap, OG tags |
+| Variable                                        | Required | Purpose                          |
+| ----------------------------------------------- | -------- | -------------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`                      | yes      | Database and auth                |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`                 | yes      | Browser client                   |
+| `SUPABASE_SERVICE_ROLE_KEY`                     | yes      | Server-only privileged paths     |
+| `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`         | no       | BOYD'S AI                        |
+| `MAPS_PROVIDER`, `MAPS_API_KEY`                 | no       | Geocoding, routing, tracking     |
+| `EMAIL_PROVIDER`, `EMAIL_API_KEY`, `EMAIL_FROM` | no       | Outbound email                   |
+| `SMS_PROVIDER`, `SMS_API_KEY`, `SMS_FROM`       | no       | Outbound SMS                     |
+| `NEXT_PUBLIC_SITE_URL`                          | yes      | Canonical URLs, sitemap, OG tags |
 
 ## What Ronald will need to obtain, and when
 

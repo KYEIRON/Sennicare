@@ -42,3 +42,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# The repository-root .gitignore is Python-oriented and contains a `lib/` rule,
+# which would silently exclude BOYD'S core library (src/lib). Re-include it here
+# rather than editing the root file, which belongs to the unrelated Sennicare
+# project. Without this, every money and calculation module would be missing
+# from the repository while still passing locally.
+!src/lib/

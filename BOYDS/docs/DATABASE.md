@@ -7,17 +7,17 @@ Security **enabled on every table without exception**.
 
 ## Conventions
 
-| Rule | Reason |
-|---|---|
-| Primary keys are `uuid` (`gen_random_uuid()`) | No enumerable IDs in URLs |
-| Money is `bigint` **cents** | Floats lose money |
-| Distance is `integer` **tenths of a mile** | Same reason |
-| Fuel volume is `integer` **thousandths of a gallon** | Same reason |
-| Timestamps are `timestamptz`, stored UTC | Displayed in `America/New_York` |
-| Enumerations are Postgres `enum` types | Illegal states unrepresentable |
-| Every table has `created_at`, `updated_at` | `updated_at` set by trigger |
-| Deletions are soft (`deleted_at`) on business records | Audit and recovery |
-| No `ON DELETE CASCADE` on financial records | Never silently destroy money data |
+| Rule                                                  | Reason                            |
+| ----------------------------------------------------- | --------------------------------- |
+| Primary keys are `uuid` (`gen_random_uuid()`)         | No enumerable IDs in URLs         |
+| Money is `bigint` **cents**                           | Floats lose money                 |
+| Distance is `integer` **tenths of a mile**            | Same reason                       |
+| Fuel volume is `integer` **thousandths of a gallon**  | Same reason                       |
+| Timestamps are `timestamptz`, stored UTC              | Displayed in `America/New_York`   |
+| Enumerations are Postgres `enum` types                | Illegal states unrepresentable    |
+| Every table has `created_at`, `updated_at`            | `updated_at` set by trigger       |
+| Deletions are soft (`deleted_at`) on business records | Audit and recovery                |
+| No `ON DELETE CASCADE` on financial records           | Never silently destroy money data |
 
 Cost columns come in **pairs plus a state**:
 
@@ -250,17 +250,17 @@ role holds UPDATE or DELETE on this table.**
 Enabled on every table. Policies are written against helper functions
 `current_app_user()`, `is_partner()`, `is_driver()`.
 
-| Table group | PARTNER / ADMIN | DRIVER | anon (public site) |
-|---|---|---|---|
-| jobs | full | select rows where `driver_id = me`; update only status/timestamps via RPC | none |
-| job_stops | full | select/update stops of own jobs | none |
-| job_expenses, mileage_logs, fuel_transactions | full | insert + select own rows | none |
-| customers, leads, quotes, contracts, invoices, payments, pricing_rules | full | **none** | none |
-| vehicles | full | select own assigned vehicle (operational columns only) | none |
-| documents | full | own job documents only | none |
-| service_types, service_areas | full | select | **select active rows only** |
-| audit_logs | select | none | none |
-| ai_* | full | none | insert own public conversation only |
+| Table group                                                            | PARTNER / ADMIN | DRIVER                                                                    | anon (public site)                  |
+| ---------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+| jobs                                                                   | full            | select rows where `driver_id = me`; update only status/timestamps via RPC | none                                |
+| job_stops                                                              | full            | select/update stops of own jobs                                           | none                                |
+| job_expenses, mileage_logs, fuel_transactions                          | full            | insert + select own rows                                                  | none                                |
+| customers, leads, quotes, contracts, invoices, payments, pricing_rules | full            | **none**                                                                  | none                                |
+| vehicles                                                               | full            | select own assigned vehicle (operational columns only)                    | none                                |
+| documents                                                              | full            | own job documents only                                                    | none                                |
+| service_types, service_areas                                           | full            | select                                                                    | **select active rows only**         |
+| audit_logs                                                             | select          | none                                                                      | none                                |
+| ai_*                                                                   | full            | none                                                                      | insert own public conversation only |
 
 **The financial columns on `jobs` are not exposed to the driver role.** Drivers
 read jobs through the view `driver_jobs`, which omits every price and cost
