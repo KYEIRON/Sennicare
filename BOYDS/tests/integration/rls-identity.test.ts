@@ -183,7 +183,11 @@ describe('privilege escalation', () => {
 describe('partners table — not visible to the driver surface', () => {
   it('lets a partner read partner records', async () => {
     const client = await sessionClient(partner.authUserId);
-    const result = await client.query('select id from partners');
+    // Scoped to this suite's own fixture: the integration suites share one
+    // database, so a bare count would depend on what another file seeded.
+    const result = await client.query('select id from partners where user_id = $1', [
+      partner.userId,
+    ]);
     await client.end();
     expect(result.rowCount).toBe(1);
   });
