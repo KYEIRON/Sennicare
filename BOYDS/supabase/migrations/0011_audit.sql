@@ -50,6 +50,8 @@ as $$
     when 'quotes' then
       array['quoted_price_cents', 'status', 'below_minimum_override', 'valid_until']
     when 'leads' then array['stage', 'owner_user_id', 'lost_reason']
+    when 'invoices' then array['status', 'total_cents', 'amount_paid_cents', 'due_date']
+    when 'contracts' then array['status', 'agreed_rate_cents', 'end_date']
     when 'pricing_rules' then
       array['base_price_cents', 'per_mile_cents', 'target_margin_bps',
             'minimum_contribution_cents', 'active']

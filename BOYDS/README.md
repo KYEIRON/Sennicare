@@ -65,7 +65,7 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 8 complete** — CRM, quoting and the pricing engine are built and verified.
+**Phase 9 complete** — invoices, payments and contracts are built and verified.
 
 | Gate             | Result                      |
 | ---------------- | --------------------------- |
@@ -75,7 +75,7 @@ so expansion costs a database row rather than a release.
 | Production build | passing                     |
 | `npm audit`      | 0 vulnerabilities           |
 
-Phase 9 (invoices and contracts) is next.
+Phase 10 (the public website) is next.
 See [ROADMAP](docs/ROADMAP.md).
 
 ## Running it

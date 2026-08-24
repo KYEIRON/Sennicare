@@ -662,3 +662,127 @@ export async function pricingPolicyFor(
     urgencyMultiplierBps: rule?.urgency_multiplier_bps ?? null,
   };
 }
+
+// --- Invoices ----------------------------------------------------------------
+
+export interface InvoiceRow {
+  id: string;
+  invoiceNumber: string;
+  customerId: string;
+  status: string;
+  issueDate: string | null;
+  dueDate: string | null;
+  totalCents: number;
+  amountPaidCents: number;
+  provenance: 'REAL' | 'DEMO';
+}
+
+export async function listInvoices(
+  client: SupabaseClient,
+): Promise<Result<InvoiceRow[]>> {
+  const { data, error } = await client
+    .from('invoices')
+    .select(
+      'id, invoice_number, customer_id, status, issue_date, due_date, total_cents, amount_paid_cents, provenance',
+    )
+    .order('issue_date', { ascending: false, nullsFirst: false });
+
+  if (error) return err(queryFailed('invoices'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      invoiceNumber: row.invoice_number,
+      customerId: row.customer_id,
+      status: row.status,
+      issueDate: row.issue_date,
+      dueDate: row.due_date,
+      totalCents: row.total_cents,
+      amountPaidCents: row.amount_paid_cents,
+      provenance: row.provenance,
+    })),
+  );
+}
+
+export async function nextInvoiceNumber(client: SupabaseClient): Promise<string> {
+  const { count } = await client
+    .from('invoices')
+    .select('id', { count: 'exact', head: true });
+  const year = new Date().getFullYear();
+  return `BI-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+}
+
+/**
+ * Completed jobs with an agreed price that are not yet on an invoice.
+ *
+ * This is what BOYD'S has earned and not yet billed for — usually the largest
+ * single thing a small business is losing track of.
+ */
+export async function listUninvoicedJobs(
+  client: SupabaseClient,
+): Promise<
+  Result<{ id: string; jobNumber: string; customerId: string; wonPriceCents: number }[]>
+> {
+  const [{ data: jobs, error }, { data: lines }] = await Promise.all([
+    client
+      .from('jobs')
+      .select('id, job_number, customer_id, won_price_cents')
+      .eq('status', 'COMPLETED')
+      .not('won_price_cents', 'is', null),
+    client.from('invoice_lines').select('job_id'),
+  ]);
+
+  if (error) return err(queryFailed('uninvoiced jobs'));
+
+  const invoiced = new Set((lines ?? []).map((line) => line.job_id));
+
+  return ok(
+    (jobs ?? [])
+      .filter((job) => !invoiced.has(job.id))
+      .map((job) => ({
+        id: job.id,
+        jobNumber: job.job_number,
+        customerId: job.customer_id,
+        wonPriceCents: job.won_price_cents as number,
+      })),
+  );
+}
+
+export interface ContractRow {
+  id: string;
+  contractNumber: string;
+  customerId: string;
+  title: string;
+  status: string;
+  startDate: string | null;
+  endDate: string | null;
+  frequency: string | null;
+  agreedRateCents: number | null;
+}
+
+export async function listContracts(
+  client: SupabaseClient,
+): Promise<Result<ContractRow[]>> {
+  const { data, error } = await client
+    .from('contracts')
+    .select(
+      'id, contract_number, customer_id, title, status, start_date, end_date, frequency, agreed_rate_cents',
+    )
+    .order('created_at', { ascending: false });
+
+  if (error) return err(queryFailed('contracts'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      contractNumber: row.contract_number,
+      customerId: row.customer_id,
+      title: row.title,
+      status: row.status,
+      startDate: row.start_date,
+      endDate: row.end_date,
+      frequency: row.frequency,
+      agreedRateCents: row.agreed_rate_cents,
+    })),
+  );
+}

@@ -128,11 +128,25 @@ full breakdown, so a price given months ago can still be explained.
 
 **Done:** 537 tests passing — 383 unit and guard, 154 against real PostgreSQL.
 
-### Phase 9 — Invoices, contracts, maintenance
+### Phase 9 — Invoices, contracts, maintenance ✅ complete
 
-Invoices from completed jobs, invoice lines, payments, statuses, ageing.
-Contracts and recurring work. Maintenance records and reminders.
-**Done when:** an invoice cannot reach `PAID` without a payment record covering it.
+Migration 0020 adds contracts, invoices, invoice lines and payments.
+Maintenance arrived with Phase 6.
+
+**An invoice is PAID only when recorded payments cover it.** There is no code
+path that sets the status or the amount paid by hand — both are derived by
+trigger from real payment rows, and an attempt to set either is rejected. A
+reversed payment returns the invoice to DUE or OVERDUE rather than leaving it
+claiming to be settled.
+
+Only completed jobs with an agreed price can be invoiced. The Invoices screen
+shows outstanding, overdue, and — usually the most useful figure for a small
+business — what BOYD'S has earned and not yet billed for.
+
+Marking an invoice sent says plainly that no email provider is connected and the
+partner must send it themselves. Nothing claims an email went out.
+
+**Done:** 561 tests passing — 383 unit and guard, 178 against real PostgreSQL.
 
 ### Phase 10 — Public website
 

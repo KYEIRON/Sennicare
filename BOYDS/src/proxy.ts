@@ -25,6 +25,7 @@ const PROTECTED_PREFIXES = [
   '/crm',
   '/quotes',
   '/reports',
+  '/invoices',
   '/vehicles',
   '/drivers',
   '/settings',
