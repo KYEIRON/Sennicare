@@ -1,7 +1,9 @@
 'use server';
 
 import { z } from 'zod';
+import { headers } from 'next/headers';
 import { getServerClient } from '@/lib/supabase/server';
+import { RATE_LIMITS, callerIdentifier, checkRateLimit } from '@/lib/rate-limit';
 
 export interface RequestState {
   readonly error?: string | undefined;
@@ -59,6 +61,22 @@ export async function submitDeliveryRequest(
   _previous: RequestState,
   formData: FormData,
 ): Promise<RequestState> {
+  // This form is reachable by anybody, and a flood of submissions would bury
+  // real requests. The limit is generous enough that a customer who mistypes an
+  // address and resubmits is never blocked.
+  const limit = checkRateLimit(
+    RATE_LIMITS.DELIVERY_REQUEST,
+    callerIdentifier(await headers()),
+    'delivery-request',
+  );
+
+  if (!limit.allowed) {
+    return {
+      error:
+        'You have sent several requests already. If one of them was wrong, call us rather than sending another — we will sort it out.',
+    };
+  }
+
   const parsed = requestSchema.safeParse({
     companyName: formData.get('companyName') ?? undefined,
     contactName: formData.get('contactName'),

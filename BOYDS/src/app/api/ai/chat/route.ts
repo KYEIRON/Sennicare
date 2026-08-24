@@ -7,6 +7,7 @@ import { internalTools } from '@/ai/tools/internal-tools';
 import { RECEPTIONIST_PROMPT, INTERNAL_ASSISTANT_PROMPT } from '@/ai/prompts';
 import { getServerClient } from '@/lib/supabase/server';
 import { getCurrentUser } from '@/lib/auth/session';
+import { RATE_LIMITS, callerIdentifier, checkRateLimit } from '@/lib/rate-limit';
 
 /**
  * The AI endpoint.
@@ -31,6 +32,31 @@ const requestSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  // Each AI message costs BOYD'S money, and this endpoint is reachable by
+  // anybody. The limit applies before any work is done.
+  const limit = checkRateLimit(
+    RATE_LIMITS.AI_MESSAGE,
+    callerIdentifier(request.headers),
+    'ai',
+  );
+
+  if (!limit.allowed) {
+    return NextResponse.json(
+      {
+        error:
+          'That is a lot of messages in a short time. Please use the delivery request form, or contact the BOYD’S team directly.',
+      },
+      {
+        status: 429,
+        headers: {
+          'retry-after': String(
+            Math.max(1, Math.ceil((limit.resetAt.getTime() - Date.now()) / 1000)),
+          ),
+        },
+      },
+    );
+  }
+
   const body = await request.json().catch(() => null);
   const parsed = requestSchema.safeParse(body);
 

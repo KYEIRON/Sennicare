@@ -1,7 +1,9 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 import { getServerClient } from '@/lib/supabase/server';
+import { RATE_LIMITS, callerIdentifier, checkRateLimit } from '@/lib/rate-limit';
 import { signInSchema } from '@/validation/auth';
 import { homeRouteFor } from '@/lib/permissions';
 import type { UserRole } from '@/types/auth';
@@ -23,6 +25,20 @@ export async function signIn(
   _previous: SignInState,
   formData: FormData,
 ): Promise<SignInState> {
+  // Slows password guessing. The message deliberately does not reveal whether
+  // any of the attempts were close.
+  const limit = checkRateLimit(
+    RATE_LIMITS.SIGN_IN,
+    callerIdentifier(await headers()),
+    'sign-in',
+  );
+
+  if (!limit.allowed) {
+    return {
+      error: 'Too many sign-in attempts. Please wait a few minutes and try again.',
+    };
+  }
+
   const parsed = signInSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),

@@ -507,3 +507,24 @@ boundary together.
 **Impact:** It caught two real bugs on its first run: the bigint parsing above,
 and a missing-proof case the unit tests could not have reached. What it does not
 cover is the interface layer, which the Playwright suite will add.
+
+## D-028 — Rate limiting is in-memory, and honest about it
+
+**Date:** 2026-08-24
+**Decision:** An in-process limiter on the delivery request form (5/hour), the
+AI endpoint (30/hour) and sign-in (10 per 15 minutes), keyed on the caller's
+forwarded IP address.
+**Reason:** All three are reachable by anybody. Without a limit, the request form
+is a route to burying real enquiries in noise, the AI endpoint is a route to
+running up a bill on BOYD'S account, and sign-in is a route to guessing a
+password at leisure. An in-memory limiter is genuinely useful on a single
+deployment and honest about what it is: it resets on restart and does not span
+instances.
+**Alternatives:** a distributed limiter (needs shared storage BOYD'S does not
+have, and building it now would mean building the storage too); no limit
+(leaves the AI endpoint as an open cost).
+**Impact:** Only this file changes when BOYD'S outgrows it. The forwarded IP is
+explicitly not trusted for anything but rate limiting — a client can send any
+header, and someone who spoofs one to get a fresh allowance has achieved only
+that. Unidentifiable callers share one bucket, which limits more rather than
+less.
