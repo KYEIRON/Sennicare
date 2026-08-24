@@ -65,7 +65,7 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 10 complete** — the public website is built and verified.
+**Phases 11 and 12 complete** — BOYD'S AI and the receptionist are built and verified.
 
 | Gate             | Result                      |
 | ---------------- | --------------------------- |
@@ -75,7 +75,7 @@ so expansion costs a database row rather than a release.
 | Production build | passing                     |
 | `npm audit`      | 0 vulnerabilities           |
 
-Phase 11 (BOYD’S AI) is next.
+Phase 13 (maps and notifications) is next.
 See [ROADMAP](docs/ROADMAP.md).
 
 ## Running it

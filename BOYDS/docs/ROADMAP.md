@@ -173,21 +173,36 @@ grants, and no read-back. A request is never a job.
 
 **Done:** 613 tests passing — 406 unit and guard, 207 against real PostgreSQL.
 
-### Phase 11 — BOYD'S AI (internal)
+### Phase 11 — BOYD'S AI (internal) ✅ complete
 
-Provider abstraction, the internal tool registry, the tagging system
-(`FACT` / `ESTIMATE` / `RECOMMENDATION` / `DATA INCOMPLETE`), conversation
-storage, and the business-intelligence assistant.
-**Needs from Ronald:** an AI provider API key.
-**Done when:** the AI provably cannot reach data outside its tool registry.
+### Phase 12 — AI receptionist and 24/7 intake ✅ complete
 
-### Phase 12 — AI receptionist and 24/7 intake
+A provider abstraction with a live adapter, an explicitly unavailable adapter,
+and no vendor named anywhere in feature code. With no key configured, both AI
+surfaces say so and point at the routes that do work.
 
-The public receptionist with `publicTools` only. Full intake field set.
-Lead qualification. Recurring-business detection raising `CONTRACT_OPPORTUNITY`.
-`AFTER_HOURS` marking and notification. The 2 AM Playwright test.
-**Done when:** the after-hours test passes and no price, availability, or
-confirmation appears in the transcript.
+**The AI never touches the database.** It reaches data through a registry of
+named tools — each with a Zod schema, a minimum role, and the caller's own
+session-bound client, so it cannot see anything the person asking could not see.
+Tools return the same `Calculation` states as the rest of the system, so the AI
+is handed `DATA INCOMPLETE` rather than a number it could round off.
+
+The public receptionist is built with the public registry only: four tools —
+services, service areas, FAQ, and create a request. Internal tools are absent
+from it, not denied to it. The surface is chosen server-side from the session.
+
+The receptionist opens with the exact required greeting, collects the full
+intake field set conversationally, asks about recurring work, and — having
+recorded a request — says it has been received and will be reviewed. It never
+says booked, confirmed or scheduled, because at that moment nobody has checked
+whether BOYD'S can do it.
+
+The internal assistant tags every statement `FACT`, `ESTIMATE`,
+`RECOMMENDATION` or `DATA INCOMPLETE`. An untagged statement is treated as
+`DATA INCOMPLETE` — the case where the model ignored its instructions must not
+also be the case that looks most authoritative.
+
+**Done:** 649 tests passing — 442 unit and guard, 207 against real PostgreSQL.
 
 ### Phase 13 — Maps and notifications
 

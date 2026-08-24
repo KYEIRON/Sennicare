@@ -1,7 +1,13 @@
 import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 
-const alias = { '@': resolve(import.meta.dirname, './src') };
+const alias = {
+  '@': resolve(import.meta.dirname, './src'),
+  // `server-only` throws on import outside a React Server Component build. It
+  // is a build-time guard, so a stub here changes nothing about what it
+  // guarantees — and a guard test asserts the real import is still present.
+  'server-only': resolve(import.meta.dirname, './tests/stubs/server-only.ts'),
+};
 
 export default defineConfig({
   test: {

@@ -43,6 +43,9 @@ export default function SiteLayout({
             <Link href="/faq" className="text-boyd-light-300 hover:text-boyd-light-50">
               FAQ
             </Link>
+            <Link href="/ask" className="text-boyd-light-300 hover:text-boyd-light-50">
+              Ask BOYD&rsquo;S AI
+            </Link>
             <Link
               href="/request-a-delivery"
               className="rounded-md bg-boyd-orange-600 px-4 py-2 font-semibold text-white hover:bg-boyd-orange-500"

@@ -29,6 +29,7 @@ const PROTECTED_PREFIXES = [
   '/vehicles',
   '/drivers',
   '/settings',
+  '/assistant',
   '/driver',
 ];
 
