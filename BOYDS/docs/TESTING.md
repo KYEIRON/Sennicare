@@ -5,16 +5,21 @@ where correctness is worth the most. The test suite is weighted accordingly.
 
 ## Tooling
 
-| Layer                  | Tool                                     |
-| ---------------------- | ---------------------------------------- |
-| Unit / domain          | Vitest                                   |
-| Integration (DB + RLS) | Vitest against a local Supabase instance |
-| End-to-end             | Playwright                               |
-| Types                  | `tsc --noEmit`                           |
-| Lint                   | ESLint                                   |
-| Build                  | `next build`                             |
+| Layer                  | Tool                                            |
+| ---------------------- | ----------------------------------------------- |
+| Unit / domain          | Vitest                                          |
+| Integration (DB + RLS) | Vitest against real PostgreSQL, real migrations |
+| End-to-end             | Playwright                                      |
+| Types                  | `tsc --noEmit`                                  |
+| Lint                   | ESLint                                          |
+| Build                  | `next build`                                    |
 
 `npm run verify` runs the whole gate. A phase is not complete until it passes.
+
+**The database security tests never skip.** If no database is reachable they fail
+with instructions for starting one. A run that quietly did not exercise BOYD'S
+authorisation boundary would report success while proving nothing — worse than a
+failure, because it would be believed. See docs/DECISIONS.md D-016.
 
 ## Required coverage
 

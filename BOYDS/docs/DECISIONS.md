@@ -266,3 +266,74 @@ before real jobs exist).
 where each figure came from. The guard test caught a genuine instance
 immediately — a mockup revenue figure quoted inside the very module that defines
 the rule — which is fair evidence the convention alone would not have held.
+
+## D-015 — Driver column limits enforced by trigger, not by column GRANT
+
+**Date:** 2026-08-24
+**Decision:** A driver may update only their own `phone` on their driver record.
+Row selection is enforced by an RLS policy; column restriction is enforced by a
+`BEFORE UPDATE` trigger that checks `is_partner()`.
+**Reason:** The obvious approach — `REVOKE UPDATE` then
+`GRANT UPDATE (phone)` — does not work here. Supabase authenticates partners and
+drivers as the same `authenticated` database role, so a grant narrow enough to
+restrain a driver would equally restrain a partner from maintaining licence
+details. The trigger can distinguish them because it evaluates the caller's
+BOYD'S role, not their database role.
+**Alternatives:** separate database roles per BOYD'S role (fights the Supabase
+model and complicates every connection); enforcing it only in application code
+(leaves the database open, which is precisely the layer meant to survive an
+application bug).
+**Impact:** Column-level rules on any table where partners and drivers both hold
+write access follow this pattern. Proved by integration tests: a driver updating
+`license_number` or `active` is rejected; a partner doing the same succeeds.
+
+## D-016 — Row level security tested against real PostgreSQL
+
+**Date:** 2026-08-24
+**Decision:** BOYD'S RLS policies are tested by applying the real migrations to a
+real PostgreSQL database and issuing queries as each role, with
+`request.jwt.claim.sub` set exactly as Supabase sets it. A local harness
+(`supabase/test-harness/`) recreates the `auth` schema, `auth.uid()` and the
+Supabase roles so migrations run unmodified. The migrations are never altered to
+accommodate testing.
+**Reason:** RLS is the authoritative authorisation boundary. A mocked policy
+proves nothing about what Postgres will actually do, and this is the layer that
+has to hold when application code is wrong.
+**Alternatives:** trusting the policies by inspection (this is how privilege
+escalation bugs ship); testing only through the application layer (tests the
+guards, not the boundary beneath them).
+**Impact:** The suite fails with actionable instructions when no database is
+reachable — it never skips. A run that quietly did not exercise the security
+boundary would report success while proving nothing, which is worse than a
+failure.
+
+## D-017 — Uniform sign-in failure messages
+
+**Date:** 2026-08-24
+**Decision:** A wrong password, an unknown email address, and a valid Supabase
+Auth account with no BOYD'S user record all return the same message: "Those
+sign-in details were not recognised." Only a recognised-but-inactive account is
+told something different, and only after authentication succeeds.
+**Reason:** Distinguishing the cases would let anyone with the sign-in page
+confirm whether a given email address has a BOYD'S account, which is both a
+privacy leak about the partners and a shortlist for a password attack.
+**Alternatives:** specific messages (friendlier, and enumerable).
+**Impact:** Slightly less helpful for a partner who mistypes their address. The
+sign-in page states that accounts are created by a partner and there is no public
+sign-up, which covers the genuine confusion this could otherwise cause.
+
+## D-018 — Protected routes are never statically prerendered
+
+**Date:** 2026-08-24
+**Decision:** The `(ops)` and `(driver)` layouts declare
+`dynamic = 'force-dynamic'` and `revalidate = 0`.
+**Reason:** With no database configured at build time the auth guard
+short-circuits before touching cookies, so Next.js saw no dynamic signal and
+prerendered both protected areas as static pages. Harmless while they are
+placeholders; a serious problem the moment they render real data, because a
+cached copy of a signed-in partner's page could be served to someone else.
+**Alternatives:** relying on the guard to make the route dynamic (it does — but
+only once the database is configured, which is exactly the kind of conditional
+safety that fails quietly).
+**Impact:** Protected pages are evaluated per request. Asserted by a standing
+guard test.

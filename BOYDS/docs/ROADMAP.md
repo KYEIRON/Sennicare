@@ -26,13 +26,19 @@ cost vocabulary separating driver labour costing from partner compensation, and
 derived vehicle cost per mile. Three route groups wired. BOYD'S design tokens.
 85 unit tests passing, zero npm vulnerabilities.
 
-### Phase 2 — Authentication and roles
+### Phase 2 — Authentication and roles ✅ complete
 
-Supabase Auth, SSR session handling, middleware. `users`, `partners`, `drivers`
-tables with RLS. `PARTNER` / `DRIVER` / `ADMIN` roles, the capability table,
-`requirePartner()` / `requireDriver()`. Login, logout, role-based redirect —
-partners to `(ops)`, drivers to `(driver)`. Ronald and Moh seeded.
-**Done when:** permission tests pass at both the API and the database layer.
+Supabase Auth with SSR session handling and middleware. Migrations 0001-0003:
+`users`, `partners`, `drivers`, with row level security on every table. The
+`PARTNER` / `DRIVER` / `ADMIN` capability table, `requirePartner()`,
+`requireDriver()`, `requireCapability()`. Sign-in, sign-out, and role-based
+routing — partners to the Command Centre, drivers to the driver app. A
+development seed for Ronald and Moh that invents no personal information.
+
+**Done:** 181 tests passing, including 21 row level security tests run against
+real PostgreSQL with the real migrations applied. A driver is proved unable to
+read another person's record, see partner records, promote themselves, create an
+account, or alter their own licence details.
 
 ### Phase 3 — Customers, vehicles, drivers, jobs
 
