@@ -25,7 +25,7 @@ export type GallonsThousandths = Brand<number, 'GallonsThousandths'>;
 /** A rate or percentage in basis points. `2000` is 20.00%. */
 export type Bps = Brand<number, 'Bps'>;
 
-/** Miles per US gallon, stored as whole tenths. `186` is 18.6 MPG. */
+/** Miles per US gallon, stored as whole tenths. `224` is 22.4 MPG. */
 export type MpgTenths = Brand<number, 'MpgTenths'>;
 
 /**

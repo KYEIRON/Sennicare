@@ -15,6 +15,7 @@ import type {
   MpgTenths,
 } from '@/types/branded';
 import type { Calculation } from './calculation';
+import { DEMO_DATA_LABEL, requiresDemoLabel, type Provenanced } from './provenance';
 
 export const LOCALE = 'en-US';
 export const CURRENCY = 'USD';
@@ -32,12 +33,12 @@ const usd = new Intl.NumberFormat(LOCALE, {
   maximumFractionDigits: 2,
 });
 
-/** "$1,234.56". Negative amounts render as "-$90.00" — a loss looks like a loss. */
+/** "$1,234.56". Negative amounts render as "-$48.00" — a loss looks like a loss. */
 export function formatCents(value: Cents): string {
   return usd.format(value / 100);
 }
 
-/** "123.4 mi" */
+/** "247.8 mi" */
 export function formatMiles(value: MilesTenths): string {
   return `${(value / 10).toLocaleString(LOCALE, {
     minimumFractionDigits: 1,
@@ -45,7 +46,7 @@ export function formatMiles(value: MilesTenths): string {
   })} mi`;
 }
 
-/** "12.340 gal" */
+/** "9.750 gal" */
 export function formatGallons(value: GallonsThousandths): string {
   return `${(value / 1000).toLocaleString(LOCALE, {
     minimumFractionDigits: 3,
@@ -53,7 +54,7 @@ export function formatGallons(value: GallonsThousandths): string {
   })} gal`;
 }
 
-/** "18.6 MPG" */
+/** "22.4 MPG" */
 export function formatMpg(value: MpgTenths): string {
   return `${(value / 10).toLocaleString(LOCALE, {
     minimumFractionDigits: 1,
@@ -61,7 +62,7 @@ export function formatMpg(value: MpgTenths): string {
   })} MPG`;
 }
 
-/** "20.00%" */
+/** "17.50%" */
 export function formatBps(value: Bps): string {
   return `${(value / 100).toLocaleString(LOCALE, {
     minimumFractionDigits: 2,
@@ -69,7 +70,7 @@ export function formatBps(value: Bps): string {
   })}%`;
 }
 
-/** "$5.21 / mi" */
+/** "$3.08 / mi" */
 export function formatCentsPerMile(value: Cents): string {
   return `${formatCents(value)} / mi`;
 }
@@ -88,6 +89,27 @@ export interface DisplayedCalculation {
   readonly needsBadge: boolean;
   /** Present when the figure rests on estimates or has missing inputs. */
   readonly detail?: string;
+}
+
+/**
+ * Render a value that carries its provenance.
+ *
+ * Illustrative data ALWAYS returns needsBadge: true and the DEMO DATA label.
+ * There is no parameter to suppress it — that is the whole point. The visual
+ * design reference is authoritative for layout and style, never for data.
+ */
+export function formatProvenanced<T>(
+  value: Provenanced<T>,
+  formatValue: (value: T) => string,
+): DisplayedCalculation {
+  return requiresDemoLabel(value)
+    ? {
+        text: formatValue(value.value),
+        status: 'OK',
+        needsBadge: true,
+        detail: `${DEMO_DATA_LABEL} — illustrative only, not a BOYD'S business figure`,
+      }
+    : { text: formatValue(value.value), status: 'OK', needsBadge: false };
 }
 
 export function formatCalculation<T>(

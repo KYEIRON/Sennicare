@@ -48,10 +48,10 @@ describe('Worked example 1 — a profitable job (instruction section 67)', () =>
     expect(ratioBps(contribution, revenue)).toEqual({ status: 'OK', value: 2000 });
   });
 
-  it('reports contribution per mile across 11.5 miles as $5.22', () => {
-    expect(centsPerMile(contribution, milesTenths(115))).toEqual({
+  it('reports contribution per mile across 24.7 miles as $2.43', () => {
+    expect(centsPerMile(contribution, milesTenths(247))).toEqual({
       status: 'OK',
-      value: 522,
+      value: 243,
     });
   });
 });

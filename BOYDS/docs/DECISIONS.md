@@ -223,3 +223,46 @@ handling money and customer data. `npm audit` reports zero vulnerabilities.
 **Impact:** Revisit TypeScript 7 and ESLint 10 when `typescript-eslint` and
 `eslint-plugin-react` support them. Recorded here so the pin is understood as
 deliberate rather than neglect.
+
+## D-014 — The design mockup is authoritative for visuals, never for data
+
+**Date:** 2026-08-24
+**Decision:** Treat the supplied dashboard mockup as a visual specification only
+— layout, hierarchy, navigation, structure, colour, KPI presentation, map
+placement, cards, tables, quick actions. Every figure in it is an illustrative
+placeholder and none may be seeded, copied, or assumed. Where an interface needs
+data before real BOYD'S data exists, it shows `DEMO DATA` or `NOT CONFIGURED`.
+
+Enforced by three mechanisms rather than by discipline:
+
+1. `Provenanced<T>` in `src/lib/provenance.ts` — every displayed figure carries
+   `REAL` or `DEMO`. There is deliberately no function that strips provenance,
+   no default, and no way to suppress the `DEMO DATA` label at the display edge.
+   Any illustrative input makes a combined result illustrative, mirroring the
+   rule for incomplete data.
+2. `assertReal(value, context)` — a hard guard for invoicing, reporting,
+   pricing, and AI answers. It throws rather than returning a Result, because
+   demonstration data reaching a real business calculation is a programmer error,
+   not a business condition.
+3. `tests/guards/no-mockup-data.test.ts` — a standing test that scans all runtime
+   source and fails the build on any mockup figure: the revenue, contribution and
+   cost totals, fuel price and volume, contribution per mile, mileage, MPG, job
+   and request numbers, vehicle model, and phone number.
+
+**Reason:** Ronald's instruction, 2026-08-24: _"Never allow illustrative data to
+appear as real operational data."_ The failure mode is quiet and compounding — a
+figure copied from a mockup into a component looks entirely reasonable, survives
+into a seed file, and is eventually read off a dashboard and believed. After that
+there is no way to tell by looking which figures were real. The whole point of
+this system is that its numbers can be trusted.
+
+**Alternatives:** a documented convention (the exact kind of rule that erodes
+once several people are building screens); labelling demo data only in the
+component that renders it (a later refactor moves the value and loses the label);
+banning demo data entirely (unworkable — layout work needs something on screen
+before real jobs exist).
+
+**Impact:** Building a screen against the mockup's design now requires stating
+where each figure came from. The guard test caught a genuine instance
+immediately — a mockup revenue figure quoted inside the very module that defines
+the rule — which is fair evidence the convention alone would not have held.

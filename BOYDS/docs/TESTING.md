@@ -71,9 +71,22 @@ creates a structured request, marks it `AFTER_HOURS`, raises a notification, and
 that no price, no availability, and no confirmation appears anywhere in the
 transcript or the created record.
 
+## Mockup and demonstration data guards
+
+`tests/guards/no-mockup-data.test.ts` scans all runtime source and fails the
+build if any figure from the visual design reference appears in it. The mockup
+specifies how BOYD'S looks, never what BOYD'S earned.
+
+`tests/unit/provenance.test.ts` asserts that illustrative data always carries its
+`DEMO DATA` label at the display edge, that any illustrative input makes a
+combined figure illustrative, and that `assertReal()` refuses demonstration data
+in invoicing, reporting, pricing, and AI contexts.
+
 ## Rules for tests
 
 - Fake adapters exist only in the test suite. They are unreachable from a
   development or production runtime — a test asserts this.
 - Tests never assert on a formatted string where they can assert on a value.
+- Test fixtures never reuse figures from the visual design reference, so a value
+  can never travel from a mockup into a test and from a test into a seed file.
 - Every bug fixed gets a regression test in the same commit.

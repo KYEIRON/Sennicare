@@ -111,6 +111,32 @@ never appear in a production build.
 Do not invent real-world facts. If BOYD'S has not supplied a VIN, a license
 plate, a purchase price, or an insurance premium, the field stays null.
 
+### The visual design reference
+
+BOYD'S has supplied a dashboard mockup. It is **authoritative for visual design
+only**: layout, information hierarchy, navigation, dashboard structure, colours,
+visual style, KPI presentation, map placement, cards, tables, and quick actions.
+
+It is **authoritative for nothing about business data**. Every figure in it is an
+illustrative placeholder. Never seed, copy, assume, or reproduce any of it —
+revenue, contribution, mileage, fuel prices, job numbers, request numbers,
+vehicle model, phone numbers, customer information, dates, driver information, or
+profitability figures.
+
+Where an interface needs data before real BOYD'S data exists, use `DEMO DATA` or
+`NOT CONFIGURED`, clearly labelled. Illustrative data must never be able to
+appear as real operational data.
+
+This is enforced, not merely stated:
+
+- `src/lib/provenance.ts` — every displayed figure carries `REAL` or `DEMO`.
+  There is no function that strips provenance and no way to suppress the
+  `DEMO DATA` label. Any illustrative input makes the whole result illustrative.
+- `assertReal()` guards invoicing, reporting, pricing, and AI answers. Demo data
+  reaching one of those throws.
+- `tests/guards/no-mockup-data.test.ts` fails the build if any mockup figure
+  appears anywhere in runtime source.
+
 ---
 
 ## 7. Money handling

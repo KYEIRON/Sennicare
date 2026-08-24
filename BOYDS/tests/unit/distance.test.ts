@@ -11,24 +11,24 @@ import { milesTenths, mpgTenths } from '@/types/branded';
 
 describe('distance arithmetic', () => {
   it('adds and subtracts exactly in tenths', () => {
-    expect(addMiles(milesTenths(450), milesTenths(780))).toBe(1230);
-    expect(subtractMiles(milesTenths(1560), milesTenths(450))).toBe(1110);
+    expect(addMiles(milesTenths(418), milesTenths(736))).toBe(1154);
+    expect(subtractMiles(milesTenths(1154), milesTenths(418))).toBe(736);
   });
 });
 
 describe('milesFromOdometer', () => {
   it('computes distance from a pair of readings', () => {
-    const result = milesFromOdometer(milesTenths(120000), milesTenths(121560));
-    expect(result).toEqual({ status: 'OK', value: 1560 });
+    const result = milesFromOdometer(milesTenths(834_120), milesTenths(836_598));
+    expect(result).toEqual({ status: 'OK', value: 2478 });
   });
 
   it('rejects a decreasing odometer rather than returning negative miles', () => {
-    const result = milesFromOdometer(milesTenths(121560), milesTenths(120000));
+    const result = milesFromOdometer(milesTenths(836_598), milesTenths(834_120));
     expect(result.status).toBe('NOT_CALCULABLE');
   });
 
   it('accepts an unchanged odometer as zero miles', () => {
-    expect(milesFromOdometer(milesTenths(120000), milesTenths(120000))).toEqual({
+    expect(milesFromOdometer(milesTenths(834_120), milesTenths(834_120))).toEqual({
       status: 'OK',
       value: 0,
     });
@@ -37,10 +37,10 @@ describe('milesFromOdometer', () => {
 
 describe('emptyMileageBps', () => {
   it('computes the empty mileage percentage', () => {
-    // 40 empty of 160 total = 25.00%
-    expect(emptyMileageBps(milesTenths(400), milesTenths(1600))).toEqual({
+    // 61.2 empty of 247.8 total = 24.70%
+    expect(emptyMileageBps(milesTenths(612), milesTenths(2478))).toEqual({
       status: 'OK',
-      value: 2500,
+      value: 2470,
     });
   });
 
@@ -51,7 +51,7 @@ describe('emptyMileageBps', () => {
   });
 
   it('handles a fully loaded day as 0%, which is a real answer', () => {
-    expect(emptyMileageBps(milesTenths(0), milesTenths(1600))).toEqual({
+    expect(emptyMileageBps(milesTenths(0), milesTenths(2478))).toEqual({
       status: 'OK',
       value: 0,
     });
@@ -61,26 +61,26 @@ describe('emptyMileageBps', () => {
 describe('isConsistentMileageSplit', () => {
   it('accepts a split that accounts for the total', () => {
     expect(
-      isConsistentMileageSplit(milesTenths(1200), milesTenths(400), milesTenths(1600)),
+      isConsistentMileageSplit(milesTenths(1866), milesTenths(612), milesTenths(2478)),
     ).toBe(true);
   });
 
   it('rejects a split that does not', () => {
     expect(
-      isConsistentMileageSplit(milesTenths(1200), milesTenths(300), milesTenths(1600)),
+      isConsistentMileageSplit(milesTenths(1866), milesTenths(500), milesTenths(2478)),
     ).toBe(false);
   });
 });
 
 describe('gallonsForDistance', () => {
   it('estimates fuel from distance and economy', () => {
-    // 156.0 miles at 18.6 MPG = 8.387 gallons
-    const result = gallonsForDistance(milesTenths(1560), mpgTenths(186));
-    expect(result).toEqual({ status: 'OK', value: 8387 });
+    // 247.8 miles at 22.4 MPG = 11.063 gallons
+    const result = gallonsForDistance(milesTenths(2478), mpgTenths(224));
+    expect(result).toEqual({ status: 'OK', value: 11063 });
   });
 
   it('returns NOT_CALCULABLE without a positive fuel economy', () => {
-    expect(gallonsForDistance(milesTenths(1560), mpgTenths(0)).status).toBe(
+    expect(gallonsForDistance(milesTenths(2478), mpgTenths(0)).status).toBe(
       'NOT_CALCULABLE',
     );
   });

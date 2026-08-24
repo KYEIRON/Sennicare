@@ -21,8 +21,8 @@ import { bps, cents, gallonsThousandths, milesTenths, mpgTenths } from '@/types/
 
 describe('formatting', () => {
   it('formats US dollars', () => {
-    expect(formatCents(cents(124000))).toBe('$1,240.00');
-    expect(formatCents(cents(81245))).toBe('$812.45');
+    expect(formatCents(cents(98765))).toBe('$987.65');
+    expect(formatCents(cents(4207))).toBe('$42.07');
     expect(formatCents(cents(0))).toBe('$0.00');
   });
 
@@ -31,11 +31,11 @@ describe('formatting', () => {
   });
 
   it('formats miles, gallons, MPG and percentages', () => {
-    expect(formatMiles(milesTenths(1560))).toBe('156.0 mi');
-    expect(formatGallons(gallonsThousandths(12400))).toBe('12.400 gal');
-    expect(formatMpg(mpgTenths(186))).toBe('18.6 MPG');
-    expect(formatBps(bps(2000))).toBe('20.00%');
-    expect(formatCentsPerMile(cents(521))).toBe('$5.21 / mi');
+    expect(formatMiles(milesTenths(2478))).toBe('247.8 mi');
+    expect(formatGallons(gallonsThousandths(9750))).toBe('9.750 gal');
+    expect(formatMpg(mpgTenths(224))).toBe('22.4 MPG');
+    expect(formatBps(bps(1750))).toBe('17.50%');
+    expect(formatCentsPerMile(cents(308))).toBe('$3.08 / mi');
   });
 });
 
