@@ -115,5 +115,5 @@ export const FINANCIAL_CAPABILITIES: readonly Capability[] = [
 
 /** Where each role belongs after signing in. */
 export function homeRouteFor(role: UserRole): string {
-  return role === 'DRIVER' ? '/today' : '/command-centre';
+  return role === 'DRIVER' ? '/driver/today' : '/command-centre';
 }

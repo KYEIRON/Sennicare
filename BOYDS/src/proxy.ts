@@ -1,22 +1,32 @@
 /**
  * Session refresh and route protection.
  *
- * Middleware runs before every matched request. It does two things:
+ * Next 16 calls this the proxy; it is the former middleware convention under a
+ * new name. It runs before every matched request and does two things:
  *
  * 1. Refreshes the Supabase session cookie, which server components cannot do.
  * 2. Turns away unauthenticated visitors at the edge of protected areas.
  *
- * Middleware is NOT the authorisation boundary. It cannot read the user's BOYD'S
- * role without a database round trip on every request, so it checks only for the
- * presence of a session. Role enforcement happens in the layout guards and,, the
- * one that actually counts, in Postgres row level security.
+ * This is NOT the authorisation boundary. It cannot read the user's BOYD'S role
+ * without a database round trip on every request, so it checks only for the
+ * presence of a session. Role enforcement happens in the layout guards and — the
+ * one that actually counts — in Postgres row level security.
  */
 
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
 /** Areas that require a signed-in session. */
-const PROTECTED_PREFIXES = ['/command-centre', '/today', '/settings'];
+const PROTECTED_PREFIXES = [
+  '/command-centre',
+  '/jobs',
+  '/dispatch',
+  '/customers',
+  '/vehicles',
+  '/drivers',
+  '/settings',
+  '/driver',
+];
 
 function isProtected(pathname: string): boolean {
   return PROTECTED_PREFIXES.some(
@@ -24,8 +34,13 @@ function isProtected(pathname: string): boolean {
   );
 }
 
-export async function middleware(request: NextRequest) {
-  const response = NextResponse.next({ request });
+export async function proxy(request: NextRequest) {
+  // Pass the path through so server layouts can highlight the active section
+  // without making the whole navigation a client component.
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-pathname', request.nextUrl.pathname);
+
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

@@ -337,3 +337,76 @@ only once the database is configured, which is exactly the kind of conditional
 safety that fails quietly).
 **Impact:** Protected pages are evaluated per request. Asserted by a standing
 guard test.
+
+## D-019 — The Phase 3 job lifecycle supersedes the original list
+
+**Date:** 2026-08-24
+**Decision:** Adopt the lifecycle given in the Phase 3 instruction, which differs
+from the one in the original master build instruction and in `docs/DATABASE.md`:
+
+| Original                                   | Phase 3                               |
+| ------------------------------------------ | ------------------------------------- |
+| `DRAFT` / `QUOTE_REQUESTED` / `ACCEPTED`   | `REQUESTED` / `REVIEW` / `APPROVED`   |
+| `EN_ROUTE_TO_COLLECTION` / `AT_COLLECTION` | `EN_ROUTE_TO_PICKUP` / `AT_PICKUP`    |
+| `COLLECTED`                                | `PICKED_UP`                           |
+| —                                          | `DECLINED`, `FAILED`, `ON_HOLD` added |
+| `INVOICED` / `PAID`                        | deferred to Phase 9                   |
+
+**Reason:** A genuine conflict between two authoritative sources. The Phase 3
+instruction is the later and more specific statement of what BOYD'S wants, and
+`CLAUDE.md` ranks an explicit business decision above the original document. The
+conflict was flagged to Ronald rather than resolved silently.
+**Alternatives:** keeping the original names (would contradict a direct
+instruction); supporting both (two vocabularies for one concept is how a system
+starts lying to itself).
+**Impact:** `docs/DATABASE.md` is superseded on this point. Adding `INVOICED` and
+`PAID` in Phase 9 is `ALTER TYPE ... ADD VALUE` plus new transition rows — no
+rewrite. Every permitted transition is a row in `job_status_transitions`,
+mirrored in TypeScript, with a test asserting the two are identical.
+
+## D-020 — Column-level protection uses triggers throughout
+
+**Date:** 2026-08-24
+**Decision:** Where partners and drivers both hold write access to a table but
+must be able to change different columns, the restriction is a `BEFORE UPDATE`
+trigger keyed on `is_driver()`, not a column `GRANT`.
+**Reason:** Established in D-015 for `drivers` and extended here to `jobs`.
+Supabase authenticates both roles as `authenticated`, so a grant cannot tell them
+apart. The first attempt keyed the guard off `is_partner()`, which is false for
+the service role and for migrations too — so legitimate server-side writes were
+rejected with a message about drivers. The rule is "a driver may not write
+these", so the guard tests for a driver.
+**Impact:** Row level security decides which rows; the trigger decides which
+columns. Proved by integration tests: a driver changing a price, an assignment
+or internal notes is rejected; recording field progress succeeds.
+
+## D-021 — Dispatch conflicts are checked at commitment, not on every update
+
+**Date:** 2026-08-24
+**Decision:** `enforce_dispatch_rules()` runs when a vehicle, driver or schedule
+changes, or when a job crosses from an uncommitted status into a committed one —
+not on every subsequent status change.
+**Reason:** The first version re-validated availability on every progress update.
+So a van marked into `MAINTENANCE` mid-job — exactly what happens when it breaks
+down — blocked the driver from recording what was happening. That is backwards:
+the van is already out on the road, and refusing to record reality does not
+bring it back. It would push a partner towards editing data to work around the
+software, which is how records stop being trustworthy.
+**Impact:** Double-booking prevention is unchanged — every route by which a
+resource becomes committed still passes the check. A breakdown mid-job can now be
+recorded honestly.
+
+## D-022 — The driver application lives under /driver
+
+**Date:** 2026-08-24
+**Decision:** Driver routes are `/driver/today` and `/driver/jobs/[id]`; partner
+routes keep `/jobs/[id]`.
+**Reason:** Next.js route groups do not contribute a path segment, so
+`(driver)/jobs/[id]` and `(ops)/jobs/[id]` both resolved to `/jobs/[id]` and the
+build refused them as parallel pages. A distinct prefix is also clearer
+operationally: a link in a message is unambiguous about which application it
+opens.
+**Impact:** `homeRouteFor('DRIVER')` returns `/driver/today`. A standing guard
+test (`tests/guards/driver-boundary.test.ts`) additionally asserts the driver
+source contains no price, cost, contribution or margin reference, never imports
+the profitability engine, and never reads the `jobs` table directly.

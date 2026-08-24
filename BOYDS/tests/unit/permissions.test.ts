@@ -96,7 +96,7 @@ describe('partner capabilities', () => {
 
 describe('sign-in routing', () => {
   it('sends a driver to the driver app, never the management system', () => {
-    expect(homeRouteFor('DRIVER')).toBe('/today');
+    expect(homeRouteFor('DRIVER')).toBe('/driver/today');
   });
 
   it('sends partners and admins to the Command Centre', () => {

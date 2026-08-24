@@ -40,13 +40,20 @@ real PostgreSQL with the real migrations applied. A driver is proved unable to
 read another person's record, see partner records, promote themselves, create an
 account, or alter their own licence details.
 
-### Phase 3 — Customers, vehicles, drivers, jobs
+### Phase 3 — Customers, vehicles, drivers, jobs ✅ complete
 
-Migrations `0003`–`0005`. Customer CRUD. Vehicle management with `BOYD-001`
-(unknown real-world fields left null). Job CRUD with stops. The job state machine
-in TypeScript and in a Postgres trigger, with the equivalence test. Dispatch:
-assign a vehicle and a driver.
-**Done when:** the full status lifecycle is enforced from both sides.
+Migrations 0004-0016. Configurable reference data (industries, job types,
+service areas — North Carolina is a row). Customers with multiple contacts,
+reusable locations and notes. Fleet and drivers, with every vehicle
+specification nullable and reading as NOT CONFIGURED until real documents
+arrive. Jobs with multi-stop support, loaded/empty mileage, and every cost held
+as estimated, actual and a derived state. Job requests kept distinct from jobs.
+The full lifecycle as a state machine in Postgres and TypeScript, proved
+identical by test. Dispatch with double-booking prevention. Trigger-written
+audit trail. Command Centre, jobs, dispatch, customers, vehicles, drivers and
+settings screens, plus the mobile driver application.
+
+**Done:** 401 tests passing — 297 unit and guard, 104 against real PostgreSQL.
 
 ### Phase 4 — Moh Driver App
 

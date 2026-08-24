@@ -65,7 +65,7 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 2 complete** — authentication and roles are built and verified.
+**Phase 3 complete** — the operational core is built and verified.
 
 | Gate             | Result                      |
 | ---------------- | --------------------------- |
@@ -75,7 +75,7 @@ so expansion costs a database row rather than a release.
 | Production build | passing                     |
 | `npm audit`      | 0 vulnerabilities           |
 
-Phase 3 (customers, vehicles, drivers and jobs) is next.
+Phase 4 (the driver application in full) is next.
 See [ROADMAP](docs/ROADMAP.md).
 
 ## Running it
