@@ -65,7 +65,7 @@ so expansion costs a database row rather than a release.
 
 ## Status
 
-**Phase 6 complete** — the profitability engine is built and verified.
+**Phase 8 complete** — CRM, quoting and the pricing engine are built and verified.
 
 | Gate             | Result                      |
 | ---------------- | --------------------------- |
@@ -75,7 +75,7 @@ so expansion costs a database row rather than a release.
 | Production build | passing                     |
 | `npm audit`      | 0 vulnerabilities           |
 
-Phase 7 (Command Centre reporting) and Phase 8 (CRM and quoting) are next.
+Phase 9 (invoices and contracts) is next.
 See [ROADMAP](docs/ROADMAP.md).
 
 ## Running it

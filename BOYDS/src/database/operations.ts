@@ -487,3 +487,178 @@ export async function listMaintenance(
     })),
   );
 }
+
+// --- CRM ---------------------------------------------------------------------
+
+export interface LeadRow {
+  id: string;
+  leadNumber: string;
+  companyName: string;
+  contactName: string | null;
+  contactEmail: string | null;
+  contactPhone: string | null;
+  stage: string;
+  source: string;
+  serviceInterest: string | null;
+  estimatedValueCents: number | null;
+  nextFollowupAt: string | null;
+  isRecurringOpportunity: boolean;
+  customerId: string | null;
+  lostReason: string | null;
+  provenance: 'REAL' | 'DEMO';
+}
+
+const LEAD_COLUMNS =
+  'id, lead_number, company_name, contact_name, contact_email, contact_phone, stage, source, service_interest, estimated_value_cents, next_followup_at, is_recurring_opportunity, customer_id, lost_reason, provenance';
+
+export async function listLeads(client: SupabaseClient): Promise<Result<LeadRow[]>> {
+  const { data, error } = await client
+    .from('leads')
+    .select(LEAD_COLUMNS)
+    .order('created_at', { ascending: false });
+
+  if (error) return err(queryFailed('leads'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      leadNumber: row.lead_number,
+      companyName: row.company_name,
+      contactName: row.contact_name,
+      contactEmail: row.contact_email,
+      contactPhone: row.contact_phone,
+      stage: row.stage,
+      source: row.source,
+      serviceInterest: row.service_interest,
+      estimatedValueCents: row.estimated_value_cents,
+      nextFollowupAt: row.next_followup_at,
+      isRecurringOpportunity: row.is_recurring_opportunity,
+      customerId: row.customer_id,
+      lostReason: row.lost_reason,
+      provenance: row.provenance,
+    })),
+  );
+}
+
+export async function nextLeadNumber(client: SupabaseClient): Promise<string> {
+  const { count } = await client
+    .from('leads')
+    .select('id', { count: 'exact', head: true });
+  return `BL-${String((count ?? 0) + 1).padStart(4, '0')}`;
+}
+
+// --- Quotes ------------------------------------------------------------------
+
+export interface QuoteRow {
+  id: string;
+  quoteNumber: string;
+  customerId: string | null;
+  jobTypeId: string;
+  status: string;
+  collectionSummary: string | null;
+  deliverySummary: string | null;
+  requestedDate: string | null;
+  estimatedMilesTenths: number | null;
+  estimatedCostCents: number | null;
+  quotedPriceCents: number;
+  expectedContributionCents: number | null;
+  expectedContributionPerMileCents: number | null;
+  belowMinimumOverride: boolean;
+  validUntil: string | null;
+  jobId: string | null;
+  provenance: 'REAL' | 'DEMO';
+  pricingBreakdown: Record<string, unknown>;
+}
+
+const QUOTE_COLUMNS =
+  'id, quote_number, customer_id, job_type_id, status, collection_summary, delivery_summary, requested_date, estimated_miles_tenths, estimated_cost_cents, quoted_price_cents, expected_contribution_cents, expected_contribution_per_mile_cents, below_minimum_override, valid_until, job_id, provenance, pricing_breakdown';
+
+export async function listQuotes(client: SupabaseClient): Promise<Result<QuoteRow[]>> {
+  const { data, error } = await client
+    .from('quotes')
+    .select(QUOTE_COLUMNS)
+    .order('created_at', { ascending: false });
+
+  if (error) return err(queryFailed('quotes'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      quoteNumber: row.quote_number,
+      customerId: row.customer_id,
+      jobTypeId: row.job_type_id,
+      status: row.status,
+      collectionSummary: row.collection_summary,
+      deliverySummary: row.delivery_summary,
+      requestedDate: row.requested_date,
+      estimatedMilesTenths: row.estimated_miles_tenths,
+      estimatedCostCents: row.estimated_cost_cents,
+      quotedPriceCents: row.quoted_price_cents,
+      expectedContributionCents: row.expected_contribution_cents,
+      expectedContributionPerMileCents: row.expected_contribution_per_mile_cents,
+      belowMinimumOverride: row.below_minimum_override,
+      validUntil: row.valid_until,
+      jobId: row.job_id,
+      provenance: row.provenance,
+      pricingBreakdown: row.pricing_breakdown ?? {},
+    })),
+  );
+}
+
+export async function nextQuoteNumber(client: SupabaseClient): Promise<string> {
+  const { count } = await client
+    .from('quotes')
+    .select('id', { count: 'exact', head: true });
+  const year = new Date().getFullYear();
+  return `BQ-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+}
+
+// --- Pricing policy ----------------------------------------------------------
+
+export interface PricingPolicyRow {
+  minimumContributionCents: number | null;
+  minimumContributionPerMileCents: number | null;
+  targetMarginBps: number | null;
+  perMileCents: number | null;
+  basePriceCents: number | null;
+  urgencyMultiplierBps: number | null;
+}
+
+/**
+ * The pricing policy in force for a job type.
+ *
+ * Returns nulls throughout when no rule exists — which is BOYD'S current state.
+ * The engine reports NOT CONFIGURED from those nulls rather than inventing a
+ * floor, so an absent rule can never quietly become a policy.
+ */
+export async function pricingPolicyFor(
+  client: SupabaseClient,
+  jobTypeId: string,
+  priority: string,
+): Promise<PricingPolicyRow> {
+  const { data } = await client
+    .from('pricing_rules')
+    .select(
+      'base_price_cents, per_mile_cents, minimum_price_cents, urgency_multiplier_bps, target_margin_bps, minimum_contribution_cents, minimum_contribution_per_mile_cents, job_type_id, priority_level',
+    )
+    .eq('active', true)
+    .or(`job_type_id.eq.${jobTypeId},job_type_id.is.null`)
+    .order('job_type_id', { ascending: false, nullsFirst: false });
+
+  // Prefer the most specific rule: job type and priority, then job type, then
+  // the general rule.
+  const rules = data ?? [];
+  const rule =
+    rules.find((r) => r.job_type_id === jobTypeId && r.priority_level === priority) ??
+    rules.find((r) => r.job_type_id === jobTypeId && r.priority_level === null) ??
+    rules.find((r) => r.job_type_id === null);
+
+  return {
+    minimumContributionCents: rule?.minimum_contribution_cents ?? null,
+    minimumContributionPerMileCents: rule?.minimum_contribution_per_mile_cents ?? null,
+    targetMarginBps: rule?.target_margin_bps ?? null,
+    perMileCents: rule?.per_mile_cents ?? null,
+    basePriceCents: rule?.base_price_cents ?? null,
+    urgencyMultiplierBps: rule?.urgency_multiplier_bps ?? null,
+  };
+}

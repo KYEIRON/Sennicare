@@ -100,21 +100,33 @@ cannot state.
 
 **Done:** 491 tests passing — 356 unit and guard, 135 against real PostgreSQL.
 
-### Phase 7 — Command Centre
+### Phase 7 — Command Centre ✅ complete
 
-The operations home screen: what is happening now, where the van is (or
-`GPS NOT CONNECTED`), the active job, what is next, revenue, costs, contribution,
-miles, empty miles, what needs attention, what opportunities exist. Today and
-month-to-date KPIs. Daily, weekly, and monthly reports.
-**Done when:** no KPI can display a figure derived from incomplete data without
-saying so.
+Delivered with Phase 3 and extended in Phase 6: today's revenue, contribution,
+costs, active jobs, miles and empty mileage; live operations; what needs
+attention; fleet and drivers; the open business decisions shown plainly; and the
+Reports screen with customer, vehicle and period profitability.
 
-### Phase 8 — CRM and quoting
+### Phase 8 — CRM and quoting ✅ complete
 
-Leads, the pipeline, follow-ups, opportunities. Quotes with the transparent
-pricing engine, `pricing_rules`, minimum contribution checks with audited
-override, expiry, and acceptance creating a job.
-**Done when:** no quote can be created outside the pricing engine.
+Migration 0019 adds leads, pricing rules, quotes and quote items. The full
+pipeline from `NEW` to `CONTRACT_OPPORTUNITY`, with follow-ups surfaced and open
+leads that have no next step called out. A lost lead records why — the reason is
+what eventually improves BOYD'S pricing and targeting.
+
+The pricing engine estimates cost from real recorded inputs only: the latest
+fuel price BOYD'S actually paid, the van's real economy, and the derived vehicle
+cost per mile. Every line names its basis. Minimum contribution and target
+margin stay NOT CONFIGURED, so the engine reports that and names the decision
+rather than substituting an industry default — and the floor check answers
+NOT CONFIGURED rather than "yes", because the system will not imply a price is
+acceptable against a standard that does not exist.
+
+Pricing below a configured floor requires an explicit reason and is audited. An
+expired quote cannot be accepted without being re-issued. Every quote stores its
+full breakdown, so a price given months ago can still be explained.
+
+**Done:** 537 tests passing — 383 unit and guard, 154 against real PostgreSQL.
 
 ### Phase 9 — Invoices, contracts, maintenance
 

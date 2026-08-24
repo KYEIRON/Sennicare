@@ -47,6 +47,12 @@ as $$
     when 'job_expenses' then array['amount_cents', 'category', 'job_id']
     when 'vehicle_cost_entries' then
       array['amount_cents', 'cost_line', 'included_in_cost_per_mile', 'effective_to']
+    when 'quotes' then
+      array['quoted_price_cents', 'status', 'below_minimum_override', 'valid_until']
+    when 'leads' then array['stage', 'owner_user_id', 'lost_reason']
+    when 'pricing_rules' then
+      array['base_price_cents', 'per_mile_cents', 'target_margin_bps',
+            'minimum_contribution_cents', 'active']
     else array[]::text[]
   end;
 $$;
