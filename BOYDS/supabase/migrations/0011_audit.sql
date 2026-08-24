@@ -44,6 +44,7 @@ as $$
     when 'customers' then array['customer_status', 'company_name', 'payment_terms_days']
     when 'vehicles' then array['status', 'active', 'current_odometer_tenths']
     when 'drivers' then array['status', 'availability', 'active', 'current_vehicle_id']
+    when 'job_expenses' then array['amount_cents', 'category', 'job_id']
     else array[]::text[]
   end;
 $$;

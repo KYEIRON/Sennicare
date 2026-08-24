@@ -122,7 +122,14 @@ export default async function DriverTodayPage() {
         </div>
       )}
 
-      <section className="mt-8 rounded-lg border border-boyd-navy-700 bg-boyd-navy-950 p-4">
+      <Link
+        href="/driver/record"
+        className="mt-8 block rounded-lg border border-boyd-navy-600 px-4 py-4 text-center font-semibold text-boyd-light-200 active:bg-boyd-navy-800"
+      >
+        Record fuel or an expense
+      </Link>
+
+      <section className="mt-6 rounded-lg border border-boyd-navy-700 bg-boyd-navy-950 p-4">
         <div className="flex items-center gap-2">
           <DataBadge kind="UNAVAILABLE" />
           <span className="text-sm font-semibold text-boyd-light-300">

@@ -73,11 +73,20 @@ async function driveToCompleted(jobId: string, scheduledDate: string): Promise<v
     'IN_TRANSIT',
     'AT_DELIVERY',
     'DELIVERED',
-    'POD_RECEIVED',
   ]) {
     await setStatus(jobId, status);
   }
 
+  // POD_RECEIVED requires real proof on the job, so the fixture attaches it
+  // rather than bypassing the rule.
+  await admin.query(
+    `insert into documents (document_type, entity_table, entity_id, storage_path,
+      file_name, mime_type, size_bytes)
+     values ('SIGNATURE', 'jobs', $1, $2, 'signature.png', 'image/png', 2048)`,
+    [jobId, `test/${jobId}/signature-${Math.random().toString(36).slice(2)}.png`],
+  );
+
+  await setStatus(jobId, 'POD_RECEIVED');
   await admin.query('update jobs set actual_miles_tenths = 247 where id = $1', [jobId]);
   await setStatus(jobId, 'COMPLETED');
 }
@@ -170,10 +179,17 @@ describe('transition guards', () => {
       'IN_TRANSIT',
       'AT_DELIVERY',
       'DELIVERED',
-      'POD_RECEIVED',
     ]) {
       await setStatus(jobId, status);
     }
+
+    await admin.query(
+      `insert into documents (document_type, entity_table, entity_id, storage_path,
+        file_name, mime_type, size_bytes)
+       values ('SIGNATURE', 'jobs', $1, $2, 'signature.png', 'image/png', 2048)`,
+      [jobId, `test/${jobId}/signature-guard.png`],
+    );
+    await setStatus(jobId, 'POD_RECEIVED');
 
     await expect(setStatus(jobId, 'COMPLETED')).rejects.toThrow(/actual mileage/i);
 

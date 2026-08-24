@@ -6,6 +6,8 @@ import { getServerClient } from '@/lib/supabase/server';
 import { allowedTransitionsFrom } from '@/services/jobs/state-machine';
 import type { JobStatus } from '@/types/operations';
 import { DriverJobActions } from './driver-job-actions';
+import { SignaturePad } from './signature-pad';
+import { PhotoUpload } from './photo-upload';
 
 export const metadata: Metadata = { title: 'Job' };
 
@@ -49,9 +51,15 @@ export default async function DriverJobPage({
   if (!supabase) return null;
 
   // Read through driver_jobs, which has no financial columns in it at all.
-  const [{ data: job }, { data: stops }] = await Promise.all([
+  const [{ data: job }, { data: stops }, { data: documents }] = await Promise.all([
     supabase.from('driver_jobs').select('*').eq('id', id).maybeSingle(),
     supabase.from('job_stops').select('*').eq('job_id', id).order('sequence'),
+    supabase
+      .from('documents')
+      .select('id, document_type, signed_by_name, created_at')
+      .eq('entity_table', 'jobs')
+      .eq('entity_id', id)
+      .order('created_at'),
   ]);
 
   if (!job) notFound();
@@ -59,6 +67,12 @@ export default async function DriverJobPage({
   const available = allowedTransitionsFrom(job.status as JobStatus).filter((t) =>
     DRIVER_TRANSITIONS.includes(t.to),
   );
+
+  const proof = (documents ?? []) as {
+    id: string;
+    document_type: string;
+    signed_by_name: string | null;
+  }[];
 
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
@@ -134,6 +148,42 @@ export default async function DriverJobPage({
           </li>
         ))}
       </ol>
+
+      <section className="mt-8 space-y-4">
+        <h2 className="text-xs font-bold tracking-[0.15em] text-boyd-light-400 uppercase">
+          Proof
+        </h2>
+
+        <PhotoUpload
+          jobId={id}
+          documentType="PICKUP_PHOTO"
+          label="Take a collection photo"
+        />
+        <PhotoUpload
+          jobId={id}
+          documentType="DELIVERY_PHOTO"
+          label="Take a delivery photo"
+        />
+
+        {proof.length > 0 && (
+          <ul className="space-y-1 text-sm text-boyd-light-400">
+            {proof.map((document) => (
+              <li key={document.id} className="flex items-center gap-2">
+                <span className="text-boyd-positive">&#10003;</span>
+                {document.document_type.replace(/_/g, ' ').toLowerCase()}
+                {document.signed_by_name ? ` — ${document.signed_by_name}` : ''}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="rounded-lg border border-boyd-navy-700 bg-boyd-navy-950 p-4">
+          <h3 className="mb-3 text-sm font-semibold text-boyd-light-200">
+            Signature at delivery
+          </h3>
+          <SignaturePad jobId={id} />
+        </div>
+      </section>
 
       <DriverJobActions jobId={id} transitions={available} />
     </div>

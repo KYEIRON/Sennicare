@@ -55,12 +55,25 @@ settings screens, plus the mobile driver application.
 
 **Done:** 401 tests passing — 297 unit and guard, 104 against real PostgreSQL.
 
-### Phase 4 — Moh Driver App
+### Phase 4 — Moh Driver App ✅ complete
 
-The `(driver)` route group: Today, job detail, the action sequence. Large-touch
-mobile UI. Camera capture. Signature pad. `driver_jobs` view — no financial
-columns. Offline-tolerant writes.
-**Done when:** a driver session provably cannot reach a price or a cost.
+The `/driver` route group: today's work, current job, route with navigation and
+one-tap calling, one large button per step of the lifecycle, odometer-based
+mileage with the loaded/empty split, signature capture on a canvas, camera
+photos for collection and delivery, and a separate Record screen for fuel and
+expenses between jobs.
+
+Migration 0017 adds documents, job expenses and fuel transactions. Expenses roll
+up into the job's actual costs by trigger, so a receipt recorded at the roadside
+immediately makes that job's contribution more complete — and a category with no
+receipt stays MISSING rather than becoming zero. Proof of delivery is now
+required before `POD_RECEIVED`, enforced in the database.
+
+Storage is a private bucket behind the three-adapter pattern: live when the
+database is configured, explicitly unavailable when it is not, and never
+pretending a file was saved.
+
+**Done:** 441 tests passing — 318 unit and guard, 123 against real PostgreSQL.
 
 ### Phase 5 — Mileage, fuel, expenses, POD
 
