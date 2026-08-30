@@ -686,3 +686,25 @@ raise `URGENT`. Everything urgent stops being urgent if a scraped mirror is.
 **Impact:** `tests/integration/incidents.test.ts` files a report as a driver and
 asserts the partner's notification exists, with the right severity for each
 level.
+
+---
+
+## D-036 — A customer's contribution is shown, and shown as incomplete
+
+**Decision:** The customer record shows revenue and contribution across that
+customer's completed jobs, through the same `Calculation` engine the Command
+Centre uses. A customer with any unrecorded cost reads `DATA INCOMPLETE`, not a
+number.
+
+**Why:** "Is this customer worth keeping" is the question the record exists to
+answer, and revenue alone answers it wrongly — a busy customer at a bad price
+looks like the best one on the page. But a contribution figure assembled from
+partly-recorded costs is worse than none: it always flatters, because the
+missing part is always a cost.
+
+The figure comes from `features/command-centre/summary`, not from arithmetic
+written into the page. No component re-implements a formula.
+
+**Impact:** Early on, most customers will read `DATA INCOMPLETE`. That is the
+honest state, and the badge names the jobs whose costs are missing, so it also
+says what to do about it.

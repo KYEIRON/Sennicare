@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { requirePartner } from '@/lib/auth/session';
 import { getServerClient } from '@/lib/supabase/server';
 import { listCustomers, listIndustries } from '@/database/operations';
@@ -51,9 +52,12 @@ export default async function CustomersPage() {
                         {customer.customerNumber}
                       </td>
                       <td className="py-2.5 pr-3">
-                        <span className="font-semibold text-boyd-light-100">
+                        <Link
+                          href={`/customers/${customer.id}`}
+                          className="font-semibold text-boyd-light-100 hover:text-boyd-blue-400"
+                        >
                           {customer.companyName}
-                        </span>
+                        </Link>
                         {customer.provenance === 'DEMO' && (
                           <span className="ml-2">
                             <DataBadge kind="DEMO_DATA" />

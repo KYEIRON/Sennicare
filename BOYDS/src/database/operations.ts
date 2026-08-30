@@ -576,11 +576,14 @@ export interface QuoteRow {
 const QUOTE_COLUMNS =
   'id, quote_number, customer_id, job_type_id, status, collection_summary, delivery_summary, requested_date, estimated_miles_tenths, estimated_cost_cents, quoted_price_cents, expected_contribution_cents, expected_contribution_per_mile_cents, below_minimum_override, valid_until, job_id, provenance, pricing_breakdown';
 
-export async function listQuotes(client: SupabaseClient): Promise<Result<QuoteRow[]>> {
-  const { data, error } = await client
-    .from('quotes')
-    .select(QUOTE_COLUMNS)
-    .order('created_at', { ascending: false });
+export async function listQuotes(
+  client: SupabaseClient,
+  options: { customerId?: string } = {},
+): Promise<Result<QuoteRow[]>> {
+  let query = client.from('quotes').select(QUOTE_COLUMNS);
+  if (options.customerId) query = query.eq('customer_id', options.customerId);
+
+  const { data, error } = await query.order('created_at', { ascending: false });
 
   if (error) return err(queryFailed('quotes'));
 
@@ -682,13 +685,19 @@ export interface InvoiceRow {
 
 export async function listInvoices(
   client: SupabaseClient,
+  options: { customerId?: string } = {},
 ): Promise<Result<InvoiceRow[]>> {
-  const { data, error } = await client
+  let query = client
     .from('invoices')
     .select(
       'id, invoice_number, customer_id, status, issue_date, due_date, total_cents, amount_paid_cents, provenance',
-    )
-    .order('issue_date', { ascending: false, nullsFirst: false });
+    );
+  if (options.customerId) query = query.eq('customer_id', options.customerId);
+
+  const { data, error } = await query.order('issue_date', {
+    ascending: false,
+    nullsFirst: false,
+  });
 
   if (error) return err(queryFailed('invoices'));
 
@@ -842,6 +851,7 @@ export interface JobRequestRow {
   id: string;
   requestNumber: string;
   status: string;
+  customerId: string | null;
   source: string;
   companyName: string | null;
   contactName: string | null;
@@ -869,7 +879,7 @@ export async function listJobRequests(
   let query = client
     .from('job_requests')
     .select(
-      'id, request_number, status, source, company_name, contact_name, contact_email, contact_phone, pickup_address, pickup_city, pickup_state, pickup_zip, delivery_address, delivery_city, delivery_state, delivery_zip, description, urgency, is_recurring, is_after_hours, received_at',
+      'id, request_number, status, customer_id, source, company_name, contact_name, contact_email, contact_phone, pickup_address, pickup_city, pickup_state, pickup_zip, delivery_address, delivery_city, delivery_state, delivery_zip, description, urgency, is_recurring, is_after_hours, received_at',
     );
 
   if (options.newOnly) query = query.eq('status', 'NEW');
@@ -883,6 +893,7 @@ export async function listJobRequests(
       id: row.id,
       requestNumber: row.request_number,
       status: row.status,
+      customerId: row.customer_id,
       source: row.source,
       companyName: row.company_name,
       contactName: row.contact_name,
@@ -993,4 +1004,188 @@ export async function listIncidents(
 function firstOrOne<T>(value: unknown): T | null {
   if (Array.isArray(value)) return (value[0] as T | undefined) ?? null;
   return (value as T | null) ?? null;
+}
+
+// --- One customer's record ---------------------------------------------------
+
+export interface CustomerDetail extends CustomerSummary {
+  industryName: string | null;
+  primaryContactEmail: string | null;
+  /** Null means NOT CONFIGURED. BOYD'S standard terms are an open decision. */
+  paymentTermsDays: number | null;
+  leadSource: string | null;
+  notes: string | null;
+  createdAt: string;
+}
+
+export async function getCustomer(
+  client: SupabaseClient,
+  customerId: string,
+): Promise<Result<CustomerDetail | null>> {
+  const { data, error } = await client
+    .from('customers')
+    .select(
+      'id, customer_number, company_name, customer_type, customer_status, primary_contact_name, primary_contact_email, primary_contact_phone, payment_terms_days, lead_source, notes, last_activity_at, provenance, created_at, industries(name)',
+    )
+    .eq('id', customerId)
+    .is('deleted_at', null)
+    .maybeSingle();
+
+  if (error) return err(queryFailed('the customer'));
+  if (!data) return ok(null);
+
+  const industry = firstOrOne<{ name: string }>(data.industries);
+
+  return ok({
+    id: data.id,
+    customerNumber: data.customer_number,
+    companyName: data.company_name,
+    customerType: data.customer_type,
+    customerStatus: data.customer_status,
+    primaryContactName: data.primary_contact_name,
+    primaryContactEmail: data.primary_contact_email,
+    primaryContactPhone: data.primary_contact_phone,
+    paymentTermsDays: data.payment_terms_days,
+    leadSource: data.lead_source,
+    notes: data.notes,
+    lastActivityAt: data.last_activity_at,
+    provenance: data.provenance,
+    createdAt: data.created_at,
+    industryName: industry?.name ?? null,
+  });
+}
+
+/** Every job BOYD'S has done for this customer, newest first. */
+export async function listJobsForCustomer(
+  client: SupabaseClient,
+  customerId: string,
+): Promise<Result<ProfitabilityJobRow[]>> {
+  const { data, error } = await client
+    .from('jobs')
+    .select(PROFITABILITY_COLUMNS)
+    .eq('customer_id', customerId)
+    .order('scheduled_date', { ascending: false, nullsFirst: false });
+
+  return error
+    ? err(queryFailed('the customer’s jobs'))
+    : ok((data ?? []) as unknown as ProfitabilityJobRow[]);
+}
+
+export interface CustomerContactRow {
+  id: string;
+  name: string;
+  roleTitle: string | null;
+  email: string | null;
+  phone: string | null;
+  isPrimary: boolean;
+}
+
+export async function listCustomerContacts(
+  client: SupabaseClient,
+  customerId: string,
+): Promise<Result<CustomerContactRow[]>> {
+  const { data, error } = await client
+    .from('customer_contacts')
+    .select('id, name, role_title, email, phone, is_primary')
+    .eq('customer_id', customerId)
+    .order('is_primary', { ascending: false });
+
+  if (error) return err(queryFailed('contacts'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      name: row.name,
+      roleTitle: row.role_title,
+      email: row.email,
+      phone: row.phone,
+      isPrimary: row.is_primary,
+    })),
+  );
+}
+
+export interface CustomerLocationRow {
+  id: string;
+  label: string | null;
+  kind: string;
+  addressLine1: string;
+  city: string;
+  state: string;
+  zip: string;
+  isDefault: boolean;
+}
+
+export async function listCustomerLocations(
+  client: SupabaseClient,
+  customerId: string,
+): Promise<Result<CustomerLocationRow[]>> {
+  const { data, error } = await client
+    .from('customer_locations')
+    .select('id, label, kind, address_line1, city, state, zip, is_default')
+    .eq('customer_id', customerId)
+    .order('is_default', { ascending: false });
+
+  if (error) return err(queryFailed('locations'));
+
+  return ok(
+    (data ?? []).map((row) => ({
+      id: row.id,
+      label: row.label,
+      kind: row.kind,
+      addressLine1: row.address_line1,
+      city: row.city,
+      state: row.state,
+      zip: row.zip,
+      isDefault: row.is_default,
+    })),
+  );
+}
+
+export interface CustomerNoteRow {
+  id: string;
+  body: string;
+  isPinned: boolean;
+  createdAt: string;
+  authorName: string | null;
+}
+
+export async function listCustomerNotes(
+  client: SupabaseClient,
+  customerId: string,
+): Promise<Result<CustomerNoteRow[]>> {
+  const { data, error } = await client
+    .from('customer_notes')
+    .select('id, body, is_pinned, created_at, users(first_name, last_name)')
+    .eq('customer_id', customerId)
+    .order('is_pinned', { ascending: false })
+    .order('created_at', { ascending: false });
+
+  if (error) return err(queryFailed('notes'));
+
+  return ok(
+    (data ?? []).map((row) => {
+      const author = firstOrOne<{ first_name: string; last_name: string | null }>(
+        row.users,
+      );
+      return {
+        id: row.id,
+        body: row.body,
+        isPinned: row.is_pinned,
+        createdAt: row.created_at,
+        authorName: author
+          ? [author.first_name, author.last_name].filter(Boolean).join(' ')
+          : null,
+      };
+    }),
+  );
+}
+
+/** Requests this customer has sent, converted or otherwise. */
+export async function listRequestsForCustomer(
+  client: SupabaseClient,
+  customerId: string,
+): Promise<Result<JobRequestRow[]>> {
+  const result = await listJobRequests(client);
+  if (!result.ok) return result;
+  return ok(result.value.filter((request) => request.customerId === customerId));
 }
