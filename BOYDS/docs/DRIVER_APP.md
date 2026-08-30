@@ -32,6 +32,31 @@ report incident.
 
 **Vehicle** — BOYD-001 status, odometer, outstanding maintenance.
 
+## Reporting an incident
+
+On the Record screen. What happened (thirteen concrete choices, in plain words),
+how serious, when, where, which job if any, a free description, and three
+required yes/no questions: was anyone hurt, were the police involved, was anyone
+else involved — plus whether the load was affected.
+
+The yes/no questions have no pre-selected answer. An untouched "no" beside "was
+anyone hurt" is a claim nobody made, and it is the first thing an insurer asks
+about.
+
+Where is typed, not sensed. There is no tracker in the van and nothing is filled
+in for Moh.
+
+There is no cost field. At the roadside nobody knows what it cost, and a figure
+entered under pressure later reads as a fact. A partner records the cost once it
+is established; until then the incident reads `NOT ESTABLISHED`, never `$0.00`.
+
+Filing tells the partners immediately — raised by a database trigger, so a
+report cannot reach the record without reaching them. A minor report is an
+`ATTENTION` notification; serious and critical are `URGENT`.
+
+Once filed, Moh cannot edit or delete the report. He is told so before he sends
+it. Corrections are a partner action and leave the original in the audit trail.
+
 ## What Moh cannot see
 
 No price. No cost. No contribution. No margin. No customer list. No invoice.

@@ -14,6 +14,7 @@ import {
   signatureSchema,
   uploadSchema,
 } from '@/validation/field-records';
+import { incidentReportSchema } from '@/validation/operations';
 
 /**
  * A driver advances their own job.
@@ -334,6 +335,90 @@ export async function recordFuel(
 
   revalidatePath('/driver/today');
   return { success: 'Fuel recorded.' };
+}
+
+/**
+ * Report an incident from the road.
+ *
+ * Filed against the van the driver is in and against himself — neither is
+ * taken from the form, so a report cannot be filed in someone else's name.
+ * Partners are told by a database trigger, not by this action, so a report
+ * cannot reach the record without reaching them.
+ *
+ * Once filed it cannot be edited or deleted by a driver. That is enforced by a
+ * trigger, not by this code.
+ */
+export async function reportIncident(
+  _previous: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const auth = await requireDriver();
+  if (!auth.ok) return { error: 'You do not have access to this.' };
+
+  const parsed = incidentReportSchema.safeParse({
+    jobId: formData.get('jobId') || null,
+    incidentType: formData.get('incidentType'),
+    severity: formData.get('severity'),
+    occurredAt: formData.get('occurredAt'),
+    locationDescription: formData.get('locationDescription'),
+    description: formData.get('description'),
+    anyoneInjured: formData.get('anyoneInjured'),
+    policeInvolved: formData.get('policeInvolved'),
+    policeReportNumber: formData.get('policeReportNumber'),
+    thirdPartyInvolved: formData.get('thirdPartyInvolved'),
+    thirdPartyDetails: formData.get('thirdPartyDetails'),
+    goodsAffected: formData.get('goodsAffected'),
+  });
+
+  if (!parsed.success) return { fieldErrors: parsed.error.flatten().fieldErrors };
+
+  const supabase = await getServerClient();
+  if (!supabase) return { error: 'The database is not connected.' };
+
+  const driver = await currentDriverRecord(supabase, auth.value.id);
+  if (!driver) return { error: 'No driver record is linked to this account.' };
+  if (!driver.current_vehicle_id) {
+    return {
+      error:
+        'No van is assigned to you, so there is nothing to file this against. Tell a partner — do not let that stop you reporting it to them directly.',
+    };
+  }
+
+  const occurredAt = new Date(parsed.data.occurredAt);
+  if (Number.isNaN(occurredAt.getTime())) {
+    return { fieldErrors: { occurredAt: ['That is not a time we can read.'] } };
+  }
+  if (occurredAt.getTime() > Date.now() + 60_000) {
+    return { fieldErrors: { occurredAt: ['That time is in the future.'] } };
+  }
+
+  const { error } = await supabase.from('incidents').insert({
+    job_id: parsed.data.jobId ?? null,
+    vehicle_id: driver.current_vehicle_id,
+    driver_id: driver.id,
+    incident_type: parsed.data.incidentType,
+    severity: parsed.data.severity,
+    occurred_at: occurredAt.toISOString(),
+    location_description: parsed.data.locationDescription ?? null,
+    description: parsed.data.description,
+    anyone_injured: parsed.data.anyoneInjured,
+    police_involved: parsed.data.policeInvolved,
+    police_report_number: parsed.data.policeReportNumber ?? null,
+    third_party_involved: parsed.data.thirdPartyInvolved,
+    third_party_details: parsed.data.thirdPartyDetails ?? null,
+    goods_affected: parsed.data.goodsAffected,
+    reported_by: auth.value.id,
+  });
+
+  if (error) return { error: 'Could not file the report.' };
+
+  revalidatePath('/driver/record');
+  revalidatePath('/driver/today');
+  if (parsed.data.jobId) revalidatePath(`/driver/jobs/${parsed.data.jobId}`);
+  return {
+    success:
+      'Reported. The partners have been told. You cannot change this report — if something was wrong, tell a partner.',
+  };
 }
 
 /** The signed-in driver's own record. */

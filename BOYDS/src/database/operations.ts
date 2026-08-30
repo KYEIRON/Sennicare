@@ -12,6 +12,9 @@ import { domainError, err, ok, type Result } from '@/lib/result';
 import type {
   CustomerStatus,
   CustomerType,
+  IncidentSeverity,
+  IncidentStatus,
+  IncidentType,
   JobPriority,
   JobStatus,
   VehicleStatus,
@@ -900,4 +903,94 @@ export async function listJobRequests(
       receivedAt: row.received_at,
     })),
   );
+}
+
+// --- Incidents ---------------------------------------------------------------
+
+export interface IncidentRow {
+  id: string;
+  incidentNumber: string;
+  incidentType: IncidentType;
+  severity: IncidentSeverity;
+  status: IncidentStatus;
+  occurredAt: string;
+  locationDescription: string | null;
+  description: string;
+  anyoneInjured: boolean;
+  policeInvolved: boolean;
+  policeReportNumber: string | null;
+  thirdPartyInvolved: boolean;
+  thirdPartyDetails: string | null;
+  goodsAffected: boolean;
+  /** Null means the cost is not yet known. It never means zero. */
+  costCents: string | number | null;
+  resolutionNotes: string | null;
+  jobId: string | null;
+  jobNumber: string | null;
+  driverName: string | null;
+  vehicleCode: string | null;
+}
+
+export async function listIncidents(
+  client: SupabaseClient,
+  options: { openOnly?: boolean } = {},
+): Promise<Result<IncidentRow[]>> {
+  let query = client
+    .from('incidents')
+    .select(
+      'id, incident_number, incident_type, severity, status, occurred_at, location_description, description, anyone_injured, police_involved, police_report_number, third_party_involved, third_party_details, goods_affected, cost_cents, resolution_notes, job_id, jobs(job_number), vehicles(vehicle_code), drivers(users(first_name, last_name))',
+    );
+
+  if (options.openOnly) query = query.in('status', ['REPORTED', 'UNDER_REVIEW']);
+
+  const { data, error } = await query.order('occurred_at', { ascending: false });
+
+  if (error) return err(queryFailed('incidents'));
+
+  return ok(
+    (data ?? []).map((row) => {
+      const job = firstOrOne<{ job_number: string }>(row.jobs);
+      const vehicle = firstOrOne<{ vehicle_code: string }>(row.vehicles);
+      const driver = firstOrOne<{
+        users: unknown;
+      }>(row.drivers);
+      const user = driver
+        ? firstOrOne<{ first_name: string; last_name: string | null }>(driver.users)
+        : null;
+
+      return {
+        id: row.id,
+        incidentNumber: row.incident_number,
+        incidentType: row.incident_type,
+        severity: row.severity,
+        status: row.status,
+        occurredAt: row.occurred_at,
+        locationDescription: row.location_description,
+        description: row.description,
+        anyoneInjured: row.anyone_injured,
+        policeInvolved: row.police_involved,
+        policeReportNumber: row.police_report_number,
+        thirdPartyInvolved: row.third_party_involved,
+        thirdPartyDetails: row.third_party_details,
+        goodsAffected: row.goods_affected,
+        costCents: row.cost_cents,
+        resolutionNotes: row.resolution_notes,
+        jobId: row.job_id,
+        jobNumber: job?.job_number ?? null,
+        driverName: user
+          ? [user.first_name, user.last_name].filter(Boolean).join(' ')
+          : null,
+        vehicleCode: vehicle?.vehicle_code ?? null,
+      };
+    }),
+  );
+}
+
+/**
+ * PostgREST returns an embedded relation as an object or an array depending on
+ * the shape of the join. Normalise rather than assume.
+ */
+function firstOrOne<T>(value: unknown): T | null {
+  if (Array.isArray(value)) return (value[0] as T | undefined) ?? null;
+  return (value as T | null) ?? null;
 }

@@ -214,6 +214,22 @@ invoice may be marked paid without a payment record.**
 `storage_path` (private bucket), `file_name`, `mime_type`, `size_bytes`,
 `uploaded_by`, `captured_at`, `notes`, timestamps.
 
+**`incidents`** — `id`, `incident_number` (`BI-YYYY-NNNN`, from a sequence),
+`incident_type`, `severity` (MINOR | SERIOUS | CRITICAL), `status` (REPORTED |
+UNDER_REVIEW | RESOLVED | CLOSED), `job_id` (nullable — an incident can happen
+between jobs), `vehicle_id`, `driver_id`, `occurred_at`, `location_description`
+(typed by the driver; BOYD'S has no GPS), `description`, `anyone_injured`,
+`police_involved`, `police_report_number`, `third_party_involved`,
+`third_party_details`, `goods_affected`, `cost_cents` (**null until
+established, never zero**), `reported_by`, `reviewed_by`, `reviewed_at`,
+`resolution_notes`, `provenance`, timestamps.
+
+Constraints refuse a report that contradicts itself: a police report number with
+no police, other-party details with no other party, a blank account of events, a
+negative cost, or a resolution with no explanation. A driver may insert and read
+his own; he has no update or delete policy, and an immutability trigger sits
+behind that.
+
 **`notifications`** — `id`, `recipient_user_id`, `notification_type`, `title`,
 `body`, `entity_table`, `entity_id`, `severity`, `read_at`, `delivered_channels`
 (text[]), `created_at`.

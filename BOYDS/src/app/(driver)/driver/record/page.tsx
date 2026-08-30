@@ -6,6 +6,7 @@ import { listDriverJobs } from '@/database/operations';
 import { operatingDateKey } from '@/lib/datetime';
 import { ExpenseForm } from './expense-form';
 import { FuelForm } from './fuel-form';
+import { IncidentForm } from './incident-form';
 
 export const metadata: Metadata = { title: 'Record' };
 
@@ -41,7 +42,8 @@ export default async function DriverRecordPage() {
 
       <h1 className="mt-4 text-2xl font-bold text-boyd-light-50">Record</h1>
       <p className="mt-1 text-sm text-boyd-light-400">
-        Fuel and expenses go straight onto the job&rsquo;s real cost.
+        Fuel and expenses go straight onto the job&rsquo;s real cost. Anything that went
+        wrong goes to the partners the moment you send it.
       </p>
 
       <section className="mt-8">
@@ -63,6 +65,24 @@ export default async function DriverRecordPage() {
           Expense
         </h2>
         <ExpenseForm jobs={jobs} />
+      </section>
+
+      <section className="mt-10 border-t border-boyd-navy-700 pt-8">
+        <h2 className="mb-1 text-xs font-bold tracking-[0.15em] text-boyd-light-400 uppercase">
+          Something went wrong
+        </h2>
+        <p className="mb-3 text-sm text-boyd-light-400">
+          A bump, a breakdown, damaged goods, nobody there, stopped by the police. Report
+          it here.
+        </p>
+        {driver?.current_vehicle_id ? (
+          <IncidentForm jobs={jobs} />
+        ) : (
+          <p className="rounded-lg border border-boyd-navy-700 p-4 text-sm text-boyd-light-400">
+            No van is assigned to you right now, so a report cannot be filed against one.
+            Call a partner and tell them directly — do not wait.
+          </p>
+        )}
       </section>
     </div>
   );

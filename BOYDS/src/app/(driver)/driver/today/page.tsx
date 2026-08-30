@@ -126,7 +126,7 @@ export default async function DriverTodayPage() {
         href="/driver/record"
         className="mt-8 block rounded-lg border border-boyd-navy-600 px-4 py-4 text-center font-semibold text-boyd-light-200 active:bg-boyd-navy-800"
       >
-        Record fuel or an expense
+        Record fuel, an expense, or something that went wrong
       </Link>
 
       <section className="mt-6 rounded-lg border border-boyd-navy-700 bg-boyd-navy-950 p-4">

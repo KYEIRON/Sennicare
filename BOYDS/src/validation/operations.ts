@@ -16,6 +16,8 @@ import {
   CUSTOMER_TYPES,
   DRIVER_AVAILABILITIES,
   DRIVER_STATUSES,
+  INCIDENT_SEVERITIES,
+  INCIDENT_TYPES,
   JOB_PRIORITIES,
   LOCATION_KINDS,
   REQUEST_SOURCES,
@@ -396,3 +398,69 @@ export const assignJobSchema = z.object({
     .optional()
     .or(z.literal('').transform(() => null)),
 });
+
+// --- Incidents ---------------------------------------------------------------
+
+/**
+ * A driver's report of what happened.
+ *
+ * The three yes/no questions are required rather than defaulted. "Nobody was
+ * hurt" and "he did not say" are different answers, and an insurer will ask
+ * which one this is.
+ *
+ * There is no cost field. At the roadside nobody knows what it cost, and a
+ * figure entered under pressure would be a guess that later reads as a fact.
+ */
+const requiredYesNo = (message: string) =>
+  z.enum(['yes', 'no'], { message }).transform((v) => v === 'yes');
+
+export const incidentReportSchema = z
+  .object({
+    jobId: z
+      .string()
+      .uuid()
+      .nullable()
+      .optional()
+      .or(z.literal('').transform(() => null)),
+    incidentType: z.enum(INCIDENT_TYPES, { message: 'Choose what happened.' }),
+    severity: z.enum(INCIDENT_SEVERITIES, { message: 'Say how serious it is.' }),
+    occurredAt: z.string().min(1, 'When did it happen?'),
+    locationDescription: optionalText(300),
+    description: z
+      .string()
+      .trim()
+      .min(10, 'Describe what happened, in your own words.')
+      .max(4000),
+    anyoneInjured: requiredYesNo('Say whether anyone was hurt.'),
+    policeInvolved: requiredYesNo('Say whether the police were involved.'),
+    policeReportNumber: optionalText(100),
+    thirdPartyInvolved: requiredYesNo('Say whether anyone else was involved.'),
+    thirdPartyDetails: optionalText(2000),
+    goodsAffected: requiredYesNo('Say whether the load was affected.'),
+  })
+  .refine((r) => r.policeInvolved || !r.policeReportNumber, {
+    message: 'A police report number only makes sense if the police were involved.',
+    path: ['policeReportNumber'],
+  })
+  .refine((r) => r.thirdPartyInvolved || !r.thirdPartyDetails, {
+    message: 'Only give other-party details if someone else was involved.',
+    path: ['thirdPartyDetails'],
+  });
+
+export type IncidentReportInput = z.infer<typeof incidentReportSchema>;
+
+/** A partner closing an incident off. Resolving requires saying how. */
+export const incidentReviewSchema = z
+  .object({
+    incidentId: z.string().uuid(),
+    status: z.enum(['REPORTED', 'UNDER_REVIEW', 'RESOLVED', 'CLOSED']),
+    resolutionNotes: optionalText(4000),
+    costCents: optionalUsdCents,
+  })
+  .refine(
+    (r) => (r.status !== 'RESOLVED' && r.status !== 'CLOSED') || !!r.resolutionNotes,
+    {
+      message: 'Say how it was resolved before closing it.',
+      path: ['resolutionNotes'],
+    },
+  );

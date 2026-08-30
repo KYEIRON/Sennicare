@@ -172,3 +172,62 @@ export const TERMINAL_JOB_STATUSES: readonly JobStatus[] = [
   'CANCELLED',
   'DECLINED',
 ];
+
+// --- Incidents ---------------------------------------------------------------
+
+/**
+ * What went wrong.
+ *
+ * The list is deliberately concrete. A driver at the roadside picks the thing
+ * that happened, not a category he has to interpret.
+ */
+export const INCIDENT_TYPES = [
+  'ACCIDENT',
+  'VEHICLE_BREAKDOWN',
+  'VEHICLE_DAMAGE',
+  'GOODS_DAMAGED',
+  'GOODS_LOST',
+  'THEFT',
+  'CUSTOMER_UNAVAILABLE',
+  'ACCESS_REFUSED',
+  'DELAY',
+  'WEATHER',
+  'TRAFFIC_STOP',
+  'INJURY',
+  'OTHER',
+] as const;
+export type IncidentType = (typeof INCIDENT_TYPES)[number];
+
+export const INCIDENT_SEVERITIES = ['MINOR', 'SERIOUS', 'CRITICAL'] as const;
+export type IncidentSeverity = (typeof INCIDENT_SEVERITIES)[number];
+
+export const INCIDENT_STATUSES = [
+  'REPORTED',
+  'UNDER_REVIEW',
+  'RESOLVED',
+  'CLOSED',
+] as const;
+export type IncidentStatus = (typeof INCIDENT_STATUSES)[number];
+
+/** Plain English for each incident type, for a driver on a phone. */
+export const INCIDENT_TYPE_LABELS: Readonly<Record<IncidentType, string>> = {
+  ACCIDENT: 'Road accident',
+  VEHICLE_BREAKDOWN: 'The van broke down',
+  VEHICLE_DAMAGE: 'The van was damaged',
+  GOODS_DAMAGED: 'The goods were damaged',
+  GOODS_LOST: 'The goods were lost',
+  THEFT: 'Theft',
+  CUSTOMER_UNAVAILABLE: 'Nobody was there',
+  ACCESS_REFUSED: 'Could not get access',
+  DELAY: 'Held up',
+  WEATHER: 'Weather',
+  TRAFFIC_STOP: 'Stopped by the police',
+  INJURY: 'Someone was hurt',
+  OTHER: 'Something else',
+};
+
+export const INCIDENT_SEVERITY_LABELS: Readonly<Record<IncidentSeverity, string>> = {
+  MINOR: 'Minor — worth recording',
+  SERIOUS: 'Serious — a partner should know now',
+  CRITICAL: 'Critical — someone hurt, or the van is off the road',
+};

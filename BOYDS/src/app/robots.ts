@@ -18,7 +18,9 @@ export default function robots(): MetadataRoute.Robots {
       disallow: [
         '/command-centre',
         '/jobs',
+        '/requests',
         '/dispatch',
+        '/incidents',
         '/customers',
         '/crm',
         '/quotes',
@@ -27,6 +29,7 @@ export default function robots(): MetadataRoute.Robots {
         '/vehicles',
         '/drivers',
         '/settings',
+        '/assistant',
         '/driver',
         '/sign-in',
       ],

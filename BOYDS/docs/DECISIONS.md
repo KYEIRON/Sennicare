@@ -606,3 +606,83 @@ had agreed to work for free. Null reaches the financial engine as
 
 **Impact:** `tests/integration/request-conversion.test.ts` asserts the created
 job is `APPROVED` and that its price is null rather than zero.
+
+---
+
+## D-032 — An incident report is immutable to the driver, and says so
+
+**Decision:** A driver can file an incident report and read his own. He has no
+update or delete policy, and an immutability trigger sits behind that. The form
+tells him this before he sends it.
+
+**Why:** The report is Moh's account of what happened, and its value to an
+insurer, a customer or a partner rests entirely on it being what he said at the
+time. A record that can be quietly revised afterwards is not evidence of
+anything. Making the constraint visible in the form matters as much as enforcing
+it: a driver who knows he cannot amend it writes it properly the first time,
+and one who discovers the restriction afterwards feels caught out.
+
+Corrections are a partner action and leave the original in the audit trail.
+
+**Impact:** `tests/integration/incidents.test.ts` proves the row is untouched
+after a driver's update and still present after his delete, and that another
+driver's report is invisible to him.
+
+---
+
+## D-033 — The three yes/no questions have no default answer
+
+**Decision:** "Was anyone hurt", "were the police involved" and "was anyone else
+involved" are required radio buttons, stored as `not null` booleans. There is no
+pre-selected value and no checkbox.
+
+**Why:** A checkbox left unticked records `false`. That is a claim — that nobody
+was hurt — made by nobody, and it is the first question an insurer asks. The
+form makes the driver answer. "Not recorded" and "no" are different answers, and
+the database cannot hold the first, so the interface has to guarantee the
+second is real.
+
+**Impact:** Three extra taps on a form Moh fills in rarely, in exchange for a
+record BOYD'S can stand behind.
+
+---
+
+## D-034 — An incident has no cost until someone establishes one
+
+**Decision:** `incidents.cost_cents` is nullable and is not on the driver's
+form. A partner records it later. The interface shows `NOT ESTABLISHED` for
+null, never `$0.00`.
+
+**Why:** At the roadside nobody knows what a bump cost. A figure entered under
+pressure becomes a fact in the reporting a week later. And zero is not a missing
+value: it is the assertion that the incident cost BOYD'S nothing, which is
+almost never true and, once written, is nobody's job to revisit.
+
+The review form only writes the cost when one was given, so saving a status
+change does not erase a figure established earlier.
+
+**Impact:** Incident costs stay absent from profitability until they are real,
+which is the same rule every other cost in BOYD'S follows.
+
+---
+
+## D-035 — Partners are told about an incident by a trigger, not by the action
+
+**Decision:** `notify_partners_of_incident()` is an `after insert` trigger on
+`incidents`.
+
+**Why:** A report filed from the van is useless sitting unread, and the moment
+notification is the application's job it can be forgotten in a code path, skipped
+by a bulk insert, or lost to an error after the write succeeds. In the database
+it cannot be reached around: if the report exists, the notification exists.
+
+It also cannot be forged. `notify_partners` is executable by nobody
+(D-029) — the trigger runs as its definer, so a notification can only come from
+a real inserted row.
+
+Severity maps deliberately: `MINOR` raises `ATTENTION`, `SERIOUS` and `CRITICAL`
+raise `URGENT`. Everything urgent stops being urgent if a scraped mirror is.
+
+**Impact:** `tests/integration/incidents.test.ts` files a report as a driver and
+asserts the partner's notification exists, with the right severity for each
+level.
