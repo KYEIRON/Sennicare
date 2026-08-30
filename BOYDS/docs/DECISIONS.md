@@ -564,3 +564,45 @@ need, and nothing the caller did not already know.
 `tests/integration/function-permissions.test.ts` enumerates every function
 `anon` may execute and asserts the exact list, so a new function added without a
 revoke fails the build and is named in the failure.
+
+---
+
+## D-030 — Converting an enquiry never fills in an address
+
+**Decision:** The convert-to-job form requires a complete collection and
+delivery address and defaults nothing. Where the enquiry supplied a field, it is
+prefilled; where it did not, the partner enters it.
+
+**Why:** `job_stops` requires an address, a city, a state and a ZIP. The
+straightforward way to satisfy that from a partial enquiry is a fallback —
+`state ?? 'NC'`, `zip ?? '00000'`, `'Address to confirm'`. That was written and
+then removed. A hardcoded `NC` violates the rule that the operating state is
+data rather than a constant, and a ZIP of `00000` is not a missing value once it
+is stored: it looks like an address, it prints on a job sheet, and it is what
+Moh drives to. A phone enquiry that says only "Charlotte to Concord" is not a
+deliverable address, and the honest response is to ask the partner for the rest.
+
+For the same reason the conversion will not create a customer from an enquiry
+that carries neither a company nor a contact name. There is nothing to name the
+record after, so it returns an error instead of inventing `Unnamed customer`.
+
+**Impact:** Converting a vague enquiry takes one extra step — confirming the
+address with the customer — which is the step that would otherwise be skipped.
+
+---
+
+## D-031 — A job created from an enquiry has no price
+
+**Decision:** `convertRequestToJob` creates the job at `APPROVED` with
+`won_price_cents` left null. Pricing is a separate, deliberate act.
+
+**Why:** `APPROVED` says a partner has agreed BOYD'S will do the work; it does
+not say the van is free that day, so the job still has to be scheduled. And the
+enquiry carried no agreed price. Writing zero would be worse than writing
+nothing: a job priced at zero reports itself as a pure loss the moment any cost
+lands on it, and it would drag the contribution figures down as though BOYD'S
+had agreed to work for free. Null reaches the financial engine as
+`DATA_INCOMPLETE`, which is the truth.
+
+**Impact:** `tests/integration/request-conversion.test.ts` asserts the created
+job is `APPROVED` and that its price is null rather than zero.

@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
 import { requirePartner } from '@/lib/auth/session';
 import { getServerClient } from '@/lib/supabase/server';
-import { listJobRequests, listNotifications } from '@/database/operations';
+import {
+  listCustomers,
+  listJobRequests,
+  listJobTypes,
+  listNotifications,
+} from '@/database/operations';
 import { EmptyState, Panel } from '@/components/ui/kpi-card';
 import { formatOperatingDate, formatOperatingTime } from '@/lib/datetime';
+import { RequestActions } from './request-actions';
 
 export const metadata: Metadata = { title: 'Requests' };
 
@@ -20,15 +26,24 @@ export default async function RequestsPage() {
   const supabase = await getServerClient();
   if (!supabase) return null;
 
-  const [requestsResult, notificationsResult] = await Promise.all([
-    listJobRequests(supabase),
-    listNotifications(supabase, { limit: 30 }),
-  ]);
+  const [requestsResult, notificationsResult, typesResult, customersResult] =
+    await Promise.all([
+      listJobRequests(supabase),
+      listNotifications(supabase, { limit: 30 }),
+      listJobTypes(supabase),
+      listCustomers(supabase),
+    ]);
 
   const requests = requestsResult.ok ? requestsResult.value : [];
   const notifications = notificationsResult.ok ? notificationsResult.value : [];
+  const jobTypes = typesResult.ok ? typesResult.value : [];
+  const customers = customersResult.ok ? customersResult.value : [];
 
-  const awaitingReview = requests.filter((request) => request.status === 'NEW');
+  // A request someone has claimed is still waiting on a decision, so it stays
+  // on the list rather than vanishing the moment a partner opens it.
+  const awaitingReview = requests.filter(
+    (request) => request.status === 'NEW' || request.status === 'UNDER_REVIEW',
+  );
   const afterHours = awaitingReview.filter((request) => request.isAfterHours);
 
   return (
@@ -58,6 +73,11 @@ export default async function RequestsPage() {
                       <span className="text-sm text-boyd-light-300">
                         {request.companyName ?? request.contactName ?? 'A customer'}
                       </span>
+                      {request.status === 'UNDER_REVIEW' && (
+                        <span className="rounded bg-boyd-blue-600/20 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-boyd-light-200">
+                          BEING REVIEWED
+                        </span>
+                      )}
                       {request.isAfterHours && (
                         <span className="rounded bg-boyd-warning/15 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-boyd-warning">
                           AFTER HOURS
@@ -112,6 +132,13 @@ export default async function RequestsPage() {
                     Nothing has been quoted, scheduled or confirmed. Contact the customer,
                     then create a quote or a job.
                   </p>
+
+                  <RequestActions
+                    requestId={request.id}
+                    jobTypes={jobTypes}
+                    customers={customers}
+                    addresses={request}
+                  />
                 </li>
               ))}
             </ul>

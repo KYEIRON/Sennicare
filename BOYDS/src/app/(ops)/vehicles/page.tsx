@@ -6,6 +6,7 @@ import { EmptyState, Panel } from '@/components/ui/kpi-card';
 import { DataBadge } from '@/components/ui/data-badge';
 import { formatMiles } from '@/lib/format';
 import { milesTenths } from '@/types/branded';
+import Link from 'next/link';
 import { VehicleForm } from './vehicle-form';
 
 export const metadata: Metadata = { title: 'Vehicles' };
@@ -41,7 +42,12 @@ export default async function VehiclesPage() {
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-2">
                       <h3 className="figure text-lg font-bold text-boyd-light-50">
-                        {vehicle.vehicleCode}
+                        <Link
+                          href={`/vehicles/${vehicle.id}`}
+                          className="hover:text-boyd-blue-300"
+                        >
+                          {vehicle.vehicleCode}
+                        </Link>
                       </h3>
                       {vehicle.provenance === 'DEMO' && <DataBadge kind="DEMO_DATA" />}
                     </div>

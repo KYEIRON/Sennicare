@@ -846,8 +846,12 @@ export interface JobRequestRow {
   contactPhone: string | null;
   pickupAddress: string | null;
   pickupCity: string | null;
+  pickupState: string | null;
+  pickupZip: string | null;
   deliveryAddress: string | null;
   deliveryCity: string | null;
+  deliveryState: string | null;
+  deliveryZip: string | null;
   description: string | null;
   urgency: string | null;
   isRecurring: boolean | null;
@@ -862,7 +866,7 @@ export async function listJobRequests(
   let query = client
     .from('job_requests')
     .select(
-      'id, request_number, status, source, company_name, contact_name, contact_email, contact_phone, pickup_address, pickup_city, delivery_address, delivery_city, description, urgency, is_recurring, is_after_hours, received_at',
+      'id, request_number, status, source, company_name, contact_name, contact_email, contact_phone, pickup_address, pickup_city, pickup_state, pickup_zip, delivery_address, delivery_city, delivery_state, delivery_zip, description, urgency, is_recurring, is_after_hours, received_at',
     );
 
   if (options.newOnly) query = query.eq('status', 'NEW');
@@ -883,8 +887,12 @@ export async function listJobRequests(
       contactPhone: row.contact_phone,
       pickupAddress: row.pickup_address,
       pickupCity: row.pickup_city,
+      pickupState: row.pickup_state,
+      pickupZip: row.pickup_zip,
       deliveryAddress: row.delivery_address,
       deliveryCity: row.delivery_city,
+      deliveryState: row.delivery_state,
+      deliveryZip: row.delivery_zip,
       description: row.description,
       urgency: row.urgency,
       isRecurring: row.is_recurring,
