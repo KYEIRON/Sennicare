@@ -1,0 +1,4880 @@
+{
+ "meals": [
+  {
+   "name": "Greek yoghurt, berries & seeds",
+   "slot": "Breakfast",
+   "duration": 10,
+   "meta": "Protein · Fibre · Calcium",
+   "cal": 360,
+   "img": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "200g Greek yoghurt",
+    "80g mixed berries",
+    "2 tbsp oats",
+    "1 tbsp pumpkin seeds"
+   ],
+   "steps": [
+    "Add yoghurt to a bowl.",
+    "Top with berries, oats and seeds.",
+    "Serve immediately."
+   ],
+   "nut": [
+    "Protein 20g",
+    "Fibre 7g",
+    "Calcium 28%",
+    "Magnesium 18%"
+   ],
+   "fit": "A simple option with protein, fibre and calcium."
+  },
+  {
+   "name": "Avocado, egg & seeded toast",
+   "slot": "Breakfast",
+   "duration": 10,
+   "meta": "Protein · Fibre · Folate",
+   "cal": 410,
+   "img": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "2 slices seeded bread",
+    "1 avocado",
+    "2 eggs",
+    "1 handful spinach"
+   ],
+   "steps": [
+    "Toast the bread.",
+    "Cook the eggs to your preference.",
+    "Mash avocado over toast and top with egg and spinach."
+   ],
+   "nut": [
+    "Protein 22g",
+    "Fibre 10g",
+    "Folate 32%",
+    "Potassium 20%"
+   ],
+   "fit": "A balanced breakfast with fibre and healthy fats."
+  },
+  {
+   "name": "Overnight oats with banana & seeds",
+   "slot": "Breakfast",
+   "duration": 10,
+   "meta": "Fibre · Magnesium · Energy",
+   "cal": 390,
+   "img": "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "50g oats",
+    "150ml milk or alternative",
+    "1 banana",
+    "1 tbsp chia seeds"
+   ],
+   "steps": [
+    "Mix oats, milk and chia.",
+    "Refrigerate overnight.",
+    "Top with sliced banana."
+   ],
+   "nut": [
+    "Protein 13g",
+    "Fibre 9g",
+    "Magnesium 24%",
+    "Potassium 15%"
+   ],
+   "fit": "An easy make ahead breakfast with useful fibre."
+  },
+  {
+   "name": "Salmon, quinoa & greens",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Omega 3 · Protein · Folate",
+   "cal": 520,
+   "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "150g salmon",
+    "75g quinoa",
+    "2 handfuls greens",
+    "1 red pepper",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Cook quinoa.",
+    "Cook salmon and pepper.",
+    "Serve with greens and quinoa.",
+    "Finish with olive oil and lemon."
+   ],
+   "nut": [
+    "Protein 35g",
+    "Fibre 8g",
+    "Omega 3 1.2g",
+    "Vitamin D 32%"
+   ],
+   "fit": "A protein rich lunch with omega 3 and vegetables."
+  },
+  {
+   "name": "Chickpea, cucumber & herb bowl",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Fibre · Plant protein · Folate",
+   "cal": 440,
+   "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "150g chickpeas",
+    "1 cucumber",
+    "2 tomatoes",
+    "Fresh herbs",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Rinse chickpeas.",
+    "Chop cucumber and tomatoes.",
+    "Toss with herbs and olive oil."
+   ],
+   "nut": [
+    "Protein 16g",
+    "Fibre 13g",
+    "Folate 30%",
+    "Iron 20%"
+   ],
+   "fit": "A plant forward lunch with plenty of fibre.",
+   "fits": [
+    "Vegan friendly"
+   ]
+  },
+  {
+   "name": "Chicken, rice & roasted peppers",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Protein · Vitamin C · B vitamins",
+   "cal": 500,
+   "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "150g chicken breast",
+    "75g rice",
+    "1 red pepper",
+    "1 courgette",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Cook rice.",
+    "Roast peppers and courgette.",
+    "Cook chicken thoroughly.",
+    "Serve together."
+   ],
+   "nut": [
+    "Protein 40g",
+    "Fibre 7g",
+    "Vitamin C 60%",
+    "B6 35%"
+   ],
+   "fit": "A familiar, high protein meal with colourful vegetables."
+  },
+  {
+   "name": "Lentil & roasted vegetable bowl",
+   "slot": "Dinner",
+   "duration": 25,
+   "meta": "Fibre · Plant protein · Iron",
+   "cal": 470,
+   "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "150g cooked lentils",
+    "1 courgette",
+    "1 red pepper",
+    "1 carrot",
+    "1 handful spinach",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Chop vegetables.",
+    "Roast until tender.",
+    "Warm lentils.",
+    "Combine with spinach and vegetables."
+   ],
+   "nut": [
+    "Protein 19g",
+    "Fibre 15g",
+    "Iron 24%",
+    "Folate 35%"
+   ],
+   "fit": "A fibre rich plant forward option. For digestive symptoms, individual tolerance to lentils and other high fibre foods varies.",
+   "fits": [
+    "Vegan friendly"
+   ]
+  },
+  {
+   "name": "Cod, potatoes & green beans",
+   "slot": "Dinner",
+   "duration": 25,
+   "meta": "Protein · Vitamin B12 · Potassium",
+   "cal": 480,
+   "img": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "160g cod",
+    "250g potatoes",
+    "150g green beans",
+    "1 tbsp olive oil",
+    "Lemon"
+   ],
+   "steps": [
+    "Boil potatoes.",
+    "Bake or pan cook cod until fully cooked.",
+    "Steam green beans.",
+    "Serve with lemon and olive oil."
+   ],
+   "nut": [
+    "Protein 37g",
+    "Fibre 7g",
+    "B12 80%",
+    "Potassium 25%"
+   ],
+   "fit": "A lighter fish based dinner with protein and vegetables."
+  },
+  {
+   "name": "Chicken & sweet potato tray bake",
+   "slot": "Dinner",
+   "duration": 25,
+   "meta": "Protein · Potassium · Vitamin C",
+   "cal": 540,
+   "img": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=90",
+   "ingredients": [
+    "150g chicken breast",
+    "1 sweet potato",
+    "1 broccoli head",
+    "1 red onion",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Chop vegetables.",
+    "Place chicken and vegetables on a tray.",
+    "Add oil and seasoning.",
+    "Roast until chicken is fully cooked."
+   ],
+   "nut": [
+    "Protein 42g",
+    "Fibre 9g",
+    "Potassium 22%",
+    "Vitamin C 75%"
+   ],
+   "fit": "A practical tray bake when you want something hearty and simple."
+  },
+  {
+   "name": "Ghanaian grilled tilapia & fries",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Protein · B12 · Cultural classic",
+   "cal": 610,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grilled%20Tilapia%20Ghana.JPG?width=1200",
+   "ingredients": [
+    "1 whole tilapia",
+    "1 small yam",
+    "Red pepper",
+    "Onion",
+    "Ginger",
+    "Garlic",
+    "Scotch bonnet",
+    "1 tbsp oil"
+   ],
+   "steps": [
+    "Blend or finely chop pepper, onion, ginger and garlic, then rub it over the fish.",
+    "Leave the fish to take on the flavour for about 20 minutes.",
+    "Heat the grill or oven to 180°C and cook the tilapia for about 10 to 15 minutes on each side until the flesh flakes easily.",
+    "Cut the yam into chip shapes and cook until golden and tender, or use potato fries if that is what you have.",
+    "Serve with pepper sauce, sliced onion and the yam chips."
+   ],
+   "fit": "A Ghanaian favourite built around grilled fish, traditionally paired with yam and hot pepper sauce; this home version can use fries if preferred.",
+   "culture": "Ghana",
+   "fits": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Swedish köttbullar with lingonberry",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Sweden · Comfort food · Protein",
+   "cal": 570,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Meatballs.jpg?width=1200",
+   "ingredients": [
+    "250g beef and pork mince",
+    "1 small onion",
+    "40g breadcrumbs",
+    "1 egg",
+    "100ml milk",
+    "Potatoes",
+    "Lingonberry jam"
+   ],
+   "steps": [
+    "Soften the onion gently for about 5 minutes.",
+    "Mix mince, onion, breadcrumbs, egg and milk until just combined.",
+    "Roll into small meatballs.",
+    "Brown them in a pan, turning often, then cook through for about 10 minutes.",
+    "Serve with potatoes, sauce and lingonberry."
+   ],
+   "fit": "A classic Swedish comfort meal, often served with potatoes and lingonberry.",
+   "culture": "Sweden",
+   "fits": [
+    "Comforting"
+   ]
+  },
+  {
+   "name": "True ramen · shoyu style",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "China to Japan · Wheat noodles · Umami",
+   "cal": 560,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shoyu%20Ramen.jpg?width=1200",
+   "ingredients": [
+    "120g ramen noodles",
+    "500ml chicken or vegetable broth",
+    "1 tbsp soy sauce",
+    "Spring onion",
+    "Mushrooms",
+    "1 egg",
+    "Nori"
+   ],
+   "steps": [
+    "Bring the broth to a gentle simmer and season with soy sauce.",
+    "Cook the noodles according to the packet until springy, usually about 3 to 4 minutes.",
+    "Warm mushrooms in the broth for 2 minutes.",
+    "Add noodles to a bowl and pour over the hot broth.",
+    "Top with egg, spring onion and nori."
+   ],
+   "fit": "Ramen has Chinese roots and became a distinct Japanese food with many regional styles. This is a simple shoyu inspired home bowl.",
+   "culture": "Japan",
+   "fits": [
+    "Comforting",
+    "Spicy option"
+   ]
+  },
+  {
+   "name": "Vietnamese chicken phở",
+   "slot": "Lunch",
+   "duration": 40,
+   "meta": "Vietnam · Herbs · Protein",
+   "cal": 500,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20Pho.jpg?width=1200",
+   "ingredients": [
+    "120g rice noodles",
+    "150g chicken",
+    "700ml chicken stock",
+    "Ginger",
+    "Star anise",
+    "Spring onion",
+    "Coriander",
+    "Lime"
+   ],
+   "steps": [
+    "Warm the stock with ginger and star anise for about 15 minutes.",
+    "Cook the rice noodles according to the packet, usually 3 to 5 minutes.",
+    "Add cooked sliced chicken to the hot broth.",
+    "Build the bowl with noodles, broth and herbs.",
+    "Finish with lime and chilli to taste."
+   ],
+   "fit": "A fragrant Vietnamese noodle soup with fresh herbs and citrus.",
+   "culture": "Vietnam",
+   "fits": [
+    "Spicy option"
+   ]
+  },
+  {
+   "name": "Korean bibimbap",
+   "slot": "Lunch",
+   "duration": 30,
+   "meta": "Korea · Vegetables · Gochujang",
+   "cal": 520,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean%20Bibimbap.jpg?width=1200",
+   "ingredients": [
+    "150g cooked rice",
+    "1 egg",
+    "Carrot",
+    "Spinach",
+    "Bean sprouts",
+    "Mushrooms",
+    "Gochujang",
+    "Sesame oil"
+   ],
+   "steps": [
+    "Cook the rice and keep it warm.",
+    "Cook each vegetable separately for a few minutes so it stays colourful and tender.",
+    "Fry the egg until the white is set.",
+    "Build the rice bowl with vegetables and egg.",
+    "Add gochujang and sesame oil, then mix at the table."
+   ],
+   "fit": "A Korean mixed rice bowl that brings vegetables, rice, sauce and protein together.",
+   "culture": "Korea",
+   "fits": [
+    "Spicy",
+    "Vegetarian friendly"
+   ]
+  },
+  {
+   "name": "Fijian kokoda",
+   "slot": "Lunch",
+   "duration": 25,
+   "meta": "Fiji · Citrus · Coconut · Fish",
+   "cal": 430,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kokodafood.jpg?width=1200",
+   "ingredients": [
+    "180g very fresh fish suitable for raw preparation",
+    "Lime juice",
+    "Coconut milk",
+    "Tomato",
+    "Cucumber",
+    "Onion",
+    "Chilli"
+   ],
+   "steps": [
+    "Cut the fish into small pieces and cover with lime juice.",
+    "Chill while the citrus changes the fish texture, following a food safe recipe and using suitable fresh fish.",
+    "Mix coconut milk with tomato, cucumber and onion.",
+    "Combine with the fish and chilli just before serving."
+   ],
+   "fit": "Kokoda is a Fijian dish of fish prepared with citrus and coconut, often enjoyed as a fresh shared dish.",
+   "culture": "Fiji",
+   "fits": [
+    "Spicy",
+    "Dairy free"
+   ]
+  },
+  {
+   "name": "Masala dosa with sambar",
+   "slot": "Breakfast",
+   "duration": 35,
+   "meta": "South India · Fermented batter · Plant based",
+   "cal": 470,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200",
+   "ingredients": [
+    "Dosa batter",
+    "Potato",
+    "Onion",
+    "Mustard seeds",
+    "Curry leaves",
+    "Sambar",
+    "Coconut chutney"
+   ],
+   "steps": [
+    "Warm the pan and spread a thin layer of dosa batter.",
+    "Cook until the underside is crisp and golden, about 2 to 3 minutes.",
+    "Fill with spiced potato and fold.",
+    "Warm the sambar and serve with coconut chutney."
+   ],
+   "fit": "Dosa is a fermented South Indian staple with many regional styles and accompaniments.",
+   "culture": "India",
+   "fits": [
+    "Vegan friendly",
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Peruvian ceviche",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Peru · Citrus · Chilli · Fish",
+   "cal": 390,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200",
+   "ingredients": [
+    "180g very fresh fish suitable for raw preparation",
+    "Lime juice",
+    "Red onion",
+    "Chilli",
+    "Coriander",
+    "Sweetcorn",
+    "Sweet potato"
+   ],
+   "steps": [
+    "Dice the fish and keep it properly chilled.",
+    "Prepare the lime, onion, chilli and coriander.",
+    "Combine shortly before serving according to a trusted food safe method.",
+    "Serve with sweetcorn and sweet potato."
+   ],
+   "fit": "Peruvian ceviche is a traditional dish closely connected with coastal food culture and communal eating.",
+   "culture": "Peru",
+   "fits": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Amazonian tacacá",
+   "slot": "Dinner",
+   "duration": 40,
+   "meta": "Northern Brazil · Jambu · Manioc · Shrimp",
+   "cal": 450,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tacac%C3%A1%20(Brazilian%20indigenous%20soup)%20(51404038372).jpg?width=1200",
+   "ingredients": [
+    "Tucupi or manioc broth",
+    "Jambu leaves",
+    "Tapioca starch",
+    "Dried shrimp",
+    "Yellow chilli"
+   ],
+   "steps": [
+    "Prepare the manioc based broth using a food safe commercial preparation.",
+    "Cook jambu until tender.",
+    "Make a small tapioca starch portion according to the recipe.",
+    "Assemble the hot broth with jambu, tapioca and shrimp.",
+    "Serve very hot in a bowl, as traditionally presented."
+   ],
+   "fit": "Tacacá is associated with Indigenous food traditions of northern Brazil and the Amazon region.",
+   "culture": "Amazon",
+   "fits": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Hawaiian poke bowl",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Hawaiʻi · Fish · Seaweed · Rice",
+   "cal": 480,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Limupoke.jpg?width=1200",
+   "ingredients": [
+    "150g sushi grade or otherwise suitable fish",
+    "Cooked rice",
+    "Seaweed",
+    "Cucumber",
+    "Green onion",
+    "Sesame",
+    "Shoyu"
+   ],
+   "steps": [
+    "Keep the fish properly chilled and use fish suitable for raw consumption.",
+    "Cut the fish into bite sized pieces.",
+    "Toss gently with shoyu, sesame and green onion.",
+    "Serve over warm or cooled rice with cucumber and seaweed."
+   ],
+   "fit": "Poke is rooted in Native Hawaiian food culture, with later influences creating many modern variations.",
+   "culture": "Hawaiʻi",
+   "fits": [
+    "Dairy free"
+   ]
+  },
+  {
+   "name": "Lemon herb salmon, avocado & greens",
+   "slot": "Dinner",
+   "duration": 20,
+   "meta": "Protein · Omega 3 · Low carb",
+   "cal": 450,
+   "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g salmon",
+    "1/2 avocado",
+    "Mixed leafy greens",
+    "Cucumber",
+    "Lemon",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Pat the salmon dry and season lightly.",
+    "Pan cook for about 4 minutes on each side, depending on thickness, until it flakes easily.",
+    "Slice the avocado and cucumber while the salmon cooks.",
+    "Build the greens, avocado and cucumber, then add the salmon.",
+    "Finish with lemon and olive oil."
+   ],
+   "fit": "A low carbohydrate meal built around salmon, avocado and leafy greens. Keto suitability depends on the full recipe and your daily carbohydrate target.",
+   "culture": "Modern home kitchen",
+   "fits": [
+    "Keto friendly"
+   ]
+  },
+  {
+   "name": "Nepali dal bhat tarkari",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Fibre · Plant protein · Iron",
+   "cal": 510,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dal_bhat.jpg?width=1200",
+   "ingredients": [
+    "120g cooked lentils",
+    "150g cooked rice",
+    "Mixed vegetables",
+    "Tomato",
+    "Fresh coriander",
+    "Spices"
+   ],
+   "steps": [
+    "Warm the lentils with tomato, cumin and turmeric for 5 minutes.",
+    "Cook the vegetables until just tender, about 7 minutes.",
+    "Warm the rice and spoon everything into a bowl.",
+    "Finish with coriander and a little pickle if you like."
+   ],
+   "fit": "A varied meal built around lentils, vegetables and rice."
+  },
+  {
+   "name": "Ghanaian jollof rice with beans",
+   "slot": "Dinner",
+   "duration": 40,
+   "meta": "Fibre · Plant protein · Vitamin C",
+   "cal": 560,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20Rice%20in%20Ghana.jpg?width=1200",
+   "ingredients": [
+    "100g rice",
+    "100g cooked beans",
+    "Tomatoes",
+    "Red pepper",
+    "Onion",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Blend or finely chop the tomato, pepper and onion.",
+    "Cook the mixture for 10 minutes until thick and glossy.",
+    "Stir in rice and enough water or stock to cook it through.",
+    "Fold through beans near the end and rest for 5 minutes."
+   ],
+   "fit": "A flavourful plant forward option with rice, beans and vegetables."
+  },
+  {
+   "name": "Shakshuka with wholegrain bread",
+   "slot": "Breakfast",
+   "duration": 25,
+   "meta": "Protein · Fibre · Folate",
+   "cal": 450,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shakshuka1.jpg?width=1200",
+   "ingredients": [
+    "2 eggs",
+    "2 tomatoes",
+    "1 red pepper",
+    "1 small onion",
+    "Paprika",
+    "1 slice wholegrain bread"
+   ],
+   "steps": [
+    "Soften onion and pepper for 5 minutes.",
+    "Add chopped tomatoes and paprika and simmer for 8 minutes.",
+    "Make two wells and crack in the eggs. Cover and cook for 4 to 6 minutes until set to your liking.",
+    "Serve with toasted wholegrain bread."
+   ],
+   "fit": "A vegetable rich breakfast with protein and fibre."
+  },
+  {
+   "name": "Japanese salmon rice bowl",
+   "slot": "Lunch",
+   "duration": 25,
+   "meta": "Protein · Omega 3 · Vitamin D",
+   "cal": 530,
+   "img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "130g salmon",
+    "150g cooked rice",
+    "Cucumber",
+    "Edamame",
+    "Spring onion",
+    "Sesame seeds"
+   ],
+   "steps": [
+    "Cook the salmon until it flakes easily, about 8 to 10 minutes depending on thickness.",
+    "Warm the rice.",
+    "Slice cucumber and spring onion.",
+    "Build the bowl and finish with edamame and sesame."
+   ],
+   "fit": "A colourful bowl combining fish, grains and vegetables."
+  },
+  {
+   "name": "Moroccan chickpea vegetable tagine",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Fibre · Plant protein · Folate",
+   "cal": 490,
+   "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g chickpeas",
+    "Carrot",
+    "Courgette",
+    "Tomatoes",
+    "Cumin",
+    "Coriander"
+   ],
+   "steps": [
+    "Soften carrot and onion for 5 minutes.",
+    "Add spices and stir for 30 seconds.",
+    "Add tomatoes, courgette and chickpeas and simmer for 15 minutes.",
+    "Finish with coriander and lemon."
+   ],
+   "fit": "A vegetable and legume based meal with aromatic spices."
+  },
+  {
+   "name": "Caribbean black bean & plantain bowl",
+   "slot": "Lunch",
+   "duration": 30,
+   "meta": "Fibre · Plant protein · Potassium",
+   "cal": 520,
+   "img": "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g black beans",
+    "1 plantain",
+    "Tomato",
+    "Cabbage",
+    "Avocado",
+    "Lime"
+   ],
+   "steps": [
+    "Slice plantain and cook in a little oil until golden on both sides.",
+    "Warm beans with tomato and seasoning.",
+    "Shred cabbage and slice avocado.",
+    "Build the bowl and finish with lime."
+   ],
+   "fit": "A colourful combination of beans, plantain and fresh vegetables."
+  },
+  {
+   "name": "Ethiopian lentil stew with greens",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Fibre · Plant protein · Iron",
+   "cal": 480,
+   "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g cooked lentils",
+    "Tomatoes",
+    "Onion",
+    "Garlic",
+    "Spinach",
+    "Berbere spice"
+   ],
+   "steps": [
+    "Cook onion, garlic and berbere gently for 5 minutes.",
+    "Add tomatoes and simmer until thick.",
+    "Stir in lentils and cook for 8 minutes.",
+    "Fold through spinach until wilted and serve."
+   ],
+   "fit": "A fibre rich lentil dish with greens and warming spices."
+  },
+  {
+   "name": "Greek lentil, tomato & feta bowl",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Fibre · Protein · Calcium",
+   "cal": 460,
+   "img": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g cooked lentils",
+    "Tomatoes",
+    "Cucumber",
+    "Feta",
+    "Parsley",
+    "Olive oil"
+   ],
+   "steps": [
+    "Rinse and drain the lentils.",
+    "Chop tomato and cucumber.",
+    "Toss with parsley and olive oil.",
+    "Crumble over feta and serve."
+   ],
+   "fit": "A simple bowl built around lentils, vegetables and a little feta."
+  },
+  {
+   "name": "Mexican black bean, corn & avocado bowl",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Fibre · Plant protein · Folate",
+   "cal": 500,
+   "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g black beans",
+    "80g sweetcorn",
+    "1 avocado",
+    "Tomatoes",
+    "Lime",
+    "Coriander"
+   ],
+   "steps": [
+    "Warm the beans and corn with a little cumin.",
+    "Chop tomatoes and avocado.",
+    "Combine everything in a bowl.",
+    "Finish with lime and coriander."
+   ],
+   "fit": "A flexible plant forward bowl with beans, vegetables and avocado."
+  },
+  {
+   "name": "Middle Eastern lentil soup with wholegrain flatbread",
+   "slot": "Lunch",
+   "duration": 30,
+   "meta": "Fibre · Plant protein · Iron",
+   "cal": 460,
+   "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g cooked lentils",
+    "Tomatoes",
+    "Carrot",
+    "Onion",
+    "Cumin",
+    "1 small wholegrain flatbread"
+   ],
+   "steps": [
+    "Soften onion and carrot for 5 minutes.",
+    "Add tomatoes, cumin and lentils with enough water to cover.",
+    "Simmer for 15 minutes and stir until the soup thickens.",
+    "Warm the flatbread and serve alongside."
+   ],
+   "fit": "A simple lentil based meal with vegetables and aromatic spices."
+  }
+ ],
+ "V17_NUTRIENTS": {
+  "Greek yoghurt, berries & seeds": [
+   [
+    "Protein",
+    28
+   ],
+   [
+    "Fibre",
+    28
+   ],
+   [
+    "Calcium",
+    28
+   ],
+   [
+    "Magnesium",
+    18
+   ]
+  ],
+  "Avocado, egg & seeded toast": [
+   [
+    "Protein",
+    32
+   ],
+   [
+    "Fibre",
+    36
+   ],
+   [
+    "Folate",
+    32
+   ],
+   [
+    "Potassium",
+    20
+   ]
+  ],
+  "Overnight oats with banana & seeds": [
+   [
+    "Protein",
+    26
+   ],
+   [
+    "Fibre",
+    32
+   ],
+   [
+    "Magnesium",
+    24
+   ],
+   [
+    "Potassium",
+    15
+   ]
+  ],
+  "Salmon, quinoa & greens": [
+   [
+    "Protein",
+    70
+   ],
+   [
+    "Fibre",
+    29
+   ],
+   [
+    "Omega 3",
+    55
+   ],
+   [
+    "Vitamin D",
+    32
+   ]
+  ],
+  "Chickpea, cucumber & herb bowl": [
+   [
+    "Protein",
+    32
+   ],
+   [
+    "Fibre",
+    46
+   ],
+   [
+    "Folate",
+    30
+   ],
+   [
+    "Iron",
+    20
+   ]
+  ],
+  "Chicken, rice & roasted peppers": [
+   [
+    "Protein",
+    80
+   ],
+   [
+    "Fibre",
+    25
+   ],
+   [
+    "Vitamin C",
+    60
+   ],
+   [
+    "B6",
+    35
+   ]
+  ],
+  "Lentil & roasted vegetable bowl": [
+   [
+    "Protein",
+    38
+   ],
+   [
+    "Fibre",
+    54
+   ],
+   [
+    "Iron",
+    24
+   ],
+   [
+    "Folate",
+    35
+   ]
+  ],
+  "Cod, potatoes & green beans": [
+   [
+    "Protein",
+    74
+   ],
+   [
+    "Fibre",
+    25
+   ],
+   [
+    "B12",
+    80
+   ],
+   [
+    "Potassium",
+    25
+   ]
+  ],
+  "Chicken & sweet potato tray bake": [
+   [
+    "Protein",
+    84
+   ],
+   [
+    "Fibre",
+    32
+   ],
+   [
+    "Potassium",
+    22
+   ],
+   [
+    "Vitamin C",
+    75
+   ]
+  ],
+  "Nepali dal bhat tarkari": [
+   [
+    "Protein",
+    34
+   ],
+   [
+    "Fibre",
+    43
+   ],
+   [
+    "Iron",
+    24
+   ],
+   [
+    "Folate",
+    30
+   ]
+  ],
+  "Ghanaian jollof rice with beans": [
+   [
+    "Protein",
+    30
+   ],
+   [
+    "Fibre",
+    38
+   ],
+   [
+    "Iron",
+    22
+   ],
+   [
+    "Vitamin C",
+    45
+   ]
+  ],
+  "Shakshuka with wholegrain bread": [
+   [
+    "Protein",
+    42
+   ],
+   [
+    "Fibre",
+    28
+   ],
+   [
+    "Folate",
+    35
+   ],
+   [
+    "Vitamin C",
+    38
+   ]
+  ],
+  "Japanese salmon rice bowl": [
+   [
+    "Protein",
+    66
+   ],
+   [
+    "Fibre",
+    18
+   ],
+   [
+    "Omega 3",
+    62
+   ],
+   [
+    "Vitamin D",
+    45
+   ]
+  ],
+  "Moroccan chickpea vegetable tagine": [
+   [
+    "Protein",
+    30
+   ],
+   [
+    "Fibre",
+    52
+   ],
+   [
+    "Iron",
+    26
+   ],
+   [
+    "Folate",
+    42
+   ]
+  ],
+  "Caribbean black bean & plantain bowl": [
+   [
+    "Protein",
+    30
+   ],
+   [
+    "Fibre",
+    48
+   ],
+   [
+    "Iron",
+    24
+   ],
+   [
+    "Potassium",
+    28
+   ]
+  ],
+  "Ethiopian lentil stew with greens": [
+   [
+    "Protein",
+    36
+   ],
+   [
+    "Fibre",
+    55
+   ],
+   [
+    "Iron",
+    35
+   ],
+   [
+    "Folate",
+    44
+   ]
+  ],
+  "Greek lentil, tomato & feta bowl": [
+   [
+    "Protein",
+    34
+   ],
+   [
+    "Fibre",
+    45
+   ],
+   [
+    "Calcium",
+    25
+   ],
+   [
+    "Folate",
+    38
+   ]
+  ],
+  "Mexican black bean, corn & avocado bowl": [
+   [
+    "Protein",
+    30
+   ],
+   [
+    "Fibre",
+    50
+   ],
+   [
+    "Folate",
+    35
+   ],
+   [
+    "Potassium",
+    26
+   ]
+  ],
+  "Ghanaian grilled tilapia & fries": [
+   [
+    "Protein",
+    70
+   ],
+   [
+    "Vitamin B12",
+    95
+   ],
+   [
+    "Selenium",
+    65
+   ],
+   [
+    "Vitamin D",
+    30
+   ]
+  ],
+  "Swedish köttbullar with lingonberry": [
+   [
+    "Protein",
+    50
+   ],
+   [
+    "Iron",
+    20
+   ],
+   [
+    "B12",
+    45
+   ],
+   [
+    "Zinc",
+    35
+   ]
+  ],
+  "True ramen · shoyu style": [
+   [
+    "Protein",
+    35
+   ],
+   [
+    "Iron",
+    20
+   ],
+   [
+    "Folate",
+    18
+   ],
+   [
+    "Sodium",
+    55
+   ]
+  ],
+  "Vietnamese chicken phở": [
+   [
+    "Protein",
+    52
+   ],
+   [
+    "Fibre",
+    18
+   ],
+   [
+    "Vitamin C",
+    22
+   ],
+   [
+    "Iron",
+    18
+   ]
+  ],
+  "Korean bibimbap": [
+   [
+    "Protein",
+    34
+   ],
+   [
+    "Fibre",
+    24
+   ],
+   [
+    "Folate",
+    30
+   ],
+   [
+    "Iron",
+    22
+   ]
+  ],
+  "Fijian kokoda": [
+   [
+    "Protein",
+    50
+   ],
+   [
+    "Vitamin C",
+    35
+   ],
+   [
+    "Omega 3",
+    45
+   ],
+   [
+    "Selenium",
+    55
+   ]
+  ],
+  "Masala dosa with sambar": [
+   [
+    "Protein",
+    24
+   ],
+   [
+    "Fibre",
+    30
+   ],
+   [
+    "Iron",
+    20
+   ],
+   [
+    "Folate",
+    28
+   ]
+  ],
+  "Peruvian ceviche": [
+   [
+    "Protein",
+    55
+   ],
+   [
+    "Vitamin C",
+    35
+   ],
+   [
+    "Omega 3",
+    45
+   ],
+   [
+    "Selenium",
+    55
+   ]
+  ],
+  "Amazonian tacacá": [
+   [
+    "Protein",
+    32
+   ],
+   [
+    "Iron",
+    20
+   ],
+   [
+    "Vitamin C",
+    18
+   ],
+   [
+    "Selenium",
+    30
+   ]
+  ],
+  "Hawaiian poke bowl": [
+   [
+    "Protein",
+    55
+   ],
+   [
+    "Omega 3",
+    48
+   ],
+   [
+    "Vitamin B12",
+    60
+   ],
+   [
+    "Iodine",
+    35
+   ]
+  ],
+  "Lemon herb salmon, avocado & greens": [
+   [
+    "Protein",
+    65
+   ],
+   [
+    "Omega 3",
+    58
+   ],
+   [
+    "Vitamin D",
+    38
+   ],
+   [
+    "Folate",
+    20
+   ]
+  ]
+ },
+ "V17_WORLDS": {
+  "Nepal": {
+   "region": "South Asia",
+   "tag": "Himalayan kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dal_bhat.jpg?width=1200",
+   "description": "Dal bhat tarkari brings lentils, rice, vegetables and pickles together in one of Nepal’s most recognisable everyday meals."
+  },
+  "Ghana": {
+   "region": "West Africa",
+   "tag": "Ghanaian kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20Rice%20in%20Ghana.jpg?width=1200",
+   "description": "Ghanaian jollof is built around rice, tomato, aromatics and spices, with beans, fish, chicken or vegetables often alongside it."
+  },
+  "Mediterranean": {
+   "region": "Mediterranean",
+   "tag": "Mediterranean kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shakshuka1.jpg?width=1200",
+   "description": "Across the Mediterranean, vegetables, legumes, grains, herbs, olive oil and fish create many different food traditions rather than one fixed diet."
+  },
+  "Morocco": {
+   "region": "North Africa",
+   "tag": "Moroccan kitchen",
+   "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+   "description": "Chickpeas, vegetables, herbs and warm spices make Moroccan tagines a wonderful gateway to North African flavours."
+  },
+  "Japan": {
+   "region": "East Asia",
+   "tag": "Japanese kitchen",
+   "img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=90",
+   "description": "Rice, fish, vegetables, fermented foods and simple seasonings create many Japanese everyday meals."
+  },
+  "Caribbean": {
+   "region": "Caribbean",
+   "tag": "Caribbean kitchen",
+   "img": "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=90",
+   "description": "Beans, plantain, fish, vegetables, herbs and fruit appear in many colourful Caribbean food traditions."
+  },
+  "Middle East": {
+   "region": "Middle East",
+   "tag": "Middle Eastern kitchen",
+   "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+   "description": "Legumes, grains, vegetables, herbs, yoghurt and spices create a huge variety of Middle Eastern dishes."
+  },
+  "Ethiopia": {
+   "region": "East Africa",
+   "tag": "Ethiopian kitchen",
+   "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+   "description": "Lentils, vegetables, greens and aromatic spice blends make Ethiopian food a rich place to explore."
+  },
+  "Latin America": {
+   "region": "Latin America",
+   "tag": "Latin American kitchen",
+   "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+   "description": "Beans, maize, avocado, vegetables and herbs form a starting point for countless Latin American dishes."
+  },
+  "Sweden": {
+   "region": "Northern Europe",
+   "tag": "Swedish kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Meatballs.jpg?width=1200",
+   "description": "Swedish food ranges from everyday comfort dishes to breads, fish, potatoes and seasonal traditions. Köttbullar are one familiar example, often paired with potatoes and lingonberry."
+  },
+  "Vietnam": {
+   "region": "Southeast Asia",
+   "tag": "Vietnamese kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20Pho.jpg?width=1200",
+   "description": "Vietnamese cooking is known for aromatic broths, fresh herbs, rice noodles, vegetables, chilli and bright citrus."
+  },
+  "Korea": {
+   "region": "East Asia",
+   "tag": "Korean kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean%20Bibimbap.jpg?width=1200",
+   "description": "Korean food brings together rice, vegetables, fermented foods, sauces and many regional traditions. Bibimbap is a vivid example."
+  },
+  "Fiji": {
+   "region": "Pacific",
+   "tag": "Fijian kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kokodafood.jpg?width=1200",
+   "description": "Fijian food reflects island life, the ocean, tropical produce and a strong tradition of sharing food. Kokoda and lovo offer two very different ways in."
+  },
+  "India": {
+   "region": "South Asia",
+   "tag": "Indian kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200",
+   "description": "India contains an extraordinary range of regional cuisines. Dosa is one South Indian example; spices, grains, legumes and fermentation appear in many traditions."
+  },
+  "Peru": {
+   "region": "South America",
+   "tag": "Peruvian kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200",
+   "description": "Peruvian cuisine spans coast, Andes and Amazon, with ceviche deeply connected to coastal traditions, local produce and communal occasions."
+  },
+  "Amazon": {
+   "region": "Amazonia",
+   "tag": "Amazonian foodways",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tacac%C3%A1%20(Brazilian%20indigenous%20soup)%20(51404038372).jpg?width=1200",
+   "description": "Amazonian foodways draw on river fish, manioc, native plants and Indigenous knowledge. Tacacá is a striking example from northern Brazil."
+  },
+  "Hawaiʻi": {
+   "region": "Pacific Islands",
+   "tag": "Native Hawaiian foodways",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hawaiian%20poi.jpg?width=1200",
+   "description": "Native Hawaiian food traditions include staples such as kalo and poi and a deep relationship with land, sea and community. Modern island food also reflects many later influences."
+  }
+ },
+ "GLOBAL_DISCOVERIES": [
+  {
+   "name": "Ghanaian grilled tilapia & fries",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Protein · B12 · Cultural classic",
+   "cal": 610,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Grilled%20Tilapia%20Ghana.JPG?width=1200",
+   "ingredients": [
+    "1 whole tilapia",
+    "1 small yam",
+    "Red pepper",
+    "Onion",
+    "Ginger",
+    "Garlic",
+    "Scotch bonnet",
+    "1 tbsp oil"
+   ],
+   "steps": [
+    "Blend or finely chop pepper, onion, ginger and garlic, then rub it over the fish.",
+    "Leave the fish to take on the flavour for about 20 minutes.",
+    "Heat the grill or oven to 180°C and cook the tilapia for about 10 to 15 minutes on each side until the flesh flakes easily.",
+    "Cut the yam into chip shapes and cook until golden and tender, or use potato fries if that is what you have.",
+    "Serve with pepper sauce, sliced onion and the yam chips."
+   ],
+   "fit": "A Ghanaian favourite built around grilled fish, traditionally paired with yam and hot pepper sauce; this home version can use fries if preferred.",
+   "culture": "Ghana",
+   "fits": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Swedish köttbullar with lingonberry",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "Sweden · Comfort food · Protein",
+   "cal": 570,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Meatballs.jpg?width=1200",
+   "ingredients": [
+    "250g beef and pork mince",
+    "1 small onion",
+    "40g breadcrumbs",
+    "1 egg",
+    "100ml milk",
+    "Potatoes",
+    "Lingonberry jam"
+   ],
+   "steps": [
+    "Soften the onion gently for about 5 minutes.",
+    "Mix mince, onion, breadcrumbs, egg and milk until just combined.",
+    "Roll into small meatballs.",
+    "Brown them in a pan, turning often, then cook through for about 10 minutes.",
+    "Serve with potatoes, sauce and lingonberry."
+   ],
+   "fit": "A classic Swedish comfort meal, often served with potatoes and lingonberry.",
+   "culture": "Sweden",
+   "fits": [
+    "Comforting"
+   ]
+  },
+  {
+   "name": "True ramen · shoyu style",
+   "slot": "Dinner",
+   "duration": 35,
+   "meta": "China to Japan · Wheat noodles · Umami",
+   "cal": 560,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shoyu%20Ramen.jpg?width=1200",
+   "ingredients": [
+    "120g ramen noodles",
+    "500ml chicken or vegetable broth",
+    "1 tbsp soy sauce",
+    "Spring onion",
+    "Mushrooms",
+    "1 egg",
+    "Nori"
+   ],
+   "steps": [
+    "Bring the broth to a gentle simmer and season with soy sauce.",
+    "Cook the noodles according to the packet until springy, usually about 3 to 4 minutes.",
+    "Warm mushrooms in the broth for 2 minutes.",
+    "Add noodles to a bowl and pour over the hot broth.",
+    "Top with egg, spring onion and nori."
+   ],
+   "fit": "Ramen has Chinese roots and became a distinct Japanese food with many regional styles. This is a simple shoyu inspired home bowl.",
+   "culture": "Japan",
+   "fits": [
+    "Comforting",
+    "Spicy option"
+   ]
+  },
+  {
+   "name": "Vietnamese chicken phở",
+   "slot": "Lunch",
+   "duration": 40,
+   "meta": "Vietnam · Herbs · Protein",
+   "cal": 500,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20Pho.jpg?width=1200",
+   "ingredients": [
+    "120g rice noodles",
+    "150g chicken",
+    "700ml chicken stock",
+    "Ginger",
+    "Star anise",
+    "Spring onion",
+    "Coriander",
+    "Lime"
+   ],
+   "steps": [
+    "Warm the stock with ginger and star anise for about 15 minutes.",
+    "Cook the rice noodles according to the packet, usually 3 to 5 minutes.",
+    "Add cooked sliced chicken to the hot broth.",
+    "Build the bowl with noodles, broth and herbs.",
+    "Finish with lime and chilli to taste."
+   ],
+   "fit": "A fragrant Vietnamese noodle soup with fresh herbs and citrus.",
+   "culture": "Vietnam",
+   "fits": [
+    "Spicy option"
+   ]
+  },
+  {
+   "name": "Korean bibimbap",
+   "slot": "Lunch",
+   "duration": 30,
+   "meta": "Korea · Vegetables · Gochujang",
+   "cal": 520,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean%20Bibimbap.jpg?width=1200",
+   "ingredients": [
+    "150g cooked rice",
+    "1 egg",
+    "Carrot",
+    "Spinach",
+    "Bean sprouts",
+    "Mushrooms",
+    "Gochujang",
+    "Sesame oil"
+   ],
+   "steps": [
+    "Cook the rice and keep it warm.",
+    "Cook each vegetable separately for a few minutes so it stays colourful and tender.",
+    "Fry the egg until the white is set.",
+    "Build the rice bowl with vegetables and egg.",
+    "Add gochujang and sesame oil, then mix at the table."
+   ],
+   "fit": "A Korean mixed rice bowl that brings vegetables, rice, sauce and protein together.",
+   "culture": "Korea",
+   "fits": [
+    "Spicy",
+    "Vegetarian friendly"
+   ]
+  },
+  {
+   "name": "Fijian kokoda",
+   "slot": "Lunch",
+   "duration": 25,
+   "meta": "Fiji · Citrus · Coconut · Fish",
+   "cal": 430,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kokodafood.jpg?width=1200",
+   "ingredients": [
+    "180g very fresh fish suitable for raw preparation",
+    "Lime juice",
+    "Coconut milk",
+    "Tomato",
+    "Cucumber",
+    "Onion",
+    "Chilli"
+   ],
+   "steps": [
+    "Cut the fish into small pieces and cover with lime juice.",
+    "Chill while the citrus changes the fish texture, following a food safe recipe and using suitable fresh fish.",
+    "Mix coconut milk with tomato, cucumber and onion.",
+    "Combine with the fish and chilli just before serving."
+   ],
+   "fit": "Kokoda is a Fijian dish of fish prepared with citrus and coconut, often enjoyed as a fresh shared dish.",
+   "culture": "Fiji",
+   "fits": [
+    "Spicy",
+    "Dairy free"
+   ]
+  },
+  {
+   "name": "Masala dosa with sambar",
+   "slot": "Breakfast",
+   "duration": 35,
+   "meta": "South India · Fermented batter · Plant based",
+   "cal": 470,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200",
+   "ingredients": [
+    "Dosa batter",
+    "Potato",
+    "Onion",
+    "Mustard seeds",
+    "Curry leaves",
+    "Sambar",
+    "Coconut chutney"
+   ],
+   "steps": [
+    "Warm the pan and spread a thin layer of dosa batter.",
+    "Cook until the underside is crisp and golden, about 2 to 3 minutes.",
+    "Fill with spiced potato and fold.",
+    "Warm the sambar and serve with coconut chutney."
+   ],
+   "fit": "Dosa is a fermented South Indian staple with many regional styles and accompaniments.",
+   "culture": "India",
+   "fits": [
+    "Vegan friendly",
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Peruvian ceviche",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Peru · Citrus · Chilli · Fish",
+   "cal": 390,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200",
+   "ingredients": [
+    "180g very fresh fish suitable for raw preparation",
+    "Lime juice",
+    "Red onion",
+    "Chilli",
+    "Coriander",
+    "Sweetcorn",
+    "Sweet potato"
+   ],
+   "steps": [
+    "Dice the fish and keep it properly chilled.",
+    "Prepare the lime, onion, chilli and coriander.",
+    "Combine shortly before serving according to a trusted food safe method.",
+    "Serve with sweetcorn and sweet potato."
+   ],
+   "fit": "Peruvian ceviche is a traditional dish closely connected with coastal food culture and communal eating.",
+   "culture": "Peru",
+   "fits": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Amazonian tacacá",
+   "slot": "Dinner",
+   "duration": 40,
+   "meta": "Northern Brazil · Jambu · Manioc · Shrimp",
+   "cal": 450,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tacac%C3%A1%20(Brazilian%20indigenous%20soup)%20(51404038372).jpg?width=1200",
+   "ingredients": [
+    "Tucupi or manioc broth",
+    "Jambu leaves",
+    "Tapioca starch",
+    "Dried shrimp",
+    "Yellow chilli"
+   ],
+   "steps": [
+    "Prepare the manioc based broth using a food safe commercial preparation.",
+    "Cook jambu until tender.",
+    "Make a small tapioca starch portion according to the recipe.",
+    "Assemble the hot broth with jambu, tapioca and shrimp.",
+    "Serve very hot in a bowl, as traditionally presented."
+   ],
+   "fit": "Tacacá is associated with Indigenous food traditions of northern Brazil and the Amazon region.",
+   "culture": "Amazon",
+   "fits": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Hawaiian poke bowl",
+   "slot": "Lunch",
+   "duration": 20,
+   "meta": "Hawaiʻi · Fish · Seaweed · Rice",
+   "cal": 480,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Limupoke.jpg?width=1200",
+   "ingredients": [
+    "150g sushi grade or otherwise suitable fish",
+    "Cooked rice",
+    "Seaweed",
+    "Cucumber",
+    "Green onion",
+    "Sesame",
+    "Shoyu"
+   ],
+   "steps": [
+    "Keep the fish properly chilled and use fish suitable for raw consumption.",
+    "Cut the fish into bite sized pieces.",
+    "Toss gently with shoyu, sesame and green onion.",
+    "Serve over warm or cooled rice with cucumber and seaweed."
+   ],
+   "fit": "Poke is rooted in Native Hawaiian food culture, with later influences creating many modern variations.",
+   "culture": "Hawaiʻi",
+   "fits": [
+    "Dairy free"
+   ]
+  }
+ ],
+ "SMART_FIT_MEALS": [
+  {
+   "name": "Lemon herb salmon, avocado & greens",
+   "slot": "Dinner",
+   "duration": 20,
+   "meta": "Protein · Omega 3 · Low carb",
+   "cal": 450,
+   "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=90",
+   "ingredients": [
+    "150g salmon",
+    "1/2 avocado",
+    "Mixed leafy greens",
+    "Cucumber",
+    "Lemon",
+    "1 tbsp olive oil"
+   ],
+   "steps": [
+    "Pat the salmon dry and season lightly.",
+    "Pan cook for about 4 minutes on each side, depending on thickness, until it flakes easily.",
+    "Slice the avocado and cucumber while the salmon cooks.",
+    "Build the greens, avocado and cucumber, then add the salmon.",
+    "Finish with lemon and olive oil."
+   ],
+   "fit": "A low carbohydrate meal built around salmon, avocado and leafy greens. Keto suitability depends on the full recipe and your daily carbohydrate target.",
+   "culture": "Modern home kitchen",
+   "fits": [
+    "Keto friendly"
+   ]
+  }
+ ],
+ "MEAL_CULTURES": {
+  "Ghanaian grilled tilapia & fries": "Ghana",
+  "Swedish köttbullar with lingonberry": "Sweden",
+  "True ramen · shoyu style": "Japan",
+  "Vietnamese chicken phở": "Vietnam",
+  "Korean bibimbap": "Korea",
+  "Fijian kokoda": "Fiji",
+  "Masala dosa with sambar": "India",
+  "Peruvian ceviche": "Peru",
+  "Amazonian tacacá": "Amazon",
+  "Hawaiian poke bowl": "Hawaiʻi"
+ },
+ "MEAL_FITS": {
+  "Ghanaian grilled tilapia & fries": [
+   "Spicy"
+  ],
+  "Swedish köttbullar with lingonberry": [
+   "Comforting"
+  ],
+  "True ramen · shoyu style": [
+   "Comforting",
+   "Spicy option"
+  ],
+  "Vietnamese chicken phở": [
+   "Spicy option"
+  ],
+  "Korean bibimbap": [
+   "Spicy",
+   "Vegetarian friendly"
+  ],
+  "Fijian kokoda": [
+   "Spicy",
+   "Dairy free"
+  ],
+  "Masala dosa with sambar": [
+   "Vegan friendly",
+   "Spicy"
+  ],
+  "Peruvian ceviche": [
+   "Spicy"
+  ],
+  "Amazonian tacacá": [
+   "Spicy"
+  ],
+  "Hawaiian poke bowl": [
+   "Dairy free"
+  ],
+  "Chickpea, cucumber & herb bowl": [
+   "Vegan friendly"
+  ],
+  "Lentil & roasted vegetable bowl": [
+   "Vegan friendly"
+  ],
+  "Moroccan chickpea vegetable tagine": [
+   "Vegan friendly",
+   "Spicy"
+  ],
+  "Caribbean black bean & plantain bowl": [
+   "Vegan friendly"
+  ],
+  "Ethiopian lentil stew with greens": [
+   "Vegan friendly",
+   "Spicy"
+  ],
+  "Mexican black bean, corn & avocado bowl": [
+   "Vegan friendly"
+  ],
+  "Middle Eastern lentil soup with wholegrain flatbread": [
+   "Vegan friendly"
+  ]
+ },
+ "WORLD_COUNTRIES": [
+  [
+   "Afghanistan",
+   "South Asia",
+   [
+    "Kabul & central",
+    "Herat & west",
+    "Nangarhar & east"
+   ],
+   [
+    "Kabuli palaw",
+    "Mantu",
+    "Ashak"
+   ]
+  ],
+  [
+   "Albania",
+   "Balkans",
+   [
+    "Northern mountains",
+    "Central Albania",
+    "Southern Riviera"
+   ],
+   [
+    "Tavë kosi",
+    "Byrek",
+    "Fërgesë"
+   ]
+  ],
+  [
+   "Algeria",
+   "North Africa",
+   [
+    "Algiers & north",
+    "Kabylie",
+    "Sahara"
+   ],
+   [
+    "Couscous",
+    "Chakhchoukha",
+    "Rechta"
+   ]
+  ],
+  [
+   "Andorra",
+   "Pyrenees",
+   [
+    "Canillo",
+    "Encamp",
+    "La Massana"
+   ],
+   [
+    "Escudella",
+    "Trinxat",
+    "Coca masegada"
+   ]
+  ],
+  [
+   "Angola",
+   "Central Africa",
+   [
+    "Luanda & coast",
+    "Benguela",
+    "Huíla"
+   ],
+   [
+    "Muamba de galinha",
+    "Calulu",
+    "Funje"
+   ]
+  ],
+  [
+   "Antigua and Barbuda",
+   "Caribbean",
+   [
+    "Antigua",
+    "Barbuda",
+    "Leeward islands"
+   ],
+   [
+    "Fungee & pepperpot",
+    "Ducana",
+    "Saltfish"
+   ]
+  ],
+  [
+   "Argentina",
+   "South America",
+   [
+    "Buenos Aires & Pampas",
+    "Cuyo",
+    "Patagonia"
+   ],
+   [
+    "Asado",
+    "Empanadas",
+    "Locro"
+   ]
+  ],
+  [
+   "Armenia",
+   "Caucasus",
+   [
+    "Yerevan",
+    "Lori & north",
+    "Syunik & south"
+   ],
+   [
+    "Khorovats",
+    "Dolma",
+    "Harissa"
+   ]
+  ],
+  [
+   "Australia",
+   "Oceania",
+   [
+    "New South Wales",
+    "Victoria",
+    "Northern Territory"
+   ],
+   [
+    "Meat pie",
+    "Barramundi",
+    "Damper"
+   ]
+  ],
+  [
+   "Austria",
+   "Central Europe",
+   [
+    "Vienna",
+    "Tyrol",
+    "Styria"
+   ],
+   [
+    "Wiener schnitzel",
+    "Tiroler gröstl",
+    "Käsespätzle"
+   ]
+  ],
+  [
+   "Azerbaijan",
+   "Caucasus",
+   [
+    "Baku & Absheron",
+    "Sheki & north",
+    "Lankaran"
+   ],
+   [
+    "Plov",
+    "Dolma",
+    "Qutab"
+   ]
+  ],
+  [
+   "Bahamas",
+   "Caribbean",
+   [
+    "New Providence",
+    "Grand Bahama",
+    "Out Islands"
+   ],
+   [
+    "Conch salad",
+    "Peas & rice",
+    "Cracked conch"
+   ]
+  ],
+  [
+   "Bahrain",
+   "Gulf",
+   [
+    "Manama",
+    "Muharraq",
+    "Southern governorate"
+   ],
+   [
+    "Machboos",
+    "Muhammar",
+    "Balaleet"
+   ]
+  ],
+  [
+   "Bangladesh",
+   "South Asia",
+   [
+    "Dhaka",
+    "Sylhet",
+    "Chattogram"
+   ],
+   [
+    "Hilsa bhapa",
+    "Kacchi biryani",
+    "Shorshe ilish"
+   ]
+  ],
+  [
+   "Barbados",
+   "Caribbean",
+   [
+    "Bridgetown",
+    "Christ Church",
+    "St Philip"
+   ],
+   [
+    "Cou-cou & flying fish",
+    "Fish cakes",
+    "Pudding & souse"
+   ]
+  ],
+  [
+   "Belarus",
+   "Eastern Europe",
+   [
+    "Minsk",
+    "Grodno",
+    "Vitebsk"
+   ],
+   [
+    "Draniki",
+    "Machanka",
+    "Kletski"
+   ]
+  ],
+  [
+   "Belgium",
+   "Western Europe",
+   [
+    "Flanders",
+    "Brussels",
+    "Wallonia"
+   ],
+   [
+    "Moules-frites",
+    "Waterzooi",
+    "Carbonnade flamande"
+   ]
+  ],
+  [
+   "Belize",
+   "Central America",
+   [
+    "Belize District",
+    "Stann Creek",
+    "Toledo"
+   ],
+   [
+    "Rice & beans",
+    "Hudut",
+    "Stew chicken"
+   ]
+  ],
+  [
+   "Benin",
+   "West Africa",
+   [
+    "Abomey & south",
+    "Porto-Novo",
+    "Atakora"
+   ],
+   [
+    "Amiwo",
+    "Wagasi",
+    "Pâte with sauces"
+   ]
+  ],
+  [
+   "Bhutan",
+   "Himalayas",
+   [
+    "Thimphu",
+    "Punakha",
+    "Eastern Bhutan"
+   ],
+   [
+    "Ema datshi",
+    "Phaksha paa",
+    "Jasha maru"
+   ]
+  ],
+  [
+   "Bolivia",
+   "South America",
+   [
+    "Altiplano",
+    "Cochabamba valleys",
+    "Santa Cruz lowlands"
+   ],
+   [
+    "Salteñas",
+    "Silpancho",
+    "Majadito"
+   ]
+  ],
+  [
+   "Bosnia and Herzegovina",
+   "Balkans",
+   [
+    "Sarajevo",
+    "Herzegovina",
+    "Krajina"
+   ],
+   [
+    "Ćevapi",
+    "Begova čorba",
+    "Pita"
+   ]
+  ],
+  [
+   "Botswana",
+   "Southern Africa",
+   [
+    "Gaborone",
+    "Kgalagadi",
+    "Chobe"
+   ],
+   [
+    "Seswaa",
+    "Bogobe",
+    "Morogo"
+   ]
+  ],
+  [
+   "Brazil",
+   "South America",
+   [
+    "Northeast",
+    "Southeast",
+    "Amazon & North"
+   ],
+   [
+    "Feijoada",
+    "Moqueca",
+    "Tacacá"
+   ]
+  ],
+  [
+   "Brunei",
+   "Southeast Asia",
+   [
+    "Brunei-Muara",
+    "Tutong",
+    "Temburong"
+   ],
+   [
+    "Ambuyat",
+    "Nasi katok",
+    "Kelupis"
+   ]
+  ],
+  [
+   "Bulgaria",
+   "Balkans",
+   [
+    "Sofia & west",
+    "Thrace",
+    "Black Sea coast"
+   ],
+   [
+    "Shopska salad",
+    "Banitsa",
+    "Kavarma"
+   ]
+  ],
+  [
+   "Burkina Faso",
+   "West Africa",
+   [
+    "Ouagadougou",
+    "Bobo-Dioulasso",
+    "Sahel"
+   ],
+   [
+    "Riz gras",
+    "Tô",
+    "Poulet bicyclette"
+   ]
+  ],
+  [
+   "Burundi",
+   "East Africa",
+   [
+    "Bujumbura",
+    "Central plateau",
+    "Lake Tanganyika"
+   ],
+   [
+    "Mukeke",
+    "Ibiharage",
+    "Ugali with greens"
+   ]
+  ],
+  [
+   "Cabo Verde",
+   "Atlantic Africa",
+   [
+    "Santiago",
+    "São Vicente",
+    "Sal"
+   ],
+   [
+    "Cachupa",
+    "Pastéis de milho",
+    "Canja"
+   ]
+  ],
+  [
+   "Cambodia",
+   "Southeast Asia",
+   [
+    "Phnom Penh",
+    "Siem Reap",
+    "Kampot"
+   ],
+   [
+    "Fish amok",
+    "Nom banh chok",
+    "Bai sach chrouk"
+   ]
+  ],
+  [
+   "Cameroon",
+   "Central Africa",
+   [
+    "Littoral",
+    "West region",
+    "Northwest"
+   ],
+   [
+    "Ndolé",
+    "Eru",
+    "Achou"
+   ]
+  ],
+  [
+   "Canada",
+   "North America",
+   [
+    "Atlantic Canada",
+    "Quebec",
+    "Prairies & west"
+   ],
+   [
+    "Poutine",
+    "Tourtière",
+    "Salmon with maple glaze"
+   ]
+  ],
+  [
+   "Central African Republic",
+   "Central Africa",
+   [
+    "Bangui",
+    "Ubangi",
+    "Savanna"
+   ],
+   [
+    "Kanda",
+    "Foutou",
+    "Cassava leaf stew"
+   ]
+  ],
+  [
+   "Chad",
+   "Central Africa",
+   [
+    "N’Djamena",
+    "Lake Chad",
+    "Sahel"
+   ],
+   [
+    "Chakalaka style stew",
+    "Boule",
+    "Jarret de bœuf"
+   ]
+  ],
+  [
+   "Chile",
+   "South America",
+   [
+    "Central valleys",
+    "Atacama north",
+    "Patagonia south"
+   ],
+   [
+    "Pastel de choclo",
+    "Cazuela",
+    "Curanto"
+   ]
+  ],
+  [
+   "China",
+   "East Asia",
+   [
+    "Sichuan",
+    "Guangdong",
+    "Shandong"
+   ],
+   [
+    "Mapo tofu",
+    "Dim sum",
+    "Peking duck"
+   ]
+  ],
+  [
+   "Colombia",
+   "South America",
+   [
+    "Caribbean coast",
+    "Andean highlands",
+    "Pacific & Amazon"
+   ],
+   [
+    "Bandeja paisa",
+    "Ajiaco",
+    "Sancocho"
+   ]
+  ],
+  [
+   "Comoros",
+   "Indian Ocean",
+   [
+    "Grande Comore",
+    "Mohéli",
+    "Anjouan"
+   ],
+   [
+    "Langouste à la vanille",
+    "Pilao",
+    "Mataba"
+   ]
+  ],
+  [
+   "Congo, Democratic Republic of the",
+   "Central Africa",
+   [
+    "Kinshasa",
+    "Kivu",
+    "Katanga"
+   ],
+   [
+    "Moambe",
+    "Pondu",
+    "Liboke"
+   ]
+  ],
+  [
+   "Congo, Republic of the",
+   "Central Africa",
+   [
+    "Brazzaville",
+    "Pool",
+    "Cuvette"
+   ],
+   [
+    "Poulet moambé",
+    "Saka-saka",
+    "Maboké"
+   ]
+  ],
+  [
+   "Costa Rica",
+   "Central America",
+   [
+    "Central Valley",
+    "Guanacaste",
+    "Caribbean coast"
+   ],
+   [
+    "Gallo pinto",
+    "Casado",
+    "Olla de carne"
+   ]
+  ],
+  [
+   "Côte d’Ivoire",
+   "West Africa",
+   [
+    "Abidjan",
+    "Lagunes",
+    "Savanes"
+   ],
+   [
+    "Attiéké",
+    "Kedjenou",
+    "Aloco"
+   ]
+  ],
+  [
+   "Croatia",
+   "Adriatic Europe",
+   [
+    "Dalmatia",
+    "Istria",
+    "Slavonia"
+   ],
+   [
+    "Pašticada",
+    "Istrian fuži",
+    "Čobanac"
+   ]
+  ],
+  [
+   "Cuba",
+   "Caribbean",
+   [
+    "Havana",
+    "Oriente",
+    "Matanzas"
+   ],
+   [
+    "Ropa vieja",
+    "Moros y cristianos",
+    "Lechón asado"
+   ]
+  ],
+  [
+   "Cyprus",
+   "Eastern Mediterranean",
+   [
+    "Nicosia",
+    "Limassol",
+    "Paphos"
+   ],
+   [
+    "Halloumi",
+    "Kleftiko",
+    "Sheftalia"
+   ]
+  ],
+  [
+   "Czechia",
+   "Central Europe",
+   [
+    "Bohemia",
+    "Moravia",
+    "Silesia"
+   ],
+   [
+    "Svíčková",
+    "Guláš",
+    "Bramboráky"
+   ]
+  ],
+  [
+   "Denmark",
+   "Nordics",
+   [
+    "Jutland",
+    "Zealand",
+    "Bornholm"
+   ],
+   [
+    "Smørrebrød",
+    "Stegt flæsk",
+    "Frikadeller"
+   ]
+  ],
+  [
+   "Djibouti",
+   "Horn of Africa",
+   [
+    "Djibouti City",
+    "Tadjourah",
+    "Ali Sabieh"
+   ],
+   [
+    "Skoudehkaris",
+    "Fah-fah",
+    "Laxoox"
+   ]
+  ],
+  [
+   "Dominica",
+   "Caribbean",
+   [
+    "Roseau",
+    "Carib Territory",
+    "Portsmouth"
+   ],
+   [
+    "Mountain chicken",
+    "Callaloo soup",
+    "Bakes & saltfish"
+   ]
+  ],
+  [
+   "Dominican Republic",
+   "Caribbean",
+   [
+    "Santo Domingo",
+    "Cibao",
+    "East"
+   ],
+   [
+    "La bandera",
+    "Mangú",
+    "Sancocho"
+   ]
+  ],
+  [
+   "Ecuador",
+   "South America",
+   [
+    "Andes",
+    "Coast",
+    "Amazon"
+   ],
+   [
+    "Locro de papa",
+    "Encebollado",
+    "Maito"
+   ]
+  ],
+  [
+   "Egypt",
+   "North Africa",
+   [
+    "Cairo & Nile valley",
+    "Alexandria",
+    "Upper Egypt"
+   ],
+   [
+    "Koshari",
+    "Ful medames",
+    "Molokhia"
+   ]
+  ],
+  [
+   "El Salvador",
+   "Central America",
+   [
+    "San Salvador",
+    "La Libertad",
+    "Eastern region"
+   ],
+   [
+    "Pupusas",
+    "Yuca frita",
+    "Sopa de res"
+   ]
+  ],
+  [
+   "Equatorial Guinea",
+   "Central Africa",
+   [
+    "Malabo",
+    "Bata",
+    "Bioko"
+   ],
+   [
+    "Peanut soup",
+    "Succotash style stew",
+    "Grilled fish with plantain"
+   ]
+  ],
+  [
+   "Eritrea",
+   "Horn of Africa",
+   [
+    "Asmara",
+    "Massawa",
+    "Keren"
+   ],
+   [
+    "Zigni",
+    "Injera",
+    "Shiro"
+   ]
+  ],
+  [
+   "Estonia",
+   "Baltics",
+   [
+    "Tallinn",
+    "Tartu",
+    "Saaremaa"
+   ],
+   [
+    "Verivorst",
+    "Mulgipuder",
+    "Kama"
+   ]
+  ],
+  [
+   "Eswatini",
+   "Southern Africa",
+   [
+    "Hhohho",
+    "Manzini",
+    "Lubombo"
+   ],
+   [
+    "Emahewu",
+    "Sishwala",
+    "Incwancwa"
+   ]
+  ],
+  [
+   "Ethiopia",
+   "Horn of Africa",
+   [
+    "Addis Ababa",
+    "Tigray",
+    "Oromia"
+   ],
+   [
+    "Doro wat",
+    "Injera",
+    "Shiro"
+   ]
+  ],
+  [
+   "Fiji",
+   "Pacific",
+   [
+    "Viti Levu",
+    "Vanua Levu",
+    "Lau islands"
+   ],
+   [
+    "Kokoda",
+    "Lovo",
+    "Rourou"
+   ]
+  ],
+  [
+   "Finland",
+   "Nordics",
+   [
+    "Helsinki",
+    "Lapland",
+    "Lakeland"
+   ],
+   [
+    "Lohikeitto",
+    "Karjalanpiirakka",
+    "Poronkäristys"
+   ]
+  ],
+  [
+   "France",
+   "Western Europe",
+   [
+    "Paris & Île-de-France",
+    "Provence",
+    "Brittany"
+   ],
+   [
+    "Ratatouille",
+    "Bouillabaisse",
+    "Galette complète"
+   ]
+  ],
+  [
+   "Gabon",
+   "Central Africa",
+   [
+    "Libreville",
+    "Ogooué-Maritime",
+    "Gabonese interior"
+   ],
+   [
+    "Poulet nyembwe",
+    "Brochettes",
+    "Baton de manioc"
+   ]
+  ],
+  [
+   "Gambia",
+   "West Africa",
+   [
+    "Greater Banjul",
+    "Kombo",
+    "Upper River"
+   ],
+   [
+    "Benachin",
+    "Domoda",
+    "Yassa"
+   ]
+  ],
+  [
+   "Georgia",
+   "Caucasus",
+   [
+    "Tbilisi",
+    "Kakheti",
+    "Adjara"
+   ],
+   [
+    "Khachapuri",
+    "Khinkali",
+    "Lobio"
+   ]
+  ],
+  [
+   "Germany",
+   "Central Europe",
+   [
+    "Bavaria",
+    "Rhineland",
+    "Saxony"
+   ],
+   [
+    "Sauerbraten",
+    "Currywurst",
+    "Maultaschen"
+   ]
+  ],
+  [
+   "Ghana",
+   "West Africa",
+   [
+    "Greater Accra",
+    "Ashanti",
+    "Volta & coast"
+   ],
+   [
+    "Grilled tilapia & yam chips",
+    "Jollof rice",
+    "Red-red"
+   ]
+  ],
+  [
+   "Greece",
+   "Eastern Mediterranean",
+   [
+    "Macedonia",
+    "Attica",
+    "Crete"
+   ],
+   [
+    "Moussaka",
+    "Dakos",
+    "Gemista"
+   ]
+  ],
+  [
+   "Grenada",
+   "Caribbean",
+   [
+    "St George’s",
+    "Carriacou",
+    "Petite Martinique"
+   ],
+   [
+    "Oil down",
+    "Callaloo soup",
+    "Lambie souse"
+   ]
+  ],
+  [
+   "Guatemala",
+   "Central America",
+   [
+    "Guatemala Highlands",
+    "Petén",
+    "Pacific coast"
+   ],
+   [
+    "Pepián",
+    "Kak-ik",
+    "Jocón"
+   ]
+  ],
+  [
+   "Guinea",
+   "West Africa",
+   [
+    "Conakry",
+    "Fouta Djallon",
+    "Forest region"
+   ],
+   [
+    "Mafé",
+    "Poulet yassa",
+    "Riz gras"
+   ]
+  ],
+  [
+   "Guinea-Bissau",
+   "West Africa",
+   [
+    "Bissau",
+    "Cacheu",
+    "Bolama"
+   ],
+   [
+    "Caldo de mancarra",
+    "Jollof rice",
+    "Grilled fish with rice"
+   ]
+  ],
+  [
+   "Guyana",
+   "South America",
+   [
+    "Georgetown",
+    "Essequibo",
+    "Berbice"
+   ],
+   [
+    "Pepperpot",
+    "Cook-up rice",
+    "Metemgee"
+   ]
+  ],
+  [
+   "Haiti",
+   "Caribbean",
+   [
+    "Port-au-Prince",
+    "Cap-Haïtien",
+    "Jacmel"
+   ],
+   [
+    "Griot",
+    "Soup joumou",
+    "Diri kole"
+   ]
+  ],
+  [
+   "Honduras",
+   "Central America",
+   [
+    "Tegucigalpa",
+    "Caribbean coast",
+    "Copán"
+   ],
+   [
+    "Baleadas",
+    "Sopa de caracol",
+    "Carne asada"
+   ]
+  ],
+  [
+   "Hungary",
+   "Central Europe",
+   [
+    "Budapest",
+    "Great Plain",
+    "Transdanubia"
+   ],
+   [
+    "Goulash",
+    "Lángos",
+    "Chicken paprikash"
+   ]
+  ],
+  [
+   "Iceland",
+   "Nordics",
+   [
+    "Reykjavík",
+    "North Iceland",
+    "Westfjords"
+   ],
+   [
+    "Plokkfiskur",
+    "Kjötsúpa",
+    "Skyr"
+   ]
+  ],
+  [
+   "India",
+   "South Asia",
+   [
+    "North India",
+    "South India",
+    "Bengal & east"
+   ],
+   [
+    "Masala dosa",
+    "Biryani",
+    "Rogan josh"
+   ]
+  ],
+  [
+   "Indonesia",
+   "Southeast Asia",
+   [
+    "Java",
+    "Sumatra",
+    "Sulawesi"
+   ],
+   [
+    "Nasi goreng",
+    "Rendang",
+    "Gado-gado"
+   ]
+  ],
+  [
+   "Iran",
+   "West Asia",
+   [
+    "Tehran & north",
+    "Isfahan",
+    "Khuzestan"
+   ],
+   [
+    "Ghormeh sabzi",
+    "Tahdig",
+    "Fesenjan"
+   ]
+  ],
+  [
+   "Iraq",
+   "West Asia",
+   [
+    "Baghdad",
+    "Basra",
+    "Kurdistan"
+   ],
+   [
+    "Masgouf",
+    "Dolma",
+    "Kubba"
+   ]
+  ],
+  [
+   "Ireland",
+   "Western Europe",
+   [
+    "Leinster",
+    "Munster",
+    "Connacht"
+   ],
+   [
+    "Irish stew",
+    "Boxty",
+    "Colcannon"
+   ]
+  ],
+  [
+   "Israel",
+   "Eastern Mediterranean",
+   [
+    "Galilee",
+    "Jerusalem",
+    "Tel Aviv coast"
+   ],
+   [
+    "Shakshuka",
+    "Sabich",
+    "Jachnun"
+   ]
+  ],
+  [
+   "Italy",
+   "Southern Europe",
+   [
+    "North Italy",
+    "Central Italy",
+    "Sicily & south"
+   ],
+   [
+    "Risotto",
+    "Pasta alla amatriciana",
+    "Arancini"
+   ]
+  ],
+  [
+   "Jamaica",
+   "Caribbean",
+   [
+    "Kingston",
+    "Montego Bay",
+    "Portland"
+   ],
+   [
+    "Jerk chicken",
+    "Ackee & saltfish",
+    "Run down"
+   ]
+  ],
+  [
+   "Japan",
+   "East Asia",
+   [
+    "Kansai",
+    "Kanto",
+    "Hokkaido"
+   ],
+   [
+    "Ramen",
+    "Okonomiyaki",
+    "Sushi"
+   ]
+  ],
+  [
+   "Jordan",
+   "West Asia",
+   [
+    "Amman",
+    "Madaba",
+    "Aqaba"
+   ],
+   [
+    "Mansaf",
+    "Maqluba",
+    "Galayet bandora"
+   ]
+  ],
+  [
+   "Kazakhstan",
+   "Central Asia",
+   [
+    "Almaty",
+    "Turkistan",
+    "Steppe regions"
+   ],
+   [
+    "Beshbarmak",
+    "Baursak",
+    "Kazy"
+   ]
+  ],
+  [
+   "Kenya",
+   "East Africa",
+   [
+    "Nairobi & central",
+    "Coast",
+    "Western Kenya"
+   ],
+   [
+    "Ugali & sukuma wiki",
+    "Pilau",
+    "Nyama choma"
+   ]
+  ],
+  [
+   "Kiribati",
+   "Pacific",
+   [
+    "Tarawa",
+    "Abaiang",
+    "Gilbert islands"
+   ],
+   [
+    "Palusami",
+    "Coconut fish",
+    "Breadfruit dishes"
+   ]
+  ],
+  [
+   "Kuwait",
+   "Gulf",
+   [
+    "Kuwait City",
+    "Al Jahra",
+    "Coastal areas"
+   ],
+   [
+    "Machboos",
+    "Mutabbaq samak",
+    "Gers ogaily"
+   ]
+  ],
+  [
+   "Kyrgyzstan",
+   "Central Asia",
+   [
+    "Bishkek",
+    "Issyk-Kul",
+    "Naryn"
+   ],
+   [
+    "Beshbarmak",
+    "Laghman",
+    "Manty"
+   ]
+  ],
+  [
+   "Laos",
+   "Southeast Asia",
+   [
+    "Vientiane",
+    "Luang Prabang",
+    "Champasak"
+   ],
+   [
+    "Laap",
+    "Khao niao",
+    "Tam mak hoong"
+   ]
+  ],
+  [
+   "Latvia",
+   "Baltics",
+   [
+    "Riga",
+    "Kurzeme",
+    "Latgale"
+   ],
+   [
+    "Grey peas with bacon",
+    "Sklandrausis",
+    "Jāņu cheese"
+   ]
+  ],
+  [
+   "Lebanon",
+   "Levant",
+   [
+    "Beirut & coast",
+    "Bekaa",
+    "Mount Lebanon"
+   ],
+   [
+    "Tabbouleh",
+    "Kibbeh",
+    "Mujaddara"
+   ]
+  ],
+  [
+   "Lesotho",
+   "Southern Africa",
+   [
+    "Maseru",
+    "Highlands",
+    "Lowlands"
+   ],
+   [
+    "Papa",
+    "Motoho",
+    "Chakalaka"
+   ]
+  ],
+  [
+   "Liberia",
+   "West Africa",
+   [
+    "Monrovia",
+    "Bong",
+    "Grand Bassa"
+   ],
+   [
+    "Jollof rice",
+    "Cassava leaf stew",
+    "Palava sauce"
+   ]
+  ],
+  [
+   "Libya",
+   "North Africa",
+   [
+    "Tripoli",
+    "Cyrenaica",
+    "Fezzan"
+   ],
+   [
+    "Bazeen",
+    "Shorba",
+    "Cuscus bil busla"
+   ]
+  ],
+  [
+   "Liechtenstein",
+   "Alps",
+   [
+    "Vaduz",
+    "Oberland",
+    "Unterland"
+   ],
+   [
+    "Käsknöpfle",
+    "Ribel",
+    "Hafalaab"
+   ]
+  ],
+  [
+   "Lithuania",
+   "Baltics",
+   [
+    "Vilnius",
+    "Aukštaitija",
+    "Samogitia"
+   ],
+   [
+    "Cepelinai",
+    "Šaltibarščiai",
+    "Kibinai"
+   ]
+  ],
+  [
+   "Luxembourg",
+   "Western Europe",
+   [
+    "Luxembourg City",
+    "Moselle",
+    "Ardennes"
+   ],
+   [
+    "Judd mat gaardebounen",
+    "Gromperekichelcher",
+    "Bamkuch"
+   ]
+  ],
+  [
+   "Madagascar",
+   "Indian Ocean",
+   [
+    "Antananarivo highlands",
+    "East coast",
+    "South & west"
+   ],
+   [
+    "Romazava",
+    "Ravitoto",
+    "Mofo gasy"
+   ]
+  ],
+  [
+   "Malawi",
+   "Southeast Africa",
+   [
+    "Central region",
+    "Lake Malawi",
+    "Southern region"
+   ],
+   [
+    "Nsima",
+    "Chambo",
+    "Ndiwo"
+   ]
+  ],
+  [
+   "Malaysia",
+   "Southeast Asia",
+   [
+    "Penang",
+    "Malacca",
+    "Sabah & Sarawak"
+   ],
+   [
+    "Nasi lemak",
+    "Laksa",
+    "Sarawak kolo mee"
+   ]
+  ],
+  [
+   "Maldives",
+   "Indian Ocean",
+   [
+    "Malé",
+    "Addu",
+    "Northern atolls"
+   ],
+   [
+    "Mas huni",
+    "Garudhiya",
+    "Fihunu mas"
+   ]
+  ],
+  [
+   "Mali",
+   "West Africa",
+   [
+    "Bamako",
+    "Mopti",
+    "Timbuktu & north"
+   ],
+   [
+    "Tiguadege na",
+    "To",
+    "Maafe"
+   ]
+  ],
+  [
+   "Malta",
+   "Mediterranean",
+   [
+    "Valletta",
+    "Gozo",
+    "Marsaxlokk"
+   ],
+   [
+    "Pastizzi",
+    "Fenek",
+    "Aljotta"
+   ]
+  ],
+  [
+   "Marshall Islands",
+   "Pacific",
+   [
+    "Majuro",
+    "Kwajalein",
+    "Outer atolls"
+   ],
+   [
+    "Breadfruit dishes",
+    "Coconut crab",
+    "Pandanus fruit"
+   ]
+  ],
+  [
+   "Mauritania",
+   "West Africa",
+   [
+    "Nouakchott",
+    "Trarza",
+    "Adrar"
+   ],
+   [
+    "Thieboudienne",
+    "Mechoui",
+    "Couscous"
+   ]
+  ],
+  [
+   "Mauritius",
+   "Indian Ocean",
+   [
+    "Port Louis",
+    "Grand Port",
+    "Black River"
+   ],
+   [
+    "Dholl puri",
+    "Rougaille",
+    "Mine frit"
+   ]
+  ],
+  [
+   "Mexico",
+   "North America",
+   [
+    "Oaxaca",
+    "Yucatán",
+    "Mexico City & central"
+   ],
+   [
+    "Mole negro",
+    "Cochinita pibil",
+    "Tacos al pastor"
+   ]
+  ],
+  [
+   "Micronesia",
+   "Pacific",
+   [
+    "Pohnpei",
+    "Chuuk",
+    "Yap"
+   ],
+   [
+    "Pohnpei sakau",
+    "Breadfruit",
+    "Taro dishes"
+   ]
+  ],
+  [
+   "Moldova",
+   "Eastern Europe",
+   [
+    "Chișinău",
+    "Codru",
+    "Gagauzia"
+   ],
+   [
+    "Mămăligă",
+    "Plăcintă",
+    "Zeamă"
+   ]
+  ],
+  [
+   "Monaco",
+   "Mediterranean",
+   [
+    "Monte Carlo",
+    "Monaco-Ville",
+    "La Condamine"
+   ],
+   [
+    "Barbagiuàn",
+    "Socca",
+    "Stocafi"
+   ]
+  ],
+  [
+   "Mongolia",
+   "East Asia",
+   [
+    "Ulaanbaatar",
+    "Central steppe",
+    "Gobi"
+   ],
+   [
+    "Buuz",
+    "Khuushuur",
+    "Tsuivan"
+   ]
+  ],
+  [
+   "Montenegro",
+   "Balkans",
+   [
+    "Bay of Kotor",
+    "Central Montenegro",
+    "Northern mountains"
+   ],
+   [
+    "Kačamak",
+    "Njeguški pršut",
+    "Cicvara"
+   ]
+  ],
+  [
+   "Morocco",
+   "North Africa",
+   [
+    "Marrakesh & south",
+    "Fez & north",
+    "Atlantic coast"
+   ],
+   [
+    "Tagine",
+    "Couscous",
+    "Pastilla"
+   ]
+  ],
+  [
+   "Mozambique",
+   "Southeast Africa",
+   [
+    "Maputo",
+    "Nampula",
+    "Zambezia"
+   ],
+   [
+    "Matapa",
+    "Piri-piri prawns",
+    "Xima"
+   ]
+  ],
+  [
+   "Myanmar",
+   "Southeast Asia",
+   [
+    "Yangon",
+    "Shan State",
+    "Rakhine"
+   ],
+   [
+    "Mohinga",
+    "Shan noodles",
+    "Rakhine mont di"
+   ]
+  ],
+  [
+   "Namibia",
+   "Southern Africa",
+   [
+    "Windhoek",
+    "Erongo",
+    "Caprivi"
+   ],
+   [
+    "Kapana",
+    "Oshifima",
+    "Potjiekos"
+   ]
+  ],
+  [
+   "Nauru",
+   "Pacific",
+   [
+    "Yaren",
+    "Anabar",
+    "Anibare"
+   ],
+   [
+    "Coconut fish",
+    "Pandanus fruit",
+    "Taro dishes"
+   ]
+  ],
+  [
+   "Nepal",
+   "Himalayas",
+   [
+    "Kathmandu Valley",
+    "Terai",
+    "Newar communities"
+   ],
+   [
+    "Dal bhat tarkari",
+    "Momo",
+    "Newari samay baji"
+   ]
+  ],
+  [
+   "Netherlands",
+   "Western Europe",
+   [
+    "North Holland",
+    "Zeeland",
+    "Limburg"
+   ],
+   [
+    "Stamppot",
+    "Poffertjes",
+    "Zeeuwse mosselen"
+   ]
+  ],
+  [
+   "New Zealand",
+   "Oceania",
+   [
+    "North Island",
+    "South Island",
+    "Māori foodways"
+   ],
+   [
+    "Hāngī",
+    "Pāua fritters",
+    "Whitebait fritters"
+   ]
+  ],
+  [
+   "Nicaragua",
+   "Central America",
+   [
+    "Managua",
+    "Caribbean coast",
+    "Matagalpa"
+   ],
+   [
+    "Gallo pinto",
+    "Nacatamales",
+    "Vigorón"
+   ]
+  ],
+  [
+   "Niger",
+   "West Africa",
+   [
+    "Niamey",
+    "Agadez",
+    "Zinder"
+   ],
+   [
+    "Tuwo",
+    "Dambou",
+    "Millet porridge"
+   ]
+  ],
+  [
+   "Nigeria",
+   "West Africa",
+   [
+    "Southwest",
+    "Southeast",
+    "Northern Nigeria"
+   ],
+   [
+    "Jollof rice",
+    "Egusi soup",
+    "Suya"
+   ]
+  ],
+  [
+   "North Korea",
+   "East Asia",
+   [
+    "Pyongyang",
+    "Hamgyong",
+    "Kaesong"
+   ],
+   [
+    "Naengmyeon",
+    "Kimchi",
+    "Japchae"
+   ]
+  ],
+  [
+   "North Macedonia",
+   "Balkans",
+   [
+    "Skopje",
+    "Ohrid",
+    "Pelagonia"
+   ],
+   [
+    "Tavče gravče",
+    "Ajvar",
+    "Macedonian kebapi"
+   ]
+  ],
+  [
+   "Norway",
+   "Nordics",
+   [
+    "Oslo & east",
+    "Western fjords",
+    "Northern Norway"
+   ],
+   [
+    "Fårikål",
+    "Lapskaus",
+    "Lutefisk"
+   ]
+  ],
+  [
+   "Oman",
+   "Arabian Peninsula",
+   [
+    "Muscat",
+    "Dhofar",
+    "Al Dakhiliyah"
+   ],
+   [
+    "Shuwa",
+    "Majboos",
+    "Mishkak"
+   ]
+  ],
+  [
+   "Pakistan",
+   "South Asia",
+   [
+    "Punjab",
+    "Sindh",
+    "Khyber Pakhtunkhwa"
+   ],
+   [
+    "Biryani",
+    "Nihari",
+    "Chapli kebab"
+   ]
+  ],
+  [
+   "Palau",
+   "Micronesia",
+   [
+    "Koror",
+    "Babeldaob",
+    "Rock Islands"
+   ],
+   [
+    "Demok",
+    "Taro dishes",
+    "Grilled reef fish"
+   ]
+  ],
+  [
+   "Palestine",
+   "Levant",
+   [
+    "West Bank",
+    "Gaza",
+    "Jerusalem foodways"
+   ],
+   [
+    "Maqluba",
+    "Musakhan",
+    "Maftoul"
+   ]
+  ],
+  [
+   "Panama",
+   "Central America",
+   [
+    "Panama City",
+    "Azuero",
+    "Caribbean coast"
+   ],
+   [
+    "Sancocho",
+    "Ropa vieja",
+    "Carimañolas"
+   ]
+  ],
+  [
+   "Papua New Guinea",
+   "Pacific",
+   [
+    "Highlands",
+    "Sepik",
+    "New Guinea coast"
+   ],
+   [
+    "Mumu",
+    "Kaukau",
+    "Sago dishes"
+   ]
+  ],
+  [
+   "Paraguay",
+   "South America",
+   [
+    "Asunción",
+    "Eastern region",
+    "Chaco"
+   ],
+   [
+    "Sopa paraguaya",
+    "Chipa",
+    "Mbejú"
+   ]
+  ],
+  [
+   "Peru",
+   "South America",
+   [
+    "Lima & coast",
+    "Andes",
+    "Amazon"
+   ],
+   [
+    "Ceviche",
+    "Lomo saltado",
+    "Juane"
+   ]
+  ],
+  [
+   "Philippines",
+   "Southeast Asia",
+   [
+    "Luzon",
+    "Visayas",
+    "Mindanao"
+   ],
+   [
+    "Adobo",
+    "Lechon",
+    "Kinilaw"
+   ]
+  ],
+  [
+   "Poland",
+   "Central Europe",
+   [
+    "Mazovia",
+    "Kraków & south",
+    "Pomerania"
+   ],
+   [
+    "Pierogi",
+    "Żurek",
+    "Bigos"
+   ]
+  ],
+  [
+   "Portugal",
+   "Iberia",
+   [
+    "Lisbon",
+    "Alentejo",
+    "Minho & north"
+   ],
+   [
+    "Bacalhau",
+    "Caldo verde",
+    "Arroz de marisco"
+   ]
+  ],
+  [
+   "Qatar",
+   "Gulf",
+   [
+    "Doha",
+    "Al Wakrah",
+    "Northern Qatar"
+   ],
+   [
+    "Machboos",
+    "Thareed",
+    "Balaleet"
+   ]
+  ],
+  [
+   "Romania",
+   "Eastern Europe",
+   [
+    "Transylvania",
+    "Moldavia",
+    "Wallachia"
+   ],
+   [
+    "Sarmale",
+    "Mămăligă",
+    "Ciorbă"
+   ]
+  ],
+  [
+   "Russia",
+   "Eastern Europe & Eurasia",
+   [
+    "European Russia",
+    "Siberia",
+    "Caucasus & south"
+   ],
+   [
+    "Pelmeni",
+    "Borscht",
+    "Blini"
+   ]
+  ],
+  [
+   "Rwanda",
+   "East Africa",
+   [
+    "Kigali",
+    "Northern Province",
+    "Lake Kivu"
+   ],
+   [
+    "Brochettes",
+    "Isombe",
+    "Ugali with beans"
+   ]
+  ],
+  [
+   "Saint Kitts and Nevis",
+   "Caribbean",
+   [
+    "Saint Kitts",
+    "Nevis",
+    "Basseterre"
+   ],
+   [
+    "Goat water",
+    "Saltfish & dumplings",
+    "Conch stew"
+   ]
+  ],
+  [
+   "Saint Lucia",
+   "Caribbean",
+   [
+    "Castries",
+    "Soufrière",
+    "Vieux Fort"
+   ],
+   [
+    "Green fig & saltfish",
+    "Bouyon",
+    "Lambi"
+   ]
+  ],
+  [
+   "Saint Vincent and the Grenadines",
+   "Caribbean",
+   [
+    "Saint Vincent",
+    "Bequia",
+    "Union Island"
+   ],
+   [
+    "Roasted breadfruit & jackfish",
+    "Callaloo soup",
+    "Fish cakes"
+   ]
+  ],
+  [
+   "Samoa",
+   "Pacific",
+   [
+    "Upolu",
+    "Savai’i",
+    "Apia"
+   ],
+   [
+    "Palusami",
+    "Oka",
+    "Faiai eleni"
+   ]
+  ],
+  [
+   "San Marino",
+   "Southern Europe",
+   [
+    "Serravalle",
+    "Borgo Maggiore",
+    "City of San Marino"
+   ],
+   [
+    "Torta tre monti",
+    "Piadina",
+    "Passatelli"
+   ]
+  ],
+  [
+   "Sao Tome and Principe",
+   "Central Africa",
+   [
+    "São Tomé",
+    "Príncipe",
+    "Coastal communities"
+   ],
+   [
+    "Calulu",
+    "Fish with banana",
+    "Feijoada são-tomense"
+   ]
+  ],
+  [
+   "Saudi Arabia",
+   "Arabian Peninsula",
+   [
+    "Najd",
+    "Hejaz",
+    "Eastern Province"
+   ],
+   [
+    "Kabsa",
+    "Jareesh",
+    "Saleeg"
+   ]
+  ],
+  [
+   "Senegal",
+   "West Africa",
+   [
+    "Dakar",
+    "Casamance",
+    "Saint-Louis"
+   ],
+   [
+    "Thieboudienne",
+    "Yassa",
+    "Mafé"
+   ]
+  ],
+  [
+   "Serbia",
+   "Balkans",
+   [
+    "Belgrade",
+    "Vojvodina",
+    "Šumadija"
+   ],
+   [
+    "Ćevapi",
+    "Pljeskavica",
+    "Prebranac"
+   ]
+  ],
+  [
+   "Seychelles",
+   "Indian Ocean",
+   [
+    "Mahé",
+    "Praslin",
+    "La Digue"
+   ],
+   [
+    "Fish curry",
+    "Ladob",
+    "Octopus curry"
+   ]
+  ],
+  [
+   "Sierra Leone",
+   "West Africa",
+   [
+    "Freetown",
+    "Bo",
+    "Kenema"
+   ],
+   [
+    "Cassava leaf stew",
+    "Jollof rice",
+    "Groundnut stew"
+   ]
+  ],
+  [
+   "Singapore",
+   "Southeast Asia",
+   [
+    "Chinatown",
+    "Little India",
+    "Katong"
+   ],
+   [
+    "Hainanese chicken rice",
+    "Laksa",
+    "Chilli crab"
+   ]
+  ],
+  [
+   "Slovakia",
+   "Central Europe",
+   [
+    "Bratislava",
+    "Orava",
+    "Spiš"
+   ],
+   [
+    "Bryndzové halušky",
+    "Kapustnica",
+    "Lokše"
+   ]
+  ],
+  [
+   "Slovenia",
+   "Central Europe",
+   [
+    "Ljubljana",
+    "Primorska",
+    "Prekmurje"
+   ],
+   [
+    "Potica",
+    "Idrijski žlikrofi",
+    "Jota"
+   ]
+  ],
+  [
+   "Solomon Islands",
+   "Pacific",
+   [
+    "Guadalcanal",
+    "Malaita",
+    "Western Province"
+   ],
+   [
+    "Poi",
+    "Cassava pudding",
+    "Taro with coconut"
+   ]
+  ],
+  [
+   "Somalia",
+   "Horn of Africa",
+   [
+    "Mogadishu",
+    "Puntland",
+    "Somaliland"
+   ],
+   [
+    "Canjeero",
+    "Bariis iskukaris",
+    "Suugo"
+   ]
+  ],
+  [
+   "South Africa",
+   "Southern Africa",
+   [
+    "Cape Malay Cape Town",
+    "KwaZulu-Natal",
+    "Gauteng"
+   ],
+   [
+    "Bobotie",
+    "Bunny chow",
+    "Chakalaka"
+   ]
+  ],
+  [
+   "South Korea",
+   "East Asia",
+   [
+    "Seoul",
+    "Jeolla",
+    "Busan & southeast"
+   ],
+   [
+    "Bibimbap",
+    "Kimchi jjigae",
+    "Japchae"
+   ]
+  ],
+  [
+   "South Sudan",
+   "East Africa",
+   [
+    "Juba",
+    "Nile regions",
+    "Equatoria"
+   ],
+   [
+    "Kisra",
+    "Ful",
+    "Wal wal"
+   ]
+  ],
+  [
+   "Spain",
+   "Iberia",
+   [
+    "Andalusia",
+    "Catalonia",
+    "Basque Country"
+   ],
+   [
+    "Paella",
+    "Gazpacho",
+    "Pintxos"
+   ]
+  ],
+  [
+   "Sri Lanka",
+   "South Asia",
+   [
+    "Western Province",
+    "Kandy & central",
+    "Jaffna & north"
+   ],
+   [
+    "Rice & curry",
+    "Kottu roti",
+    "Hoppers"
+   ]
+  ],
+  [
+   "Sudan",
+   "Northeast Africa",
+   [
+    "Khartoum",
+    "Nile valley",
+    "Darfur"
+   ],
+   [
+    "Ful medames",
+    "Kisra",
+    "Shaiyah"
+   ]
+  ],
+  [
+   "Suriname",
+   "South America",
+   [
+    "Paramaribo",
+    "Marowijne",
+    "Nickerie"
+   ],
+   [
+    "Pom",
+    "Roti",
+    "Saoto soup"
+   ]
+  ],
+  [
+   "Sweden",
+   "Nordics",
+   [
+    "Stockholm",
+    "West coast",
+    "Norrland"
+   ],
+   [
+    "Köttbullar",
+    "Gravlax",
+    "Janssons frestelse"
+   ]
+  ],
+  [
+   "Switzerland",
+   "Central Europe",
+   [
+    "German Switzerland",
+    "Romandy",
+    "Ticino"
+   ],
+   [
+    "Fondue",
+    "Rösti",
+    "Ticinese polenta"
+   ]
+  ],
+  [
+   "Syria",
+   "Levant",
+   [
+    "Damascus",
+    "Aleppo",
+    "Coastal Syria"
+   ],
+   [
+    "Kibbeh",
+    "Fatteh",
+    "Muhammara"
+   ]
+  ],
+  [
+   "Tajikistan",
+   "Central Asia",
+   [
+    "Dushanbe",
+    "Pamir",
+    "Sughd"
+   ],
+   [
+    "Qurutob",
+    "Plov",
+    "Oshi palav"
+   ]
+  ],
+  [
+   "Tanzania",
+   "East Africa",
+   [
+    "Dar es Salaam & coast",
+    "Zanzibar",
+    "Northern Tanzania"
+   ],
+   [
+    "Zanzibar pilau",
+    "Chipsi mayai",
+    "Ugali with mchicha"
+   ]
+  ],
+  [
+   "Thailand",
+   "Southeast Asia",
+   [
+    "Central Thailand",
+    "Isan",
+    "Northern Thailand"
+   ],
+   [
+    "Pad thai",
+    "Som tam",
+    "Khao soi"
+   ]
+  ],
+  [
+   "Timor-Leste",
+   "Southeast Asia",
+   [
+    "Dili",
+    "Baucau",
+    "Oecusse"
+   ],
+   [
+    "Batar daan",
+    "Ikan pepes",
+    "Tukir"
+   ]
+  ],
+  [
+   "Togo",
+   "West Africa",
+   [
+    "Lomé",
+    "Plateaux",
+    "Kara"
+   ],
+   [
+    "Fufu with sauce",
+    "Akoumé",
+    "Ablo"
+   ]
+  ],
+  [
+   "Tonga",
+   "Pacific",
+   [
+    "Tongatapu",
+    "Vava’u",
+    "Ha’apai"
+   ],
+   [
+    "Lu pulu",
+    "Ota ika",
+    "Umu dishes"
+   ]
+  ],
+  [
+   "Trinidad and Tobago",
+   "Caribbean",
+   [
+    "Trinidad",
+    "Tobago",
+    "Port of Spain"
+   ],
+   [
+    "Doubles",
+    "Pelau",
+    "Callaloo"
+   ]
+  ],
+  [
+   "Tunisia",
+   "North Africa",
+   [
+    "Tunis",
+    "Sfax",
+    "Djerba"
+   ],
+   [
+    "Couscous",
+    "Brik",
+    "Lablabi"
+   ]
+  ],
+  [
+   "Türkiye",
+   "West Asia & Europe",
+   [
+    "Istanbul & Marmara",
+    "Aegean",
+    "Southeast Anatolia"
+   ],
+   [
+    "İmam bayıldı",
+    "Manti",
+    "Kebabs"
+   ]
+  ],
+  [
+   "Turkmenistan",
+   "Central Asia",
+   [
+    "Ashgabat",
+    "Ahal",
+    "Dashoguz"
+   ],
+   [
+    "Plov",
+    "Dograma",
+    "Manti"
+   ]
+  ],
+  [
+   "Tuvalu",
+   "Pacific",
+   [
+    "Funafuti",
+    "Nanumea",
+    "Outer atolls"
+   ],
+   [
+    "Pulaka",
+    "Coconut fish",
+    "Taro dishes"
+   ]
+  ],
+  [
+   "Uganda",
+   "East Africa",
+   [
+    "Kampala",
+    "Western Uganda",
+    "Lake Victoria region"
+   ],
+   [
+    "Matoke",
+    "Rolex",
+    "Luwombo"
+   ]
+  ],
+  [
+   "Ukraine",
+   "Eastern Europe",
+   [
+    "Kyiv region",
+    "Galicia",
+    "Black Sea south"
+   ],
+   [
+    "Borscht",
+    "Varenyky",
+    "Holubtsi"
+   ]
+  ],
+  [
+   "United Arab Emirates",
+   "Gulf",
+   [
+    "Dubai",
+    "Abu Dhabi",
+    "Northern Emirates"
+   ],
+   [
+    "Machboos",
+    "Harees",
+    "Thareed"
+   ]
+  ],
+  [
+   "United Kingdom",
+   "Western Europe",
+   [
+    "England",
+    "Scotland",
+    "Wales"
+   ],
+   [
+    "Fish & chips",
+    "Haggis",
+    "Welsh cawl"
+   ]
+  ],
+  [
+   "United States",
+   "North America",
+   [
+    "Southern states",
+    "New England",
+    "Pacific coast"
+   ],
+   [
+    "Gumbo",
+    "Clam chowder",
+    "Barbecue"
+   ]
+  ],
+  [
+   "Uruguay",
+   "South America",
+   [
+    "Montevideo",
+    "Pampas interior",
+    "Atlantic coast"
+   ],
+   [
+    "Asado",
+    "Chivito",
+    "Milanesa"
+   ]
+  ],
+  [
+   "Uzbekistan",
+   "Central Asia",
+   [
+    "Tashkent",
+    "Samarkand",
+    "Fergana Valley"
+   ],
+   [
+    "Plov",
+    "Lagman",
+    "Samsa"
+   ]
+  ],
+  [
+   "Vanuatu",
+   "Pacific",
+   [
+    "Efate",
+    "Espiritu Santo",
+    "Tanna"
+   ],
+   [
+    "Lap-lap",
+    "Tuluk",
+    "Coconut crab"
+   ]
+  ],
+  [
+   "Vatican City",
+   "Italy / Rome",
+   [
+    "Vatican City",
+    "Rome foodways",
+    "Lazio"
+   ],
+   [
+    "Roman-style pasta",
+    "Carciofi alla romana",
+    "Supplì"
+   ]
+  ],
+  [
+   "Venezuela",
+   "South America",
+   [
+    "Caracas & north",
+    "Andes",
+    "Llanos"
+   ],
+   [
+    "Arepas",
+    "Pabellón criollo",
+    "Hallaca"
+   ]
+  ],
+  [
+   "Vietnam",
+   "Southeast Asia",
+   [
+    "Northern Vietnam",
+    "Central Vietnam",
+    "Mekong Delta"
+   ],
+   [
+    "Phở",
+    "Bún bò Huế",
+    "Cơm tấm"
+   ]
+  ],
+  [
+   "Yemen",
+   "Arabian Peninsula",
+   [
+    "Sana’a",
+    "Hadramaut",
+    "Aden"
+   ],
+   [
+    "Saltah",
+    "Mandi",
+    "Fahsa"
+   ]
+  ],
+  [
+   "Zambia",
+   "Southern Africa",
+   [
+    "Lusaka",
+    "Copperbelt",
+    "Western Zambia"
+   ],
+   [
+    "Nshima",
+    "Ifisashi",
+    "Chikanda"
+   ]
+  ],
+  [
+   "Zimbabwe",
+   "Southern Africa",
+   [
+    "Harare",
+    "Matabeleland",
+    "Eastern Highlands"
+   ],
+   [
+    "Sadza",
+    "Dovi",
+    "Muriwo unedovi"
+   ]
+  ]
+ ],
+ "WORLD_FREE_FEATURED": [
+  "Ghana",
+  "Japan",
+  "Vietnam",
+  "Fiji",
+  "India",
+  "Peru",
+  "France",
+  "Mexico",
+  "Ethiopia",
+  "Italy",
+  "Brazil",
+  "New Zealand"
+ ],
+ "WORLD_CONTINENTS": [
+  "All",
+  "Africa",
+  "Americas",
+  "Asia",
+  "Europe",
+  "Oceania"
+ ],
+ "WORLD_CONTINENT_MAP": {
+  "Africa": [
+   "Algeria",
+   "Angola",
+   "Benin",
+   "Botswana",
+   "Burkina Faso",
+   "Burundi",
+   "Cabo Verde",
+   "Cameroon",
+   "Central African Republic",
+   "Chad",
+   "Comoros",
+   "Congo, Democratic Republic of the",
+   "Congo, Republic of the",
+   "Côte d’Ivoire",
+   "Djibouti",
+   "Egypt",
+   "Equatorial Guinea",
+   "Eritrea",
+   "Eswatini",
+   "Ethiopia",
+   "Gabon",
+   "Gambia",
+   "Ghana",
+   "Guinea",
+   "Guinea-Bissau",
+   "Kenya",
+   "Lesotho",
+   "Liberia",
+   "Libya",
+   "Madagascar",
+   "Malawi",
+   "Mali",
+   "Mauritania",
+   "Mauritius",
+   "Morocco",
+   "Mozambique",
+   "Namibia",
+   "Niger",
+   "Nigeria",
+   "Rwanda",
+   "Sao Tome and Principe",
+   "Senegal",
+   "Seychelles",
+   "Sierra Leone",
+   "Somalia",
+   "South Africa",
+   "South Sudan",
+   "Sudan",
+   "Tanzania",
+   "Togo",
+   "Tunisia",
+   "Uganda",
+   "Zambia",
+   "Zimbabwe"
+  ],
+  "Americas": [
+   "Antigua and Barbuda",
+   "Argentina",
+   "Bahamas",
+   "Barbados",
+   "Belize",
+   "Bolivia",
+   "Brazil",
+   "Canada",
+   "Chile",
+   "Colombia",
+   "Costa Rica",
+   "Cuba",
+   "Dominica",
+   "Dominican Republic",
+   "Ecuador",
+   "El Salvador",
+   "Grenada",
+   "Guatemala",
+   "Guyana",
+   "Haiti",
+   "Honduras",
+   "Jamaica",
+   "Mexico",
+   "Nicaragua",
+   "Panama",
+   "Paraguay",
+   "Peru",
+   "Saint Kitts and Nevis",
+   "Saint Lucia",
+   "Saint Vincent and the Grenadines",
+   "Suriname",
+   "Trinidad and Tobago",
+   "United States",
+   "Uruguay",
+   "Venezuela"
+  ],
+  "Asia": [
+   "Afghanistan",
+   "Armenia",
+   "Azerbaijan",
+   "Bahrain",
+   "Bangladesh",
+   "Bhutan",
+   "Brunei",
+   "Cambodia",
+   "China",
+   "Cyprus",
+   "Georgia",
+   "India",
+   "Indonesia",
+   "Iran",
+   "Iraq",
+   "Israel",
+   "Japan",
+   "Jordan",
+   "Kazakhstan",
+   "Kuwait",
+   "Kyrgyzstan",
+   "Laos",
+   "Lebanon",
+   "Malaysia",
+   "Maldives",
+   "Mongolia",
+   "Myanmar",
+   "Nepal",
+   "North Korea",
+   "Oman",
+   "Pakistan",
+   "Palestine",
+   "Philippines",
+   "Qatar",
+   "Saudi Arabia",
+   "Singapore",
+   "South Korea",
+   "Sri Lanka",
+   "Syria",
+   "Tajikistan",
+   "Thailand",
+   "Timor-Leste",
+   "Türkiye",
+   "Turkmenistan",
+   "United Arab Emirates",
+   "Uzbekistan",
+   "Vietnam",
+   "Yemen"
+  ],
+  "Europe": [
+   "Albania",
+   "Andorra",
+   "Austria",
+   "Belarus",
+   "Belgium",
+   "Bosnia and Herzegovina",
+   "Bulgaria",
+   "Croatia",
+   "Czechia",
+   "Denmark",
+   "Estonia",
+   "Finland",
+   "France",
+   "Germany",
+   "Greece",
+   "Hungary",
+   "Iceland",
+   "Ireland",
+   "Italy",
+   "Latvia",
+   "Liechtenstein",
+   "Lithuania",
+   "Luxembourg",
+   "Malta",
+   "Moldova",
+   "Monaco",
+   "Montenegro",
+   "Netherlands",
+   "North Macedonia",
+   "Norway",
+   "Poland",
+   "Portugal",
+   "Romania",
+   "Russia",
+   "San Marino",
+   "Serbia",
+   "Slovakia",
+   "Slovenia",
+   "Spain",
+   "Sweden",
+   "Switzerland",
+   "Ukraine",
+   "United Kingdom",
+   "Vatican City"
+  ],
+  "Oceania": [
+   "Australia",
+   "Fiji",
+   "Kiribati",
+   "Marshall Islands",
+   "Micronesia",
+   "Nauru",
+   "New Zealand",
+   "Palau",
+   "Papua New Guinea",
+   "Samoa",
+   "Solomon Islands",
+   "Tonga",
+   "Tuvalu",
+   "Vanuatu"
+  ]
+ },
+ "worlds": [
+  [
+   "West Africa",
+   "Ghana, Senegal and the wider region",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20Rice%20in%20Ghana.jpg?width=900"
+  ],
+  [
+   "Nepal",
+   "Dal, rice, vegetables and mountain flavours",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Dal_bhat.jpg?width=1200"
+  ],
+  [
+   "Mediterranean",
+   "Vegetables, legumes, grains, herbs and fish",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Shakshuka1.jpg?width=1200"
+  ],
+  [
+   "South Asia",
+   "Lentils, spices, rice and yoghurt traditions",
+   "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=90"
+  ],
+  [
+   "East Asia",
+   "Rice, fish, vegetables and balanced bowls",
+   "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=90"
+  ],
+  [
+   "Middle East",
+   "Legumes, grains, herbs and warm spices",
+   "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90"
+  ],
+  [
+   "Caribbean",
+   "Beans, plantain, fish, fruit and vegetables",
+   "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=90"
+  ],
+  [
+   "North Africa",
+   "Chickpeas, vegetables, herbs and aromatic spices",
+   "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90"
+  ],
+  [
+   "East Africa",
+   "Lentils, greens and warming spice blends",
+   "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90"
+  ],
+  [
+   "Latin America",
+   "Beans, maize, avocado, vegetables and herbs",
+   "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90"
+  ],
+  [
+   "Scandinavia",
+   "Swedish comfort food, fish, potatoes and seasonal traditions",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Meatballs.jpg?width=1200"
+  ],
+  [
+   "Vietnam",
+   "Fresh herbs, rice noodles, broths and bright flavours",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20Pho.jpg?width=1200"
+  ],
+  [
+   "Korea",
+   "Rice, vegetables, fermentation and bold sauces",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Korean%20Bibimbap.jpg?width=1200"
+  ],
+  [
+   "Fiji",
+   "Island cooking, ocean flavours and food made to share",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Kokodafood.jpg?width=1200"
+  ],
+  [
+   "India",
+   "Regional cuisines, spices, grains, legumes and fermentation",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200"
+  ],
+  [
+   "Peru",
+   "Coastal ceviche, Andean ingredients and Amazonian traditions",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200"
+  ],
+  [
+   "Amazon",
+   "Manioc, river foods and Indigenous foodways",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Tacac%C3%A1%20(Brazilian%20indigenous%20soup)%20(51404038372).jpg?width=1200"
+  ],
+  [
+   "Hawaiʻi",
+   "Native Hawaiian staples and island foodways",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Hawaiian%20poi.jpg?width=1200"
+  ]
+ ]
+}
