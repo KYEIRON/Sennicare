@@ -2,88 +2,136 @@
  {
   "id": "onion-soften",
   "file": "technique-onion-soften",
-  "alt": "Sliced onions turning translucent and glossy in olive oil"
+  "alt": "Sliced onions turning translucent and glossy in olive oil",
+  "match": "onion|shallot",
+  "matchFlags": "i",
+  "and": "soften|translucent|until soft|8 minutes|10 minutes",
+  "not": "gold|caramel|deep"
  },
  {
   "id": "onion-caramelise",
   "file": "technique-onion-caramelise",
   "alt": "Sliced onions collapsed to a deep even gold, sweet not burnt",
+  "match": "onion",
+  "matchFlags": "i",
+  "and": "gold|caramel|deeply brown|20 to 25 minutes",
   "not": null
  },
  {
   "id": "simmer",
   "file": "technique-simmer",
   "alt": "Slow lazy bubbles breaking the surface of a stew",
-  "and": null
+  "match": "simmer|bubble|reduce|thicken",
+  "matchFlags": "i",
+  "and": null,
+  "not": "coats the back|spoon|refrigerat|overnight|chill"
  },
  {
   "id": "spices-bloom",
   "file": "technique-spices-bloom",
   "alt": "Ground spices blooming in hot oil",
+  "match": "spice|cumin|coriander|turmeric|berbere|garam|paprika|ras el",
+  "matchFlags": "i",
+  "and": "stir|1 minute|fragrant|toasted|bloom",
   "not": null
  },
  {
   "id": "garlic-sizzle",
   "file": "technique-garlic-sizzle",
-  "alt": "Finely chopped garlic turning pale gold"
+  "alt": "Finely chopped garlic turning pale gold",
+  "match": "garlic",
+  "matchFlags": "i",
+  "and": "30 seconds|1 minute|sizzl|fragrant",
+  "not": "onion|spice|cumin|coriander|turmeric|berbere|garam|paprika|ras el|ginger"
  },
  {
   "id": "fish-flake",
   "file": "technique-fish-flake",
   "alt": "Fish flesh turning opaque, flakes beginning to separate",
+  "match": "fish|salmon|cod|tilapia|fillet",
+  "matchFlags": "i",
+  "and": "flake|opaque|cooked|minutes",
   "not": null
  },
  {
   "id": "chicken-done",
   "file": "technique-chicken-done",
   "alt": "Chicken golden and firm, juices running clear",
+  "match": "chicken",
+  "matchFlags": "i",
+  "and": "no pink|juices run|cooked through|each side",
   "not": null
  },
  {
   "id": "roast-edges",
   "file": "technique-roast-edges",
   "alt": "Vegetable edges caught and darkened, centres still soft",
+  "match": "roast|oven|tray",
+  "matchFlags": "i",
+  "and": "edges|tender|20|25|30 minutes",
   "not": null
  },
  {
   "id": "eggs-set",
   "file": "technique-eggs-set",
   "alt": "Soft moist egg curds forming, glossy not dry",
+  "match": "egg",
+  "matchFlags": "i",
+  "and": "set|curd|scramble|stir slowly|just set",
   "not": null
  },
  {
   "id": "sauce-thicken",
   "file": "technique-sauce-thicken",
   "alt": "Sauce coating the back of a spoon",
+  "match": "sauce|gravy|cream",
+  "matchFlags": "i",
+  "and": "thicken|coats|reduce",
   "not": null
  },
  {
   "id": "rice-rest",
   "file": "technique-rice-rest",
   "alt": "Steamed rice grains falling apart separately",
+  "match": "rice|quinoa",
+  "matchFlags": "i",
+  "and": "rest|fork|steam|lid|12 minutes|15 minutes",
   "not": null
  },
  {
   "id": "noodles-drain",
   "file": "technique-noodles-drain",
   "alt": "Noodles soft and pliable with no white core",
+  "match": "noodle|pasta|spaghetti",
+  "matchFlags": "i",
+  "and": "packet|minutes|drain|rinse|boil",
   "not": null
  },
  {
   "id": "sear",
   "file": "technique-sear",
   "alt": "A deep brown crust forming on beef, top still raw",
+  "match": "steak|beef|brown the|sear",
+  "matchFlags": "i",
+  "and": "high heat|sear|brown|crust|batches",
   "not": null
  },
  {
   "id": "dry-toast",
   "file": "technique-dry-toast",
-  "alt": "Oats and seeds turning golden in a dry pan, no oil"
+  "alt": "Oats and seeds turning golden in a dry pan, no oil",
+  "match": "toast|dry pan",
+  "matchFlags": "i",
+  "and": "dry pan|shaking|nutty|seeds|oats|nuts",
+  "not": "bread|pitta|flatbread"
  },
  {
   "id": "greens-wilt",
   "file": "technique-greens-wilt",
   "alt": "Spinach collapsing to a glossy bright green",
+  "match": "spinach|greens|kale|chard|pak choi",
+  "matchFlags": "i",
+  "and": "wilt|fold|last 2 minutes|1 minute|bright",
   "not": null
  }
 ]

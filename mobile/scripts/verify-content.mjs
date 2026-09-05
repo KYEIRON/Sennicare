@@ -135,6 +135,46 @@ const ccBy = media.filter((m) => m.attributionRequired);
 check('CC BY files name their author for visible credit', ccBy.every((m) => Boolean(m.author)),
   `${ccBy.length} require attribution`);
 
+// ---------- matching rules: patterns are content too ----------
+// These serialise through a VM realm boundary, where `instanceof RegExp` fails
+// and every pattern would quietly become an empty object.
+check('every technique clip kept its matching pattern',
+  clips.every((c) => typeof c.match === 'string' && c.match.length > 0),
+  clips.filter((c) => !c.match).map((c) => c.id).join(', '));
+check('clip and/not qualifiers survived where the prototype has them',
+  Object.entries(source.GIRKI_TECHNIQUE_CLIPS).every(([id, c]) => {
+    const migrated = clips.find((x) => x.id === id);
+    if (!migrated) return false;
+    if (c.and && c.and.__regex && migrated.and !== c.and.__regex) return false;
+    if (c.not && c.not.__regex && migrated.not !== c.not.__regex) return false;
+    return true;
+  }));
+check('every family template kept its matching pattern',
+  families.every((f) => typeof f.match === 'string' && f.match.length > 0),
+  families.filter((f) => !f.match).map((f) => f.id).join(', '));
+check('family ingredient lists and steps survived',
+  families.every((f) => f.ingredients.length > 0 && f.steps.length > 0),
+  families.filter((f) => !f.ingredients.length || !f.steps.length).map((f) => f.id).join(', '));
+check('every occasion field survived',
+  source.N39_OCCASIONS.every((o) => {
+    const migrated = occasions.find((x) => x.id === o.id);
+    if (!migrated) return false;
+    const missing = Object.keys(o).filter((k) => migrated[k] === undefined);
+    if (missing.length) console.log(`      ${o.id} lost: ${missing.join(', ')}`);
+    return missing.length === 0;
+  }));
+check('occasion preferences survived where the prototype has them',
+  source.N39_OCCASIONS.every((o) => {
+    const migrated = occasions.find((x) => x.id === o.id);
+    if (!migrated) return false;
+    return !o.prefer || !o.prefer.__regex || migrated.prefer === o.prefer.__regex;
+  }));
+check('every migrated pattern compiles',
+  [...clips.map((c) => c.match), ...families.map((f) => f.match),
+   ...occasions.map((o) => o.prefer).filter(Boolean)].every((p) => {
+    try { new RegExp(p); return true; } catch { return false; }
+  }));
+
 // ---------- editorial honesty ----------
 check('generated family methods stay labelled generated',
   families.every((f) => f.editorialStatus === 'generated'));

@@ -2,6 +2,8 @@
  {
   "id": "noodlesoup",
   "name": "noodle soup",
+  "match": "pho|ramen|noodle soup|laksa|khao soi|soba|udon|mohinga|lagman|kesme",
+  "matchFlags": "i",
   "ingredients": [
    "150g rice or wheat noodles",
    "1 litre chicken or vegetable stock",
@@ -46,6 +48,8 @@
  {
   "id": "rice",
   "name": "rice dish",
+  "match": "pilaf|pilau|palaw|plov|biryani|jollof|paella|risotto|nasi|fried rice|rice and|arroz|bhat|congee|kabsa|mandi|machboos|jambalaya",
+  "matchFlags": "i",
   "ingredients": [
    "250g long grain rice",
    "1 onion, sliced",
@@ -90,6 +94,8 @@
  {
   "id": "stew",
   "name": "slow stew",
+  "match": "stew|wot|curry|tagine|goulash|potjie|soup|sopa|caldo|shorba|dal|dhal|sambar|chorba|bourguignon|adobo|feijoada|cassoulet|gumbo|muamba|domoda|maafe",
+  "matchFlags": "i",
   "ingredients": [
    "400g meat, or 2 tins of beans or lentils",
    "1 large onion",
@@ -134,6 +140,8 @@
  {
   "id": "grill",
   "name": "grilled dish",
+  "match": "grill|kebab|kabob|kofta|suya|braai|barbecue|satay|yakitori|souvlaki|shawarma|asado|churrasco|tandoori|jerk|piri",
+  "matchFlags": "i",
   "ingredients": [
    "500g chicken thighs, lamb or firm vegetables",
    "3 tbsp oil",
@@ -176,6 +184,8 @@
  {
   "id": "flatbread",
   "name": "bread or filled dough",
+  "match": "bread|injera|roti|naan|chapati|paratha|dosa|arepa|tortilla|pita|lavash|msemen|banh|bao|mantı|pierogi|dumpling|empanada|samosa|pastel",
+  "matchFlags": "i",
   "ingredients": [
    "300g plain flour",
    "1/2 tsp salt",
@@ -217,6 +227,8 @@
  {
   "id": "salad",
   "name": "fresh dish",
+  "match": "salad|slaw|kokoda|ceviche|tabbouleh|fattoush|som tam|kinilaw|poke|sashimi|carpaccio",
+  "matchFlags": "i",
   "ingredients": [
    "300g very fresh fish suitable for raw preparation, or 2 tins of beans",
    "2 limes",
@@ -260,6 +272,8 @@
  {
   "id": "porridge",
   "name": "staple and sauce",
+  "match": "porridge|fufu|ugali|nsima|polenta|grits|mash|pap|banku|kenkey|tuo|couscous|semolina|oat",
+  "matchFlags": "i",
   "ingredients": [
    "300g of the staple: maize meal, semolina, cassava flour or couscous",
    "700ml water or stock",
@@ -302,6 +316,8 @@
  {
   "id": "seafood",
   "name": "fish dish",
+  "match": "fish|prawn|shrimp|crab|octopus|squid|mussel|clam|bacalhau|tilapia|snapper",
+  "matchFlags": "i",
   "ingredients": [
    "500g whole fish or 2 fillets",
    "1 lemon",
@@ -345,6 +361,8 @@
  {
   "id": "veg",
   "name": "vegetable dish",
+  "match": ".*",
+  "matchFlags": "",
   "ingredients": [
    "1 onion",
    "3 garlic cloves",

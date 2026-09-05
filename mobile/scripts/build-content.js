@@ -101,12 +101,23 @@ const clips = Object.entries(d.GIRKI_TECHNIQUE_CLIPS).map(([id, c]) => ({
 }));
 
 /* ---------- occasions ---------- */
-const occasions = d.N39_OCCASIONS.map((o) => ({
-  id: o.id, icon: o.icon, name: o.name, blurb: o.blurb,
-  want: o.want || {},
-  prefer: o.prefer ? o.prefer.__regex : null,
-  tip: o.tip || '',
-}));
+const occasions = d.N39_OCCASIONS.map((o) => {
+  // Keep every field the prototype defines. Naming them one by one is how
+  // `surprise` — the whole behaviour of "I don't know what I want" — went
+  // missing the first time.
+  const rest = {};
+  for (const [key, value] of Object.entries(o)) {
+    if (['id', 'icon', 'name', 'blurb', 'want', 'prefer', 'tip'].includes(key)) continue;
+    rest[key] = value && value.__regex ? value.__regex : value;
+  }
+  return {
+    id: o.id, icon: o.icon, name: o.name, blurb: o.blurb,
+    want: o.want || {},
+    prefer: o.prefer ? o.prefer.__regex : null,
+    tip: o.tip || '',
+    ...rest,
+  };
+});
 
 /* ---------- media: every remote image, with licence ---------- */
 const urls = imageUrls(html);

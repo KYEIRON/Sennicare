@@ -9,10 +9,11 @@
     "typecheck": "tsc --noEmit",
     "parity": "node scripts/parity.mjs",
     "test:engine": "node scripts/engine-tests.mjs",
-    "test": "npm run typecheck && npm run verify:content && npm run parity && npm run test:engine && npm run test:plan",
+    "test": "npm run typecheck && npm run verify:content && npm run test:girki && npm run parity && npm run test:engine && npm run test:plan",
     "test:plan": "node scripts/plan-tests.mjs",
     "verify:content": "node scripts/verify-content.mjs",
-    "content:build": "node scripts/build-content.js"
+    "content:build": "node scripts/build-content.js",
+    "test:girki": "node scripts/girki-tests.mjs"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.1.2",

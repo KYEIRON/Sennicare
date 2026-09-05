@@ -50,9 +50,18 @@ function scriptSource(html) {
   return blocks.join('\n');
 }
 
-/** Regexes and functions cannot be JSON; keep them as data. */
+/**
+ * Regexes and functions cannot be JSON; keep them as data.
+ *
+ * `instanceof RegExp` is useless here: the prototype runs in its own VM realm,
+ * so its regexes are not instances of this realm's RegExp and would serialise
+ * to `{}` — silently dropping every technique-clip, family and occasion
+ * pattern. Cross-realm detection is the only correct test.
+ */
+const isRegExp = (v) => Object.prototype.toString.call(v) === '[object RegExp]';
+
 function serialise(value) {
-  if (value instanceof RegExp) return { __regex: value.source, flags: value.flags };
+  if (isRegExp(value)) return { __regex: value.source, flags: value.flags };
   if (typeof value === 'function') {
     try {
       return { __fn: true, result: serialise(value('Ghana')) };
