@@ -1,0 +1,1636 @@
+[
+ {
+  "atlasDishId": "afghanistan--kabuli-palaw",
+  "reachableFromAtlas": true,
+  "id": "afghanistan--kabuli-palaw",
+  "key": "Afghanistan::Kabuli Palaw",
+  "country": "Afghanistan",
+  "countryId": "afghanistan",
+  "name": "Kabuli Palaw",
+  "slot": "Dinner",
+  "minutes": 75,
+  "kcal": 640,
+  "ingredients": [
+   "300g lamb shoulder, cut into 4cm pieces",
+   "250g basmati rice",
+   "1 large onion, sliced",
+   "2 carrots, cut into matchsticks",
+   "60g raisins",
+   "2 tbsp oil",
+   "1 tsp ground cumin",
+   "1 tsp ground cardamom",
+   "1/2 tsp ground cinnamon",
+   "600ml water or stock",
+   "1 tsp salt"
+  ],
+  "steps": [
+   "Rinse the rice in cold water until it runs clear, then leave it to soak for 30 minutes. This is what keeps the grains separate.",
+   "Brown the lamb in 1 tbsp oil over high heat for 6 to 8 minutes, turning, until it has colour on all sides. Lift it out.",
+   "Lower the heat and cook the onion in the same pan for 8 to 10 minutes until deep gold. Stir in the cumin, cardamom and cinnamon and cook for 1 minute, until they smell warm rather than raw.",
+   "Return the lamb, add the water and salt, cover and simmer gently for 40 minutes until the lamb gives easily.",
+   "While it simmers, cook the carrot matchsticks and raisins in the remaining oil over medium heat for 5 minutes, until the carrots soften and the raisins puff. Set aside.",
+   "Drain the rice. Lift the lamb out of the broth and measure 450ml of broth back into the pan. Bring to the boil, add the rice, cover and cook on the lowest heat for 12 minutes.",
+   "Scatter the carrots and raisins over the rice, put the lamb back on top, cover and steam for 10 more minutes. Rest off the heat for 5 minutes before serving."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 52
+   },
+   {
+    "name": "Iron",
+    "percentage": 30
+   },
+   {
+    "name": "Fibre",
+    "percentage": 22
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 85
+   }
+  ],
+  "culturalNote": "Afghanistan’s best known celebration dish. Traditionally steamed over a low flame for a long time; this is a home version that keeps the method and the timing realistic.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "italy--pasta-alla-norma",
+  "key": "Italy::Pasta alla Norma",
+  "country": "Italy",
+  "countryId": "italy",
+  "name": "Pasta alla Norma",
+  "slot": "Dinner",
+  "minutes": 35,
+  "kcal": 560,
+  "ingredients": [
+   "1 aubergine, cut into 2cm cubes",
+   "200g pasta",
+   "400g tin chopped tomatoes",
+   "2 garlic cloves, sliced",
+   "3 tbsp olive oil",
+   "A handful of basil",
+   "40g hard cheese, grated",
+   "Salt and pepper"
+  ],
+  "steps": [
+   "Salt the aubergine cubes and leave 10 minutes, then pat dry. This stops them drinking all the oil.",
+   "Fry the aubergine in 2 tbsp oil over medium high heat for 8 to 10 minutes, turning, until golden and soft. Set aside.",
+   "Cook the garlic in the last of the oil for 1 minute, add the tomatoes and simmer for 12 minutes until thickened.",
+   "Boil the pasta for the time on the packet, usually 9 to 11 minutes. Save a cup of the water.",
+   "Fold pasta, sauce and aubergine together with a splash of pasta water, then finish with basil and cheese."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 38
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 35
+   },
+   {
+    "name": "Calcium",
+    "percentage": 22
+   },
+   {
+    "name": "Protein",
+    "percentage": 30
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "japan--miso-salmon-donburi",
+  "key": "Japan::Miso salmon donburi",
+  "country": "Japan",
+  "countryId": "japan",
+  "name": "Miso salmon donburi",
+  "slot": "Dinner",
+  "minutes": 30,
+  "kcal": 560,
+  "ingredients": [
+   "2 salmon fillets",
+   "200g rice",
+   "2 tbsp miso paste",
+   "1 tbsp honey",
+   "1 tbsp soy sauce",
+   "1 cucumber, sliced",
+   "2 spring onions",
+   "1 tsp sesame seeds"
+  ],
+  "steps": [
+   "Rinse the rice, then simmer in 300ml water with a lid on for 12 minutes. Rest off the heat for 10 minutes without lifting the lid.",
+   "Mix the miso, honey and soy into a paste and spread it over the salmon.",
+   "Grill or bake at 200°C for 10 to 12 minutes, until the glaze darkens and the fish flakes at the thickest point.",
+   "Slice the cucumber and spring onions while it cooks.",
+   "Fork the rice, sit the salmon on top and finish with the vegetables and sesame."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 62
+   },
+   {
+    "name": "Omega 3",
+    "percentage": 58
+   },
+   {
+    "name": "Vitamin D",
+    "percentage": 40
+   },
+   {
+    "name": "Selenium",
+    "percentage": 48
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "mexico--tinga-de-pollo",
+  "key": "Mexico::Tinga de pollo",
+  "country": "Mexico",
+  "countryId": "mexico",
+  "name": "Tinga de pollo",
+  "slot": "Dinner",
+  "minutes": 40,
+  "kcal": 520,
+  "ingredients": [
+   "400g chicken thighs",
+   "1 onion, sliced",
+   "400g tin chopped tomatoes",
+   "2 garlic cloves",
+   "1 tsp smoked paprika",
+   "1 tsp dried oregano",
+   "1 chipotle in adobo, or 1 tsp chipotle paste",
+   "8 small tortillas",
+   "Coriander and lime to serve"
+  ],
+  "steps": [
+   "Simmer the chicken in salted water for 18 to 20 minutes until cooked through, then lift out and shred with two forks.",
+   "Cook the onion in oil over medium heat for 8 minutes until soft and sweet.",
+   "Add garlic, paprika, oregano and chipotle and stir for 1 minute until fragrant.",
+   "Add the tomatoes and simmer for 10 minutes until thick, then fold the chicken through and cook 5 minutes more.",
+   "Warm the tortillas for 30 seconds a side and serve with coriander and lime."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 68
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 40
+   },
+   {
+    "name": "Iron",
+    "percentage": 22
+   },
+   {
+    "name": "Fibre",
+    "percentage": 26
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "thailand--pad-krapow",
+  "key": "Thailand::Pad krapow",
+  "country": "Thailand",
+  "countryId": "thailand",
+  "name": "Pad krapow",
+  "slot": "Dinner",
+  "minutes": 20,
+  "kcal": 540,
+  "ingredients": [
+   "300g chicken mince",
+   "200g rice",
+   "3 garlic cloves",
+   "1 red chilli",
+   "1 tbsp soy sauce",
+   "1 tbsp oyster or mushroom sauce",
+   "1 tsp sugar",
+   "A large handful of basil",
+   "2 eggs",
+   "1 tbsp oil"
+  ],
+  "steps": [
+   "Rinse and simmer the rice in 300ml water, lid on, for 12 minutes, then rest 8 minutes off the heat.",
+   "Get a wok or wide pan very hot. Add the oil, garlic and chilli and stir for 30 seconds.",
+   "Add the mince and cook for 5 to 6 minutes, breaking it up, until browned with crisp edges and no pink.",
+   "Add the sauces and sugar, stir 1 minute, then take off the heat and fold the basil through until it wilts.",
+   "Fry the eggs in hot oil for 2 minutes until the whites are set and the edges are crisp. Serve on the rice."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 66
+   },
+   {
+    "name": "Iron",
+    "percentage": 24
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 20
+   },
+   {
+    "name": "B6",
+    "percentage": 40
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "greece--gigantes-plaki",
+  "key": "Greece::Gigantes plaki",
+  "country": "Greece",
+  "countryId": "greece",
+  "name": "Gigantes plaki",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 450,
+  "ingredients": [
+   "2 x 400g tins butter beans, drained",
+   "400g tin chopped tomatoes",
+   "1 onion, chopped",
+   "2 garlic cloves",
+   "2 tbsp olive oil",
+   "1 tsp dried oregano",
+   "A handful of parsley",
+   "40g feta"
+  ],
+  "steps": [
+   "Heat the oven to 190°C.",
+   "Cook the onion in the oil over medium heat for 8 minutes until soft, then add garlic and oregano for 1 minute.",
+   "Add the tomatoes and a splash of water and simmer for 10 minutes until thickened.",
+   "Fold in the beans, tip into a dish and bake for 20 to 25 minutes until the top is browning at the edges.",
+   "Finish with parsley and crumbled feta."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 56
+   },
+   {
+    "name": "Protein",
+    "percentage": 34
+   },
+   {
+    "name": "Iron",
+    "percentage": 26
+   },
+   {
+    "name": "Folate",
+    "percentage": 40
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "india--chana-masala",
+  "key": "India::Chana masala",
+  "country": "India",
+  "countryId": "india",
+  "name": "Chana masala",
+  "slot": "Dinner",
+  "minutes": 30,
+  "kcal": 470,
+  "ingredients": [
+   "2 x 400g tins chickpeas, drained",
+   "1 onion, chopped",
+   "400g tin chopped tomatoes",
+   "3 garlic cloves",
+   "A 3cm piece of ginger, about 15g",
+   "1 tsp cumin",
+   "1 tsp ground coriander",
+   "1/2 tsp turmeric",
+   "1 tsp garam masala",
+   "2 tbsp oil",
+   "Coriander and lemon"
+  ],
+  "steps": [
+   "Cook the onion in the oil over medium heat for 10 minutes, until properly golden rather than just soft. This is where the depth comes from.",
+   "Add garlic, ginger and the ground spices and stir for 1 minute until fragrant.",
+   "Add the tomatoes and cook for 8 minutes until the oil separates at the edges.",
+   "Add the chickpeas and 150ml water and simmer for 10 minutes, pressing some against the side to thicken it.",
+   "Finish with garam masala, coriander and a good squeeze of lemon."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 60
+   },
+   {
+    "name": "Protein",
+    "percentage": 36
+   },
+   {
+    "name": "Iron",
+    "percentage": 34
+   },
+   {
+    "name": "Folate",
+    "percentage": 45
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "turkiye--menemen",
+  "key": "Türkiye::Menemen",
+  "country": "Türkiye",
+  "countryId": "turkiye",
+  "name": "Menemen",
+  "slot": "Breakfast",
+  "minutes": 20,
+  "kcal": 390,
+  "ingredients": [
+   "4 eggs",
+   "3 tomatoes, chopped",
+   "1 green pepper, sliced",
+   "1 tbsp olive oil",
+   "1/2 tsp paprika",
+   "Salt and pepper",
+   "Bread to serve"
+  ],
+  "steps": [
+   "Cook the pepper in the oil over medium heat for 5 minutes until it softens.",
+   "Add the tomatoes and paprika and cook for 6 to 8 minutes until they collapse into a loose sauce.",
+   "Beat the eggs lightly, pour them in and stir slowly for 2 to 3 minutes until just set but still soft.",
+   "Take off the heat while it still looks slightly underdone; it carries on cooking. Serve with bread."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 44
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 55
+   },
+   {
+    "name": "Folate",
+    "percentage": 30
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 35
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "vietnam--bun-cha",
+  "key": "Vietnam::Bun cha",
+  "country": "Vietnam",
+  "countryId": "vietnam",
+  "name": "Bun cha",
+  "slot": "Lunch",
+  "minutes": 35,
+  "kcal": 530,
+  "ingredients": [
+   "300g pork mince",
+   "200g rice noodles",
+   "2 tbsp fish sauce",
+   "1 tbsp sugar",
+   "2 garlic cloves",
+   "1 lime",
+   "1 carrot, shredded",
+   "Lettuce, mint and coriander",
+   "1 red chilli"
+  ],
+  "steps": [
+   "Mix the mince with 1 tbsp fish sauce, half the sugar and the garlic. Shape into small flat patties and rest 10 minutes.",
+   "Make the dipping sauce: the rest of the fish sauce and sugar with lime juice, 4 tbsp water, chilli and the shredded carrot.",
+   "Cook the noodles as the packet says, usually 4 to 5 minutes, then rinse under cold water.",
+   "Grill or pan fry the patties over high heat for 4 minutes each side, until charred outside and cooked through.",
+   "Serve everything separately so people build their own bowl."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 58
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 35
+   },
+   {
+    "name": "Iron",
+    "percentage": 22
+   },
+   {
+    "name": "Fibre",
+    "percentage": 20
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "nigeria--nigerian-jollof-rice",
+  "key": "Nigeria::Nigerian jollof rice",
+  "country": "Nigeria",
+  "countryId": "nigeria",
+  "name": "Nigerian jollof rice",
+  "slot": "Dinner",
+  "minutes": 50,
+  "kcal": 580,
+  "ingredients": [
+   "300g long grain rice",
+   "400g tin chopped tomatoes",
+   "2 red peppers",
+   "1 onion",
+   "2 tbsp tomato purée",
+   "1 tsp thyme",
+   "1 tsp curry powder",
+   "1 bay leaf",
+   "1/2 scotch bonnet",
+   "3 tbsp oil",
+   "600ml stock"
+  ],
+  "steps": [
+   "Blend the peppers, half the onion and the tinned tomatoes to a smooth purée.",
+   "Chop the rest of the onion and cook in the oil for 6 minutes, then add the purée and tomato purée.",
+   "Cook the sauce down for 15 to 20 minutes, stirring, until it darkens and the oil rises to the surface. Do not rush this — it is the whole dish.",
+   "Add stock, thyme, curry powder, bay and chilli, bring to the boil, then stir in the washed rice.",
+   "Cover tightly and cook on the lowest heat for 25 minutes without stirring. Rest 10 minutes, then fluff."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 30
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 80
+   },
+   {
+    "name": "Iron",
+    "percentage": 24
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 40
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "peru--lomo-saltado",
+  "reachableFromAtlas": true,
+  "id": "peru--lomo-saltado",
+  "key": "Peru::Lomo saltado",
+  "country": "Peru",
+  "countryId": "peru",
+  "name": "Lomo saltado",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 610,
+  "ingredients": [
+   "300g rump steak, sliced",
+   "2 red onions, in wedges",
+   "2 tomatoes, in wedges",
+   "2 tbsp soy sauce",
+   "1 tbsp red wine vinegar",
+   "400g potatoes, cut for chips",
+   "200g rice",
+   "1 chilli",
+   "Coriander"
+  ],
+  "steps": [
+   "Rinse and simmer the rice in 300ml water, lid on, 12 minutes, then rest 8 minutes.",
+   "Oven bake or fry the chips until golden, about 20 to 25 minutes at 200°C.",
+   "Get a pan very hot. Sear the steak in batches for 1 to 2 minutes a side so it browns rather than steams. Lift out.",
+   "Add onion and chilli to the same pan for 2 minutes, then tomato for 1 minute more — they should keep their shape.",
+   "Return the beef, add soy and vinegar, toss for 30 seconds, then fold the chips through and finish with coriander.",
+   "Serve straight away with the rice alongside, while the chips are still crisp."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 70
+   },
+   {
+    "name": "Iron",
+    "percentage": 35
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 45
+   },
+   {
+    "name": "B12",
+    "percentage": 60
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "ethiopia--misir-wot",
+  "key": "Ethiopia::Misir wot",
+  "country": "Ethiopia",
+  "countryId": "ethiopia",
+  "name": "Misir wot",
+  "slot": "Dinner",
+  "minutes": 40,
+  "kcal": 440,
+  "ingredients": [
+   "250g red lentils",
+   "1 large onion, finely chopped",
+   "3 garlic cloves",
+   "A 3cm piece of ginger, about 15g",
+   "2 tbsp berbere",
+   "2 tbsp oil",
+   "1 tbsp tomato purée",
+   "750ml water",
+   "Salt"
+  ],
+  "steps": [
+   "Cook the onion dry in the pan over low heat for 8 minutes, stirring, before adding any oil. This is the Ethiopian way and it builds the base.",
+   "Add the oil, garlic and ginger and cook 2 minutes more.",
+   "Stir in the berbere and tomato purée and cook for 2 minutes until it smells toasted rather than raw.",
+   "Add the rinsed lentils and water, bring to the boil, then simmer for 25 minutes until collapsed and thick, stirring now and then.",
+   "Season well and rest 5 minutes before serving."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 65
+   },
+   {
+    "name": "Protein",
+    "percentage": 42
+   },
+   {
+    "name": "Iron",
+    "percentage": 50
+   },
+   {
+    "name": "Folate",
+    "percentage": 55
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "lebanon--mujadara",
+  "key": "Lebanon::Mujadara",
+  "country": "Lebanon",
+  "countryId": "lebanon",
+  "name": "Mujadara",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 480,
+  "ingredients": [
+   "200g brown or green lentils",
+   "150g rice",
+   "3 onions, thinly sliced",
+   "4 tbsp olive oil",
+   "1 tsp cumin",
+   "Salt and pepper",
+   "Yoghurt to serve"
+  ],
+  "steps": [
+   "Simmer the lentils in plenty of water for 15 minutes until nearly tender, then drain, keeping 400ml of the liquid.",
+   "Meanwhile fry the onions in the oil over medium heat for 20 to 25 minutes, stirring often, until deeply browned and sweet. Take half out for the top.",
+   "Add rice, cumin, lentils and the reserved liquid to the pan with the remaining onions.",
+   "Cover and cook on the lowest heat for 15 minutes, then rest 10 minutes off the heat.",
+   "Fork through, pile the crisp onions on top and serve with yoghurt."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 58
+   },
+   {
+    "name": "Protein",
+    "percentage": 38
+   },
+   {
+    "name": "Iron",
+    "percentage": 40
+   },
+   {
+    "name": "Folate",
+    "percentage": 48
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "morocco--vegetable-tagine",
+  "key": "Morocco::Vegetable tagine",
+  "country": "Morocco",
+  "countryId": "morocco",
+  "name": "Vegetable tagine",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 430,
+  "ingredients": [
+   "1 onion",
+   "2 carrots",
+   "1 courgette",
+   "400g tin chickpeas",
+   "400g tin chopped tomatoes",
+   "60g dried apricots",
+   "2 tsp ras el hanout",
+   "1 tsp cumin",
+   "2 tbsp olive oil",
+   "Coriander"
+  ],
+  "steps": [
+   "Cook the onion in the oil over medium heat for 8 minutes until soft.",
+   "Add the spices and stir for 1 minute until they smell warm and toasted.",
+   "Add carrots, tomatoes and 200ml water, cover and simmer 15 minutes.",
+   "Add courgette, chickpeas and apricots and simmer uncovered for 12 to 15 minutes until the sauce thickens and the carrots are tender.",
+   "Finish with plenty of coriander."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 54
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 90
+   },
+   {
+    "name": "Iron",
+    "percentage": 28
+   },
+   {
+    "name": "Folate",
+    "percentage": 42
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "south-korea--kimchi-jjigae",
+  "reachableFromAtlas": true,
+  "id": "south-korea--kimchi-jjigae",
+  "key": "South Korea::Kimchi jjigae",
+  "country": "South Korea",
+  "countryId": "south-korea",
+  "name": "Kimchi jjigae",
+  "slot": "Dinner",
+  "minutes": 30,
+  "kcal": 420,
+  "ingredients": [
+   "200g kimchi, roughly chopped",
+   "200g firm tofu, sliced",
+   "1 onion",
+   "2 spring onions",
+   "1 tbsp gochujang",
+   "1 tsp sugar",
+   "600ml stock",
+   "1 tbsp oil",
+   "200g rice"
+  ],
+  "steps": [
+   "Rinse and simmer the rice in 300ml water, lid on, 12 minutes, then rest 8 minutes.",
+   "Fry the kimchi and onion in the oil over medium high heat for 5 minutes until the edges caramelise. This step is what separates a good jjigae from a sour one.",
+   "Stir in the gochujang and sugar for 1 minute, then add the stock.",
+   "Simmer for 12 minutes, then slide in the tofu and cook 5 minutes more without stirring hard.",
+   "Scatter the spring onions over and serve with the rice."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 40
+   },
+   {
+    "name": "Fibre",
+    "percentage": 30
+   },
+   {
+    "name": "Iron",
+    "percentage": 26
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 30
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "poland--bigos",
+  "reachableFromAtlas": true,
+  "id": "poland--bigos",
+  "key": "Poland::Bigos",
+  "country": "Poland",
+  "countryId": "poland",
+  "name": "Bigos",
+  "slot": "Dinner",
+  "minutes": 60,
+  "kcal": 490,
+  "ingredients": [
+   "400g sauerkraut, drained",
+   "200g white cabbage, shredded",
+   "200g smoked sausage, sliced",
+   "1 onion",
+   "2 tbsp tomato purée",
+   "1 bay leaf",
+   "5 juniper berries or 1 tsp caraway",
+   "1 tbsp oil",
+   "300ml stock"
+  ],
+  "steps": [
+   "Brown the sausage in the oil for 5 minutes, then lift out.",
+   "Cook the onion in the same pan for 8 minutes until soft and golden.",
+   "Add the drained sauerkraut and the fresh cabbage, then the tomato purée, bay, juniper or caraway and stock.",
+   "Cover and simmer gently for 40 minutes, stirring occasionally, until everything is soft and the liquid has reduced.",
+   "Return the sausage for the last 10 minutes. Bigos is better the next day."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 40
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 60
+   },
+   {
+    "name": "Protein",
+    "percentage": 34
+   },
+   {
+    "name": "Iron",
+    "percentage": 22
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "brazil--feijoada-de-legumes",
+  "key": "Brazil::Feijoada de legumes",
+  "country": "Brazil",
+  "countryId": "brazil",
+  "name": "Feijoada de legumes",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 470,
+  "ingredients": [
+   "2 x 400g tins black beans",
+   "1 onion",
+   "3 garlic cloves",
+   "1 red pepper",
+   "1 carrot",
+   "2 bay leaves",
+   "1 tsp smoked paprika",
+   "2 tbsp oil",
+   "200g rice",
+   "1 orange",
+   "Coriander"
+  ],
+  "steps": [
+   "Cook the onion in the oil over medium heat for 8 minutes, then add garlic, pepper and carrot for 5 minutes more.",
+   "Add paprika and bay and stir for 1 minute.",
+   "Add the beans with their liquid and 200ml water. Simmer for 25 minutes until thick and glossy, mashing some beans against the side.",
+   "Cook the rice separately: 12 minutes covered, then 8 minutes resting.",
+   "Serve with orange segments alongside — the acidity is part of the dish, not a garnish."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 62
+   },
+   {
+    "name": "Protein",
+    "percentage": 36
+   },
+   {
+    "name": "Iron",
+    "percentage": 38
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 70
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "philippines--chicken-adobo",
+  "key": "Philippines::Chicken adobo",
+  "country": "Philippines",
+  "countryId": "philippines",
+  "name": "Chicken adobo",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 530,
+  "ingredients": [
+   "500g chicken thighs",
+   "100ml soy sauce",
+   "80ml cane or white vinegar",
+   "4 garlic cloves",
+   "2 bay leaves",
+   "1 tsp black peppercorns",
+   "1 tsp sugar",
+   "200g rice",
+   "1 tbsp oil"
+  ],
+  "steps": [
+   "Marinate the chicken in the soy, garlic and pepper for 20 minutes if you have time.",
+   "Brown the chicken skin side down in the oil over medium high heat for 5 minutes.",
+   "Add the marinade, vinegar, bay and sugar. Do not stir for the first 5 minutes — letting the vinegar cook off raw is the trick.",
+   "Simmer covered for 25 minutes, then uncovered for 10 more until the sauce is glossy and coats the chicken.",
+   "Serve over rice cooked 12 minutes covered and rested 8."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 72
+   },
+   {
+    "name": "B12",
+    "percentage": 35
+   },
+   {
+    "name": "Iron",
+    "percentage": 24
+   },
+   {
+    "name": "Selenium",
+    "percentage": 45
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "jamaica--rice-and-peas-with-jerk-vegetables",
+  "key": "Jamaica::Rice and peas with jerk vegetables",
+  "country": "Jamaica",
+  "countryId": "jamaica",
+  "name": "Rice and peas with jerk vegetables",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 500,
+  "ingredients": [
+   "250g long grain rice",
+   "400g tin kidney beans",
+   "400ml coconut milk",
+   "2 spring onions",
+   "1 sprig thyme",
+   "1/2 scotch bonnet, whole",
+   "1 sweet potato",
+   "1 red pepper",
+   "2 tsp jerk seasoning",
+   "1 tbsp oil"
+  ],
+  "steps": [
+   "Heat the oven to 200°C. Toss the sweet potato and pepper with the oil and jerk seasoning and roast for 30 minutes, turning once.",
+   "Put the beans with their liquid, coconut milk, thyme, spring onion and the whole chilli in a pan with 200ml water and bring to the boil.",
+   "Add the rinsed rice, cover and cook on the lowest heat for 20 minutes.",
+   "Rest 10 minutes off the heat, then remove the chilli and thyme and fork through.",
+   "Top with the roast vegetables."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 52
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 95
+   },
+   {
+    "name": "Iron",
+    "percentage": 30
+   },
+   {
+    "name": "Protein",
+    "percentage": 28
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "spain--tortilla-de-patatas",
+  "key": "Spain::Tortilla de patatas",
+  "country": "Spain",
+  "countryId": "spain",
+  "name": "Tortilla de patatas",
+  "slot": "Lunch",
+  "minutes": 40,
+  "kcal": 520,
+  "ingredients": [
+   "600g potatoes, thinly sliced",
+   "1 onion, sliced",
+   "6 eggs",
+   "150ml olive oil",
+   "Salt"
+  ],
+  "steps": [
+   "Cook the potato and onion gently in the oil over low heat for 20 to 25 minutes, until soft but not browned. They should steam in the oil, not fry.",
+   "Drain, keeping 2 tbsp of the oil, and season well.",
+   "Beat the eggs, fold the warm potatoes through and let it sit for 5 minutes.",
+   "Cook in the reserved oil over medium low heat for 6 minutes until the edges set.",
+   "Slide onto a plate, flip back into the pan and give it 4 minutes more. The centre should stay slightly soft."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 48
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 35
+   },
+   {
+    "name": "Potassium",
+    "percentage": 40
+   },
+   {
+    "name": "B12",
+    "percentage": 30
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": null,
+  "reachableFromAtlas": false,
+  "id": "china--mapo-tofu-style-braise",
+  "key": "China::Mapo tofu style braise",
+  "country": "China",
+  "countryId": "china",
+  "name": "Mapo tofu style braise",
+  "slot": "Dinner",
+  "minutes": 25,
+  "kcal": 470,
+  "ingredients": [
+   "400g soft tofu, cubed",
+   "150g pork or mushroom mince",
+   "2 tbsp chilli bean paste or gochujang",
+   "2 garlic cloves",
+   "A thumb of ginger",
+   "2 spring onions",
+   "1 tbsp soy sauce",
+   "1 tsp cornflour",
+   "250ml stock",
+   "200g rice"
+  ],
+  "steps": [
+   "Rinse and simmer the rice in 300ml water, lid on, 12 minutes, then rest 8 minutes.",
+   "Brown the mince over high heat for 4 minutes until the edges crisp.",
+   "Add garlic, ginger and chilli bean paste and stir for 1 minute until the oil turns red.",
+   "Add stock and soy, bring to a simmer, then slide the tofu in and cook 5 minutes without stirring hard, so it stays whole.",
+   "Thicken with cornflour mixed into a little cold water, cook 1 minute, then scatter spring onions over."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 52
+   },
+   {
+    "name": "Calcium",
+    "percentage": 35
+   },
+   {
+    "name": "Iron",
+    "percentage": 28
+   },
+   {
+    "name": "Fibre",
+    "percentage": 20
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "france--ratatouille",
+  "reachableFromAtlas": true,
+  "id": "france--ratatouille",
+  "key": "France::Ratatouille",
+  "country": "France",
+  "countryId": "france",
+  "name": "Ratatouille",
+  "slot": "Dinner",
+  "minutes": 50,
+  "kcal": 380,
+  "ingredients": [
+   "1 aubergine",
+   "2 courgettes",
+   "2 peppers",
+   "1 onion",
+   "3 tomatoes",
+   "3 garlic cloves",
+   "4 tbsp olive oil",
+   "1 tsp herbes de Provence or dried thyme",
+   "Basil"
+  ],
+  "steps": [
+   "Cut everything into similar sized chunks so they cook evenly.",
+   "Fry the aubergine in 2 tbsp oil over medium high heat for 8 minutes until golden. Set aside. Cooking them separately is the difference between ratatouille and vegetable stew.",
+   "Repeat with the courgette for 5 minutes, then the peppers for 5, setting each aside.",
+   "Cook the onion and garlic in the last oil for 8 minutes, add tomatoes and herbs and simmer 10 minutes.",
+   "Return everything, simmer gently for 10 minutes and finish with basil."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 44
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 90
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 50
+   },
+   {
+    "name": "Folate",
+    "percentage": 30
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "indonesia--nasi-goreng",
+  "reachableFromAtlas": true,
+  "id": "indonesia--nasi-goreng",
+  "key": "Indonesia::Nasi goreng",
+  "country": "Indonesia",
+  "countryId": "indonesia",
+  "name": "Nasi goreng",
+  "slot": "Dinner",
+  "minutes": 25,
+  "kcal": 540,
+  "ingredients": [
+   "400g cooked cold rice",
+   "2 eggs",
+   "2 garlic cloves",
+   "1 shallot",
+   "1 tbsp kecap manis or soy sauce with 1 tsp sugar",
+   "1 tsp chilli paste",
+   "1 carrot, diced",
+   "100g peas",
+   "2 tbsp oil",
+   "Cucumber to serve"
+  ],
+  "steps": [
+   "Cold rice from the day before works far better than fresh — fresh rice turns to paste.",
+   "Fry the eggs in 1 tbsp oil for 2 minutes until the whites set with crisp edges. Set aside.",
+   "Get the pan very hot. Cook garlic, shallot and chilli paste in the rest of the oil for 1 minute.",
+   "Add carrot and peas for 3 minutes, then the rice, breaking up lumps, and stir fry for 4 to 5 minutes.",
+   "Add the kecap manis, toss for 1 minute and top with the eggs and sliced cucumber."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 38
+   },
+   {
+    "name": "Fibre",
+    "percentage": 28
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 60
+   },
+   {
+    "name": "Iron",
+    "percentage": 22
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "portugal--caldo-verde",
+  "reachableFromAtlas": true,
+  "id": "portugal--caldo-verde",
+  "key": "Portugal::Caldo verde",
+  "country": "Portugal",
+  "countryId": "portugal",
+  "name": "Caldo verde",
+  "slot": "Lunch",
+  "minutes": 35,
+  "kcal": 360,
+  "ingredients": [
+   "500g potatoes, peeled and chopped",
+   "200g kale or spring greens, very finely shredded",
+   "1 onion",
+   "2 garlic cloves",
+   "100g smoked sausage, sliced (optional)",
+   "3 tbsp olive oil",
+   "1 litre stock"
+  ],
+  "steps": [
+   "Cook the onion and garlic in 2 tbsp oil over medium heat for 8 minutes.",
+   "Add potatoes and stock, bring to the boil and simmer for 18 to 20 minutes until the potatoes fall apart easily.",
+   "Blend until completely smooth — this soup should be velvet, not chunky.",
+   "Brown the sausage separately for 4 minutes if using.",
+   "Bring the soup back to a simmer, add the shredded greens and cook just 4 to 5 minutes so they stay bright green. Finish with the last of the oil."
+  ],
+  "nutrients": [
+   {
+    "name": "Vitamin C",
+    "percentage": 85
+   },
+   {
+    "name": "Fibre",
+    "percentage": 34
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 70
+   },
+   {
+    "name": "Potassium",
+    "percentage": 40
+   }
+  ],
+  "culturalNote": "",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--waakye",
+  "reachableFromAtlas": true,
+  "id": "ghana--waakye",
+  "key": "Ghana::Waakye",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Waakye",
+  "slot": "Dinner",
+  "minutes": 70,
+  "kcal": 640,
+  "ingredients": [
+   "250g long grain rice",
+   "150g dried black eyed or cowpeas, soaked overnight",
+   "4 dried waakye leaves (sorghum leaves), with kanwa/kaun only if following a local method",
+   "1 onion",
+   "1 tsp salt",
+   "800ml water",
+   "To serve: shito, gari, boiled egg, salad"
+  ],
+  "steps": [
+   "Soak the beans overnight, then drain. This is what makes them cook evenly.",
+   "Boil the beans with the dried waakye leaves in 800ml water for 30 to 35 minutes, until they give when pressed but still hold shape. The water turns deep red — that colour is the dish.",
+   "Lift out the leaves. Add the rinsed rice and salt to the pot, top up so the liquid sits 2cm above the rice.",
+   "Cover and cook on the lowest heat for 20 minutes without stirring or lifting the lid.",
+   "Rest off the heat for 10 minutes, then fork through gently.",
+   "Serve with shito, gari, a boiled egg and salad. Waakye is judged as much by what sits beside it as by the rice."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 58
+   },
+   {
+    "name": "Protein",
+    "percentage": 40
+   },
+   {
+    "name": "Iron",
+    "percentage": 36
+   },
+   {
+    "name": "Folate",
+    "percentage": 44
+   }
+  ],
+  "culturalNote": "A Ghanaian breakfast and everyday plate, sold from waakye stands from morning onwards. The characteristic colour comes from the waakye leaves and the cooking liquor, not from adding tomato to the rice.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--red-red",
+  "reachableFromAtlas": true,
+  "id": "ghana--red-red",
+  "key": "Ghana::Red red",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Red red",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 590,
+  "ingredients": [
+   "2 x 400g tins black eyed beans, drained",
+   "2 ripe plantains",
+   "1 onion",
+   "3 tomatoes or 400g tin chopped tomatoes",
+   "2 tbsp tomato purée",
+   "1/2 scotch bonnet",
+   "2 tbsp palm oil, or rapeseed oil with 1/2 tsp paprika",
+   "1 tsp ground ginger",
+   "Oil for frying"
+  ],
+  "steps": [
+   "Cook the onion in the palm oil over medium heat for 8 minutes until soft. Palm oil should be warmed gently, not smoked.",
+   "Add the tomatoes, purée, ginger and chilli and cook down for 15 minutes until thick and the oil rises to the surface.",
+   "Add the beans and 100ml water and simmer for 10 minutes, pressing a few against the side to thicken it.",
+   "Slice the plantains thickly on the diagonal. They should be soft and heavily speckled — underripe plantain will not caramelise.",
+   "Fry in hot oil for 2 to 3 minutes each side until deep gold at the edges. Drain on paper.",
+   "Serve the stew with the plantain alongside, not mixed in."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 62
+   },
+   {
+    "name": "Protein",
+    "percentage": 34
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 55
+   },
+   {
+    "name": "Iron",
+    "percentage": 32
+   }
+  ],
+  "culturalNote": "The rich red appearance comes from the palm oil and pepper-tomato base. The dish is commonly served with fried ripe plantain.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--kelewele",
+  "reachableFromAtlas": true,
+  "id": "ghana--kelewele",
+  "key": "Ghana::Kelewele",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Kelewele",
+  "slot": "Lunch",
+  "minutes": 25,
+  "kcal": 380,
+  "ingredients": [
+   "3 very ripe plantains",
+   "1 tsp ground ginger, or a 3cm piece grated",
+   "1 tsp cayenne or a small piece of scotch bonnet",
+   "1/2 tsp ground cloves",
+   "1/2 tsp ground nutmeg",
+   "1/2 tsp salt",
+   "Oil for frying",
+   "A handful of roasted peanuts to serve"
+  ],
+  "steps": [
+   "Use plantains that are almost black. Yellow ones will not have the sugar to caramelise.",
+   "Cut into 2cm cubes. Toss with the ginger, chilli, cloves, nutmeg and salt and leave 10 minutes.",
+   "Heat 2cm of oil to about 170°C — a cube should sizzle steadily, not violently.",
+   "Fry in batches for 3 to 4 minutes, turning, until dark caramel at the edges and soft in the middle.",
+   "Drain and eat hot, with peanuts."
+  ],
+  "nutrients": [
+   {
+    "name": "Vitamin A",
+    "percentage": 48
+   },
+   {
+    "name": "Fibre",
+    "percentage": 26
+   },
+   {
+    "name": "Potassium",
+    "percentage": 40
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 30
+   }
+  ],
+  "culturalNote": "Evening street food across Ghana. The spiced seasoning is what makes this kelewele rather than plain fried plantain.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--kontomire-stew",
+  "reachableFromAtlas": true,
+  "id": "ghana--kontomire-stew",
+  "key": "Ghana::Kontomire stew",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Kontomire stew",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 520,
+  "ingredients": [
+   "400g cocoyam leaves, or spinach with a handful of chard",
+   "60g egusi or ground pumpkin seeds",
+   "1 onion",
+   "3 tomatoes",
+   "2 tbsp palm oil",
+   "1/2 scotch bonnet",
+   "200g smoked fish or mackerel, flaked",
+   "Boiled yam or plantain to serve"
+  ],
+  "steps": [
+   "Boil the greens for 5 minutes, then drain hard and chop. Squeezing the water out stops the stew going thin.",
+   "Cook the onion in the palm oil for 8 minutes, then add tomato and chilli and cook 10 minutes until thick.",
+   "Stir the ground egusi into a little water to loosen it, then add and cook 5 minutes until it comes together.",
+   "Fold in the greens and the flaked fish and simmer 10 minutes.",
+   "Serve with boiled yam or plantain."
+  ],
+  "nutrients": [
+   {
+    "name": "Iron",
+    "percentage": 52
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 80
+   },
+   {
+    "name": "Protein",
+    "percentage": 40
+   },
+   {
+    "name": "Calcium",
+    "percentage": 38
+   }
+  ],
+  "culturalNote": "Often called palava sauce in English-language Ghanaian usage. Kontomire refers to cocoyam leaves; spinach is a practical stand-in outside Ghana, but the flavour and texture differ.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--ghanaian-light-soup",
+  "reachableFromAtlas": true,
+  "id": "ghana--ghanaian-light-soup",
+  "key": "Ghana::Ghanaian light soup",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Ghanaian light soup",
+  "slot": "Dinner",
+  "minutes": 60,
+  "kcal": 430,
+  "ingredients": [
+   "500g goat, chicken or firm fish",
+   "3 tomatoes",
+   "1 onion",
+   "A 3cm piece of ginger",
+   "2 garlic cloves",
+   "1/2 scotch bonnet",
+   "1 small aubergine or garden egg",
+   "1 litre water",
+   "1 tsp salt"
+  ],
+  "steps": [
+   "Season the meat with grated ginger, garlic, salt and half the chopped onion. Leave 15 minutes.",
+   "Put it in a pot with 200ml water, cover and steam on medium for 10 minutes to draw out the flavour before any liquid goes in.",
+   "Boil the tomatoes, remaining onion, aubergine and chilli in a little water for 10 minutes until soft, then blend smooth and sieve.",
+   "Add the blended base and the rest of the water to the meat. Simmer uncovered for 30 to 40 minutes.",
+   "The soup should stay thin and clear — it is called light soup for a reason. Serve with fufu or rice balls."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 60
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 50
+   },
+   {
+    "name": "Iron",
+    "percentage": 30
+   },
+   {
+    "name": "B12",
+    "percentage": 45
+   }
+  ],
+  "culturalNote": "A widely loved Ghanaian soup. Its defining quality is the clear, lighter broth rather than a thick stew-like texture.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--groundnut-soup-with-rice-balls",
+  "reachableFromAtlas": true,
+  "id": "ghana--groundnut-soup-with-rice-balls",
+  "key": "Ghana::Groundnut soup with rice balls",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Groundnut soup with rice balls",
+  "slot": "Dinner",
+  "minutes": 70,
+  "kcal": 680,
+  "ingredients": [
+   "150g smooth peanut butter, unsweetened",
+   "500g chicken pieces",
+   "2 tomatoes",
+   "1 onion",
+   "A 3cm piece of ginger",
+   "1/2 scotch bonnet",
+   "800ml stock",
+   "250g short grain rice for the balls",
+   "1 tsp salt"
+  ],
+  "steps": [
+   "Season and steam the chicken with the chopped onion and grated ginger for 10 minutes in its own liquid.",
+   "Loosen the peanut butter with 200ml warm stock until smooth and pourable, with no lumps.",
+   "Blend the tomatoes and chilli and add to the pot with the rest of the stock. Simmer 15 minutes.",
+   "Stir in the loosened peanut butter and simmer gently for about 25 to 30 minutes, stirring regularly. The soup is ready when the peanut mixture has cooked through and the oil begins to rise to the surface.",
+   "For the rice balls, cook the rice with extra water until very soft, about 25 minutes, then mash and shape into balls with wet hands.",
+   "The soup is ready when a layer of oil sits on top. Serve with the rice balls."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 66
+   },
+   {
+    "name": "Iron",
+    "percentage": 34
+   },
+   {
+    "name": "Niacin",
+    "percentage": 55
+   },
+   {
+    "name": "Magnesium",
+    "percentage": 40
+   }
+  ],
+  "culturalNote": "Nkatenkwan. A visible layer of oil rising to the surface is a useful doneness cue, not something to remove or hide.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--banku-with-okro-stew",
+  "reachableFromAtlas": true,
+  "id": "ghana--banku-with-okro-stew",
+  "key": "Ghana::Banku with okro stew",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Banku with okro stew",
+  "slot": "Dinner",
+  "minutes": 60,
+  "kcal": 600,
+  "ingredients": [
+   "200g fermented corn dough, or 150g cornmeal with 50g cassava flour and 1 tbsp lemon juice",
+   "300g okra, sliced",
+   "200g smoked fish or prawns",
+   "1 onion",
+   "2 tomatoes",
+   "2 tbsp palm oil",
+   "1/2 scotch bonnet",
+   "600ml water"
+  ],
+  "steps": [
+   "For the stew, cook the onion in palm oil for 6 minutes, add tomato and chilli and cook 10 minutes.",
+   "Add the okra and 200ml water and simmer 10 to 12 minutes. It will turn glossy and draw — that texture is the dish, not a mistake.",
+   "Add the fish or prawns for the last 5 minutes.",
+   "For the banku, whisk the dough into 600ml water until smooth, then cook over medium heat, stirring hard and constantly with a wooden spoon.",
+   "Keep stirring for 15 to 20 minutes as it thickens and pulls away from the pan. This is genuinely hard work and it cannot be rushed.",
+   "Shape into a smooth ball with a wet spoon and serve beside the stew."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 40
+   },
+   {
+    "name": "Protein",
+    "percentage": 48
+   },
+   {
+    "name": "Calcium",
+    "percentage": 36
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 42
+   }
+  ],
+  "culturalNote": "Banku is fermented, which gives it its sourness. The stirring is the skill.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ },
+ {
+  "atlasDishId": "ghana--tuo-zaafi",
+  "reachableFromAtlas": true,
+  "id": "ghana--tuo-zaafi",
+  "key": "Ghana::Tuo zaafi",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "name": "Tuo zaafi",
+  "slot": "Dinner",
+  "minutes": 55,
+  "kcal": 560,
+  "ingredients": [
+   "250g maize flour, or a maize/cassava flour blend",
+   "150g fresh ayoyo (jute) leaves, or spinach as a practical substitute",
+   "1 tbsp dawadawa or fermented locust bean seasoning, optional",
+   "1 onion",
+   "2 tomatoes",
+   "200g goat, beef or fish",
+   "2 tbsp palm oil",
+   "1/2 scotch bonnet",
+   "1.2 litres water"
+  ],
+  "steps": [
+   "Simmer the meat with onion, salt and 400ml water for 30 minutes until tender.",
+   "Add the tomato and chilli, blended, and cook 10 minutes into a loose soup.",
+   "Add the chopped ayoyo and cook for about 10 to 15 minutes, stirring so it develops its characteristic slippery texture. Add dawadawa if using.",
+   "For the tuo zaafi, bring about 700ml water to the boil. Mix part of the flour with cold water to make a smooth paste, then add it to the pot and cook into a soft porridge.",
+   "Add the remaining flour gradually while stirring hard and continuously. Keep working the mixture until smooth, elastic and firm enough to hold its shape; this can take about 15 to 20 minutes.",
+   "Serve in a mound with the soup poured around it."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 44
+   },
+   {
+    "name": "Protein",
+    "percentage": 44
+   },
+   {
+    "name": "Iron",
+    "percentage": 40
+   },
+   {
+    "name": "Calcium",
+    "percentage": 34
+   }
+  ],
+  "culturalNote": "Northern Ghana. Often shortened to TZ. A classic presentation pairs the smooth tuo with ayoyo (jute leaf) soup and/or a rich stew.",
+  "isAuthored": true,
+  "editorialStatus": "authored"
+ }
+]

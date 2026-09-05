@@ -1,0 +1,89 @@
+[
+ {
+  "id": "onion-soften",
+  "file": "technique-onion-soften",
+  "alt": "Sliced onions turning translucent and glossy in olive oil"
+ },
+ {
+  "id": "onion-caramelise",
+  "file": "technique-onion-caramelise",
+  "alt": "Sliced onions collapsed to a deep even gold, sweet not burnt",
+  "not": null
+ },
+ {
+  "id": "simmer",
+  "file": "technique-simmer",
+  "alt": "Slow lazy bubbles breaking the surface of a stew",
+  "and": null
+ },
+ {
+  "id": "spices-bloom",
+  "file": "technique-spices-bloom",
+  "alt": "Ground spices blooming in hot oil",
+  "not": null
+ },
+ {
+  "id": "garlic-sizzle",
+  "file": "technique-garlic-sizzle",
+  "alt": "Finely chopped garlic turning pale gold"
+ },
+ {
+  "id": "fish-flake",
+  "file": "technique-fish-flake",
+  "alt": "Fish flesh turning opaque, flakes beginning to separate",
+  "not": null
+ },
+ {
+  "id": "chicken-done",
+  "file": "technique-chicken-done",
+  "alt": "Chicken golden and firm, juices running clear",
+  "not": null
+ },
+ {
+  "id": "roast-edges",
+  "file": "technique-roast-edges",
+  "alt": "Vegetable edges caught and darkened, centres still soft",
+  "not": null
+ },
+ {
+  "id": "eggs-set",
+  "file": "technique-eggs-set",
+  "alt": "Soft moist egg curds forming, glossy not dry",
+  "not": null
+ },
+ {
+  "id": "sauce-thicken",
+  "file": "technique-sauce-thicken",
+  "alt": "Sauce coating the back of a spoon",
+  "not": null
+ },
+ {
+  "id": "rice-rest",
+  "file": "technique-rice-rest",
+  "alt": "Steamed rice grains falling apart separately",
+  "not": null
+ },
+ {
+  "id": "noodles-drain",
+  "file": "technique-noodles-drain",
+  "alt": "Noodles soft and pliable with no white core",
+  "not": null
+ },
+ {
+  "id": "sear",
+  "file": "technique-sear",
+  "alt": "A deep brown crust forming on beef, top still raw",
+  "not": null
+ },
+ {
+  "id": "dry-toast",
+  "file": "technique-dry-toast",
+  "alt": "Oats and seeds turning golden in a dry pan, no oil"
+ },
+ {
+  "id": "greens-wilt",
+  "file": "technique-greens-wilt",
+  "alt": "Spinach collapsing to a glossy bright green",
+  "not": null
+ }
+]

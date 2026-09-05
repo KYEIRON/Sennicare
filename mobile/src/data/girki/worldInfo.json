@@ -1,0 +1,116 @@
+{
+ "Nepal": {
+  "region": "South Asia",
+  "tag": "Himalayan kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dal_bhat.jpg?width=1200",
+  "description": "Dal bhat tarkari brings lentils, rice, vegetables and pickles together in one of Nepal’s most recognisable everyday meals."
+ },
+ "Ghana": {
+  "region": "West Africa",
+  "tag": "Ghanaian kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Garnished_Ghana_jollof_rice.jpg?width=1600",
+  "description": "Ghanaian jollof is built around rice, tomato, aromatics and spices, with beans, fish, chicken or vegetables often alongside it."
+ },
+ "Türkiye": {
+  "region": "West Asia",
+  "tag": "Turkish kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20lentil%20soup%20from%20Turkey.jpg?width=1200",
+  "description": "Turkish cuisine includes a wide range of regional foodways. Mercimek çorbası, a red lentil soup, is a familiar soup tradition found across Türkiye."
+ },
+ "Mediterranean": {
+  "region": "Mediterranean",
+  "tag": "Mediterranean kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Shakshuka1.jpg?width=1200",
+  "description": "Across the Mediterranean, vegetables, legumes, grains, herbs, olive oil and fish create many different food traditions rather than one fixed diet."
+ },
+ "Morocco": {
+  "region": "North Africa",
+  "tag": "Moroccan kitchen",
+  "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+  "description": "Chickpeas, vegetables, herbs and warm spices make Moroccan tagines a wonderful gateway to North African flavours."
+ },
+ "Japan": {
+  "region": "East Asia",
+  "tag": "Japanese kitchen",
+  "img": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=90",
+  "description": "Rice, fish, vegetables, fermented foods and simple seasonings create many Japanese everyday meals."
+ },
+ "Caribbean": {
+  "region": "Caribbean",
+  "tag": "Caribbean kitchen",
+  "img": "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=90",
+  "description": "Beans, plantain, fish, vegetables, herbs and fruit appear in many colourful Caribbean food traditions."
+ },
+ "Middle East": {
+  "region": "Middle East",
+  "tag": "Middle Eastern kitchen",
+  "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+  "description": "Legumes, grains, vegetables, herbs, yoghurt and spices create a huge variety of Middle Eastern dishes."
+ },
+ "Ethiopia": {
+  "region": "East Africa",
+  "tag": "Ethiopian kitchen",
+  "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+  "description": "Lentils, vegetables, greens and aromatic spice blends make Ethiopian food a rich place to explore."
+ },
+ "Latin America": {
+  "region": "Latin America",
+  "tag": "Latin American kitchen",
+  "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+  "description": "Beans, maize, avocado, vegetables and herbs form a starting point for countless Latin American dishes."
+ },
+ "Sweden": {
+  "region": "Northern Europe",
+  "tag": "Swedish kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Meatballs.jpg?width=1200",
+  "description": "Swedish food ranges from everyday comfort dishes to breads, fish, potatoes and seasonal traditions. Köttbullar are one familiar example, often paired with potatoes and lingonberry."
+ },
+ "Vietnam": {
+  "region": "Southeast Asia",
+  "tag": "Vietnamese kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20Pho.jpg?width=1200",
+  "description": "Vietnamese cooking is known for aromatic broths, fresh herbs, rice noodles, vegetables, chilli and bright citrus."
+ },
+ "Korea": {
+  "region": "East Asia",
+  "tag": "Korean kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean%20Bibimbap.jpg?width=1200",
+  "description": "Korean food brings together rice, vegetables, fermented foods, sauces and many regional traditions. Bibimbap is a vivid example."
+ },
+ "Fiji": {
+  "region": "Pacific",
+  "tag": "Fijian kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Kokodafood.jpg?width=1200",
+  "description": "Fijian food reflects island life, the ocean, tropical produce and a strong tradition of sharing food. Kokoda and lovo offer two very different ways in."
+ },
+ "India": {
+  "region": "South Asia",
+  "tag": "Indian kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200",
+  "description": "India contains an extraordinary range of regional cuisines. Dosa is one South Indian example; spices, grains, legumes and fermentation appear in many traditions."
+ },
+ "Bhutan": {
+  "region": "South Asia",
+  "tag": "Bhutanese kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bhutanese%20red%20rice%20with%20chicken%20and%20spinach.jpg?width=1200",
+  "description": "Bhutanese food brings together rice, vegetables, chilli, dairy and mountain ingredients. Red rice is a distinctive staple, and meals often reflect a strong connection to local agriculture and place."
+ },
+ "Peru": {
+  "region": "South America",
+  "tag": "Peruvian kitchen",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200",
+  "description": "Peruvian cuisine spans coast, Andes and Amazon, with ceviche deeply connected to coastal traditions, local produce and communal occasions."
+ },
+ "Amazon": {
+  "region": "Amazonia",
+  "tag": "Amazonian foodways",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Tacac%C3%A1%20(Brazilian%20indigenous%20soup)%20(51404038372).jpg?width=1200",
+  "description": "Amazonian foodways draw on river fish, manioc, native plants and Indigenous knowledge. Tacacá is a striking example from northern Brazil."
+ },
+ "Hawaiʻi": {
+  "region": "Pacific Islands",
+  "tag": "Native Hawaiian foodways",
+  "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Hawaiian%20poi.jpg?width=1200",
+  "description": "Native Hawaiian food traditions include staples such as kalo and poi and a deep relationship with land, sea and community. Modern island food also reflects many later influences."
+ }
+}

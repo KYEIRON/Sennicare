@@ -1,0 +1,938 @@
+[
+ {
+  "id": "meal--greek-yoghurt-berries-seeds",
+  "legacyIndex": 0,
+  "name": "Greek yoghurt, berries & seeds",
+  "slot": "Breakfast",
+  "minutes": 10,
+  "kcal": 360,
+  "meta": "Protein · Fibre · Calcium",
+  "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "200g Greek yoghurt",
+   "80g mixed berries",
+   "2 tbsp oats",
+   "1 tbsp pumpkin seeds"
+  ],
+  "steps": [
+   "Spoon 200g Greek yoghurt into a bowl. 1 minute.",
+   "Rinse the berries and scatter them over. 1 minute.",
+   "Toast the oats and pumpkin seeds in a dry pan over medium heat for 2 to 3 minutes, shaking often, until they smell nutty.",
+   "Tip the warm oats and seeds over the yoghurt and eat straight away."
+  ],
+  "nutrients": [
+   "Protein 20g",
+   "Fibre 7g",
+   "Calcium 28%",
+   "Magnesium 18%"
+  ],
+  "fit": "A simple option with protein, fibre and calcium.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--avocado-egg-seeded-toast",
+  "legacyIndex": 1,
+  "name": "Avocado, egg & seeded toast",
+  "slot": "Breakfast",
+  "minutes": 10,
+  "kcal": 410,
+  "meta": "Protein · Fibre · Folate",
+  "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "2 slices seeded bread",
+   "1 avocado",
+   "2 eggs",
+   "1 handful spinach"
+  ],
+  "steps": [
+   "Bring a small pan of water to a gentle simmer. 3 minutes.",
+   "Lower in the eggs and cook 6 minutes for a soft centre, 8 for firm. Lift out and run under cold water for 30 seconds.",
+   "Toast the bread for 2 to 3 minutes while the eggs cook.",
+   "Mash the avocado with a pinch of salt, spread on the toast, add the peeled eggs and the spinach, and season."
+  ],
+  "nutrients": [
+   "Protein 22g",
+   "Fibre 10g",
+   "Folate 32%",
+   "Potassium 20%"
+  ],
+  "fit": "A balanced breakfast with fibre and healthy fats.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--overnight-oats-with-banana-seeds",
+  "legacyIndex": 2,
+  "name": "Overnight oats with banana & seeds",
+  "slot": "Breakfast",
+  "minutes": 10,
+  "kcal": 390,
+  "meta": "Fibre · Magnesium · Energy",
+  "image": "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "50g oats",
+   "150ml milk or alternative",
+   "1 banana",
+   "1 tbsp chia seeds"
+  ],
+  "steps": [
+   "Stir 50g oats, 150ml milk and 1 tbsp chia seeds together in a jar. 2 minutes.",
+   "Cover and refrigerate for at least 4 hours, ideally overnight, until the oats have softened and thickened.",
+   "In the morning, loosen with a splash of milk if it is too thick. 1 minute.",
+   "Slice the banana over the top and eat cold."
+  ],
+  "nutrients": [
+   "Protein 13g",
+   "Fibre 9g",
+   "Magnesium 24%",
+   "Potassium 15%"
+  ],
+  "fit": "An easy make ahead breakfast with useful fibre.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--salmon-quinoa-greens",
+  "legacyIndex": 3,
+  "name": "Salmon, quinoa & greens",
+  "slot": "Lunch",
+  "minutes": 20,
+  "kcal": 520,
+  "meta": "Omega 3 · Protein · Folate",
+  "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "150g salmon",
+   "75g quinoa",
+   "2 handfuls greens",
+   "1 red pepper",
+   "1 tbsp olive oil"
+  ],
+  "steps": [
+   "Rinse 75g quinoa, then simmer in 180ml water with a lid on for 12 to 15 minutes, until the grains uncurl and the water is gone. Rest off the heat for 5 minutes.",
+   "While the quinoa cooks, slice the pepper. Heat 1 tsp oil in a pan over medium high heat for 1 minute.",
+   "Season the salmon and cook skin side down for 4 minutes without moving it, then turn and give it 2 to 3 minutes more, until it flakes easily at the thickest point.",
+   "Add the pepper to the pan for the last 3 minutes to soften.",
+   "Fork through the quinoa, add the greens, sit the salmon on top and finish with olive oil and lemon."
+  ],
+  "nutrients": [
+   "Protein 35g",
+   "Fibre 8g",
+   "Omega 3 1.2g",
+   "Vitamin D 32%"
+  ],
+  "fit": "A protein rich lunch with omega 3 and vegetables.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--chickpea-cucumber-herb-bowl",
+  "legacyIndex": 4,
+  "name": "Chickpea, cucumber & herb bowl",
+  "slot": "Lunch",
+  "minutes": 20,
+  "kcal": 440,
+  "meta": "Fibre · Plant protein · Folate",
+  "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "150g chickpeas",
+   "1 cucumber",
+   "2 tomatoes",
+   "Fresh herbs",
+   "1 tbsp olive oil"
+  ],
+  "steps": [
+   "Drain and rinse 150g chickpeas well. 2 minutes.",
+   "Dice the cucumber and tomatoes into rough 1cm pieces. 5 minutes.",
+   "Chop the herbs and whisk with 1 tbsp olive oil, lemon juice, salt and pepper. 3 minutes.",
+   "Toss everything together and leave to sit for 5 minutes so the flavours settle before eating."
+  ],
+  "nutrients": [
+   "Protein 16g",
+   "Fibre 13g",
+   "Folate 30%",
+   "Iron 20%"
+  ],
+  "fit": "A plant forward lunch with plenty of fibre.",
+  "culture": null,
+  "fits": [
+   "Vegan friendly"
+  ]
+ },
+ {
+  "id": "meal--chicken-rice-roasted-peppers",
+  "legacyIndex": 5,
+  "name": "Chicken, rice & roasted peppers",
+  "slot": "Lunch",
+  "minutes": 20,
+  "kcal": 500,
+  "meta": "Protein · Vitamin C · B vitamins",
+  "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "150g chicken breast",
+   "75g rice",
+   "1 red pepper",
+   "1 courgette",
+   "1 tbsp olive oil"
+  ],
+  "steps": [
+   "Heat the oven to 200°C. Rinse 75g rice and simmer in 150ml water with a lid on for 10 to 12 minutes, then rest off the heat for 5 minutes.",
+   "Cut the pepper and courgette into chunks, toss with 1 tbsp oil and salt, and roast for 20 minutes until the edges colour.",
+   "Season the chicken. Cook in a hot pan for 6 to 7 minutes on each side, until no pink remains and the juices run clear.",
+   "Rest the chicken for 3 minutes, slice, and serve over the rice with the roast vegetables."
+  ],
+  "nutrients": [
+   "Protein 40g",
+   "Fibre 7g",
+   "Vitamin C 60%",
+   "B6 35%"
+  ],
+  "fit": "A familiar, high protein meal with colourful vegetables.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--lentil-roasted-vegetable-bowl",
+  "legacyIndex": 6,
+  "name": "Lentil & roasted vegetable bowl",
+  "slot": "Dinner",
+  "minutes": 25,
+  "kcal": 470,
+  "meta": "Fibre · Plant protein · Iron",
+  "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "150g cooked lentils",
+   "1 courgette",
+   "1 red pepper",
+   "1 carrot",
+   "1 handful spinach",
+   "1 tbsp olive oil"
+  ],
+  "steps": [
+   "Heat the oven to 200°C. 5 minutes.",
+   "Chop the courgette, pepper and carrot into even chunks, toss with 1 tbsp olive oil and salt. 6 minutes.",
+   "Roast for 20 to 25 minutes, turning once halfway, until tender and browning at the edges.",
+   "Warm 150g cooked lentils in a pan over low heat for 4 minutes with a splash of water.",
+   "Fold the spinach through the hot lentils until it wilts, about 1 minute, then top with the roast vegetables."
+  ],
+  "nutrients": [
+   "Protein 19g",
+   "Fibre 15g",
+   "Iron 24%",
+   "Folate 35%"
+  ],
+  "fit": "A fibre rich plant forward option. For digestive symptoms, individual tolerance to lentils and other high fibre foods varies.",
+  "culture": null,
+  "fits": [
+   "Vegan friendly"
+  ]
+ },
+ {
+  "id": "meal--cod-potatoes-green-beans",
+  "legacyIndex": 7,
+  "name": "Cod, potatoes & green beans",
+  "slot": "Dinner",
+  "minutes": 25,
+  "kcal": 480,
+  "meta": "Protein · Vitamin B12 · Potassium",
+  "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "160g cod",
+   "250g potatoes",
+   "150g green beans",
+   "1 tbsp olive oil",
+   "Lemon"
+  ],
+  "steps": [
+   "Cut 250g potatoes into even chunks and boil in salted water for 15 to 18 minutes, until a knife slides in easily.",
+   "Heat the oven to 190°C. Season the cod, sit it on a lined tray with a little oil and bake for 12 to 15 minutes, until it turns opaque and flakes.",
+   "Steam the green beans for 4 to 5 minutes, until bright and just tender.",
+   "Drain the potatoes, plate everything and finish with lemon and olive oil."
+  ],
+  "nutrients": [
+   "Protein 37g",
+   "Fibre 7g",
+   "B12 80%",
+   "Potassium 25%"
+  ],
+  "fit": "A lighter fish based dinner with protein and vegetables.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--chicken-sweet-potato-tray-bake",
+  "legacyIndex": 8,
+  "name": "Chicken & sweet potato tray bake",
+  "slot": "Dinner",
+  "minutes": 25,
+  "kcal": 540,
+  "meta": "Protein · Potassium · Vitamin C",
+  "image": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=900&q=90",
+  "ingredients": [
+   "150g chicken breast",
+   "1 sweet potato",
+   "1 broccoli head",
+   "1 red onion",
+   "1 tbsp olive oil"
+  ],
+  "steps": [
+   "Heat the oven to 200°C. 5 minutes.",
+   "Cut the sweet potato into 2cm cubes, the onion into wedges and break the broccoli into florets. 8 minutes.",
+   "Toss the sweet potato and onion with 1 tbsp oil and roast for 15 minutes on their own to get a head start.",
+   "Add the chicken and broccoli to the tray and roast for a further 20 to 25 minutes, until the chicken is cooked through with no pink and the vegetables are tender.",
+   "Rest for 3 minutes before serving."
+  ],
+  "nutrients": [
+   "Protein 42g",
+   "Fibre 9g",
+   "Potassium 22%",
+   "Vitamin C 75%"
+  ],
+  "fit": "A practical tray bake when you want something hearty and simple.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--ghanaian-grilled-tilapia-fries",
+  "legacyIndex": 9,
+  "name": "Ghanaian grilled tilapia & fries",
+  "slot": "Dinner",
+  "minutes": 45,
+  "kcal": 610,
+  "meta": "Ghana · Whole fish · Yam · Shito",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tilapia_grilled.jpg?width=1400",
+  "ingredients": [
+   "1 whole tilapia, cleaned and scaled",
+   "1 small yam",
+   "1 red onion",
+   "1 thumb ginger",
+   "2 garlic cloves",
+   "1 Scotch bonnet, to taste",
+   "1 tbsp oil",
+   "Salt",
+   "Shito or fresh pepper sauce to serve"
+  ],
+  "steps": [
+   "Pat the tilapia dry and score both sides three or four times so the seasoning reaches the flesh.",
+   "Blend or crush ginger, garlic, onion, Scotch bonnet, salt and oil. Rub it into the fish and leave for about 20 minutes.",
+   "Heat a grill or barbecue until properly hot. Grill the fish, turning carefully, until the skin is well charred and the thickest flesh is opaque and cooked through. Timing varies with the size of the fish, so use the visual cue and a food thermometer if available.",
+   "Cut the yam into chips or wedges. Fry, air-fry or roast until crisp outside and tender inside.",
+   "Serve the whole tilapia with yam, sliced onion, shito or fresh pepper sauce. The fish should be the visual centre of the plate."
+  ],
+  "nutrients": null,
+  "fit": "A Ghanaian favourite built around whole grilled tilapia, yam and hot pepper sauce. Girki treats this as a practical home version while keeping the serving style recognisably Ghanaian.",
+  "culture": "Ghana",
+  "fits": [
+   "Spicy"
+  ]
+ },
+ {
+  "id": "meal--swedish-kottbullar-with-lingonberry",
+  "legacyIndex": 10,
+  "name": "Swedish köttbullar with lingonberry",
+  "slot": "Dinner",
+  "minutes": 35,
+  "kcal": 570,
+  "meta": "Sweden · Comfort food · Protein",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Swedish%20Meatballs.jpg?width=1200",
+  "ingredients": [
+   "250g beef and pork mince",
+   "1 small onion",
+   "40g breadcrumbs",
+   "1 egg",
+   "100ml milk",
+   "Potatoes",
+   "Lingonberry jam"
+  ],
+  "steps": [
+   "Soften the onion gently for about 5 minutes.",
+   "Mix mince, onion, breadcrumbs, egg and milk until just combined.",
+   "Roll into small meatballs.",
+   "Brown them in a pan, turning often, then cook through for about 10 minutes.",
+   "Serve with potatoes, sauce and lingonberry."
+  ],
+  "nutrients": null,
+  "fit": "A classic Swedish comfort meal, often served with potatoes and lingonberry.",
+  "culture": "Sweden",
+  "fits": [
+   "Comforting"
+  ]
+ },
+ {
+  "id": "meal--true-ramen-shoyu-style",
+  "legacyIndex": 11,
+  "name": "True ramen · shoyu style",
+  "slot": "Dinner",
+  "minutes": 35,
+  "kcal": 560,
+  "meta": "China to Japan · Wheat noodles · Umami",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Shoyu%20Ramen.jpg?width=1200",
+  "ingredients": [
+   "120g ramen noodles",
+   "500ml chicken or vegetable broth",
+   "1 tbsp soy sauce",
+   "Spring onion",
+   "Mushrooms",
+   "1 egg",
+   "Nori"
+  ],
+  "steps": [
+   "Bring the broth to a gentle simmer and season with soy sauce.",
+   "Cook the noodles according to the packet until springy, usually about 3 to 4 minutes.",
+   "Warm mushrooms in the broth for 2 minutes.",
+   "Add noodles to a bowl and pour over the hot broth.",
+   "Top with egg, spring onion and nori."
+  ],
+  "nutrients": null,
+  "fit": "Ramen has Chinese roots and became a distinct Japanese food with many regional styles. This is a simple shoyu inspired home bowl.",
+  "culture": "Japan",
+  "fits": [
+   "Comforting",
+   "Spicy option"
+  ]
+ },
+ {
+  "id": "meal--vietnamese-chicken-pho",
+  "legacyIndex": 12,
+  "name": "Vietnamese chicken phở",
+  "slot": "Lunch",
+  "minutes": 40,
+  "kcal": 500,
+  "meta": "Vietnam · Herbs · Protein",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Vietnamese%20Pho.jpg?width=1200",
+  "ingredients": [
+   "120g rice noodles",
+   "150g chicken",
+   "700ml chicken stock",
+   "Ginger",
+   "Star anise",
+   "Spring onion",
+   "Coriander",
+   "Lime"
+  ],
+  "steps": [
+   "Warm the stock with ginger and star anise for about 15 minutes.",
+   "Cook the rice noodles according to the packet, usually 3 to 5 minutes.",
+   "Add cooked sliced chicken to the hot broth.",
+   "Build the bowl with noodles, broth and herbs.",
+   "Finish with lime and chilli to taste."
+  ],
+  "nutrients": null,
+  "fit": "A fragrant Vietnamese noodle soup with fresh herbs and citrus.",
+  "culture": "Vietnam",
+  "fits": [
+   "Spicy option"
+  ]
+ },
+ {
+  "id": "meal--korean-bibimbap",
+  "legacyIndex": 13,
+  "name": "Korean bibimbap",
+  "slot": "Lunch",
+  "minutes": 30,
+  "kcal": 520,
+  "meta": "Korea · Vegetables · Gochujang",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean%20Bibimbap.jpg?width=1200",
+  "ingredients": [
+   "150g cooked rice",
+   "1 egg",
+   "Carrot",
+   "Spinach",
+   "Bean sprouts",
+   "Mushrooms",
+   "Gochujang",
+   "Sesame oil"
+  ],
+  "steps": [
+   "Cook the rice and keep it warm.",
+   "Cook each vegetable separately for a few minutes so it stays colourful and tender.",
+   "Fry the egg until the white is set.",
+   "Build the rice bowl with vegetables and egg.",
+   "Add gochujang and sesame oil, then mix at the table."
+  ],
+  "nutrients": null,
+  "fit": "A Korean mixed rice bowl that brings vegetables, rice, sauce and protein together.",
+  "culture": "Korea",
+  "fits": [
+   "Spicy",
+   "Vegetarian friendly"
+  ]
+ },
+ {
+  "id": "meal--fijian-kokoda",
+  "legacyIndex": 14,
+  "name": "Fijian kokoda",
+  "slot": "Lunch",
+  "minutes": 25,
+  "kcal": 430,
+  "meta": "Fiji · Citrus · Coconut · Fish",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kokodafood.jpg?width=1200",
+  "ingredients": [
+   "180g very fresh fish suitable for raw preparation",
+   "Lime juice",
+   "Coconut milk",
+   "Tomato",
+   "Cucumber",
+   "Onion",
+   "Chilli"
+  ],
+  "steps": [
+   "Cut the fish into small pieces and cover with lime juice.",
+   "Chill while the citrus changes the fish texture, following a food safe recipe and using suitable fresh fish.",
+   "Mix coconut milk with tomato, cucumber and onion.",
+   "Combine with the fish and chilli just before serving."
+  ],
+  "nutrients": null,
+  "fit": "Kokoda is a Fijian dish of fish prepared with citrus and coconut, often enjoyed as a fresh shared dish.",
+  "culture": "Fiji",
+  "fits": [
+   "Spicy",
+   "Dairy free"
+  ]
+ },
+ {
+  "id": "meal--masala-dosa-with-sambar",
+  "legacyIndex": 15,
+  "name": "Masala dosa with sambar",
+  "slot": "Breakfast",
+  "minutes": 35,
+  "kcal": 470,
+  "meta": "South India · Fermented batter · Plant based",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200",
+  "ingredients": [
+   "Dosa batter",
+   "Potato",
+   "Onion",
+   "Mustard seeds",
+   "Curry leaves",
+   "Sambar",
+   "Coconut chutney"
+  ],
+  "steps": [
+   "Warm the pan and spread a thin layer of dosa batter.",
+   "Cook until the underside is crisp and golden, about 2 to 3 minutes.",
+   "Fill with spiced potato and fold.",
+   "Warm the sambar and serve with coconut chutney."
+  ],
+  "nutrients": null,
+  "fit": "Dosa is a fermented South Indian staple with many regional styles and accompaniments.",
+  "culture": "India",
+  "fits": [
+   "Vegan friendly",
+   "Spicy"
+  ]
+ },
+ {
+  "id": "meal--turkish-red-lentil-soup",
+  "legacyIndex": 16,
+  "name": "Turkish red lentil soup",
+  "slot": "Lunch",
+  "minutes": 25,
+  "kcal": 360,
+  "meta": "Türkiye · Lentils · Tomato · Lemon",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20lentil%20soup%20from%20Turkey.jpg?width=1200",
+  "ingredients": [
+   "150g red lentils",
+   "1 small onion",
+   "1 carrot",
+   "1 tbsp tomato paste",
+   "750ml vegetable stock",
+   "1 tsp olive oil",
+   "Lemon"
+  ],
+  "steps": [
+   "Rinse the lentils.",
+   "Soften the onion and carrot with a little olive oil.",
+   "Add tomato paste, lentils and stock, then simmer until the lentils are very soft.",
+   "Blend until smooth if you prefer a smoother texture.",
+   "Finish with lemon and serve warm."
+  ],
+  "nutrients": null,
+  "fit": "A traditional Turkish soup centred on red lentils. Girki presents it as a practical, cooked meal option, not as a treatment or a food that heals a medical condition.",
+  "culture": "Türkiye",
+  "fits": [
+   "Vegetarian friendly",
+   "Easy"
+  ]
+ },
+ {
+  "id": "meal--amazonian-tacaca",
+  "legacyIndex": 17,
+  "name": "Amazonian tacacá",
+  "slot": "Dinner",
+  "minutes": 40,
+  "kcal": 450,
+  "meta": "Northern Brazil · Jambu · Manioc · Shrimp",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tacac%C3%A1%20(Brazilian%20indigenous%20soup)%20(51404038372).jpg?width=1200",
+  "ingredients": [
+   "Tucupi or manioc broth",
+   "Jambu leaves",
+   "Tapioca starch",
+   "Dried shrimp",
+   "Yellow chilli"
+  ],
+  "steps": [
+   "Prepare the manioc based broth using a food safe commercial preparation.",
+   "Cook jambu until tender.",
+   "Make a small tapioca starch portion according to the recipe.",
+   "Assemble the hot broth with jambu, tapioca and shrimp.",
+   "Serve very hot in a bowl, as traditionally presented."
+  ],
+  "nutrients": null,
+  "fit": "Tacacá is associated with Indigenous food traditions of northern Brazil and the Amazon region.",
+  "culture": "Amazon",
+  "fits": [
+   "Spicy"
+  ]
+ },
+ {
+  "id": "meal--hawaiian-poke-bowl",
+  "legacyIndex": 18,
+  "name": "Hawaiian poke bowl",
+  "slot": "Lunch",
+  "minutes": 20,
+  "kcal": 480,
+  "meta": "Hawaiʻi · Fish · Seaweed · Rice",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Limupoke.jpg?width=1200",
+  "ingredients": [
+   "150g sushi grade or otherwise suitable fish",
+   "Cooked rice",
+   "Seaweed",
+   "Cucumber",
+   "Green onion",
+   "Sesame",
+   "Shoyu"
+  ],
+  "steps": [
+   "Keep the fish properly chilled and use fish suitable for raw consumption.",
+   "Cut the fish into bite sized pieces.",
+   "Toss gently with shoyu, sesame and green onion.",
+   "Serve over warm or cooled rice with cucumber and seaweed."
+  ],
+  "nutrients": null,
+  "fit": "Poke is rooted in Native Hawaiian food culture, with later influences creating many modern variations.",
+  "culture": "Hawaiʻi",
+  "fits": [
+   "Dairy free"
+  ]
+ },
+ {
+  "id": "meal--lemon-herb-salmon-avocado-greens",
+  "legacyIndex": 19,
+  "name": "Lemon herb salmon, avocado & greens",
+  "slot": "Dinner",
+  "minutes": 20,
+  "kcal": 450,
+  "meta": "Protein · Omega 3 · Low carb",
+  "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g salmon",
+   "1/2 avocado",
+   "Mixed leafy greens",
+   "Cucumber",
+   "Lemon",
+   "1 tbsp olive oil"
+  ],
+  "steps": [
+   "Pat the salmon dry and season lightly.",
+   "Pan cook for about 4 minutes on each side, depending on thickness, until it flakes easily.",
+   "Slice the avocado and cucumber while the salmon cooks.",
+   "Build the greens, avocado and cucumber, then add the salmon.",
+   "Finish with lemon and olive oil."
+  ],
+  "nutrients": null,
+  "fit": "A low carbohydrate meal built around salmon, avocado and leafy greens. Keto suitability depends on the full recipe and your daily carbohydrate target.",
+  "culture": "Modern home kitchen",
+  "fits": [
+   "Keto friendly"
+  ]
+ },
+ {
+  "id": "meal--nepali-dal-bhat-tarkari",
+  "legacyIndex": 20,
+  "name": "Nepali dal bhat tarkari",
+  "slot": "Dinner",
+  "minutes": 35,
+  "kcal": 510,
+  "meta": "Fibre · Plant protein · Iron",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dal_bhat.jpg?width=1200",
+  "ingredients": [
+   "120g cooked lentils",
+   "150g cooked rice",
+   "Mixed vegetables",
+   "Tomato",
+   "Fresh coriander",
+   "Spices"
+  ],
+  "steps": [
+   "Warm the lentils with tomato, cumin and turmeric for 5 minutes.",
+   "Cook the vegetables until just tender, about 7 minutes.",
+   "Warm the rice and spoon everything into a bowl.",
+   "Finish with coriander and a little pickle if you like."
+  ],
+  "nutrients": null,
+  "fit": "A varied meal built around lentils, vegetables and rice.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--ghanaian-jollof-rice-with-beans",
+  "legacyIndex": 21,
+  "name": "Ghanaian jollof rice with beans",
+  "slot": "Dinner",
+  "minutes": 85,
+  "kcal": 560,
+  "meta": "Ghana · Rice · Beans · Tomato pepper base",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Garnished_Ghana_jollof_rice.jpg?width=1400",
+  "ingredients": [
+   "200g long grain rice",
+   "120g cooked black eyed beans",
+   "3 ripe tomatoes",
+   "1 red bell pepper",
+   "1 onion",
+   "2 tbsp tomato paste",
+   "1 Scotch bonnet, to taste",
+   "400ml stock or water",
+   "2 tbsp neutral oil",
+   "1 tsp curry powder",
+   "1 bay leaf",
+   "Salt"
+  ],
+  "steps": [
+   "Blend the tomatoes, pepper, half the onion and Scotch bonnet until smooth.",
+   "Cook the remaining sliced onion in the oil for 6 to 8 minutes. Add tomato paste and fry for another 6 to 8 minutes until darker, glossy and no longer raw smelling.",
+   "Add the blended tomato mixture, curry powder and bay leaf. Cook uncovered for 20 to 25 minutes, stirring occasionally, until the sauce is thick and the oil begins to show at the edges. This is the important base for the rice.",
+   "Rinse the rice, stir it into the sauce and add enough stock to come just around the level of the rice. Cover tightly and cook on low for about 20 minutes.",
+   "Fold in the cooked beans near the end if using them, then cover and cook for another 5 minutes. Do not keep stirring or the grains will break.",
+   "Rest covered for 10 minutes, then fork through gently. For a smoky party-style note, a heavy pot can be allowed to develop a light toasted layer at the bottom; do not leave it unattended or burn the rice."
+  ],
+  "nutrients": null,
+  "fit": "A Ghana-inspired home version built around the slow-fried tomato-pepper base and separate rice grains. Beans make this a practical plant-forward variation.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--shakshuka-with-wholegrain-bread",
+  "legacyIndex": 22,
+  "name": "Shakshuka with wholegrain bread",
+  "slot": "Breakfast",
+  "minutes": 25,
+  "kcal": 450,
+  "meta": "Protein · Fibre · Folate",
+  "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Shakshuka1.jpg?width=1200",
+  "ingredients": [
+   "2 eggs",
+   "2 tomatoes",
+   "1 red pepper",
+   "1 small onion",
+   "Paprika",
+   "1 slice wholegrain bread"
+  ],
+  "steps": [
+   "Soften onion and pepper for 5 minutes.",
+   "Add chopped tomatoes and paprika and simmer for 8 minutes.",
+   "Make two wells and crack in the eggs. Cover and cook for 4 to 6 minutes until set to your liking.",
+   "Serve with toasted wholegrain bread."
+  ],
+  "nutrients": null,
+  "fit": "A vegetable rich breakfast with protein and fibre.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--japanese-salmon-rice-bowl",
+  "legacyIndex": 23,
+  "name": "Japanese salmon rice bowl",
+  "slot": "Lunch",
+  "minutes": 25,
+  "kcal": 530,
+  "meta": "Protein · Omega 3 · Vitamin D",
+  "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "130g salmon",
+   "150g cooked rice",
+   "Cucumber",
+   "Edamame",
+   "Spring onion",
+   "Sesame seeds"
+  ],
+  "steps": [
+   "Cook the salmon until it flakes easily, about 8 to 10 minutes depending on thickness.",
+   "Warm the rice.",
+   "Slice cucumber and spring onion.",
+   "Build the bowl and finish with edamame and sesame."
+  ],
+  "nutrients": null,
+  "fit": "A colourful bowl combining fish, grains and vegetables.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--moroccan-chickpea-vegetable-tagine",
+  "legacyIndex": 24,
+  "name": "Moroccan chickpea vegetable tagine",
+  "slot": "Dinner",
+  "minutes": 35,
+  "kcal": 490,
+  "meta": "Fibre · Plant protein · Folate",
+  "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g chickpeas",
+   "Carrot",
+   "Courgette",
+   "Tomatoes",
+   "Cumin",
+   "Coriander"
+  ],
+  "steps": [
+   "Soften carrot and onion for 5 minutes.",
+   "Add spices and stir for 30 seconds.",
+   "Add tomatoes, courgette and chickpeas and simmer for 15 minutes.",
+   "Finish with coriander and lemon."
+  ],
+  "nutrients": null,
+  "fit": "A vegetable and legume based meal with aromatic spices.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--caribbean-black-bean-plantain-bowl",
+  "legacyIndex": 25,
+  "name": "Caribbean black bean & plantain bowl",
+  "slot": "Lunch",
+  "minutes": 30,
+  "kcal": 520,
+  "meta": "Fibre · Plant protein · Potassium",
+  "image": "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g black beans",
+   "1 plantain",
+   "Tomato",
+   "Cabbage",
+   "Avocado",
+   "Lime"
+  ],
+  "steps": [
+   "Slice plantain and cook in a little oil until golden on both sides.",
+   "Warm beans with tomato and seasoning.",
+   "Shred cabbage and slice avocado.",
+   "Build the bowl and finish with lime."
+  ],
+  "nutrients": null,
+  "fit": "A colourful combination of beans, plantain and fresh vegetables.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--ethiopian-lentil-stew-with-greens",
+  "legacyIndex": 26,
+  "name": "Ethiopian lentil stew with greens",
+  "slot": "Dinner",
+  "minutes": 35,
+  "kcal": 480,
+  "meta": "Fibre · Plant protein · Iron",
+  "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g cooked lentils",
+   "Tomatoes",
+   "Onion",
+   "Garlic",
+   "Spinach",
+   "Berbere spice"
+  ],
+  "steps": [
+   "Cook onion, garlic and berbere gently for 5 minutes.",
+   "Add tomatoes and simmer until thick.",
+   "Stir in lentils and cook for 8 minutes.",
+   "Fold through spinach until wilted and serve."
+  ],
+  "nutrients": null,
+  "fit": "A fibre rich lentil dish with greens and warming spices.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--greek-lentil-tomato-feta-bowl",
+  "legacyIndex": 27,
+  "name": "Greek lentil, tomato & feta bowl",
+  "slot": "Lunch",
+  "minutes": 20,
+  "kcal": 460,
+  "meta": "Fibre · Protein · Calcium",
+  "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g cooked lentils",
+   "Tomatoes",
+   "Cucumber",
+   "Feta",
+   "Parsley",
+   "Olive oil"
+  ],
+  "steps": [
+   "Rinse and drain the lentils.",
+   "Chop tomato and cucumber.",
+   "Toss with parsley and olive oil.",
+   "Crumble over feta and serve."
+  ],
+  "nutrients": null,
+  "fit": "A simple bowl built around lentils, vegetables and a little feta.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--mexican-black-bean-corn-avocado-bowl",
+  "legacyIndex": 28,
+  "name": "Mexican black bean, corn & avocado bowl",
+  "slot": "Lunch",
+  "minutes": 20,
+  "kcal": 500,
+  "meta": "Fibre · Plant protein · Folate",
+  "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g black beans",
+   "80g sweetcorn",
+   "1 avocado",
+   "Tomatoes",
+   "Lime",
+   "Coriander"
+  ],
+  "steps": [
+   "Warm the beans and corn with a little cumin.",
+   "Chop tomatoes and avocado.",
+   "Combine everything in a bowl.",
+   "Finish with lime and coriander."
+  ],
+  "nutrients": null,
+  "fit": "A flexible plant forward bowl with beans, vegetables and avocado.",
+  "culture": null,
+  "fits": null
+ },
+ {
+  "id": "meal--middle-eastern-lentil-soup-with-wholegrain-flatbread",
+  "legacyIndex": 29,
+  "name": "Middle Eastern lentil soup with wholegrain flatbread",
+  "slot": "Lunch",
+  "minutes": 30,
+  "kcal": 460,
+  "meta": "Fibre · Plant protein · Iron",
+  "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90",
+  "ingredients": [
+   "150g cooked lentils",
+   "Tomatoes",
+   "Carrot",
+   "Onion",
+   "Cumin",
+   "1 small wholegrain flatbread"
+  ],
+  "steps": [
+   "Soften onion and carrot for 5 minutes.",
+   "Add tomatoes, cumin and lentils with enough water to cover.",
+   "Simmer for 15 minutes and stir until the soup thickens.",
+   "Warm the flatbread and serve alongside."
+  ],
+  "nutrients": null,
+  "fit": "A simple lentil based meal with vegetables and aromatic spices.",
+  "culture": null,
+  "fits": null
+ }
+]

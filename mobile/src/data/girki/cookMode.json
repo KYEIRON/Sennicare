@@ -1,0 +1,68 @@
+{
+ "defaults": {
+  "board": 2,
+  "pan": 5,
+  "pot": 8,
+  "oven": 18,
+  "chill": 10
+ },
+ "methodOverrides": {
+  "Greek yoghurt, berries & seeds": [
+   "Spoon 200g Greek yoghurt into a bowl. 1 minute.",
+   "Rinse the berries and scatter them over. 1 minute.",
+   "Toast the oats and pumpkin seeds in a dry pan over medium heat for 2 to 3 minutes, shaking often, until they smell nutty.",
+   "Tip the warm oats and seeds over the yoghurt and eat straight away."
+  ],
+  "Avocado, egg & seeded toast": [
+   "Bring a small pan of water to a gentle simmer. 3 minutes.",
+   "Lower in the eggs and cook 6 minutes for a soft centre, 8 for firm. Lift out and run under cold water for 30 seconds.",
+   "Toast the bread for 2 to 3 minutes while the eggs cook.",
+   "Mash the avocado with a pinch of salt, spread on the toast, add the peeled eggs and the spinach, and season."
+  ],
+  "Overnight oats with banana & seeds": [
+   "Stir 50g oats, 150ml milk and 1 tbsp chia seeds together in a jar. 2 minutes.",
+   "Cover and refrigerate for at least 4 hours, ideally overnight, until the oats have softened and thickened.",
+   "In the morning, loosen with a splash of milk if it is too thick. 1 minute.",
+   "Slice the banana over the top and eat cold."
+  ],
+  "Salmon, quinoa & greens": [
+   "Rinse 75g quinoa, then simmer in 180ml water with a lid on for 12 to 15 minutes, until the grains uncurl and the water is gone. Rest off the heat for 5 minutes.",
+   "While the quinoa cooks, slice the pepper. Heat 1 tsp oil in a pan over medium high heat for 1 minute.",
+   "Season the salmon and cook skin side down for 4 minutes without moving it, then turn and give it 2 to 3 minutes more, until it flakes easily at the thickest point.",
+   "Add the pepper to the pan for the last 3 minutes to soften.",
+   "Fork through the quinoa, add the greens, sit the salmon on top and finish with olive oil and lemon."
+  ],
+  "Chickpea, cucumber & herb bowl": [
+   "Drain and rinse 150g chickpeas well. 2 minutes.",
+   "Dice the cucumber and tomatoes into rough 1cm pieces. 5 minutes.",
+   "Chop the herbs and whisk with 1 tbsp olive oil, lemon juice, salt and pepper. 3 minutes.",
+   "Toss everything together and leave to sit for 5 minutes so the flavours settle before eating."
+  ],
+  "Chicken, rice & roasted peppers": [
+   "Heat the oven to 200°C. Rinse 75g rice and simmer in 150ml water with a lid on for 10 to 12 minutes, then rest off the heat for 5 minutes.",
+   "Cut the pepper and courgette into chunks, toss with 1 tbsp oil and salt, and roast for 20 minutes until the edges colour.",
+   "Season the chicken. Cook in a hot pan for 6 to 7 minutes on each side, until no pink remains and the juices run clear.",
+   "Rest the chicken for 3 minutes, slice, and serve over the rice with the roast vegetables."
+  ],
+  "Lentil & roasted vegetable bowl": [
+   "Heat the oven to 200°C. 5 minutes.",
+   "Chop the courgette, pepper and carrot into even chunks, toss with 1 tbsp olive oil and salt. 6 minutes.",
+   "Roast for 20 to 25 minutes, turning once halfway, until tender and browning at the edges.",
+   "Warm 150g cooked lentils in a pan over low heat for 4 minutes with a splash of water.",
+   "Fold the spinach through the hot lentils until it wilts, about 1 minute, then top with the roast vegetables."
+  ],
+  "Cod, potatoes & green beans": [
+   "Cut 250g potatoes into even chunks and boil in salted water for 15 to 18 minutes, until a knife slides in easily.",
+   "Heat the oven to 190°C. Season the cod, sit it on a lined tray with a little oil and bake for 12 to 15 minutes, until it turns opaque and flakes.",
+   "Steam the green beans for 4 to 5 minutes, until bright and just tender.",
+   "Drain the potatoes, plate everything and finish with lemon and olive oil."
+  ],
+  "Chicken & sweet potato tray bake": [
+   "Heat the oven to 200°C. 5 minutes.",
+   "Cut the sweet potato into 2cm cubes, the onion into wedges and break the broccoli into florets. 8 minutes.",
+   "Toss the sweet potato and onion with 1 tbsp oil and roast for 15 minutes on their own to get a head start.",
+   "Add the chicken and broccoli to the tray and roast for a further 20 to 25 minutes, until the chicken is cooked through with no pink and the vegetables are tender.",
+   "Rest for 3 minutes before serving."
+  ]
+ }
+}

@@ -1,0 +1,82 @@
+[
+ {
+  "id": "date",
+  "icon": "🕯️",
+  "name": "Date night",
+  "blurb": "Something worth sitting down for, without spending the evening at the hob.",
+  "want": {
+   "maxMin": 50,
+   "minMin": 25
+  },
+  "tip": "Cook one thing properly rather than three things at once. Lay the table before you start."
+ },
+ {
+  "id": "movie",
+  "icon": "🎬",
+  "name": "Movie night",
+  "blurb": "Eaten on a lap, made mostly in advance, nothing that needs a knife and fork battle.",
+  "want": {
+   "maxMin": 40
+  },
+  "tip": "Anything you can eat one handed wins. Get it finished before the film starts, not during."
+ },
+ {
+  "id": "family",
+  "icon": "🍲",
+  "name": "Family together",
+  "blurb": "One pot, everyone served at once, enough for seconds.",
+  "want": {
+   "maxMin": 70
+  },
+  "tip": "Put it in the middle of the table and let people serve themselves. It changes the meal."
+ },
+ {
+  "id": "bored",
+  "icon": "🧭",
+  "name": "I don’t know what I want",
+  "blurb": "Somewhere you have not eaten before, chosen for you.",
+  "want": {},
+  "prefer": null,
+  "tip": "Pick the one that sounds strangest. That is usually the good decision."
+ },
+ {
+  "id": "friends",
+  "icon": "🫓",
+  "name": "Friends coming over",
+  "blurb": "Scales up easily, most of it done before anyone arrives.",
+  "want": {
+   "maxMin": 70
+  },
+  "tip": "Choose something that sits happily for twenty minutes. Guests are never on time."
+ },
+ {
+  "id": "alone",
+  "icon": "🌙",
+  "name": "Just me",
+  "blurb": "Small, quick, no leftovers you will resent on Thursday.",
+  "want": {
+   "maxMin": 25
+  },
+  "tip": "Cooking for one is still cooking. Use a plate."
+ },
+ {
+  "id": "batch",
+  "icon": "🧊",
+  "name": "Cook once, eat twice",
+  "blurb": "Better on the second day, freezes without complaint.",
+  "want": {
+   "minMin": 35
+  },
+  "tip": "Cool it quickly, then fridge or freeze. Most stews improve overnight."
+ },
+ {
+  "id": "tired",
+  "icon": "🛋️",
+  "name": "Too tired to cook",
+  "blurb": "Fifteen minutes, one pan, nothing to think about.",
+  "want": {
+   "maxMin": 20
+  },
+  "tip": "Low effort is not a failure. Eating something decent beats not eating."
+ }
+]

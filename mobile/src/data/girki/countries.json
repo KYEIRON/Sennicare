@@ -1,0 +1,2927 @@
+[
+ {
+  "id": "afghanistan",
+  "name": "Afghanistan",
+  "region": "South Asia",
+  "areas": [
+   "Kabul & central",
+   "Herat & west",
+   "Nangarhar & east"
+  ],
+  "foods": [
+   "Kabuli palaw",
+   "Mantu",
+   "Ashak"
+  ]
+ },
+ {
+  "id": "albania",
+  "name": "Albania",
+  "region": "Balkans",
+  "areas": [
+   "Northern mountains",
+   "Central Albania",
+   "Southern Riviera"
+  ],
+  "foods": [
+   "Tavë kosi",
+   "Byrek",
+   "Fërgesë"
+  ]
+ },
+ {
+  "id": "algeria",
+  "name": "Algeria",
+  "region": "North Africa",
+  "areas": [
+   "Algiers & north",
+   "Kabylie",
+   "Sahara"
+  ],
+  "foods": [
+   "Couscous",
+   "Chakhchoukha",
+   "Rechta"
+  ]
+ },
+ {
+  "id": "andorra",
+  "name": "Andorra",
+  "region": "Pyrenees",
+  "areas": [
+   "Canillo",
+   "Encamp",
+   "La Massana"
+  ],
+  "foods": [
+   "Escudella",
+   "Trinxat",
+   "Coca masegada"
+  ]
+ },
+ {
+  "id": "angola",
+  "name": "Angola",
+  "region": "Central Africa",
+  "areas": [
+   "Luanda & coast",
+   "Benguela",
+   "Huíla"
+  ],
+  "foods": [
+   "Muamba de galinha",
+   "Calulu",
+   "Funje"
+  ]
+ },
+ {
+  "id": "antigua-and-barbuda",
+  "name": "Antigua and Barbuda",
+  "region": "Caribbean",
+  "areas": [
+   "Antigua",
+   "Barbuda",
+   "Leeward islands"
+  ],
+  "foods": [
+   "Fungee & pepperpot",
+   "Ducana",
+   "Saltfish"
+  ]
+ },
+ {
+  "id": "argentina",
+  "name": "Argentina",
+  "region": "South America",
+  "areas": [
+   "Buenos Aires & Pampas",
+   "Cuyo",
+   "Patagonia"
+  ],
+  "foods": [
+   "Asado",
+   "Empanadas",
+   "Locro"
+  ]
+ },
+ {
+  "id": "armenia",
+  "name": "Armenia",
+  "region": "Caucasus",
+  "areas": [
+   "Yerevan",
+   "Lori & north",
+   "Syunik & south"
+  ],
+  "foods": [
+   "Khorovats",
+   "Dolma",
+   "Harissa"
+  ]
+ },
+ {
+  "id": "australia",
+  "name": "Australia",
+  "region": "Oceania",
+  "areas": [
+   "New South Wales",
+   "Victoria",
+   "Northern Territory"
+  ],
+  "foods": [
+   "Meat pie",
+   "Barramundi",
+   "Damper"
+  ]
+ },
+ {
+  "id": "austria",
+  "name": "Austria",
+  "region": "Central Europe",
+  "areas": [
+   "Vienna",
+   "Tyrol",
+   "Styria"
+  ],
+  "foods": [
+   "Wiener schnitzel",
+   "Tiroler gröstl",
+   "Käsespätzle"
+  ]
+ },
+ {
+  "id": "azerbaijan",
+  "name": "Azerbaijan",
+  "region": "Caucasus",
+  "areas": [
+   "Baku & Absheron",
+   "Sheki & north",
+   "Lankaran"
+  ],
+  "foods": [
+   "Plov",
+   "Dolma",
+   "Qutab"
+  ]
+ },
+ {
+  "id": "bahamas",
+  "name": "Bahamas",
+  "region": "Caribbean",
+  "areas": [
+   "New Providence",
+   "Grand Bahama",
+   "Out Islands"
+  ],
+  "foods": [
+   "Conch salad",
+   "Peas & rice",
+   "Cracked conch"
+  ]
+ },
+ {
+  "id": "bahrain",
+  "name": "Bahrain",
+  "region": "Gulf",
+  "areas": [
+   "Manama",
+   "Muharraq",
+   "Southern governorate"
+  ],
+  "foods": [
+   "Machboos",
+   "Muhammar",
+   "Balaleet"
+  ]
+ },
+ {
+  "id": "bangladesh",
+  "name": "Bangladesh",
+  "region": "South Asia",
+  "areas": [
+   "Dhaka",
+   "Sylhet",
+   "Chattogram"
+  ],
+  "foods": [
+   "Hilsa bhapa",
+   "Kacchi biryani",
+   "Shorshe ilish"
+  ]
+ },
+ {
+  "id": "barbados",
+  "name": "Barbados",
+  "region": "Caribbean",
+  "areas": [
+   "Bridgetown",
+   "Christ Church",
+   "St Philip"
+  ],
+  "foods": [
+   "Cou-cou & flying fish",
+   "Fish cakes",
+   "Pudding & souse"
+  ]
+ },
+ {
+  "id": "belarus",
+  "name": "Belarus",
+  "region": "Eastern Europe",
+  "areas": [
+   "Minsk",
+   "Grodno",
+   "Vitebsk"
+  ],
+  "foods": [
+   "Draniki",
+   "Machanka",
+   "Kletski"
+  ]
+ },
+ {
+  "id": "belgium",
+  "name": "Belgium",
+  "region": "Western Europe",
+  "areas": [
+   "Flanders",
+   "Brussels",
+   "Wallonia"
+  ],
+  "foods": [
+   "Moules-frites",
+   "Waterzooi",
+   "Carbonnade flamande"
+  ]
+ },
+ {
+  "id": "belize",
+  "name": "Belize",
+  "region": "Central America",
+  "areas": [
+   "Belize District",
+   "Stann Creek",
+   "Toledo"
+  ],
+  "foods": [
+   "Rice & beans",
+   "Hudut",
+   "Stew chicken"
+  ]
+ },
+ {
+  "id": "benin",
+  "name": "Benin",
+  "region": "West Africa",
+  "areas": [
+   "Abomey & south",
+   "Porto-Novo",
+   "Atakora"
+  ],
+  "foods": [
+   "Amiwo",
+   "Wagasi",
+   "Pâte with sauces"
+  ]
+ },
+ {
+  "id": "bhutan",
+  "name": "Bhutan",
+  "region": "Himalayas",
+  "areas": [
+   "Thimphu",
+   "Punakha",
+   "Eastern Bhutan"
+  ],
+  "foods": [
+   "Ema datshi",
+   "Phaksha paa",
+   "Jasha maru"
+  ]
+ },
+ {
+  "id": "bolivia",
+  "name": "Bolivia",
+  "region": "South America",
+  "areas": [
+   "Altiplano",
+   "Cochabamba valleys",
+   "Santa Cruz lowlands"
+  ],
+  "foods": [
+   "Salteñas",
+   "Silpancho",
+   "Majadito"
+  ]
+ },
+ {
+  "id": "bosnia-and-herzegovina",
+  "name": "Bosnia and Herzegovina",
+  "region": "Balkans",
+  "areas": [
+   "Sarajevo",
+   "Herzegovina",
+   "Krajina"
+  ],
+  "foods": [
+   "Ćevapi",
+   "Begova čorba",
+   "Pita"
+  ]
+ },
+ {
+  "id": "botswana",
+  "name": "Botswana",
+  "region": "Southern Africa",
+  "areas": [
+   "Gaborone",
+   "Kgalagadi",
+   "Chobe"
+  ],
+  "foods": [
+   "Seswaa",
+   "Bogobe",
+   "Morogo"
+  ]
+ },
+ {
+  "id": "brazil",
+  "name": "Brazil",
+  "region": "South America",
+  "areas": [
+   "Northeast",
+   "Southeast",
+   "Amazon & North"
+  ],
+  "foods": [
+   "Feijoada",
+   "Moqueca",
+   "Tacacá"
+  ]
+ },
+ {
+  "id": "brunei",
+  "name": "Brunei",
+  "region": "Southeast Asia",
+  "areas": [
+   "Brunei-Muara",
+   "Tutong",
+   "Temburong"
+  ],
+  "foods": [
+   "Ambuyat",
+   "Nasi katok",
+   "Kelupis"
+  ]
+ },
+ {
+  "id": "bulgaria",
+  "name": "Bulgaria",
+  "region": "Balkans",
+  "areas": [
+   "Sofia & west",
+   "Thrace",
+   "Black Sea coast"
+  ],
+  "foods": [
+   "Shopska salad",
+   "Banitsa",
+   "Kavarma"
+  ]
+ },
+ {
+  "id": "burkina-faso",
+  "name": "Burkina Faso",
+  "region": "West Africa",
+  "areas": [
+   "Ouagadougou",
+   "Bobo-Dioulasso",
+   "Sahel"
+  ],
+  "foods": [
+   "Riz gras",
+   "Tô",
+   "Poulet bicyclette"
+  ]
+ },
+ {
+  "id": "burundi",
+  "name": "Burundi",
+  "region": "East Africa",
+  "areas": [
+   "Bujumbura",
+   "Central plateau",
+   "Lake Tanganyika"
+  ],
+  "foods": [
+   "Mukeke",
+   "Ibiharage",
+   "Ugali with greens"
+  ]
+ },
+ {
+  "id": "cabo-verde",
+  "name": "Cabo Verde",
+  "region": "Atlantic Africa",
+  "areas": [
+   "Santiago",
+   "São Vicente",
+   "Sal"
+  ],
+  "foods": [
+   "Cachupa",
+   "Pastéis de milho",
+   "Canja"
+  ]
+ },
+ {
+  "id": "cambodia",
+  "name": "Cambodia",
+  "region": "Southeast Asia",
+  "areas": [
+   "Phnom Penh",
+   "Siem Reap",
+   "Kampot"
+  ],
+  "foods": [
+   "Fish amok",
+   "Nom banh chok",
+   "Bai sach chrouk"
+  ]
+ },
+ {
+  "id": "cameroon",
+  "name": "Cameroon",
+  "region": "Central Africa",
+  "areas": [
+   "Littoral",
+   "West region",
+   "Northwest"
+  ],
+  "foods": [
+   "Ndolé",
+   "Eru",
+   "Achou"
+  ]
+ },
+ {
+  "id": "canada",
+  "name": "Canada",
+  "region": "North America",
+  "areas": [
+   "Atlantic Canada",
+   "Quebec",
+   "Prairies & west"
+  ],
+  "foods": [
+   "Poutine",
+   "Tourtière",
+   "Salmon with maple glaze"
+  ]
+ },
+ {
+  "id": "central-african-republic",
+  "name": "Central African Republic",
+  "region": "Central Africa",
+  "areas": [
+   "Bangui",
+   "Ubangi",
+   "Savanna"
+  ],
+  "foods": [
+   "Kanda",
+   "Foutou",
+   "Cassava leaf stew"
+  ]
+ },
+ {
+  "id": "chad",
+  "name": "Chad",
+  "region": "Central Africa",
+  "areas": [
+   "N’Djamena",
+   "Lake Chad",
+   "Sahel"
+  ],
+  "foods": [
+   "Chakalaka style stew",
+   "Boule",
+   "Jarret de bœuf"
+  ]
+ },
+ {
+  "id": "chile",
+  "name": "Chile",
+  "region": "South America",
+  "areas": [
+   "Central valleys",
+   "Atacama north",
+   "Patagonia south"
+  ],
+  "foods": [
+   "Pastel de choclo",
+   "Cazuela",
+   "Curanto"
+  ]
+ },
+ {
+  "id": "china",
+  "name": "China",
+  "region": "East Asia",
+  "areas": [
+   "Sichuan",
+   "Guangdong",
+   "Shandong"
+  ],
+  "foods": [
+   "Mapo tofu",
+   "Dim sum",
+   "Peking duck"
+  ]
+ },
+ {
+  "id": "colombia",
+  "name": "Colombia",
+  "region": "South America",
+  "areas": [
+   "Caribbean coast",
+   "Andean highlands",
+   "Pacific & Amazon"
+  ],
+  "foods": [
+   "Bandeja paisa",
+   "Ajiaco",
+   "Sancocho"
+  ]
+ },
+ {
+  "id": "comoros",
+  "name": "Comoros",
+  "region": "Indian Ocean",
+  "areas": [
+   "Grande Comore",
+   "Mohéli",
+   "Anjouan"
+  ],
+  "foods": [
+   "Langouste à la vanille",
+   "Pilao",
+   "Mataba"
+  ]
+ },
+ {
+  "id": "congo-democratic-republic-of-the",
+  "name": "Congo, Democratic Republic of the",
+  "region": "Central Africa",
+  "areas": [
+   "Kinshasa",
+   "Kivu",
+   "Katanga"
+  ],
+  "foods": [
+   "Moambe",
+   "Pondu",
+   "Liboke"
+  ]
+ },
+ {
+  "id": "congo-republic-of-the",
+  "name": "Congo, Republic of the",
+  "region": "Central Africa",
+  "areas": [
+   "Brazzaville",
+   "Pool",
+   "Cuvette"
+  ],
+  "foods": [
+   "Poulet moambé",
+   "Saka-saka",
+   "Maboké"
+  ]
+ },
+ {
+  "id": "costa-rica",
+  "name": "Costa Rica",
+  "region": "Central America",
+  "areas": [
+   "Central Valley",
+   "Guanacaste",
+   "Caribbean coast"
+  ],
+  "foods": [
+   "Gallo pinto",
+   "Casado",
+   "Olla de carne"
+  ]
+ },
+ {
+  "id": "cote-d-ivoire",
+  "name": "Côte d’Ivoire",
+  "region": "West Africa",
+  "areas": [
+   "Abidjan",
+   "Lagunes",
+   "Savanes"
+  ],
+  "foods": [
+   "Attiéké",
+   "Kedjenou",
+   "Aloco"
+  ]
+ },
+ {
+  "id": "croatia",
+  "name": "Croatia",
+  "region": "Adriatic Europe",
+  "areas": [
+   "Dalmatia",
+   "Istria",
+   "Slavonia"
+  ],
+  "foods": [
+   "Pašticada",
+   "Istrian fuži",
+   "Čobanac"
+  ]
+ },
+ {
+  "id": "cuba",
+  "name": "Cuba",
+  "region": "Caribbean",
+  "areas": [
+   "Havana",
+   "Oriente",
+   "Matanzas"
+  ],
+  "foods": [
+   "Ropa vieja",
+   "Moros y cristianos",
+   "Lechón asado"
+  ]
+ },
+ {
+  "id": "cyprus",
+  "name": "Cyprus",
+  "region": "Eastern Mediterranean",
+  "areas": [
+   "Nicosia",
+   "Limassol",
+   "Paphos"
+  ],
+  "foods": [
+   "Halloumi",
+   "Kleftiko",
+   "Sheftalia"
+  ]
+ },
+ {
+  "id": "czechia",
+  "name": "Czechia",
+  "region": "Central Europe",
+  "areas": [
+   "Bohemia",
+   "Moravia",
+   "Silesia"
+  ],
+  "foods": [
+   "Svíčková",
+   "Guláš",
+   "Bramboráky"
+  ]
+ },
+ {
+  "id": "denmark",
+  "name": "Denmark",
+  "region": "Nordics",
+  "areas": [
+   "Jutland",
+   "Zealand",
+   "Bornholm"
+  ],
+  "foods": [
+   "Smørrebrød",
+   "Stegt flæsk",
+   "Frikadeller"
+  ]
+ },
+ {
+  "id": "djibouti",
+  "name": "Djibouti",
+  "region": "Horn of Africa",
+  "areas": [
+   "Djibouti City",
+   "Tadjourah",
+   "Ali Sabieh"
+  ],
+  "foods": [
+   "Skoudehkaris",
+   "Fah-fah",
+   "Laxoox"
+  ]
+ },
+ {
+  "id": "dominica",
+  "name": "Dominica",
+  "region": "Caribbean",
+  "areas": [
+   "Roseau",
+   "Carib Territory",
+   "Portsmouth"
+  ],
+  "foods": [
+   "Mountain chicken",
+   "Callaloo soup",
+   "Bakes & saltfish"
+  ]
+ },
+ {
+  "id": "dominican-republic",
+  "name": "Dominican Republic",
+  "region": "Caribbean",
+  "areas": [
+   "Santo Domingo",
+   "Cibao",
+   "East"
+  ],
+  "foods": [
+   "La bandera",
+   "Mangú",
+   "Sancocho"
+  ]
+ },
+ {
+  "id": "ecuador",
+  "name": "Ecuador",
+  "region": "South America",
+  "areas": [
+   "Andes",
+   "Coast",
+   "Amazon"
+  ],
+  "foods": [
+   "Locro de papa",
+   "Encebollado",
+   "Maito"
+  ]
+ },
+ {
+  "id": "egypt",
+  "name": "Egypt",
+  "region": "North Africa",
+  "areas": [
+   "Cairo & Nile valley",
+   "Alexandria",
+   "Upper Egypt"
+  ],
+  "foods": [
+   "Koshari",
+   "Ful medames",
+   "Molokhia"
+  ]
+ },
+ {
+  "id": "el-salvador",
+  "name": "El Salvador",
+  "region": "Central America",
+  "areas": [
+   "San Salvador",
+   "La Libertad",
+   "Eastern region"
+  ],
+  "foods": [
+   "Pupusas",
+   "Yuca frita",
+   "Sopa de res"
+  ]
+ },
+ {
+  "id": "equatorial-guinea",
+  "name": "Equatorial Guinea",
+  "region": "Central Africa",
+  "areas": [
+   "Malabo",
+   "Bata",
+   "Bioko"
+  ],
+  "foods": [
+   "Peanut soup",
+   "Succotash style stew",
+   "Grilled fish with plantain"
+  ]
+ },
+ {
+  "id": "eritrea",
+  "name": "Eritrea",
+  "region": "Horn of Africa",
+  "areas": [
+   "Asmara",
+   "Massawa",
+   "Keren"
+  ],
+  "foods": [
+   "Zigni",
+   "Injera",
+   "Shiro"
+  ]
+ },
+ {
+  "id": "estonia",
+  "name": "Estonia",
+  "region": "Baltics",
+  "areas": [
+   "Tallinn",
+   "Tartu",
+   "Saaremaa"
+  ],
+  "foods": [
+   "Verivorst",
+   "Mulgipuder",
+   "Kama"
+  ]
+ },
+ {
+  "id": "eswatini",
+  "name": "Eswatini",
+  "region": "Southern Africa",
+  "areas": [
+   "Hhohho",
+   "Manzini",
+   "Lubombo"
+  ],
+  "foods": [
+   "Emahewu",
+   "Sishwala",
+   "Incwancwa"
+  ]
+ },
+ {
+  "id": "ethiopia",
+  "name": "Ethiopia",
+  "region": "Horn of Africa",
+  "areas": [
+   "Addis Ababa",
+   "Tigray",
+   "Oromia"
+  ],
+  "foods": [
+   "Doro wat",
+   "Injera",
+   "Shiro"
+  ]
+ },
+ {
+  "id": "fiji",
+  "name": "Fiji",
+  "region": "Pacific",
+  "areas": [
+   "Viti Levu",
+   "Vanua Levu",
+   "Lau islands"
+  ],
+  "foods": [
+   "Kokoda",
+   "Lovo",
+   "Rourou"
+  ]
+ },
+ {
+  "id": "finland",
+  "name": "Finland",
+  "region": "Nordics",
+  "areas": [
+   "Helsinki",
+   "Lapland",
+   "Lakeland"
+  ],
+  "foods": [
+   "Lohikeitto",
+   "Karjalanpiirakka",
+   "Poronkäristys"
+  ]
+ },
+ {
+  "id": "france",
+  "name": "France",
+  "region": "Western Europe",
+  "areas": [
+   "Paris & Île-de-France",
+   "Provence",
+   "Brittany"
+  ],
+  "foods": [
+   "Ratatouille",
+   "Bouillabaisse",
+   "Galette complète"
+  ]
+ },
+ {
+  "id": "gabon",
+  "name": "Gabon",
+  "region": "Central Africa",
+  "areas": [
+   "Libreville",
+   "Ogooué-Maritime",
+   "Gabonese interior"
+  ],
+  "foods": [
+   "Poulet nyembwe",
+   "Brochettes",
+   "Baton de manioc"
+  ]
+ },
+ {
+  "id": "gambia",
+  "name": "Gambia",
+  "region": "West Africa",
+  "areas": [
+   "Greater Banjul",
+   "Kombo",
+   "Upper River"
+  ],
+  "foods": [
+   "Benachin",
+   "Domoda",
+   "Yassa"
+  ]
+ },
+ {
+  "id": "georgia",
+  "name": "Georgia",
+  "region": "Caucasus",
+  "areas": [
+   "Tbilisi",
+   "Kakheti",
+   "Adjara"
+  ],
+  "foods": [
+   "Khachapuri",
+   "Khinkali",
+   "Lobio"
+  ]
+ },
+ {
+  "id": "germany",
+  "name": "Germany",
+  "region": "Central Europe",
+  "areas": [
+   "Bavaria",
+   "Rhineland",
+   "Saxony"
+  ],
+  "foods": [
+   "Sauerbraten",
+   "Currywurst",
+   "Maultaschen"
+  ]
+ },
+ {
+  "id": "ghana",
+  "name": "Ghana",
+  "region": "West Africa",
+  "areas": [
+   "Greater Accra",
+   "Ashanti",
+   "Volta & coast"
+  ],
+  "foods": [
+   "Grilled tilapia & yam chips",
+   "Jollof rice",
+   "Red-red"
+  ]
+ },
+ {
+  "id": "greece",
+  "name": "Greece",
+  "region": "Eastern Mediterranean",
+  "areas": [
+   "Macedonia",
+   "Attica",
+   "Crete"
+  ],
+  "foods": [
+   "Moussaka",
+   "Dakos",
+   "Gemista"
+  ]
+ },
+ {
+  "id": "grenada",
+  "name": "Grenada",
+  "region": "Caribbean",
+  "areas": [
+   "St George’s",
+   "Carriacou",
+   "Petite Martinique"
+  ],
+  "foods": [
+   "Oil down",
+   "Callaloo soup",
+   "Lambie souse"
+  ]
+ },
+ {
+  "id": "guatemala",
+  "name": "Guatemala",
+  "region": "Central America",
+  "areas": [
+   "Guatemala Highlands",
+   "Petén",
+   "Pacific coast"
+  ],
+  "foods": [
+   "Pepián",
+   "Kak-ik",
+   "Jocón"
+  ]
+ },
+ {
+  "id": "guinea",
+  "name": "Guinea",
+  "region": "West Africa",
+  "areas": [
+   "Conakry",
+   "Fouta Djallon",
+   "Forest region"
+  ],
+  "foods": [
+   "Mafé",
+   "Poulet yassa",
+   "Riz gras"
+  ]
+ },
+ {
+  "id": "guinea-bissau",
+  "name": "Guinea-Bissau",
+  "region": "West Africa",
+  "areas": [
+   "Bissau",
+   "Cacheu",
+   "Bolama"
+  ],
+  "foods": [
+   "Caldo de mancarra",
+   "Jollof rice",
+   "Grilled fish with rice"
+  ]
+ },
+ {
+  "id": "guyana",
+  "name": "Guyana",
+  "region": "South America",
+  "areas": [
+   "Georgetown",
+   "Essequibo",
+   "Berbice"
+  ],
+  "foods": [
+   "Pepperpot",
+   "Cook-up rice",
+   "Metemgee"
+  ]
+ },
+ {
+  "id": "haiti",
+  "name": "Haiti",
+  "region": "Caribbean",
+  "areas": [
+   "Port-au-Prince",
+   "Cap-Haïtien",
+   "Jacmel"
+  ],
+  "foods": [
+   "Griot",
+   "Soup joumou",
+   "Diri kole"
+  ]
+ },
+ {
+  "id": "honduras",
+  "name": "Honduras",
+  "region": "Central America",
+  "areas": [
+   "Tegucigalpa",
+   "Caribbean coast",
+   "Copán"
+  ],
+  "foods": [
+   "Baleadas",
+   "Sopa de caracol",
+   "Carne asada"
+  ]
+ },
+ {
+  "id": "hungary",
+  "name": "Hungary",
+  "region": "Central Europe",
+  "areas": [
+   "Budapest",
+   "Great Plain",
+   "Transdanubia"
+  ],
+  "foods": [
+   "Goulash",
+   "Lángos",
+   "Chicken paprikash"
+  ]
+ },
+ {
+  "id": "iceland",
+  "name": "Iceland",
+  "region": "Nordics",
+  "areas": [
+   "Reykjavík",
+   "North Iceland",
+   "Westfjords"
+  ],
+  "foods": [
+   "Plokkfiskur",
+   "Kjötsúpa",
+   "Skyr"
+  ]
+ },
+ {
+  "id": "india",
+  "name": "India",
+  "region": "South Asia",
+  "areas": [
+   "North India",
+   "South India",
+   "Bengal & east"
+  ],
+  "foods": [
+   "Masala dosa",
+   "Biryani",
+   "Rogan josh"
+  ]
+ },
+ {
+  "id": "indonesia",
+  "name": "Indonesia",
+  "region": "Southeast Asia",
+  "areas": [
+   "Java",
+   "Sumatra",
+   "Sulawesi"
+  ],
+  "foods": [
+   "Nasi goreng",
+   "Rendang",
+   "Gado-gado"
+  ]
+ },
+ {
+  "id": "iran",
+  "name": "Iran",
+  "region": "West Asia",
+  "areas": [
+   "Tehran & north",
+   "Isfahan",
+   "Khuzestan"
+  ],
+  "foods": [
+   "Ghormeh sabzi",
+   "Tahdig",
+   "Fesenjan"
+  ]
+ },
+ {
+  "id": "iraq",
+  "name": "Iraq",
+  "region": "West Asia",
+  "areas": [
+   "Baghdad",
+   "Basra",
+   "Kurdistan"
+  ],
+  "foods": [
+   "Masgouf",
+   "Dolma",
+   "Kubba"
+  ]
+ },
+ {
+  "id": "ireland",
+  "name": "Ireland",
+  "region": "Western Europe",
+  "areas": [
+   "Leinster",
+   "Munster",
+   "Connacht"
+  ],
+  "foods": [
+   "Irish stew",
+   "Boxty",
+   "Colcannon"
+  ]
+ },
+ {
+  "id": "israel",
+  "name": "Israel",
+  "region": "Eastern Mediterranean",
+  "areas": [
+   "Galilee",
+   "Jerusalem",
+   "Tel Aviv coast"
+  ],
+  "foods": [
+   "Shakshuka",
+   "Sabich",
+   "Jachnun"
+  ]
+ },
+ {
+  "id": "italy",
+  "name": "Italy",
+  "region": "Southern Europe",
+  "areas": [
+   "North Italy",
+   "Central Italy",
+   "Sicily & south"
+  ],
+  "foods": [
+   "Risotto",
+   "Pasta alla amatriciana",
+   "Arancini"
+  ]
+ },
+ {
+  "id": "jamaica",
+  "name": "Jamaica",
+  "region": "Caribbean",
+  "areas": [
+   "Kingston",
+   "Montego Bay",
+   "Portland"
+  ],
+  "foods": [
+   "Jerk chicken",
+   "Ackee & saltfish",
+   "Run down"
+  ]
+ },
+ {
+  "id": "japan",
+  "name": "Japan",
+  "region": "East Asia",
+  "areas": [
+   "Kansai",
+   "Kanto",
+   "Hokkaido"
+  ],
+  "foods": [
+   "Ramen",
+   "Okonomiyaki",
+   "Sushi"
+  ]
+ },
+ {
+  "id": "jordan",
+  "name": "Jordan",
+  "region": "West Asia",
+  "areas": [
+   "Amman",
+   "Madaba",
+   "Aqaba"
+  ],
+  "foods": [
+   "Mansaf",
+   "Maqluba",
+   "Galayet bandora"
+  ]
+ },
+ {
+  "id": "kazakhstan",
+  "name": "Kazakhstan",
+  "region": "Central Asia",
+  "areas": [
+   "Almaty",
+   "Turkistan",
+   "Steppe regions"
+  ],
+  "foods": [
+   "Beshbarmak",
+   "Baursak",
+   "Kazy"
+  ]
+ },
+ {
+  "id": "kenya",
+  "name": "Kenya",
+  "region": "East Africa",
+  "areas": [
+   "Nairobi & central",
+   "Coast",
+   "Western Kenya"
+  ],
+  "foods": [
+   "Ugali & sukuma wiki",
+   "Pilau",
+   "Nyama choma"
+  ]
+ },
+ {
+  "id": "kiribati",
+  "name": "Kiribati",
+  "region": "Pacific",
+  "areas": [
+   "Tarawa",
+   "Abaiang",
+   "Gilbert islands"
+  ],
+  "foods": [
+   "Palusami",
+   "Coconut fish",
+   "Breadfruit dishes"
+  ]
+ },
+ {
+  "id": "kuwait",
+  "name": "Kuwait",
+  "region": "Gulf",
+  "areas": [
+   "Kuwait City",
+   "Al Jahra",
+   "Coastal areas"
+  ],
+  "foods": [
+   "Machboos",
+   "Mutabbaq samak",
+   "Gers ogaily"
+  ]
+ },
+ {
+  "id": "kyrgyzstan",
+  "name": "Kyrgyzstan",
+  "region": "Central Asia",
+  "areas": [
+   "Bishkek",
+   "Issyk-Kul",
+   "Naryn"
+  ],
+  "foods": [
+   "Beshbarmak",
+   "Laghman",
+   "Manty"
+  ]
+ },
+ {
+  "id": "laos",
+  "name": "Laos",
+  "region": "Southeast Asia",
+  "areas": [
+   "Vientiane",
+   "Luang Prabang",
+   "Champasak"
+  ],
+  "foods": [
+   "Laap",
+   "Khao niao",
+   "Tam mak hoong"
+  ]
+ },
+ {
+  "id": "latvia",
+  "name": "Latvia",
+  "region": "Baltics",
+  "areas": [
+   "Riga",
+   "Kurzeme",
+   "Latgale"
+  ],
+  "foods": [
+   "Grey peas with bacon",
+   "Sklandrausis",
+   "Jāņu cheese"
+  ]
+ },
+ {
+  "id": "lebanon",
+  "name": "Lebanon",
+  "region": "Levant",
+  "areas": [
+   "Beirut & coast",
+   "Bekaa",
+   "Mount Lebanon"
+  ],
+  "foods": [
+   "Tabbouleh",
+   "Kibbeh",
+   "Mujaddara"
+  ]
+ },
+ {
+  "id": "lesotho",
+  "name": "Lesotho",
+  "region": "Southern Africa",
+  "areas": [
+   "Maseru",
+   "Highlands",
+   "Lowlands"
+  ],
+  "foods": [
+   "Papa",
+   "Motoho",
+   "Chakalaka"
+  ]
+ },
+ {
+  "id": "liberia",
+  "name": "Liberia",
+  "region": "West Africa",
+  "areas": [
+   "Monrovia",
+   "Bong",
+   "Grand Bassa"
+  ],
+  "foods": [
+   "Jollof rice",
+   "Cassava leaf stew",
+   "Palava sauce"
+  ]
+ },
+ {
+  "id": "libya",
+  "name": "Libya",
+  "region": "North Africa",
+  "areas": [
+   "Tripoli",
+   "Cyrenaica",
+   "Fezzan"
+  ],
+  "foods": [
+   "Bazeen",
+   "Shorba",
+   "Cuscus bil busla"
+  ]
+ },
+ {
+  "id": "liechtenstein",
+  "name": "Liechtenstein",
+  "region": "Alps",
+  "areas": [
+   "Vaduz",
+   "Oberland",
+   "Unterland"
+  ],
+  "foods": [
+   "Käsknöpfle",
+   "Ribel",
+   "Hafalaab"
+  ]
+ },
+ {
+  "id": "lithuania",
+  "name": "Lithuania",
+  "region": "Baltics",
+  "areas": [
+   "Vilnius",
+   "Aukštaitija",
+   "Samogitia"
+  ],
+  "foods": [
+   "Cepelinai",
+   "Šaltibarščiai",
+   "Kibinai"
+  ]
+ },
+ {
+  "id": "luxembourg",
+  "name": "Luxembourg",
+  "region": "Western Europe",
+  "areas": [
+   "Luxembourg City",
+   "Moselle",
+   "Ardennes"
+  ],
+  "foods": [
+   "Judd mat gaardebounen",
+   "Gromperekichelcher",
+   "Bamkuch"
+  ]
+ },
+ {
+  "id": "madagascar",
+  "name": "Madagascar",
+  "region": "Indian Ocean",
+  "areas": [
+   "Antananarivo highlands",
+   "East coast",
+   "South & west"
+  ],
+  "foods": [
+   "Romazava",
+   "Ravitoto",
+   "Mofo gasy"
+  ]
+ },
+ {
+  "id": "malawi",
+  "name": "Malawi",
+  "region": "Southeast Africa",
+  "areas": [
+   "Central region",
+   "Lake Malawi",
+   "Southern region"
+  ],
+  "foods": [
+   "Nsima",
+   "Chambo",
+   "Ndiwo"
+  ]
+ },
+ {
+  "id": "malaysia",
+  "name": "Malaysia",
+  "region": "Southeast Asia",
+  "areas": [
+   "Penang",
+   "Malacca",
+   "Sabah & Sarawak"
+  ],
+  "foods": [
+   "Nasi lemak",
+   "Laksa",
+   "Sarawak kolo mee"
+  ]
+ },
+ {
+  "id": "maldives",
+  "name": "Maldives",
+  "region": "Indian Ocean",
+  "areas": [
+   "Malé",
+   "Addu",
+   "Northern atolls"
+  ],
+  "foods": [
+   "Mas huni",
+   "Garudhiya",
+   "Fihunu mas"
+  ]
+ },
+ {
+  "id": "mali",
+  "name": "Mali",
+  "region": "West Africa",
+  "areas": [
+   "Bamako",
+   "Mopti",
+   "Timbuktu & north"
+  ],
+  "foods": [
+   "Tiguadege na",
+   "To",
+   "Maafe"
+  ]
+ },
+ {
+  "id": "malta",
+  "name": "Malta",
+  "region": "Mediterranean",
+  "areas": [
+   "Valletta",
+   "Gozo",
+   "Marsaxlokk"
+  ],
+  "foods": [
+   "Pastizzi",
+   "Fenek",
+   "Aljotta"
+  ]
+ },
+ {
+  "id": "marshall-islands",
+  "name": "Marshall Islands",
+  "region": "Pacific",
+  "areas": [
+   "Majuro",
+   "Kwajalein",
+   "Outer atolls"
+  ],
+  "foods": [
+   "Breadfruit dishes",
+   "Coconut crab",
+   "Pandanus fruit"
+  ]
+ },
+ {
+  "id": "mauritania",
+  "name": "Mauritania",
+  "region": "West Africa",
+  "areas": [
+   "Nouakchott",
+   "Trarza",
+   "Adrar"
+  ],
+  "foods": [
+   "Thieboudienne",
+   "Mechoui",
+   "Couscous"
+  ]
+ },
+ {
+  "id": "mauritius",
+  "name": "Mauritius",
+  "region": "Indian Ocean",
+  "areas": [
+   "Port Louis",
+   "Grand Port",
+   "Black River"
+  ],
+  "foods": [
+   "Dholl puri",
+   "Rougaille",
+   "Mine frit"
+  ]
+ },
+ {
+  "id": "mexico",
+  "name": "Mexico",
+  "region": "North America",
+  "areas": [
+   "Oaxaca",
+   "Yucatán",
+   "Mexico City & central"
+  ],
+  "foods": [
+   "Mole negro",
+   "Cochinita pibil",
+   "Tacos al pastor"
+  ]
+ },
+ {
+  "id": "micronesia",
+  "name": "Micronesia",
+  "region": "Pacific",
+  "areas": [
+   "Pohnpei",
+   "Chuuk",
+   "Yap"
+  ],
+  "foods": [
+   "Pohnpei sakau",
+   "Breadfruit",
+   "Taro dishes"
+  ]
+ },
+ {
+  "id": "moldova",
+  "name": "Moldova",
+  "region": "Eastern Europe",
+  "areas": [
+   "Chișinău",
+   "Codru",
+   "Gagauzia"
+  ],
+  "foods": [
+   "Mămăligă",
+   "Plăcintă",
+   "Zeamă"
+  ]
+ },
+ {
+  "id": "monaco",
+  "name": "Monaco",
+  "region": "Mediterranean",
+  "areas": [
+   "Monte Carlo",
+   "Monaco-Ville",
+   "La Condamine"
+  ],
+  "foods": [
+   "Barbagiuàn",
+   "Socca",
+   "Stocafi"
+  ]
+ },
+ {
+  "id": "mongolia",
+  "name": "Mongolia",
+  "region": "East Asia",
+  "areas": [
+   "Ulaanbaatar",
+   "Central steppe",
+   "Gobi"
+  ],
+  "foods": [
+   "Buuz",
+   "Khuushuur",
+   "Tsuivan"
+  ]
+ },
+ {
+  "id": "montenegro",
+  "name": "Montenegro",
+  "region": "Balkans",
+  "areas": [
+   "Bay of Kotor",
+   "Central Montenegro",
+   "Northern mountains"
+  ],
+  "foods": [
+   "Kačamak",
+   "Njeguški pršut",
+   "Cicvara"
+  ]
+ },
+ {
+  "id": "morocco",
+  "name": "Morocco",
+  "region": "North Africa",
+  "areas": [
+   "Marrakesh & south",
+   "Fez & north",
+   "Atlantic coast"
+  ],
+  "foods": [
+   "Tagine",
+   "Couscous",
+   "Pastilla"
+  ]
+ },
+ {
+  "id": "mozambique",
+  "name": "Mozambique",
+  "region": "Southeast Africa",
+  "areas": [
+   "Maputo",
+   "Nampula",
+   "Zambezia"
+  ],
+  "foods": [
+   "Matapa",
+   "Piri-piri prawns",
+   "Xima"
+  ]
+ },
+ {
+  "id": "myanmar",
+  "name": "Myanmar",
+  "region": "Southeast Asia",
+  "areas": [
+   "Yangon",
+   "Shan State",
+   "Rakhine"
+  ],
+  "foods": [
+   "Mohinga",
+   "Shan noodles",
+   "Rakhine mont di"
+  ]
+ },
+ {
+  "id": "namibia",
+  "name": "Namibia",
+  "region": "Southern Africa",
+  "areas": [
+   "Windhoek",
+   "Erongo",
+   "Caprivi"
+  ],
+  "foods": [
+   "Kapana",
+   "Oshifima",
+   "Potjiekos"
+  ]
+ },
+ {
+  "id": "nauru",
+  "name": "Nauru",
+  "region": "Pacific",
+  "areas": [
+   "Yaren",
+   "Anabar",
+   "Anibare"
+  ],
+  "foods": [
+   "Coconut fish",
+   "Pandanus fruit",
+   "Taro dishes"
+  ]
+ },
+ {
+  "id": "nepal",
+  "name": "Nepal",
+  "region": "Himalayas",
+  "areas": [
+   "Kathmandu Valley",
+   "Terai",
+   "Newar communities"
+  ],
+  "foods": [
+   "Dal bhat tarkari",
+   "Momo",
+   "Newari samay baji"
+  ]
+ },
+ {
+  "id": "netherlands",
+  "name": "Netherlands",
+  "region": "Western Europe",
+  "areas": [
+   "North Holland",
+   "Zeeland",
+   "Limburg"
+  ],
+  "foods": [
+   "Stamppot",
+   "Poffertjes",
+   "Zeeuwse mosselen"
+  ]
+ },
+ {
+  "id": "new-zealand",
+  "name": "New Zealand",
+  "region": "Oceania",
+  "areas": [
+   "North Island",
+   "South Island",
+   "Māori foodways"
+  ],
+  "foods": [
+   "Hāngī",
+   "Pāua fritters",
+   "Whitebait fritters"
+  ]
+ },
+ {
+  "id": "nicaragua",
+  "name": "Nicaragua",
+  "region": "Central America",
+  "areas": [
+   "Managua",
+   "Caribbean coast",
+   "Matagalpa"
+  ],
+  "foods": [
+   "Gallo pinto",
+   "Nacatamales",
+   "Vigorón"
+  ]
+ },
+ {
+  "id": "niger",
+  "name": "Niger",
+  "region": "West Africa",
+  "areas": [
+   "Niamey",
+   "Agadez",
+   "Zinder"
+  ],
+  "foods": [
+   "Tuwo",
+   "Dambou",
+   "Millet porridge"
+  ]
+ },
+ {
+  "id": "nigeria",
+  "name": "Nigeria",
+  "region": "West Africa",
+  "areas": [
+   "Southwest",
+   "Southeast",
+   "Northern Nigeria"
+  ],
+  "foods": [
+   "Jollof rice",
+   "Egusi soup",
+   "Suya"
+  ]
+ },
+ {
+  "id": "north-korea",
+  "name": "North Korea",
+  "region": "East Asia",
+  "areas": [
+   "Pyongyang",
+   "Hamgyong",
+   "Kaesong"
+  ],
+  "foods": [
+   "Naengmyeon",
+   "Kimchi",
+   "Japchae"
+  ]
+ },
+ {
+  "id": "north-macedonia",
+  "name": "North Macedonia",
+  "region": "Balkans",
+  "areas": [
+   "Skopje",
+   "Ohrid",
+   "Pelagonia"
+  ],
+  "foods": [
+   "Tavče gravče",
+   "Ajvar",
+   "Macedonian kebapi"
+  ]
+ },
+ {
+  "id": "norway",
+  "name": "Norway",
+  "region": "Nordics",
+  "areas": [
+   "Oslo & east",
+   "Western fjords",
+   "Northern Norway"
+  ],
+  "foods": [
+   "Fårikål",
+   "Lapskaus",
+   "Lutefisk"
+  ]
+ },
+ {
+  "id": "oman",
+  "name": "Oman",
+  "region": "Arabian Peninsula",
+  "areas": [
+   "Muscat",
+   "Dhofar",
+   "Al Dakhiliyah"
+  ],
+  "foods": [
+   "Shuwa",
+   "Majboos",
+   "Mishkak"
+  ]
+ },
+ {
+  "id": "pakistan",
+  "name": "Pakistan",
+  "region": "South Asia",
+  "areas": [
+   "Punjab",
+   "Sindh",
+   "Khyber Pakhtunkhwa"
+  ],
+  "foods": [
+   "Biryani",
+   "Nihari",
+   "Chapli kebab"
+  ]
+ },
+ {
+  "id": "palau",
+  "name": "Palau",
+  "region": "Micronesia",
+  "areas": [
+   "Koror",
+   "Babeldaob",
+   "Rock Islands"
+  ],
+  "foods": [
+   "Demok",
+   "Taro dishes",
+   "Grilled reef fish"
+  ]
+ },
+ {
+  "id": "palestine",
+  "name": "Palestine",
+  "region": "Levant",
+  "areas": [
+   "West Bank",
+   "Gaza",
+   "Jerusalem foodways"
+  ],
+  "foods": [
+   "Maqluba",
+   "Musakhan",
+   "Maftoul"
+  ]
+ },
+ {
+  "id": "panama",
+  "name": "Panama",
+  "region": "Central America",
+  "areas": [
+   "Panama City",
+   "Azuero",
+   "Caribbean coast"
+  ],
+  "foods": [
+   "Sancocho",
+   "Ropa vieja",
+   "Carimañolas"
+  ]
+ },
+ {
+  "id": "papua-new-guinea",
+  "name": "Papua New Guinea",
+  "region": "Pacific",
+  "areas": [
+   "Highlands",
+   "Sepik",
+   "New Guinea coast"
+  ],
+  "foods": [
+   "Mumu",
+   "Kaukau",
+   "Sago dishes"
+  ]
+ },
+ {
+  "id": "paraguay",
+  "name": "Paraguay",
+  "region": "South America",
+  "areas": [
+   "Asunción",
+   "Eastern region",
+   "Chaco"
+  ],
+  "foods": [
+   "Sopa paraguaya",
+   "Chipa",
+   "Mbejú"
+  ]
+ },
+ {
+  "id": "peru",
+  "name": "Peru",
+  "region": "South America",
+  "areas": [
+   "Lima & coast",
+   "Andes",
+   "Amazon"
+  ],
+  "foods": [
+   "Ceviche",
+   "Lomo saltado",
+   "Juane"
+  ]
+ },
+ {
+  "id": "philippines",
+  "name": "Philippines",
+  "region": "Southeast Asia",
+  "areas": [
+   "Luzon",
+   "Visayas",
+   "Mindanao"
+  ],
+  "foods": [
+   "Adobo",
+   "Lechon",
+   "Kinilaw"
+  ]
+ },
+ {
+  "id": "poland",
+  "name": "Poland",
+  "region": "Central Europe",
+  "areas": [
+   "Mazovia",
+   "Kraków & south",
+   "Pomerania"
+  ],
+  "foods": [
+   "Pierogi",
+   "Żurek",
+   "Bigos"
+  ]
+ },
+ {
+  "id": "portugal",
+  "name": "Portugal",
+  "region": "Iberia",
+  "areas": [
+   "Lisbon",
+   "Alentejo",
+   "Minho & north"
+  ],
+  "foods": [
+   "Bacalhau",
+   "Caldo verde",
+   "Arroz de marisco"
+  ]
+ },
+ {
+  "id": "qatar",
+  "name": "Qatar",
+  "region": "Gulf",
+  "areas": [
+   "Doha",
+   "Al Wakrah",
+   "Northern Qatar"
+  ],
+  "foods": [
+   "Machboos",
+   "Thareed",
+   "Balaleet"
+  ]
+ },
+ {
+  "id": "romania",
+  "name": "Romania",
+  "region": "Eastern Europe",
+  "areas": [
+   "Transylvania",
+   "Moldavia",
+   "Wallachia"
+  ],
+  "foods": [
+   "Sarmale",
+   "Mămăligă",
+   "Ciorbă"
+  ]
+ },
+ {
+  "id": "russia",
+  "name": "Russia",
+  "region": "Eastern Europe & Eurasia",
+  "areas": [
+   "European Russia",
+   "Siberia",
+   "Caucasus & south"
+  ],
+  "foods": [
+   "Pelmeni",
+   "Borscht",
+   "Blini"
+  ]
+ },
+ {
+  "id": "rwanda",
+  "name": "Rwanda",
+  "region": "East Africa",
+  "areas": [
+   "Kigali",
+   "Northern Province",
+   "Lake Kivu"
+  ],
+  "foods": [
+   "Brochettes",
+   "Isombe",
+   "Ugali with beans"
+  ]
+ },
+ {
+  "id": "saint-kitts-and-nevis",
+  "name": "Saint Kitts and Nevis",
+  "region": "Caribbean",
+  "areas": [
+   "Saint Kitts",
+   "Nevis",
+   "Basseterre"
+  ],
+  "foods": [
+   "Goat water",
+   "Saltfish & dumplings",
+   "Conch stew"
+  ]
+ },
+ {
+  "id": "saint-lucia",
+  "name": "Saint Lucia",
+  "region": "Caribbean",
+  "areas": [
+   "Castries",
+   "Soufrière",
+   "Vieux Fort"
+  ],
+  "foods": [
+   "Green fig & saltfish",
+   "Bouyon",
+   "Lambi"
+  ]
+ },
+ {
+  "id": "saint-vincent-and-the-grenadines",
+  "name": "Saint Vincent and the Grenadines",
+  "region": "Caribbean",
+  "areas": [
+   "Saint Vincent",
+   "Bequia",
+   "Union Island"
+  ],
+  "foods": [
+   "Roasted breadfruit & jackfish",
+   "Callaloo soup",
+   "Fish cakes"
+  ]
+ },
+ {
+  "id": "samoa",
+  "name": "Samoa",
+  "region": "Pacific",
+  "areas": [
+   "Upolu",
+   "Savai’i",
+   "Apia"
+  ],
+  "foods": [
+   "Palusami",
+   "Oka",
+   "Faiai eleni"
+  ]
+ },
+ {
+  "id": "san-marino",
+  "name": "San Marino",
+  "region": "Southern Europe",
+  "areas": [
+   "Serravalle",
+   "Borgo Maggiore",
+   "City of San Marino"
+  ],
+  "foods": [
+   "Torta tre monti",
+   "Piadina",
+   "Passatelli"
+  ]
+ },
+ {
+  "id": "sao-tome-and-principe",
+  "name": "Sao Tome and Principe",
+  "region": "Central Africa",
+  "areas": [
+   "São Tomé",
+   "Príncipe",
+   "Coastal communities"
+  ],
+  "foods": [
+   "Calulu",
+   "Fish with banana",
+   "Feijoada são-tomense"
+  ]
+ },
+ {
+  "id": "saudi-arabia",
+  "name": "Saudi Arabia",
+  "region": "Arabian Peninsula",
+  "areas": [
+   "Najd",
+   "Hejaz",
+   "Eastern Province"
+  ],
+  "foods": [
+   "Kabsa",
+   "Jareesh",
+   "Saleeg"
+  ]
+ },
+ {
+  "id": "senegal",
+  "name": "Senegal",
+  "region": "West Africa",
+  "areas": [
+   "Dakar",
+   "Casamance",
+   "Saint-Louis"
+  ],
+  "foods": [
+   "Thieboudienne",
+   "Yassa",
+   "Mafé"
+  ]
+ },
+ {
+  "id": "serbia",
+  "name": "Serbia",
+  "region": "Balkans",
+  "areas": [
+   "Belgrade",
+   "Vojvodina",
+   "Šumadija"
+  ],
+  "foods": [
+   "Ćevapi",
+   "Pljeskavica",
+   "Prebranac"
+  ]
+ },
+ {
+  "id": "seychelles",
+  "name": "Seychelles",
+  "region": "Indian Ocean",
+  "areas": [
+   "Mahé",
+   "Praslin",
+   "La Digue"
+  ],
+  "foods": [
+   "Fish curry",
+   "Ladob",
+   "Octopus curry"
+  ]
+ },
+ {
+  "id": "sierra-leone",
+  "name": "Sierra Leone",
+  "region": "West Africa",
+  "areas": [
+   "Freetown",
+   "Bo",
+   "Kenema"
+  ],
+  "foods": [
+   "Cassava leaf stew",
+   "Jollof rice",
+   "Groundnut stew"
+  ]
+ },
+ {
+  "id": "singapore",
+  "name": "Singapore",
+  "region": "Southeast Asia",
+  "areas": [
+   "Chinatown",
+   "Little India",
+   "Katong"
+  ],
+  "foods": [
+   "Hainanese chicken rice",
+   "Laksa",
+   "Chilli crab"
+  ]
+ },
+ {
+  "id": "slovakia",
+  "name": "Slovakia",
+  "region": "Central Europe",
+  "areas": [
+   "Bratislava",
+   "Orava",
+   "Spiš"
+  ],
+  "foods": [
+   "Bryndzové halušky",
+   "Kapustnica",
+   "Lokše"
+  ]
+ },
+ {
+  "id": "slovenia",
+  "name": "Slovenia",
+  "region": "Central Europe",
+  "areas": [
+   "Ljubljana",
+   "Primorska",
+   "Prekmurje"
+  ],
+  "foods": [
+   "Potica",
+   "Idrijski žlikrofi",
+   "Jota"
+  ]
+ },
+ {
+  "id": "solomon-islands",
+  "name": "Solomon Islands",
+  "region": "Pacific",
+  "areas": [
+   "Guadalcanal",
+   "Malaita",
+   "Western Province"
+  ],
+  "foods": [
+   "Poi",
+   "Cassava pudding",
+   "Taro with coconut"
+  ]
+ },
+ {
+  "id": "somalia",
+  "name": "Somalia",
+  "region": "Horn of Africa",
+  "areas": [
+   "Mogadishu",
+   "Puntland",
+   "Somaliland"
+  ],
+  "foods": [
+   "Canjeero",
+   "Bariis iskukaris",
+   "Suugo"
+  ]
+ },
+ {
+  "id": "south-africa",
+  "name": "South Africa",
+  "region": "Southern Africa",
+  "areas": [
+   "Cape Malay Cape Town",
+   "KwaZulu-Natal",
+   "Gauteng"
+  ],
+  "foods": [
+   "Bobotie",
+   "Bunny chow",
+   "Chakalaka"
+  ]
+ },
+ {
+  "id": "south-korea",
+  "name": "South Korea",
+  "region": "East Asia",
+  "areas": [
+   "Seoul",
+   "Jeolla",
+   "Busan & southeast"
+  ],
+  "foods": [
+   "Bibimbap",
+   "Kimchi jjigae",
+   "Japchae"
+  ]
+ },
+ {
+  "id": "south-sudan",
+  "name": "South Sudan",
+  "region": "East Africa",
+  "areas": [
+   "Juba",
+   "Nile regions",
+   "Equatoria"
+  ],
+  "foods": [
+   "Kisra",
+   "Ful",
+   "Wal wal"
+  ]
+ },
+ {
+  "id": "spain",
+  "name": "Spain",
+  "region": "Iberia",
+  "areas": [
+   "Andalusia",
+   "Catalonia",
+   "Basque Country"
+  ],
+  "foods": [
+   "Paella",
+   "Gazpacho",
+   "Pintxos"
+  ]
+ },
+ {
+  "id": "sri-lanka",
+  "name": "Sri Lanka",
+  "region": "South Asia",
+  "areas": [
+   "Western Province",
+   "Kandy & central",
+   "Jaffna & north"
+  ],
+  "foods": [
+   "Rice & curry",
+   "Kottu roti",
+   "Hoppers"
+  ]
+ },
+ {
+  "id": "sudan",
+  "name": "Sudan",
+  "region": "Northeast Africa",
+  "areas": [
+   "Khartoum",
+   "Nile valley",
+   "Darfur"
+  ],
+  "foods": [
+   "Ful medames",
+   "Kisra",
+   "Shaiyah"
+  ]
+ },
+ {
+  "id": "suriname",
+  "name": "Suriname",
+  "region": "South America",
+  "areas": [
+   "Paramaribo",
+   "Marowijne",
+   "Nickerie"
+  ],
+  "foods": [
+   "Pom",
+   "Roti",
+   "Saoto soup"
+  ]
+ },
+ {
+  "id": "sweden",
+  "name": "Sweden",
+  "region": "Nordics",
+  "areas": [
+   "Stockholm",
+   "West coast",
+   "Norrland"
+  ],
+  "foods": [
+   "Köttbullar",
+   "Gravlax",
+   "Janssons frestelse"
+  ]
+ },
+ {
+  "id": "switzerland",
+  "name": "Switzerland",
+  "region": "Central Europe",
+  "areas": [
+   "German Switzerland",
+   "Romandy",
+   "Ticino"
+  ],
+  "foods": [
+   "Fondue",
+   "Rösti",
+   "Ticinese polenta"
+  ]
+ },
+ {
+  "id": "syria",
+  "name": "Syria",
+  "region": "Levant",
+  "areas": [
+   "Damascus",
+   "Aleppo",
+   "Coastal Syria"
+  ],
+  "foods": [
+   "Kibbeh",
+   "Fatteh",
+   "Muhammara"
+  ]
+ },
+ {
+  "id": "tajikistan",
+  "name": "Tajikistan",
+  "region": "Central Asia",
+  "areas": [
+   "Dushanbe",
+   "Pamir",
+   "Sughd"
+  ],
+  "foods": [
+   "Qurutob",
+   "Plov",
+   "Oshi palav"
+  ]
+ },
+ {
+  "id": "tanzania",
+  "name": "Tanzania",
+  "region": "East Africa",
+  "areas": [
+   "Dar es Salaam & coast",
+   "Zanzibar",
+   "Northern Tanzania"
+  ],
+  "foods": [
+   "Zanzibar pilau",
+   "Chipsi mayai",
+   "Ugali with mchicha"
+  ]
+ },
+ {
+  "id": "thailand",
+  "name": "Thailand",
+  "region": "Southeast Asia",
+  "areas": [
+   "Central Thailand",
+   "Isan",
+   "Northern Thailand"
+  ],
+  "foods": [
+   "Pad thai",
+   "Som tam",
+   "Khao soi"
+  ]
+ },
+ {
+  "id": "timor-leste",
+  "name": "Timor-Leste",
+  "region": "Southeast Asia",
+  "areas": [
+   "Dili",
+   "Baucau",
+   "Oecusse"
+  ],
+  "foods": [
+   "Batar daan",
+   "Ikan pepes",
+   "Tukir"
+  ]
+ },
+ {
+  "id": "togo",
+  "name": "Togo",
+  "region": "West Africa",
+  "areas": [
+   "Lomé",
+   "Plateaux",
+   "Kara"
+  ],
+  "foods": [
+   "Fufu with sauce",
+   "Akoumé",
+   "Ablo"
+  ]
+ },
+ {
+  "id": "tonga",
+  "name": "Tonga",
+  "region": "Pacific",
+  "areas": [
+   "Tongatapu",
+   "Vava’u",
+   "Ha’apai"
+  ],
+  "foods": [
+   "Lu pulu",
+   "Ota ika",
+   "Umu dishes"
+  ]
+ },
+ {
+  "id": "trinidad-and-tobago",
+  "name": "Trinidad and Tobago",
+  "region": "Caribbean",
+  "areas": [
+   "Trinidad",
+   "Tobago",
+   "Port of Spain"
+  ],
+  "foods": [
+   "Doubles",
+   "Pelau",
+   "Callaloo"
+  ]
+ },
+ {
+  "id": "tunisia",
+  "name": "Tunisia",
+  "region": "North Africa",
+  "areas": [
+   "Tunis",
+   "Sfax",
+   "Djerba"
+  ],
+  "foods": [
+   "Couscous",
+   "Brik",
+   "Lablabi"
+  ]
+ },
+ {
+  "id": "turkiye",
+  "name": "Türkiye",
+  "region": "West Asia & Europe",
+  "areas": [
+   "Istanbul & Marmara",
+   "Aegean",
+   "Southeast Anatolia"
+  ],
+  "foods": [
+   "İmam bayıldı",
+   "Manti",
+   "Kebabs"
+  ]
+ },
+ {
+  "id": "turkmenistan",
+  "name": "Turkmenistan",
+  "region": "Central Asia",
+  "areas": [
+   "Ashgabat",
+   "Ahal",
+   "Dashoguz"
+  ],
+  "foods": [
+   "Plov",
+   "Dograma",
+   "Manti"
+  ]
+ },
+ {
+  "id": "tuvalu",
+  "name": "Tuvalu",
+  "region": "Pacific",
+  "areas": [
+   "Funafuti",
+   "Nanumea",
+   "Outer atolls"
+  ],
+  "foods": [
+   "Pulaka",
+   "Coconut fish",
+   "Taro dishes"
+  ]
+ },
+ {
+  "id": "uganda",
+  "name": "Uganda",
+  "region": "East Africa",
+  "areas": [
+   "Kampala",
+   "Western Uganda",
+   "Lake Victoria region"
+  ],
+  "foods": [
+   "Matoke",
+   "Rolex",
+   "Luwombo"
+  ]
+ },
+ {
+  "id": "ukraine",
+  "name": "Ukraine",
+  "region": "Eastern Europe",
+  "areas": [
+   "Kyiv region",
+   "Galicia",
+   "Black Sea south"
+  ],
+  "foods": [
+   "Borscht",
+   "Varenyky",
+   "Holubtsi"
+  ]
+ },
+ {
+  "id": "united-arab-emirates",
+  "name": "United Arab Emirates",
+  "region": "Gulf",
+  "areas": [
+   "Dubai",
+   "Abu Dhabi",
+   "Northern Emirates"
+  ],
+  "foods": [
+   "Machboos",
+   "Harees",
+   "Thareed"
+  ]
+ },
+ {
+  "id": "united-kingdom",
+  "name": "United Kingdom",
+  "region": "Western Europe",
+  "areas": [
+   "England",
+   "Scotland",
+   "Wales"
+  ],
+  "foods": [
+   "Fish & chips",
+   "Haggis",
+   "Welsh cawl"
+  ]
+ },
+ {
+  "id": "united-states",
+  "name": "United States",
+  "region": "North America",
+  "areas": [
+   "Southern states",
+   "New England",
+   "Pacific coast"
+  ],
+  "foods": [
+   "Gumbo",
+   "Clam chowder",
+   "Barbecue"
+  ]
+ },
+ {
+  "id": "uruguay",
+  "name": "Uruguay",
+  "region": "South America",
+  "areas": [
+   "Montevideo",
+   "Pampas interior",
+   "Atlantic coast"
+  ],
+  "foods": [
+   "Asado",
+   "Chivito",
+   "Milanesa"
+  ]
+ },
+ {
+  "id": "uzbekistan",
+  "name": "Uzbekistan",
+  "region": "Central Asia",
+  "areas": [
+   "Tashkent",
+   "Samarkand",
+   "Fergana Valley"
+  ],
+  "foods": [
+   "Plov",
+   "Lagman",
+   "Samsa"
+  ]
+ },
+ {
+  "id": "vanuatu",
+  "name": "Vanuatu",
+  "region": "Pacific",
+  "areas": [
+   "Efate",
+   "Espiritu Santo",
+   "Tanna"
+  ],
+  "foods": [
+   "Lap-lap",
+   "Tuluk",
+   "Coconut crab"
+  ]
+ },
+ {
+  "id": "vatican-city",
+  "name": "Vatican City",
+  "region": "Italy / Rome",
+  "areas": [
+   "Vatican City",
+   "Rome foodways",
+   "Lazio"
+  ],
+  "foods": [
+   "Roman-style pasta",
+   "Carciofi alla romana",
+   "Supplì"
+  ]
+ },
+ {
+  "id": "venezuela",
+  "name": "Venezuela",
+  "region": "South America",
+  "areas": [
+   "Caracas & north",
+   "Andes",
+   "Llanos"
+  ],
+  "foods": [
+   "Arepas",
+   "Pabellón criollo",
+   "Hallaca"
+  ]
+ },
+ {
+  "id": "vietnam",
+  "name": "Vietnam",
+  "region": "Southeast Asia",
+  "areas": [
+   "Northern Vietnam",
+   "Central Vietnam",
+   "Mekong Delta"
+  ],
+  "foods": [
+   "Phở",
+   "Bún bò Huế",
+   "Cơm tấm"
+  ]
+ },
+ {
+  "id": "yemen",
+  "name": "Yemen",
+  "region": "Arabian Peninsula",
+  "areas": [
+   "Sana’a",
+   "Hadramaut",
+   "Aden"
+  ],
+  "foods": [
+   "Saltah",
+   "Mandi",
+   "Fahsa"
+  ]
+ },
+ {
+  "id": "zambia",
+  "name": "Zambia",
+  "region": "Southern Africa",
+  "areas": [
+   "Lusaka",
+   "Copperbelt",
+   "Western Zambia"
+  ],
+  "foods": [
+   "Nshima",
+   "Ifisashi",
+   "Chikanda"
+  ]
+ },
+ {
+  "id": "zimbabwe",
+  "name": "Zimbabwe",
+  "region": "Southern Africa",
+  "areas": [
+   "Harare",
+   "Matabeleland",
+   "Eastern Highlands"
+  ],
+  "foods": [
+   "Sadza",
+   "Dovi",
+   "Muriwo unedovi"
+  ]
+ }
+]

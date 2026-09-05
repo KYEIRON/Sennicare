@@ -1,0 +1,87 @@
+{
+ "regions": [
+  "West Africa",
+  "East Africa",
+  "North Africa",
+  "Southern Africa",
+  "Middle East",
+  "South Asia",
+  "Southeast Asia",
+  "East Asia",
+  "Central Asia",
+  "Mediterranean",
+  "Western Europe",
+  "Eastern Europe",
+  "Nordic",
+  "Caribbean",
+  "Latin America",
+  "North America",
+  "Pacific"
+ ],
+ "confidence": [
+  {
+   "id": "new",
+   "label": "I am learning",
+   "detail": "Short methods, more explanation, nothing assumed."
+  },
+  {
+   "id": "ok",
+   "label": "I can cook a few things",
+   "detail": "Normal detail, and the reasons behind each step."
+  },
+  {
+   "id": "good",
+   "label": "I cook often",
+   "detail": "Fewer basics, more technique and regional variation."
+  }
+ ],
+ "weeknight": [
+  {
+   "id": "15",
+   "label": "Fifteen minutes"
+  },
+  {
+   "id": "30",
+   "label": "About half an hour"
+  },
+  {
+   "id": "45",
+   "label": "Up to an hour"
+  },
+  {
+   "id": "any",
+   "label": "However long it takes"
+  }
+ ],
+ "foodInterests": [
+  "More fish",
+  "More salads",
+  "More plant based meals",
+  "Rice dishes",
+  "Soups & stews",
+  "Quick meals",
+  "Breakfasts",
+  "Chicken",
+  "New food cultures",
+  "Budget friendly meals",
+  "Use my Pantry",
+  "Family meals"
+ ],
+ "discoveryLevels": [
+  {
+   "id": "familiar",
+   "label": "Mostly familiar",
+   "detail": "Keep most ideas recognisable, with occasional new dishes."
+  },
+  {
+   "id": "mix",
+   "label": "A mix of familiar and new",
+   "detail": "Balance comfort with discovery."
+  },
+  {
+   "id": "curious",
+   "label": "Take me somewhere new",
+   "detail": "Prioritise cuisines and dishes you have not explored."
+  }
+ ]
+}

@@ -1,0 +1,5972 @@
+[
+ {
+  "id": "afghanistan--kabuli-palaw",
+  "country": "Afghanistan",
+  "countryId": "afghanistan",
+  "region": "South Asia",
+  "name": "Kabuli palaw",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "afghanistan--mantu",
+  "country": "Afghanistan",
+  "countryId": "afghanistan",
+  "region": "South Asia",
+  "name": "Mantu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "afghanistan--ashak",
+  "country": "Afghanistan",
+  "countryId": "afghanistan",
+  "region": "South Asia",
+  "name": "Ashak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "albania--tave-kosi",
+  "country": "Albania",
+  "countryId": "albania",
+  "region": "Balkans",
+  "name": "Tavë kosi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "albania--byrek",
+  "country": "Albania",
+  "countryId": "albania",
+  "region": "Balkans",
+  "name": "Byrek",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "albania--fergese",
+  "country": "Albania",
+  "countryId": "albania",
+  "region": "Balkans",
+  "name": "Fërgesë",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "algeria--couscous",
+  "country": "Algeria",
+  "countryId": "algeria",
+  "region": "North Africa",
+  "name": "Couscous",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "algeria--chakhchoukha",
+  "country": "Algeria",
+  "countryId": "algeria",
+  "region": "North Africa",
+  "name": "Chakhchoukha",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "algeria--rechta",
+  "country": "Algeria",
+  "countryId": "algeria",
+  "region": "North Africa",
+  "name": "Rechta",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "andorra--escudella",
+  "country": "Andorra",
+  "countryId": "andorra",
+  "region": "Pyrenees",
+  "name": "Escudella",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "andorra--trinxat",
+  "country": "Andorra",
+  "countryId": "andorra",
+  "region": "Pyrenees",
+  "name": "Trinxat",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "andorra--coca-masegada",
+  "country": "Andorra",
+  "countryId": "andorra",
+  "region": "Pyrenees",
+  "name": "Coca masegada",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "angola--muamba-de-galinha",
+  "country": "Angola",
+  "countryId": "angola",
+  "region": "Central Africa",
+  "name": "Muamba de galinha",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "angola--calulu",
+  "country": "Angola",
+  "countryId": "angola",
+  "region": "Central Africa",
+  "name": "Calulu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "angola--funje",
+  "country": "Angola",
+  "countryId": "angola",
+  "region": "Central Africa",
+  "name": "Funje",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "antigua-and-barbuda--fungee-pepperpot",
+  "country": "Antigua and Barbuda",
+  "countryId": "antigua-and-barbuda",
+  "region": "Caribbean",
+  "name": "Fungee & pepperpot",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "antigua-and-barbuda--ducana",
+  "country": "Antigua and Barbuda",
+  "countryId": "antigua-and-barbuda",
+  "region": "Caribbean",
+  "name": "Ducana",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "antigua-and-barbuda--saltfish",
+  "country": "Antigua and Barbuda",
+  "countryId": "antigua-and-barbuda",
+  "region": "Caribbean",
+  "name": "Saltfish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "argentina--asado",
+  "country": "Argentina",
+  "countryId": "argentina",
+  "region": "South America",
+  "name": "Asado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "argentina--empanadas",
+  "country": "Argentina",
+  "countryId": "argentina",
+  "region": "South America",
+  "name": "Empanadas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "argentina--locro",
+  "country": "Argentina",
+  "countryId": "argentina",
+  "region": "South America",
+  "name": "Locro",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "armenia--khorovats",
+  "country": "Armenia",
+  "countryId": "armenia",
+  "region": "Caucasus",
+  "name": "Khorovats",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "armenia--dolma",
+  "country": "Armenia",
+  "countryId": "armenia",
+  "region": "Caucasus",
+  "name": "Dolma",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "armenia--harissa",
+  "country": "Armenia",
+  "countryId": "armenia",
+  "region": "Caucasus",
+  "name": "Harissa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "australia--meat-pie",
+  "country": "Australia",
+  "countryId": "australia",
+  "region": "Oceania",
+  "name": "Meat pie",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "australia--barramundi",
+  "country": "Australia",
+  "countryId": "australia",
+  "region": "Oceania",
+  "name": "Barramundi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "australia--damper",
+  "country": "Australia",
+  "countryId": "australia",
+  "region": "Oceania",
+  "name": "Damper",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "austria--wiener-schnitzel",
+  "country": "Austria",
+  "countryId": "austria",
+  "region": "Central Europe",
+  "name": "Wiener schnitzel",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "austria--tiroler-grostl",
+  "country": "Austria",
+  "countryId": "austria",
+  "region": "Central Europe",
+  "name": "Tiroler gröstl",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "austria--kasespatzle",
+  "country": "Austria",
+  "countryId": "austria",
+  "region": "Central Europe",
+  "name": "Käsespätzle",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "azerbaijan--plov",
+  "country": "Azerbaijan",
+  "countryId": "azerbaijan",
+  "region": "Caucasus",
+  "name": "Plov",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "azerbaijan--dolma",
+  "country": "Azerbaijan",
+  "countryId": "azerbaijan",
+  "region": "Caucasus",
+  "name": "Dolma",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "azerbaijan--qutab",
+  "country": "Azerbaijan",
+  "countryId": "azerbaijan",
+  "region": "Caucasus",
+  "name": "Qutab",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bahamas--conch-salad",
+  "country": "Bahamas",
+  "countryId": "bahamas",
+  "region": "Caribbean",
+  "name": "Conch salad",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bahamas--peas-rice",
+  "country": "Bahamas",
+  "countryId": "bahamas",
+  "region": "Caribbean",
+  "name": "Peas & rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bahamas--cracked-conch",
+  "country": "Bahamas",
+  "countryId": "bahamas",
+  "region": "Caribbean",
+  "name": "Cracked conch",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bahrain--machboos",
+  "country": "Bahrain",
+  "countryId": "bahrain",
+  "region": "Gulf",
+  "name": "Machboos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bahrain--muhammar",
+  "country": "Bahrain",
+  "countryId": "bahrain",
+  "region": "Gulf",
+  "name": "Muhammar",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bahrain--balaleet",
+  "country": "Bahrain",
+  "countryId": "bahrain",
+  "region": "Gulf",
+  "name": "Balaleet",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bangladesh--hilsa-bhapa",
+  "country": "Bangladesh",
+  "countryId": "bangladesh",
+  "region": "South Asia",
+  "name": "Hilsa bhapa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bangladesh--kacchi-biryani",
+  "country": "Bangladesh",
+  "countryId": "bangladesh",
+  "region": "South Asia",
+  "name": "Kacchi biryani",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bangladesh--shorshe-ilish",
+  "country": "Bangladesh",
+  "countryId": "bangladesh",
+  "region": "South Asia",
+  "name": "Shorshe ilish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "barbados--cou-cou-flying-fish",
+  "country": "Barbados",
+  "countryId": "barbados",
+  "region": "Caribbean",
+  "name": "Cou-cou & flying fish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "barbados--fish-cakes",
+  "country": "Barbados",
+  "countryId": "barbados",
+  "region": "Caribbean",
+  "name": "Fish cakes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "barbados--pudding-souse",
+  "country": "Barbados",
+  "countryId": "barbados",
+  "region": "Caribbean",
+  "name": "Pudding & souse",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belarus--draniki",
+  "country": "Belarus",
+  "countryId": "belarus",
+  "region": "Eastern Europe",
+  "name": "Draniki",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belarus--machanka",
+  "country": "Belarus",
+  "countryId": "belarus",
+  "region": "Eastern Europe",
+  "name": "Machanka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belarus--kletski",
+  "country": "Belarus",
+  "countryId": "belarus",
+  "region": "Eastern Europe",
+  "name": "Kletski",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belgium--moules-frites",
+  "country": "Belgium",
+  "countryId": "belgium",
+  "region": "Western Europe",
+  "name": "Moules-frites",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belgium--waterzooi",
+  "country": "Belgium",
+  "countryId": "belgium",
+  "region": "Western Europe",
+  "name": "Waterzooi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belgium--carbonnade-flamande",
+  "country": "Belgium",
+  "countryId": "belgium",
+  "region": "Western Europe",
+  "name": "Carbonnade flamande",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belize--rice-beans",
+  "country": "Belize",
+  "countryId": "belize",
+  "region": "Central America",
+  "name": "Rice & beans",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belize--hudut",
+  "country": "Belize",
+  "countryId": "belize",
+  "region": "Central America",
+  "name": "Hudut",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "belize--stew-chicken",
+  "country": "Belize",
+  "countryId": "belize",
+  "region": "Central America",
+  "name": "Stew chicken",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "benin--amiwo",
+  "country": "Benin",
+  "countryId": "benin",
+  "region": "West Africa",
+  "name": "Amiwo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "benin--wagasi",
+  "country": "Benin",
+  "countryId": "benin",
+  "region": "West Africa",
+  "name": "Wagasi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "benin--pate-with-sauces",
+  "country": "Benin",
+  "countryId": "benin",
+  "region": "West Africa",
+  "name": "Pâte with sauces",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bhutan--ema-datshi",
+  "country": "Bhutan",
+  "countryId": "bhutan",
+  "region": "Himalayas",
+  "name": "Ema datshi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bhutan--phaksha-paa",
+  "country": "Bhutan",
+  "countryId": "bhutan",
+  "region": "Himalayas",
+  "name": "Phaksha paa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bhutan--jasha-maru",
+  "country": "Bhutan",
+  "countryId": "bhutan",
+  "region": "Himalayas",
+  "name": "Jasha maru",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bolivia--saltenas",
+  "country": "Bolivia",
+  "countryId": "bolivia",
+  "region": "South America",
+  "name": "Salteñas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bolivia--silpancho",
+  "country": "Bolivia",
+  "countryId": "bolivia",
+  "region": "South America",
+  "name": "Silpancho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bolivia--majadito",
+  "country": "Bolivia",
+  "countryId": "bolivia",
+  "region": "South America",
+  "name": "Majadito",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bosnia-and-herzegovina--cevapi",
+  "country": "Bosnia and Herzegovina",
+  "countryId": "bosnia-and-herzegovina",
+  "region": "Balkans",
+  "name": "Ćevapi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bosnia-and-herzegovina--begova-corba",
+  "country": "Bosnia and Herzegovina",
+  "countryId": "bosnia-and-herzegovina",
+  "region": "Balkans",
+  "name": "Begova čorba",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bosnia-and-herzegovina--pita",
+  "country": "Bosnia and Herzegovina",
+  "countryId": "bosnia-and-herzegovina",
+  "region": "Balkans",
+  "name": "Pita",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "botswana--seswaa",
+  "country": "Botswana",
+  "countryId": "botswana",
+  "region": "Southern Africa",
+  "name": "Seswaa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "botswana--bogobe",
+  "country": "Botswana",
+  "countryId": "botswana",
+  "region": "Southern Africa",
+  "name": "Bogobe",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "botswana--morogo",
+  "country": "Botswana",
+  "countryId": "botswana",
+  "region": "Southern Africa",
+  "name": "Morogo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "brazil--feijoada",
+  "country": "Brazil",
+  "countryId": "brazil",
+  "region": "South America",
+  "name": "Feijoada",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "brazil--moqueca",
+  "country": "Brazil",
+  "countryId": "brazil",
+  "region": "South America",
+  "name": "Moqueca",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "brazil--tacaca",
+  "country": "Brazil",
+  "countryId": "brazil",
+  "region": "South America",
+  "name": "Tacacá",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "brunei--ambuyat",
+  "country": "Brunei",
+  "countryId": "brunei",
+  "region": "Southeast Asia",
+  "name": "Ambuyat",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "brunei--nasi-katok",
+  "country": "Brunei",
+  "countryId": "brunei",
+  "region": "Southeast Asia",
+  "name": "Nasi katok",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "brunei--kelupis",
+  "country": "Brunei",
+  "countryId": "brunei",
+  "region": "Southeast Asia",
+  "name": "Kelupis",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bulgaria--shopska-salad",
+  "country": "Bulgaria",
+  "countryId": "bulgaria",
+  "region": "Balkans",
+  "name": "Shopska salad",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bulgaria--banitsa",
+  "country": "Bulgaria",
+  "countryId": "bulgaria",
+  "region": "Balkans",
+  "name": "Banitsa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "bulgaria--kavarma",
+  "country": "Bulgaria",
+  "countryId": "bulgaria",
+  "region": "Balkans",
+  "name": "Kavarma",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "burkina-faso--riz-gras",
+  "country": "Burkina Faso",
+  "countryId": "burkina-faso",
+  "region": "West Africa",
+  "name": "Riz gras",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "burkina-faso--to",
+  "country": "Burkina Faso",
+  "countryId": "burkina-faso",
+  "region": "West Africa",
+  "name": "Tô",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "burkina-faso--poulet-bicyclette",
+  "country": "Burkina Faso",
+  "countryId": "burkina-faso",
+  "region": "West Africa",
+  "name": "Poulet bicyclette",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "burundi--mukeke",
+  "country": "Burundi",
+  "countryId": "burundi",
+  "region": "East Africa",
+  "name": "Mukeke",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "burundi--ibiharage",
+  "country": "Burundi",
+  "countryId": "burundi",
+  "region": "East Africa",
+  "name": "Ibiharage",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "burundi--ugali-with-greens",
+  "country": "Burundi",
+  "countryId": "burundi",
+  "region": "East Africa",
+  "name": "Ugali with greens",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cabo-verde--cachupa",
+  "country": "Cabo Verde",
+  "countryId": "cabo-verde",
+  "region": "Atlantic Africa",
+  "name": "Cachupa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cabo-verde--pasteis-de-milho",
+  "country": "Cabo Verde",
+  "countryId": "cabo-verde",
+  "region": "Atlantic Africa",
+  "name": "Pastéis de milho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cabo-verde--canja",
+  "country": "Cabo Verde",
+  "countryId": "cabo-verde",
+  "region": "Atlantic Africa",
+  "name": "Canja",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cambodia--fish-amok",
+  "country": "Cambodia",
+  "countryId": "cambodia",
+  "region": "Southeast Asia",
+  "name": "Fish amok",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cambodia--nom-banh-chok",
+  "country": "Cambodia",
+  "countryId": "cambodia",
+  "region": "Southeast Asia",
+  "name": "Nom banh chok",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cambodia--bai-sach-chrouk",
+  "country": "Cambodia",
+  "countryId": "cambodia",
+  "region": "Southeast Asia",
+  "name": "Bai sach chrouk",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cameroon--ndole",
+  "country": "Cameroon",
+  "countryId": "cameroon",
+  "region": "Central Africa",
+  "name": "Ndolé",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cameroon--eru",
+  "country": "Cameroon",
+  "countryId": "cameroon",
+  "region": "Central Africa",
+  "name": "Eru",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cameroon--achou",
+  "country": "Cameroon",
+  "countryId": "cameroon",
+  "region": "Central Africa",
+  "name": "Achou",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "canada--poutine",
+  "country": "Canada",
+  "countryId": "canada",
+  "region": "North America",
+  "name": "Poutine",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "canada--tourtiere",
+  "country": "Canada",
+  "countryId": "canada",
+  "region": "North America",
+  "name": "Tourtière",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "canada--salmon-with-maple-glaze",
+  "country": "Canada",
+  "countryId": "canada",
+  "region": "North America",
+  "name": "Salmon with maple glaze",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "central-african-republic--kanda",
+  "country": "Central African Republic",
+  "countryId": "central-african-republic",
+  "region": "Central Africa",
+  "name": "Kanda",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "central-african-republic--foutou",
+  "country": "Central African Republic",
+  "countryId": "central-african-republic",
+  "region": "Central Africa",
+  "name": "Foutou",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "central-african-republic--cassava-leaf-stew",
+  "country": "Central African Republic",
+  "countryId": "central-african-republic",
+  "region": "Central Africa",
+  "name": "Cassava leaf stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "chad--chakalaka-style-stew",
+  "country": "Chad",
+  "countryId": "chad",
+  "region": "Central Africa",
+  "name": "Chakalaka style stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "chad--boule",
+  "country": "Chad",
+  "countryId": "chad",
+  "region": "Central Africa",
+  "name": "Boule",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "chad--jarret-de-b-uf",
+  "country": "Chad",
+  "countryId": "chad",
+  "region": "Central Africa",
+  "name": "Jarret de bœuf",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "chile--pastel-de-choclo",
+  "country": "Chile",
+  "countryId": "chile",
+  "region": "South America",
+  "name": "Pastel de choclo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "chile--cazuela",
+  "country": "Chile",
+  "countryId": "chile",
+  "region": "South America",
+  "name": "Cazuela",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "chile--curanto",
+  "country": "Chile",
+  "countryId": "chile",
+  "region": "South America",
+  "name": "Curanto",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "china--mapo-tofu",
+  "country": "China",
+  "countryId": "china",
+  "region": "East Asia",
+  "name": "Mapo tofu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "china--dim-sum",
+  "country": "China",
+  "countryId": "china",
+  "region": "East Asia",
+  "name": "Dim sum",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "china--peking-duck",
+  "country": "China",
+  "countryId": "china",
+  "region": "East Asia",
+  "name": "Peking duck",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "colombia--bandeja-paisa",
+  "country": "Colombia",
+  "countryId": "colombia",
+  "region": "South America",
+  "name": "Bandeja paisa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "colombia--ajiaco",
+  "country": "Colombia",
+  "countryId": "colombia",
+  "region": "South America",
+  "name": "Ajiaco",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "colombia--sancocho",
+  "country": "Colombia",
+  "countryId": "colombia",
+  "region": "South America",
+  "name": "Sancocho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "comoros--langouste-a-la-vanille",
+  "country": "Comoros",
+  "countryId": "comoros",
+  "region": "Indian Ocean",
+  "name": "Langouste à la vanille",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "comoros--pilao",
+  "country": "Comoros",
+  "countryId": "comoros",
+  "region": "Indian Ocean",
+  "name": "Pilao",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "comoros--mataba",
+  "country": "Comoros",
+  "countryId": "comoros",
+  "region": "Indian Ocean",
+  "name": "Mataba",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "congo-democratic-republic-of-the--moambe",
+  "country": "Congo, Democratic Republic of the",
+  "countryId": "congo-democratic-republic-of-the",
+  "region": "Central Africa",
+  "name": "Moambe",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "congo-democratic-republic-of-the--pondu",
+  "country": "Congo, Democratic Republic of the",
+  "countryId": "congo-democratic-republic-of-the",
+  "region": "Central Africa",
+  "name": "Pondu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "congo-democratic-republic-of-the--liboke",
+  "country": "Congo, Democratic Republic of the",
+  "countryId": "congo-democratic-republic-of-the",
+  "region": "Central Africa",
+  "name": "Liboke",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "congo-republic-of-the--poulet-moambe",
+  "country": "Congo, Republic of the",
+  "countryId": "congo-republic-of-the",
+  "region": "Central Africa",
+  "name": "Poulet moambé",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "congo-republic-of-the--saka-saka",
+  "country": "Congo, Republic of the",
+  "countryId": "congo-republic-of-the",
+  "region": "Central Africa",
+  "name": "Saka-saka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "congo-republic-of-the--maboke",
+  "country": "Congo, Republic of the",
+  "countryId": "congo-republic-of-the",
+  "region": "Central Africa",
+  "name": "Maboké",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "costa-rica--gallo-pinto",
+  "country": "Costa Rica",
+  "countryId": "costa-rica",
+  "region": "Central America",
+  "name": "Gallo pinto",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "costa-rica--casado",
+  "country": "Costa Rica",
+  "countryId": "costa-rica",
+  "region": "Central America",
+  "name": "Casado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "costa-rica--olla-de-carne",
+  "country": "Costa Rica",
+  "countryId": "costa-rica",
+  "region": "Central America",
+  "name": "Olla de carne",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cote-d-ivoire--attieke",
+  "country": "Côte d’Ivoire",
+  "countryId": "cote-d-ivoire",
+  "region": "West Africa",
+  "name": "Attiéké",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cote-d-ivoire--kedjenou",
+  "country": "Côte d’Ivoire",
+  "countryId": "cote-d-ivoire",
+  "region": "West Africa",
+  "name": "Kedjenou",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cote-d-ivoire--aloco",
+  "country": "Côte d’Ivoire",
+  "countryId": "cote-d-ivoire",
+  "region": "West Africa",
+  "name": "Aloco",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "croatia--pasticada",
+  "country": "Croatia",
+  "countryId": "croatia",
+  "region": "Adriatic Europe",
+  "name": "Pašticada",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "croatia--istrian-fuzi",
+  "country": "Croatia",
+  "countryId": "croatia",
+  "region": "Adriatic Europe",
+  "name": "Istrian fuži",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "croatia--cobanac",
+  "country": "Croatia",
+  "countryId": "croatia",
+  "region": "Adriatic Europe",
+  "name": "Čobanac",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cuba--ropa-vieja",
+  "country": "Cuba",
+  "countryId": "cuba",
+  "region": "Caribbean",
+  "name": "Ropa vieja",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cuba--moros-y-cristianos",
+  "country": "Cuba",
+  "countryId": "cuba",
+  "region": "Caribbean",
+  "name": "Moros y cristianos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cuba--lechon-asado",
+  "country": "Cuba",
+  "countryId": "cuba",
+  "region": "Caribbean",
+  "name": "Lechón asado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cyprus--halloumi",
+  "country": "Cyprus",
+  "countryId": "cyprus",
+  "region": "Eastern Mediterranean",
+  "name": "Halloumi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cyprus--kleftiko",
+  "country": "Cyprus",
+  "countryId": "cyprus",
+  "region": "Eastern Mediterranean",
+  "name": "Kleftiko",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "cyprus--sheftalia",
+  "country": "Cyprus",
+  "countryId": "cyprus",
+  "region": "Eastern Mediterranean",
+  "name": "Sheftalia",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "czechia--svickova",
+  "country": "Czechia",
+  "countryId": "czechia",
+  "region": "Central Europe",
+  "name": "Svíčková",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "czechia--gulas",
+  "country": "Czechia",
+  "countryId": "czechia",
+  "region": "Central Europe",
+  "name": "Guláš",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "czechia--bramboraky",
+  "country": "Czechia",
+  "countryId": "czechia",
+  "region": "Central Europe",
+  "name": "Bramboráky",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "denmark--sm-rrebr-d",
+  "country": "Denmark",
+  "countryId": "denmark",
+  "region": "Nordics",
+  "name": "Smørrebrød",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "denmark--stegt-fl-sk",
+  "country": "Denmark",
+  "countryId": "denmark",
+  "region": "Nordics",
+  "name": "Stegt flæsk",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "denmark--frikadeller",
+  "country": "Denmark",
+  "countryId": "denmark",
+  "region": "Nordics",
+  "name": "Frikadeller",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "djibouti--skoudehkaris",
+  "country": "Djibouti",
+  "countryId": "djibouti",
+  "region": "Horn of Africa",
+  "name": "Skoudehkaris",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "djibouti--fah-fah",
+  "country": "Djibouti",
+  "countryId": "djibouti",
+  "region": "Horn of Africa",
+  "name": "Fah-fah",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "djibouti--laxoox",
+  "country": "Djibouti",
+  "countryId": "djibouti",
+  "region": "Horn of Africa",
+  "name": "Laxoox",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "dominica--mountain-chicken",
+  "country": "Dominica",
+  "countryId": "dominica",
+  "region": "Caribbean",
+  "name": "Mountain chicken",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "dominica--callaloo-soup",
+  "country": "Dominica",
+  "countryId": "dominica",
+  "region": "Caribbean",
+  "name": "Callaloo soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "dominica--bakes-saltfish",
+  "country": "Dominica",
+  "countryId": "dominica",
+  "region": "Caribbean",
+  "name": "Bakes & saltfish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "dominican-republic--la-bandera",
+  "country": "Dominican Republic",
+  "countryId": "dominican-republic",
+  "region": "Caribbean",
+  "name": "La bandera",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "dominican-republic--mangu",
+  "country": "Dominican Republic",
+  "countryId": "dominican-republic",
+  "region": "Caribbean",
+  "name": "Mangú",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "dominican-republic--sancocho",
+  "country": "Dominican Republic",
+  "countryId": "dominican-republic",
+  "region": "Caribbean",
+  "name": "Sancocho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ecuador--locro-de-papa",
+  "country": "Ecuador",
+  "countryId": "ecuador",
+  "region": "South America",
+  "name": "Locro de papa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ecuador--encebollado",
+  "country": "Ecuador",
+  "countryId": "ecuador",
+  "region": "South America",
+  "name": "Encebollado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ecuador--maito",
+  "country": "Ecuador",
+  "countryId": "ecuador",
+  "region": "South America",
+  "name": "Maito",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "egypt--koshari",
+  "country": "Egypt",
+  "countryId": "egypt",
+  "region": "North Africa",
+  "name": "Koshari",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "egypt--ful-medames",
+  "country": "Egypt",
+  "countryId": "egypt",
+  "region": "North Africa",
+  "name": "Ful medames",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "egypt--molokhia",
+  "country": "Egypt",
+  "countryId": "egypt",
+  "region": "North Africa",
+  "name": "Molokhia",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "el-salvador--pupusas",
+  "country": "El Salvador",
+  "countryId": "el-salvador",
+  "region": "Central America",
+  "name": "Pupusas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "el-salvador--yuca-frita",
+  "country": "El Salvador",
+  "countryId": "el-salvador",
+  "region": "Central America",
+  "name": "Yuca frita",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "el-salvador--sopa-de-res",
+  "country": "El Salvador",
+  "countryId": "el-salvador",
+  "region": "Central America",
+  "name": "Sopa de res",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "equatorial-guinea--peanut-soup",
+  "country": "Equatorial Guinea",
+  "countryId": "equatorial-guinea",
+  "region": "Central Africa",
+  "name": "Peanut soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "equatorial-guinea--succotash-style-stew",
+  "country": "Equatorial Guinea",
+  "countryId": "equatorial-guinea",
+  "region": "Central Africa",
+  "name": "Succotash style stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "equatorial-guinea--grilled-fish-with-plantain",
+  "country": "Equatorial Guinea",
+  "countryId": "equatorial-guinea",
+  "region": "Central Africa",
+  "name": "Grilled fish with plantain",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "eritrea--zigni",
+  "country": "Eritrea",
+  "countryId": "eritrea",
+  "region": "Horn of Africa",
+  "name": "Zigni",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "eritrea--injera",
+  "country": "Eritrea",
+  "countryId": "eritrea",
+  "region": "Horn of Africa",
+  "name": "Injera",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "eritrea--shiro",
+  "country": "Eritrea",
+  "countryId": "eritrea",
+  "region": "Horn of Africa",
+  "name": "Shiro",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "estonia--verivorst",
+  "country": "Estonia",
+  "countryId": "estonia",
+  "region": "Baltics",
+  "name": "Verivorst",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "estonia--mulgipuder",
+  "country": "Estonia",
+  "countryId": "estonia",
+  "region": "Baltics",
+  "name": "Mulgipuder",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "estonia--kama",
+  "country": "Estonia",
+  "countryId": "estonia",
+  "region": "Baltics",
+  "name": "Kama",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "eswatini--emahewu",
+  "country": "Eswatini",
+  "countryId": "eswatini",
+  "region": "Southern Africa",
+  "name": "Emahewu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "eswatini--sishwala",
+  "country": "Eswatini",
+  "countryId": "eswatini",
+  "region": "Southern Africa",
+  "name": "Sishwala",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "eswatini--incwancwa",
+  "country": "Eswatini",
+  "countryId": "eswatini",
+  "region": "Southern Africa",
+  "name": "Incwancwa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ethiopia--doro-wat",
+  "country": "Ethiopia",
+  "countryId": "ethiopia",
+  "region": "Horn of Africa",
+  "name": "Doro wat",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ethiopia--injera",
+  "country": "Ethiopia",
+  "countryId": "ethiopia",
+  "region": "Horn of Africa",
+  "name": "Injera",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ethiopia--shiro",
+  "country": "Ethiopia",
+  "countryId": "ethiopia",
+  "region": "Horn of Africa",
+  "name": "Shiro",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "fiji--kokoda",
+  "country": "Fiji",
+  "countryId": "fiji",
+  "region": "Pacific",
+  "name": "Kokoda",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "fiji--lovo",
+  "country": "Fiji",
+  "countryId": "fiji",
+  "region": "Pacific",
+  "name": "Lovo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "fiji--rourou",
+  "country": "Fiji",
+  "countryId": "fiji",
+  "region": "Pacific",
+  "name": "Rourou",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "finland--lohikeitto",
+  "country": "Finland",
+  "countryId": "finland",
+  "region": "Nordics",
+  "name": "Lohikeitto",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "finland--karjalanpiirakka",
+  "country": "Finland",
+  "countryId": "finland",
+  "region": "Nordics",
+  "name": "Karjalanpiirakka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "finland--poronkaristys",
+  "country": "Finland",
+  "countryId": "finland",
+  "region": "Nordics",
+  "name": "Poronkäristys",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "france--ratatouille",
+  "country": "France",
+  "countryId": "france",
+  "region": "Western Europe",
+  "name": "Ratatouille",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "france--bouillabaisse",
+  "country": "France",
+  "countryId": "france",
+  "region": "Western Europe",
+  "name": "Bouillabaisse",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "france--galette-complete",
+  "country": "France",
+  "countryId": "france",
+  "region": "Western Europe",
+  "name": "Galette complète",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "gabon--poulet-nyembwe",
+  "country": "Gabon",
+  "countryId": "gabon",
+  "region": "Central Africa",
+  "name": "Poulet nyembwe",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "gabon--brochettes",
+  "country": "Gabon",
+  "countryId": "gabon",
+  "region": "Central Africa",
+  "name": "Brochettes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "gabon--baton-de-manioc",
+  "country": "Gabon",
+  "countryId": "gabon",
+  "region": "Central Africa",
+  "name": "Baton de manioc",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "gambia--benachin",
+  "country": "Gambia",
+  "countryId": "gambia",
+  "region": "West Africa",
+  "name": "Benachin",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "gambia--domoda",
+  "country": "Gambia",
+  "countryId": "gambia",
+  "region": "West Africa",
+  "name": "Domoda",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "gambia--yassa",
+  "country": "Gambia",
+  "countryId": "gambia",
+  "region": "West Africa",
+  "name": "Yassa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "georgia--khachapuri",
+  "country": "Georgia",
+  "countryId": "georgia",
+  "region": "Caucasus",
+  "name": "Khachapuri",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "georgia--khinkali",
+  "country": "Georgia",
+  "countryId": "georgia",
+  "region": "Caucasus",
+  "name": "Khinkali",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "georgia--lobio",
+  "country": "Georgia",
+  "countryId": "georgia",
+  "region": "Caucasus",
+  "name": "Lobio",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "germany--sauerbraten",
+  "country": "Germany",
+  "countryId": "germany",
+  "region": "Central Europe",
+  "name": "Sauerbraten",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "germany--currywurst",
+  "country": "Germany",
+  "countryId": "germany",
+  "region": "Central Europe",
+  "name": "Currywurst",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "germany--maultaschen",
+  "country": "Germany",
+  "countryId": "germany",
+  "region": "Central Europe",
+  "name": "Maultaschen",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ghana--grilled-tilapia-yam-chips",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Grilled tilapia & yam chips",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ghana--jollof-rice",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Jollof rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ghana--red-red",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Red-red",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "greece--moussaka",
+  "country": "Greece",
+  "countryId": "greece",
+  "region": "Eastern Mediterranean",
+  "name": "Moussaka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "greece--dakos",
+  "country": "Greece",
+  "countryId": "greece",
+  "region": "Eastern Mediterranean",
+  "name": "Dakos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "greece--gemista",
+  "country": "Greece",
+  "countryId": "greece",
+  "region": "Eastern Mediterranean",
+  "name": "Gemista",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "grenada--oil-down",
+  "country": "Grenada",
+  "countryId": "grenada",
+  "region": "Caribbean",
+  "name": "Oil down",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "grenada--callaloo-soup",
+  "country": "Grenada",
+  "countryId": "grenada",
+  "region": "Caribbean",
+  "name": "Callaloo soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "grenada--lambie-souse",
+  "country": "Grenada",
+  "countryId": "grenada",
+  "region": "Caribbean",
+  "name": "Lambie souse",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guatemala--pepian",
+  "country": "Guatemala",
+  "countryId": "guatemala",
+  "region": "Central America",
+  "name": "Pepián",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guatemala--kak-ik",
+  "country": "Guatemala",
+  "countryId": "guatemala",
+  "region": "Central America",
+  "name": "Kak-ik",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guatemala--jocon",
+  "country": "Guatemala",
+  "countryId": "guatemala",
+  "region": "Central America",
+  "name": "Jocón",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guinea--mafe",
+  "country": "Guinea",
+  "countryId": "guinea",
+  "region": "West Africa",
+  "name": "Mafé",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guinea--poulet-yassa",
+  "country": "Guinea",
+  "countryId": "guinea",
+  "region": "West Africa",
+  "name": "Poulet yassa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guinea--riz-gras",
+  "country": "Guinea",
+  "countryId": "guinea",
+  "region": "West Africa",
+  "name": "Riz gras",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guinea-bissau--caldo-de-mancarra",
+  "country": "Guinea-Bissau",
+  "countryId": "guinea-bissau",
+  "region": "West Africa",
+  "name": "Caldo de mancarra",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guinea-bissau--jollof-rice",
+  "country": "Guinea-Bissau",
+  "countryId": "guinea-bissau",
+  "region": "West Africa",
+  "name": "Jollof rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guinea-bissau--grilled-fish-with-rice",
+  "country": "Guinea-Bissau",
+  "countryId": "guinea-bissau",
+  "region": "West Africa",
+  "name": "Grilled fish with rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guyana--pepperpot",
+  "country": "Guyana",
+  "countryId": "guyana",
+  "region": "South America",
+  "name": "Pepperpot",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guyana--cook-up-rice",
+  "country": "Guyana",
+  "countryId": "guyana",
+  "region": "South America",
+  "name": "Cook-up rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "guyana--metemgee",
+  "country": "Guyana",
+  "countryId": "guyana",
+  "region": "South America",
+  "name": "Metemgee",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "haiti--griot",
+  "country": "Haiti",
+  "countryId": "haiti",
+  "region": "Caribbean",
+  "name": "Griot",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "haiti--soup-joumou",
+  "country": "Haiti",
+  "countryId": "haiti",
+  "region": "Caribbean",
+  "name": "Soup joumou",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "haiti--diri-kole",
+  "country": "Haiti",
+  "countryId": "haiti",
+  "region": "Caribbean",
+  "name": "Diri kole",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "honduras--baleadas",
+  "country": "Honduras",
+  "countryId": "honduras",
+  "region": "Central America",
+  "name": "Baleadas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "honduras--sopa-de-caracol",
+  "country": "Honduras",
+  "countryId": "honduras",
+  "region": "Central America",
+  "name": "Sopa de caracol",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "honduras--carne-asada",
+  "country": "Honduras",
+  "countryId": "honduras",
+  "region": "Central America",
+  "name": "Carne asada",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "hungary--goulash",
+  "country": "Hungary",
+  "countryId": "hungary",
+  "region": "Central Europe",
+  "name": "Goulash",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "hungary--langos",
+  "country": "Hungary",
+  "countryId": "hungary",
+  "region": "Central Europe",
+  "name": "Lángos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "hungary--chicken-paprikash",
+  "country": "Hungary",
+  "countryId": "hungary",
+  "region": "Central Europe",
+  "name": "Chicken paprikash",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iceland--plokkfiskur",
+  "country": "Iceland",
+  "countryId": "iceland",
+  "region": "Nordics",
+  "name": "Plokkfiskur",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iceland--kjotsupa",
+  "country": "Iceland",
+  "countryId": "iceland",
+  "region": "Nordics",
+  "name": "Kjötsúpa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iceland--skyr",
+  "country": "Iceland",
+  "countryId": "iceland",
+  "region": "Nordics",
+  "name": "Skyr",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "india--masala-dosa",
+  "country": "India",
+  "countryId": "india",
+  "region": "South Asia",
+  "name": "Masala dosa",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "india--biryani",
+  "country": "India",
+  "countryId": "india",
+  "region": "South Asia",
+  "name": "Biryani",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "india--rogan-josh",
+  "country": "India",
+  "countryId": "india",
+  "region": "South Asia",
+  "name": "Rogan josh",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "indonesia--nasi-goreng",
+  "country": "Indonesia",
+  "countryId": "indonesia",
+  "region": "Southeast Asia",
+  "name": "Nasi goreng",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "indonesia--rendang",
+  "country": "Indonesia",
+  "countryId": "indonesia",
+  "region": "Southeast Asia",
+  "name": "Rendang",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "indonesia--gado-gado",
+  "country": "Indonesia",
+  "countryId": "indonesia",
+  "region": "Southeast Asia",
+  "name": "Gado-gado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iran--ghormeh-sabzi",
+  "country": "Iran",
+  "countryId": "iran",
+  "region": "West Asia",
+  "name": "Ghormeh sabzi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iran--tahdig",
+  "country": "Iran",
+  "countryId": "iran",
+  "region": "West Asia",
+  "name": "Tahdig",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iran--fesenjan",
+  "country": "Iran",
+  "countryId": "iran",
+  "region": "West Asia",
+  "name": "Fesenjan",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iraq--masgouf",
+  "country": "Iraq",
+  "countryId": "iraq",
+  "region": "West Asia",
+  "name": "Masgouf",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iraq--dolma",
+  "country": "Iraq",
+  "countryId": "iraq",
+  "region": "West Asia",
+  "name": "Dolma",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "iraq--kubba",
+  "country": "Iraq",
+  "countryId": "iraq",
+  "region": "West Asia",
+  "name": "Kubba",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ireland--irish-stew",
+  "country": "Ireland",
+  "countryId": "ireland",
+  "region": "Western Europe",
+  "name": "Irish stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ireland--boxty",
+  "country": "Ireland",
+  "countryId": "ireland",
+  "region": "Western Europe",
+  "name": "Boxty",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ireland--colcannon",
+  "country": "Ireland",
+  "countryId": "ireland",
+  "region": "Western Europe",
+  "name": "Colcannon",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "israel--shakshuka",
+  "country": "Israel",
+  "countryId": "israel",
+  "region": "Eastern Mediterranean",
+  "name": "Shakshuka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "israel--sabich",
+  "country": "Israel",
+  "countryId": "israel",
+  "region": "Eastern Mediterranean",
+  "name": "Sabich",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "israel--jachnun",
+  "country": "Israel",
+  "countryId": "israel",
+  "region": "Eastern Mediterranean",
+  "name": "Jachnun",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "italy--risotto",
+  "country": "Italy",
+  "countryId": "italy",
+  "region": "Southern Europe",
+  "name": "Risotto",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "italy--pasta-alla-amatriciana",
+  "country": "Italy",
+  "countryId": "italy",
+  "region": "Southern Europe",
+  "name": "Pasta alla amatriciana",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "italy--arancini",
+  "country": "Italy",
+  "countryId": "italy",
+  "region": "Southern Europe",
+  "name": "Arancini",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "jamaica--jerk-chicken",
+  "country": "Jamaica",
+  "countryId": "jamaica",
+  "region": "Caribbean",
+  "name": "Jerk chicken",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "jamaica--ackee-saltfish",
+  "country": "Jamaica",
+  "countryId": "jamaica",
+  "region": "Caribbean",
+  "name": "Ackee & saltfish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "jamaica--run-down",
+  "country": "Jamaica",
+  "countryId": "jamaica",
+  "region": "Caribbean",
+  "name": "Run down",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "japan--ramen",
+  "country": "Japan",
+  "countryId": "japan",
+  "region": "East Asia",
+  "name": "Ramen",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "japan--okonomiyaki",
+  "country": "Japan",
+  "countryId": "japan",
+  "region": "East Asia",
+  "name": "Okonomiyaki",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "japan--sushi",
+  "country": "Japan",
+  "countryId": "japan",
+  "region": "East Asia",
+  "name": "Sushi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "jordan--mansaf",
+  "country": "Jordan",
+  "countryId": "jordan",
+  "region": "West Asia",
+  "name": "Mansaf",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "jordan--maqluba",
+  "country": "Jordan",
+  "countryId": "jordan",
+  "region": "West Asia",
+  "name": "Maqluba",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "jordan--galayet-bandora",
+  "country": "Jordan",
+  "countryId": "jordan",
+  "region": "West Asia",
+  "name": "Galayet bandora",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kazakhstan--beshbarmak",
+  "country": "Kazakhstan",
+  "countryId": "kazakhstan",
+  "region": "Central Asia",
+  "name": "Beshbarmak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kazakhstan--baursak",
+  "country": "Kazakhstan",
+  "countryId": "kazakhstan",
+  "region": "Central Asia",
+  "name": "Baursak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kazakhstan--kazy",
+  "country": "Kazakhstan",
+  "countryId": "kazakhstan",
+  "region": "Central Asia",
+  "name": "Kazy",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kenya--ugali-sukuma-wiki",
+  "country": "Kenya",
+  "countryId": "kenya",
+  "region": "East Africa",
+  "name": "Ugali & sukuma wiki",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kenya--pilau",
+  "country": "Kenya",
+  "countryId": "kenya",
+  "region": "East Africa",
+  "name": "Pilau",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kenya--nyama-choma",
+  "country": "Kenya",
+  "countryId": "kenya",
+  "region": "East Africa",
+  "name": "Nyama choma",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kiribati--palusami",
+  "country": "Kiribati",
+  "countryId": "kiribati",
+  "region": "Pacific",
+  "name": "Palusami",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kiribati--coconut-fish",
+  "country": "Kiribati",
+  "countryId": "kiribati",
+  "region": "Pacific",
+  "name": "Coconut fish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kiribati--breadfruit-dishes",
+  "country": "Kiribati",
+  "countryId": "kiribati",
+  "region": "Pacific",
+  "name": "Breadfruit dishes",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kuwait--machboos",
+  "country": "Kuwait",
+  "countryId": "kuwait",
+  "region": "Gulf",
+  "name": "Machboos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kuwait--mutabbaq-samak",
+  "country": "Kuwait",
+  "countryId": "kuwait",
+  "region": "Gulf",
+  "name": "Mutabbaq samak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kuwait--gers-ogaily",
+  "country": "Kuwait",
+  "countryId": "kuwait",
+  "region": "Gulf",
+  "name": "Gers ogaily",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kyrgyzstan--beshbarmak",
+  "country": "Kyrgyzstan",
+  "countryId": "kyrgyzstan",
+  "region": "Central Asia",
+  "name": "Beshbarmak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kyrgyzstan--laghman",
+  "country": "Kyrgyzstan",
+  "countryId": "kyrgyzstan",
+  "region": "Central Asia",
+  "name": "Laghman",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "kyrgyzstan--manty",
+  "country": "Kyrgyzstan",
+  "countryId": "kyrgyzstan",
+  "region": "Central Asia",
+  "name": "Manty",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "laos--laap",
+  "country": "Laos",
+  "countryId": "laos",
+  "region": "Southeast Asia",
+  "name": "Laap",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "laos--khao-niao",
+  "country": "Laos",
+  "countryId": "laos",
+  "region": "Southeast Asia",
+  "name": "Khao niao",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "laos--tam-mak-hoong",
+  "country": "Laos",
+  "countryId": "laos",
+  "region": "Southeast Asia",
+  "name": "Tam mak hoong",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "latvia--grey-peas-with-bacon",
+  "country": "Latvia",
+  "countryId": "latvia",
+  "region": "Baltics",
+  "name": "Grey peas with bacon",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "latvia--sklandrausis",
+  "country": "Latvia",
+  "countryId": "latvia",
+  "region": "Baltics",
+  "name": "Sklandrausis",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "latvia--janu-cheese",
+  "country": "Latvia",
+  "countryId": "latvia",
+  "region": "Baltics",
+  "name": "Jāņu cheese",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lebanon--tabbouleh",
+  "country": "Lebanon",
+  "countryId": "lebanon",
+  "region": "Levant",
+  "name": "Tabbouleh",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lebanon--kibbeh",
+  "country": "Lebanon",
+  "countryId": "lebanon",
+  "region": "Levant",
+  "name": "Kibbeh",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lebanon--mujaddara",
+  "country": "Lebanon",
+  "countryId": "lebanon",
+  "region": "Levant",
+  "name": "Mujaddara",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lesotho--papa",
+  "country": "Lesotho",
+  "countryId": "lesotho",
+  "region": "Southern Africa",
+  "name": "Papa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lesotho--motoho",
+  "country": "Lesotho",
+  "countryId": "lesotho",
+  "region": "Southern Africa",
+  "name": "Motoho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lesotho--chakalaka",
+  "country": "Lesotho",
+  "countryId": "lesotho",
+  "region": "Southern Africa",
+  "name": "Chakalaka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "liberia--jollof-rice",
+  "country": "Liberia",
+  "countryId": "liberia",
+  "region": "West Africa",
+  "name": "Jollof rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "liberia--cassava-leaf-stew",
+  "country": "Liberia",
+  "countryId": "liberia",
+  "region": "West Africa",
+  "name": "Cassava leaf stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "liberia--palava-sauce",
+  "country": "Liberia",
+  "countryId": "liberia",
+  "region": "West Africa",
+  "name": "Palava sauce",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "libya--bazeen",
+  "country": "Libya",
+  "countryId": "libya",
+  "region": "North Africa",
+  "name": "Bazeen",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "libya--shorba",
+  "country": "Libya",
+  "countryId": "libya",
+  "region": "North Africa",
+  "name": "Shorba",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "libya--cuscus-bil-busla",
+  "country": "Libya",
+  "countryId": "libya",
+  "region": "North Africa",
+  "name": "Cuscus bil busla",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "liechtenstein--kasknopfle",
+  "country": "Liechtenstein",
+  "countryId": "liechtenstein",
+  "region": "Alps",
+  "name": "Käsknöpfle",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "liechtenstein--ribel",
+  "country": "Liechtenstein",
+  "countryId": "liechtenstein",
+  "region": "Alps",
+  "name": "Ribel",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "liechtenstein--hafalaab",
+  "country": "Liechtenstein",
+  "countryId": "liechtenstein",
+  "region": "Alps",
+  "name": "Hafalaab",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lithuania--cepelinai",
+  "country": "Lithuania",
+  "countryId": "lithuania",
+  "region": "Baltics",
+  "name": "Cepelinai",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lithuania--saltibarsciai",
+  "country": "Lithuania",
+  "countryId": "lithuania",
+  "region": "Baltics",
+  "name": "Šaltibarščiai",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "lithuania--kibinai",
+  "country": "Lithuania",
+  "countryId": "lithuania",
+  "region": "Baltics",
+  "name": "Kibinai",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "luxembourg--judd-mat-gaardebounen",
+  "country": "Luxembourg",
+  "countryId": "luxembourg",
+  "region": "Western Europe",
+  "name": "Judd mat gaardebounen",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "luxembourg--gromperekichelcher",
+  "country": "Luxembourg",
+  "countryId": "luxembourg",
+  "region": "Western Europe",
+  "name": "Gromperekichelcher",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "luxembourg--bamkuch",
+  "country": "Luxembourg",
+  "countryId": "luxembourg",
+  "region": "Western Europe",
+  "name": "Bamkuch",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "madagascar--romazava",
+  "country": "Madagascar",
+  "countryId": "madagascar",
+  "region": "Indian Ocean",
+  "name": "Romazava",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "madagascar--ravitoto",
+  "country": "Madagascar",
+  "countryId": "madagascar",
+  "region": "Indian Ocean",
+  "name": "Ravitoto",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "madagascar--mofo-gasy",
+  "country": "Madagascar",
+  "countryId": "madagascar",
+  "region": "Indian Ocean",
+  "name": "Mofo gasy",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malawi--nsima",
+  "country": "Malawi",
+  "countryId": "malawi",
+  "region": "Southeast Africa",
+  "name": "Nsima",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malawi--chambo",
+  "country": "Malawi",
+  "countryId": "malawi",
+  "region": "Southeast Africa",
+  "name": "Chambo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malawi--ndiwo",
+  "country": "Malawi",
+  "countryId": "malawi",
+  "region": "Southeast Africa",
+  "name": "Ndiwo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malaysia--nasi-lemak",
+  "country": "Malaysia",
+  "countryId": "malaysia",
+  "region": "Southeast Asia",
+  "name": "Nasi lemak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malaysia--laksa",
+  "country": "Malaysia",
+  "countryId": "malaysia",
+  "region": "Southeast Asia",
+  "name": "Laksa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malaysia--sarawak-kolo-mee",
+  "country": "Malaysia",
+  "countryId": "malaysia",
+  "region": "Southeast Asia",
+  "name": "Sarawak kolo mee",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "maldives--mas-huni",
+  "country": "Maldives",
+  "countryId": "maldives",
+  "region": "Indian Ocean",
+  "name": "Mas huni",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "maldives--garudhiya",
+  "country": "Maldives",
+  "countryId": "maldives",
+  "region": "Indian Ocean",
+  "name": "Garudhiya",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "maldives--fihunu-mas",
+  "country": "Maldives",
+  "countryId": "maldives",
+  "region": "Indian Ocean",
+  "name": "Fihunu mas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mali--tiguadege-na",
+  "country": "Mali",
+  "countryId": "mali",
+  "region": "West Africa",
+  "name": "Tiguadege na",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mali--to",
+  "country": "Mali",
+  "countryId": "mali",
+  "region": "West Africa",
+  "name": "To",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mali--maafe",
+  "country": "Mali",
+  "countryId": "mali",
+  "region": "West Africa",
+  "name": "Maafe",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malta--pastizzi",
+  "country": "Malta",
+  "countryId": "malta",
+  "region": "Mediterranean",
+  "name": "Pastizzi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malta--fenek",
+  "country": "Malta",
+  "countryId": "malta",
+  "region": "Mediterranean",
+  "name": "Fenek",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "malta--aljotta",
+  "country": "Malta",
+  "countryId": "malta",
+  "region": "Mediterranean",
+  "name": "Aljotta",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "marshall-islands--breadfruit-dishes",
+  "country": "Marshall Islands",
+  "countryId": "marshall-islands",
+  "region": "Pacific",
+  "name": "Breadfruit dishes",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "marshall-islands--coconut-crab",
+  "country": "Marshall Islands",
+  "countryId": "marshall-islands",
+  "region": "Pacific",
+  "name": "Coconut crab",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "marshall-islands--pandanus-fruit",
+  "country": "Marshall Islands",
+  "countryId": "marshall-islands",
+  "region": "Pacific",
+  "name": "Pandanus fruit",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mauritania--thieboudienne",
+  "country": "Mauritania",
+  "countryId": "mauritania",
+  "region": "West Africa",
+  "name": "Thieboudienne",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mauritania--mechoui",
+  "country": "Mauritania",
+  "countryId": "mauritania",
+  "region": "West Africa",
+  "name": "Mechoui",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mauritania--couscous",
+  "country": "Mauritania",
+  "countryId": "mauritania",
+  "region": "West Africa",
+  "name": "Couscous",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mauritius--dholl-puri",
+  "country": "Mauritius",
+  "countryId": "mauritius",
+  "region": "Indian Ocean",
+  "name": "Dholl puri",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mauritius--rougaille",
+  "country": "Mauritius",
+  "countryId": "mauritius",
+  "region": "Indian Ocean",
+  "name": "Rougaille",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mauritius--mine-frit",
+  "country": "Mauritius",
+  "countryId": "mauritius",
+  "region": "Indian Ocean",
+  "name": "Mine frit",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mexico--mole-negro",
+  "country": "Mexico",
+  "countryId": "mexico",
+  "region": "North America",
+  "name": "Mole negro",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mexico--cochinita-pibil",
+  "country": "Mexico",
+  "countryId": "mexico",
+  "region": "North America",
+  "name": "Cochinita pibil",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mexico--tacos-al-pastor",
+  "country": "Mexico",
+  "countryId": "mexico",
+  "region": "North America",
+  "name": "Tacos al pastor",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "micronesia--pohnpei-sakau",
+  "country": "Micronesia",
+  "countryId": "micronesia",
+  "region": "Pacific",
+  "name": "Pohnpei sakau",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "micronesia--breadfruit",
+  "country": "Micronesia",
+  "countryId": "micronesia",
+  "region": "Pacific",
+  "name": "Breadfruit",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "micronesia--taro-dishes",
+  "country": "Micronesia",
+  "countryId": "micronesia",
+  "region": "Pacific",
+  "name": "Taro dishes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "moldova--mamaliga",
+  "country": "Moldova",
+  "countryId": "moldova",
+  "region": "Eastern Europe",
+  "name": "Mămăligă",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "moldova--placinta",
+  "country": "Moldova",
+  "countryId": "moldova",
+  "region": "Eastern Europe",
+  "name": "Plăcintă",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "moldova--zeama",
+  "country": "Moldova",
+  "countryId": "moldova",
+  "region": "Eastern Europe",
+  "name": "Zeamă",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "monaco--barbagiuan",
+  "country": "Monaco",
+  "countryId": "monaco",
+  "region": "Mediterranean",
+  "name": "Barbagiuàn",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "monaco--socca",
+  "country": "Monaco",
+  "countryId": "monaco",
+  "region": "Mediterranean",
+  "name": "Socca",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "monaco--stocafi",
+  "country": "Monaco",
+  "countryId": "monaco",
+  "region": "Mediterranean",
+  "name": "Stocafi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mongolia--buuz",
+  "country": "Mongolia",
+  "countryId": "mongolia",
+  "region": "East Asia",
+  "name": "Buuz",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mongolia--khuushuur",
+  "country": "Mongolia",
+  "countryId": "mongolia",
+  "region": "East Asia",
+  "name": "Khuushuur",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mongolia--tsuivan",
+  "country": "Mongolia",
+  "countryId": "mongolia",
+  "region": "East Asia",
+  "name": "Tsuivan",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "montenegro--kacamak",
+  "country": "Montenegro",
+  "countryId": "montenegro",
+  "region": "Balkans",
+  "name": "Kačamak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "montenegro--njeguski-prsut",
+  "country": "Montenegro",
+  "countryId": "montenegro",
+  "region": "Balkans",
+  "name": "Njeguški pršut",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "montenegro--cicvara",
+  "country": "Montenegro",
+  "countryId": "montenegro",
+  "region": "Balkans",
+  "name": "Cicvara",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "morocco--tagine",
+  "country": "Morocco",
+  "countryId": "morocco",
+  "region": "North Africa",
+  "name": "Tagine",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "morocco--couscous",
+  "country": "Morocco",
+  "countryId": "morocco",
+  "region": "North Africa",
+  "name": "Couscous",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "morocco--pastilla",
+  "country": "Morocco",
+  "countryId": "morocco",
+  "region": "North Africa",
+  "name": "Pastilla",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mozambique--matapa",
+  "country": "Mozambique",
+  "countryId": "mozambique",
+  "region": "Southeast Africa",
+  "name": "Matapa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mozambique--piri-piri-prawns",
+  "country": "Mozambique",
+  "countryId": "mozambique",
+  "region": "Southeast Africa",
+  "name": "Piri-piri prawns",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "mozambique--xima",
+  "country": "Mozambique",
+  "countryId": "mozambique",
+  "region": "Southeast Africa",
+  "name": "Xima",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "myanmar--mohinga",
+  "country": "Myanmar",
+  "countryId": "myanmar",
+  "region": "Southeast Asia",
+  "name": "Mohinga",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "myanmar--shan-noodles",
+  "country": "Myanmar",
+  "countryId": "myanmar",
+  "region": "Southeast Asia",
+  "name": "Shan noodles",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "myanmar--rakhine-mont-di",
+  "country": "Myanmar",
+  "countryId": "myanmar",
+  "region": "Southeast Asia",
+  "name": "Rakhine mont di",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "namibia--kapana",
+  "country": "Namibia",
+  "countryId": "namibia",
+  "region": "Southern Africa",
+  "name": "Kapana",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "namibia--oshifima",
+  "country": "Namibia",
+  "countryId": "namibia",
+  "region": "Southern Africa",
+  "name": "Oshifima",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "namibia--potjiekos",
+  "country": "Namibia",
+  "countryId": "namibia",
+  "region": "Southern Africa",
+  "name": "Potjiekos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nauru--coconut-fish",
+  "country": "Nauru",
+  "countryId": "nauru",
+  "region": "Pacific",
+  "name": "Coconut fish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nauru--pandanus-fruit",
+  "country": "Nauru",
+  "countryId": "nauru",
+  "region": "Pacific",
+  "name": "Pandanus fruit",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nauru--taro-dishes",
+  "country": "Nauru",
+  "countryId": "nauru",
+  "region": "Pacific",
+  "name": "Taro dishes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nepal--dal-bhat-tarkari",
+  "country": "Nepal",
+  "countryId": "nepal",
+  "region": "Himalayas",
+  "name": "Dal bhat tarkari",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nepal--momo",
+  "country": "Nepal",
+  "countryId": "nepal",
+  "region": "Himalayas",
+  "name": "Momo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nepal--newari-samay-baji",
+  "country": "Nepal",
+  "countryId": "nepal",
+  "region": "Himalayas",
+  "name": "Newari samay baji",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "netherlands--stamppot",
+  "country": "Netherlands",
+  "countryId": "netherlands",
+  "region": "Western Europe",
+  "name": "Stamppot",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "netherlands--poffertjes",
+  "country": "Netherlands",
+  "countryId": "netherlands",
+  "region": "Western Europe",
+  "name": "Poffertjes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "netherlands--zeeuwse-mosselen",
+  "country": "Netherlands",
+  "countryId": "netherlands",
+  "region": "Western Europe",
+  "name": "Zeeuwse mosselen",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "new-zealand--hangi",
+  "country": "New Zealand",
+  "countryId": "new-zealand",
+  "region": "Oceania",
+  "name": "Hāngī",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "new-zealand--paua-fritters",
+  "country": "New Zealand",
+  "countryId": "new-zealand",
+  "region": "Oceania",
+  "name": "Pāua fritters",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "new-zealand--whitebait-fritters",
+  "country": "New Zealand",
+  "countryId": "new-zealand",
+  "region": "Oceania",
+  "name": "Whitebait fritters",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nicaragua--gallo-pinto",
+  "country": "Nicaragua",
+  "countryId": "nicaragua",
+  "region": "Central America",
+  "name": "Gallo pinto",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nicaragua--nacatamales",
+  "country": "Nicaragua",
+  "countryId": "nicaragua",
+  "region": "Central America",
+  "name": "Nacatamales",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nicaragua--vigoron",
+  "country": "Nicaragua",
+  "countryId": "nicaragua",
+  "region": "Central America",
+  "name": "Vigorón",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "niger--tuwo",
+  "country": "Niger",
+  "countryId": "niger",
+  "region": "West Africa",
+  "name": "Tuwo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "niger--dambou",
+  "country": "Niger",
+  "countryId": "niger",
+  "region": "West Africa",
+  "name": "Dambou",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "niger--millet-porridge",
+  "country": "Niger",
+  "countryId": "niger",
+  "region": "West Africa",
+  "name": "Millet porridge",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nigeria--jollof-rice",
+  "country": "Nigeria",
+  "countryId": "nigeria",
+  "region": "West Africa",
+  "name": "Jollof rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nigeria--egusi-soup",
+  "country": "Nigeria",
+  "countryId": "nigeria",
+  "region": "West Africa",
+  "name": "Egusi soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "nigeria--suya",
+  "country": "Nigeria",
+  "countryId": "nigeria",
+  "region": "West Africa",
+  "name": "Suya",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "north-korea--naengmyeon",
+  "country": "North Korea",
+  "countryId": "north-korea",
+  "region": "East Asia",
+  "name": "Naengmyeon",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "north-korea--kimchi",
+  "country": "North Korea",
+  "countryId": "north-korea",
+  "region": "East Asia",
+  "name": "Kimchi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "north-korea--japchae",
+  "country": "North Korea",
+  "countryId": "north-korea",
+  "region": "East Asia",
+  "name": "Japchae",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "north-macedonia--tavce-gravce",
+  "country": "North Macedonia",
+  "countryId": "north-macedonia",
+  "region": "Balkans",
+  "name": "Tavče gravče",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "north-macedonia--ajvar",
+  "country": "North Macedonia",
+  "countryId": "north-macedonia",
+  "region": "Balkans",
+  "name": "Ajvar",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "north-macedonia--macedonian-kebapi",
+  "country": "North Macedonia",
+  "countryId": "north-macedonia",
+  "region": "Balkans",
+  "name": "Macedonian kebapi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "norway--farikal",
+  "country": "Norway",
+  "countryId": "norway",
+  "region": "Nordics",
+  "name": "Fårikål",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "norway--lapskaus",
+  "country": "Norway",
+  "countryId": "norway",
+  "region": "Nordics",
+  "name": "Lapskaus",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "norway--lutefisk",
+  "country": "Norway",
+  "countryId": "norway",
+  "region": "Nordics",
+  "name": "Lutefisk",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "oman--shuwa",
+  "country": "Oman",
+  "countryId": "oman",
+  "region": "Arabian Peninsula",
+  "name": "Shuwa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "oman--majboos",
+  "country": "Oman",
+  "countryId": "oman",
+  "region": "Arabian Peninsula",
+  "name": "Majboos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "oman--mishkak",
+  "country": "Oman",
+  "countryId": "oman",
+  "region": "Arabian Peninsula",
+  "name": "Mishkak",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "pakistan--biryani",
+  "country": "Pakistan",
+  "countryId": "pakistan",
+  "region": "South Asia",
+  "name": "Biryani",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "pakistan--nihari",
+  "country": "Pakistan",
+  "countryId": "pakistan",
+  "region": "South Asia",
+  "name": "Nihari",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "pakistan--chapli-kebab",
+  "country": "Pakistan",
+  "countryId": "pakistan",
+  "region": "South Asia",
+  "name": "Chapli kebab",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "palau--demok",
+  "country": "Palau",
+  "countryId": "palau",
+  "region": "Micronesia",
+  "name": "Demok",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "palau--taro-dishes",
+  "country": "Palau",
+  "countryId": "palau",
+  "region": "Micronesia",
+  "name": "Taro dishes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "palau--grilled-reef-fish",
+  "country": "Palau",
+  "countryId": "palau",
+  "region": "Micronesia",
+  "name": "Grilled reef fish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "palestine--maqluba",
+  "country": "Palestine",
+  "countryId": "palestine",
+  "region": "Levant",
+  "name": "Maqluba",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "palestine--musakhan",
+  "country": "Palestine",
+  "countryId": "palestine",
+  "region": "Levant",
+  "name": "Musakhan",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "palestine--maftoul",
+  "country": "Palestine",
+  "countryId": "palestine",
+  "region": "Levant",
+  "name": "Maftoul",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "panama--sancocho",
+  "country": "Panama",
+  "countryId": "panama",
+  "region": "Central America",
+  "name": "Sancocho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "panama--ropa-vieja",
+  "country": "Panama",
+  "countryId": "panama",
+  "region": "Central America",
+  "name": "Ropa vieja",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "panama--carimanolas",
+  "country": "Panama",
+  "countryId": "panama",
+  "region": "Central America",
+  "name": "Carimañolas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "papua-new-guinea--mumu",
+  "country": "Papua New Guinea",
+  "countryId": "papua-new-guinea",
+  "region": "Pacific",
+  "name": "Mumu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "papua-new-guinea--kaukau",
+  "country": "Papua New Guinea",
+  "countryId": "papua-new-guinea",
+  "region": "Pacific",
+  "name": "Kaukau",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "papua-new-guinea--sago-dishes",
+  "country": "Papua New Guinea",
+  "countryId": "papua-new-guinea",
+  "region": "Pacific",
+  "name": "Sago dishes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "paraguay--sopa-paraguaya",
+  "country": "Paraguay",
+  "countryId": "paraguay",
+  "region": "South America",
+  "name": "Sopa paraguaya",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "paraguay--chipa",
+  "country": "Paraguay",
+  "countryId": "paraguay",
+  "region": "South America",
+  "name": "Chipa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "paraguay--mbeju",
+  "country": "Paraguay",
+  "countryId": "paraguay",
+  "region": "South America",
+  "name": "Mbejú",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "peru--ceviche",
+  "country": "Peru",
+  "countryId": "peru",
+  "region": "South America",
+  "name": "Ceviche",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "peru--lomo-saltado",
+  "country": "Peru",
+  "countryId": "peru",
+  "region": "South America",
+  "name": "Lomo saltado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "peru--juane",
+  "country": "Peru",
+  "countryId": "peru",
+  "region": "South America",
+  "name": "Juane",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "philippines--adobo",
+  "country": "Philippines",
+  "countryId": "philippines",
+  "region": "Southeast Asia",
+  "name": "Adobo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "philippines--lechon",
+  "country": "Philippines",
+  "countryId": "philippines",
+  "region": "Southeast Asia",
+  "name": "Lechon",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "philippines--kinilaw",
+  "country": "Philippines",
+  "countryId": "philippines",
+  "region": "Southeast Asia",
+  "name": "Kinilaw",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "poland--pierogi",
+  "country": "Poland",
+  "countryId": "poland",
+  "region": "Central Europe",
+  "name": "Pierogi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "poland--zurek",
+  "country": "Poland",
+  "countryId": "poland",
+  "region": "Central Europe",
+  "name": "Żurek",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "poland--bigos",
+  "country": "Poland",
+  "countryId": "poland",
+  "region": "Central Europe",
+  "name": "Bigos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "portugal--bacalhau",
+  "country": "Portugal",
+  "countryId": "portugal",
+  "region": "Iberia",
+  "name": "Bacalhau",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "portugal--caldo-verde",
+  "country": "Portugal",
+  "countryId": "portugal",
+  "region": "Iberia",
+  "name": "Caldo verde",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "portugal--arroz-de-marisco",
+  "country": "Portugal",
+  "countryId": "portugal",
+  "region": "Iberia",
+  "name": "Arroz de marisco",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "qatar--machboos",
+  "country": "Qatar",
+  "countryId": "qatar",
+  "region": "Gulf",
+  "name": "Machboos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "qatar--thareed",
+  "country": "Qatar",
+  "countryId": "qatar",
+  "region": "Gulf",
+  "name": "Thareed",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "qatar--balaleet",
+  "country": "Qatar",
+  "countryId": "qatar",
+  "region": "Gulf",
+  "name": "Balaleet",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "romania--sarmale",
+  "country": "Romania",
+  "countryId": "romania",
+  "region": "Eastern Europe",
+  "name": "Sarmale",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "romania--mamaliga",
+  "country": "Romania",
+  "countryId": "romania",
+  "region": "Eastern Europe",
+  "name": "Mămăligă",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "romania--ciorba",
+  "country": "Romania",
+  "countryId": "romania",
+  "region": "Eastern Europe",
+  "name": "Ciorbă",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "russia--pelmeni",
+  "country": "Russia",
+  "countryId": "russia",
+  "region": "Eastern Europe & Eurasia",
+  "name": "Pelmeni",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "russia--borscht",
+  "country": "Russia",
+  "countryId": "russia",
+  "region": "Eastern Europe & Eurasia",
+  "name": "Borscht",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "russia--blini",
+  "country": "Russia",
+  "countryId": "russia",
+  "region": "Eastern Europe & Eurasia",
+  "name": "Blini",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "rwanda--brochettes",
+  "country": "Rwanda",
+  "countryId": "rwanda",
+  "region": "East Africa",
+  "name": "Brochettes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "rwanda--isombe",
+  "country": "Rwanda",
+  "countryId": "rwanda",
+  "region": "East Africa",
+  "name": "Isombe",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "rwanda--ugali-with-beans",
+  "country": "Rwanda",
+  "countryId": "rwanda",
+  "region": "East Africa",
+  "name": "Ugali with beans",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-kitts-and-nevis--goat-water",
+  "country": "Saint Kitts and Nevis",
+  "countryId": "saint-kitts-and-nevis",
+  "region": "Caribbean",
+  "name": "Goat water",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-kitts-and-nevis--saltfish-dumplings",
+  "country": "Saint Kitts and Nevis",
+  "countryId": "saint-kitts-and-nevis",
+  "region": "Caribbean",
+  "name": "Saltfish & dumplings",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-kitts-and-nevis--conch-stew",
+  "country": "Saint Kitts and Nevis",
+  "countryId": "saint-kitts-and-nevis",
+  "region": "Caribbean",
+  "name": "Conch stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-lucia--green-fig-saltfish",
+  "country": "Saint Lucia",
+  "countryId": "saint-lucia",
+  "region": "Caribbean",
+  "name": "Green fig & saltfish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-lucia--bouyon",
+  "country": "Saint Lucia",
+  "countryId": "saint-lucia",
+  "region": "Caribbean",
+  "name": "Bouyon",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-lucia--lambi",
+  "country": "Saint Lucia",
+  "countryId": "saint-lucia",
+  "region": "Caribbean",
+  "name": "Lambi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-vincent-and-the-grenadines--roasted-breadfruit-jackfish",
+  "country": "Saint Vincent and the Grenadines",
+  "countryId": "saint-vincent-and-the-grenadines",
+  "region": "Caribbean",
+  "name": "Roasted breadfruit & jackfish",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-vincent-and-the-grenadines--callaloo-soup",
+  "country": "Saint Vincent and the Grenadines",
+  "countryId": "saint-vincent-and-the-grenadines",
+  "region": "Caribbean",
+  "name": "Callaloo soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saint-vincent-and-the-grenadines--fish-cakes",
+  "country": "Saint Vincent and the Grenadines",
+  "countryId": "saint-vincent-and-the-grenadines",
+  "region": "Caribbean",
+  "name": "Fish cakes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "samoa--palusami",
+  "country": "Samoa",
+  "countryId": "samoa",
+  "region": "Pacific",
+  "name": "Palusami",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "samoa--oka",
+  "country": "Samoa",
+  "countryId": "samoa",
+  "region": "Pacific",
+  "name": "Oka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "samoa--faiai-eleni",
+  "country": "Samoa",
+  "countryId": "samoa",
+  "region": "Pacific",
+  "name": "Faiai eleni",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "san-marino--torta-tre-monti",
+  "country": "San Marino",
+  "countryId": "san-marino",
+  "region": "Southern Europe",
+  "name": "Torta tre monti",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "san-marino--piadina",
+  "country": "San Marino",
+  "countryId": "san-marino",
+  "region": "Southern Europe",
+  "name": "Piadina",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "san-marino--passatelli",
+  "country": "San Marino",
+  "countryId": "san-marino",
+  "region": "Southern Europe",
+  "name": "Passatelli",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sao-tome-and-principe--calulu",
+  "country": "Sao Tome and Principe",
+  "countryId": "sao-tome-and-principe",
+  "region": "Central Africa",
+  "name": "Calulu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sao-tome-and-principe--fish-with-banana",
+  "country": "Sao Tome and Principe",
+  "countryId": "sao-tome-and-principe",
+  "region": "Central Africa",
+  "name": "Fish with banana",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sao-tome-and-principe--feijoada-sao-tomense",
+  "country": "Sao Tome and Principe",
+  "countryId": "sao-tome-and-principe",
+  "region": "Central Africa",
+  "name": "Feijoada são-tomense",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saudi-arabia--kabsa",
+  "country": "Saudi Arabia",
+  "countryId": "saudi-arabia",
+  "region": "Arabian Peninsula",
+  "name": "Kabsa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saudi-arabia--jareesh",
+  "country": "Saudi Arabia",
+  "countryId": "saudi-arabia",
+  "region": "Arabian Peninsula",
+  "name": "Jareesh",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "saudi-arabia--saleeg",
+  "country": "Saudi Arabia",
+  "countryId": "saudi-arabia",
+  "region": "Arabian Peninsula",
+  "name": "Saleeg",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "senegal--thieboudienne",
+  "country": "Senegal",
+  "countryId": "senegal",
+  "region": "West Africa",
+  "name": "Thieboudienne",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "senegal--yassa",
+  "country": "Senegal",
+  "countryId": "senegal",
+  "region": "West Africa",
+  "name": "Yassa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "senegal--mafe",
+  "country": "Senegal",
+  "countryId": "senegal",
+  "region": "West Africa",
+  "name": "Mafé",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "serbia--cevapi",
+  "country": "Serbia",
+  "countryId": "serbia",
+  "region": "Balkans",
+  "name": "Ćevapi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "serbia--pljeskavica",
+  "country": "Serbia",
+  "countryId": "serbia",
+  "region": "Balkans",
+  "name": "Pljeskavica",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "serbia--prebranac",
+  "country": "Serbia",
+  "countryId": "serbia",
+  "region": "Balkans",
+  "name": "Prebranac",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "seychelles--fish-curry",
+  "country": "Seychelles",
+  "countryId": "seychelles",
+  "region": "Indian Ocean",
+  "name": "Fish curry",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "seychelles--ladob",
+  "country": "Seychelles",
+  "countryId": "seychelles",
+  "region": "Indian Ocean",
+  "name": "Ladob",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "seychelles--octopus-curry",
+  "country": "Seychelles",
+  "countryId": "seychelles",
+  "region": "Indian Ocean",
+  "name": "Octopus curry",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sierra-leone--cassava-leaf-stew",
+  "country": "Sierra Leone",
+  "countryId": "sierra-leone",
+  "region": "West Africa",
+  "name": "Cassava leaf stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sierra-leone--jollof-rice",
+  "country": "Sierra Leone",
+  "countryId": "sierra-leone",
+  "region": "West Africa",
+  "name": "Jollof rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sierra-leone--groundnut-stew",
+  "country": "Sierra Leone",
+  "countryId": "sierra-leone",
+  "region": "West Africa",
+  "name": "Groundnut stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "singapore--hainanese-chicken-rice",
+  "country": "Singapore",
+  "countryId": "singapore",
+  "region": "Southeast Asia",
+  "name": "Hainanese chicken rice",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "singapore--laksa",
+  "country": "Singapore",
+  "countryId": "singapore",
+  "region": "Southeast Asia",
+  "name": "Laksa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "singapore--chilli-crab",
+  "country": "Singapore",
+  "countryId": "singapore",
+  "region": "Southeast Asia",
+  "name": "Chilli crab",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "slovakia--bryndzove-halusky",
+  "country": "Slovakia",
+  "countryId": "slovakia",
+  "region": "Central Europe",
+  "name": "Bryndzové halušky",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "slovakia--kapustnica",
+  "country": "Slovakia",
+  "countryId": "slovakia",
+  "region": "Central Europe",
+  "name": "Kapustnica",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "slovakia--lokse",
+  "country": "Slovakia",
+  "countryId": "slovakia",
+  "region": "Central Europe",
+  "name": "Lokše",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "slovenia--potica",
+  "country": "Slovenia",
+  "countryId": "slovenia",
+  "region": "Central Europe",
+  "name": "Potica",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "slovenia--idrijski-zlikrofi",
+  "country": "Slovenia",
+  "countryId": "slovenia",
+  "region": "Central Europe",
+  "name": "Idrijski žlikrofi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "slovenia--jota",
+  "country": "Slovenia",
+  "countryId": "slovenia",
+  "region": "Central Europe",
+  "name": "Jota",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "solomon-islands--poi",
+  "country": "Solomon Islands",
+  "countryId": "solomon-islands",
+  "region": "Pacific",
+  "name": "Poi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "solomon-islands--cassava-pudding",
+  "country": "Solomon Islands",
+  "countryId": "solomon-islands",
+  "region": "Pacific",
+  "name": "Cassava pudding",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "solomon-islands--taro-with-coconut",
+  "country": "Solomon Islands",
+  "countryId": "solomon-islands",
+  "region": "Pacific",
+  "name": "Taro with coconut",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "somalia--canjeero",
+  "country": "Somalia",
+  "countryId": "somalia",
+  "region": "Horn of Africa",
+  "name": "Canjeero",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "somalia--bariis-iskukaris",
+  "country": "Somalia",
+  "countryId": "somalia",
+  "region": "Horn of Africa",
+  "name": "Bariis iskukaris",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "somalia--suugo",
+  "country": "Somalia",
+  "countryId": "somalia",
+  "region": "Horn of Africa",
+  "name": "Suugo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-africa--bobotie",
+  "country": "South Africa",
+  "countryId": "south-africa",
+  "region": "Southern Africa",
+  "name": "Bobotie",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-africa--bunny-chow",
+  "country": "South Africa",
+  "countryId": "south-africa",
+  "region": "Southern Africa",
+  "name": "Bunny chow",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-africa--chakalaka",
+  "country": "South Africa",
+  "countryId": "south-africa",
+  "region": "Southern Africa",
+  "name": "Chakalaka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-korea--bibimbap",
+  "country": "South Korea",
+  "countryId": "south-korea",
+  "region": "East Asia",
+  "name": "Bibimbap",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-korea--kimchi-jjigae",
+  "country": "South Korea",
+  "countryId": "south-korea",
+  "region": "East Asia",
+  "name": "Kimchi jjigae",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-korea--japchae",
+  "country": "South Korea",
+  "countryId": "south-korea",
+  "region": "East Asia",
+  "name": "Japchae",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-sudan--kisra",
+  "country": "South Sudan",
+  "countryId": "south-sudan",
+  "region": "East Africa",
+  "name": "Kisra",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-sudan--ful",
+  "country": "South Sudan",
+  "countryId": "south-sudan",
+  "region": "East Africa",
+  "name": "Ful",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "south-sudan--wal-wal",
+  "country": "South Sudan",
+  "countryId": "south-sudan",
+  "region": "East Africa",
+  "name": "Wal wal",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "spain--paella",
+  "country": "Spain",
+  "countryId": "spain",
+  "region": "Iberia",
+  "name": "Paella",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "spain--gazpacho",
+  "country": "Spain",
+  "countryId": "spain",
+  "region": "Iberia",
+  "name": "Gazpacho",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "spain--pintxos",
+  "country": "Spain",
+  "countryId": "spain",
+  "region": "Iberia",
+  "name": "Pintxos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sri-lanka--rice-curry",
+  "country": "Sri Lanka",
+  "countryId": "sri-lanka",
+  "region": "South Asia",
+  "name": "Rice & curry",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sri-lanka--kottu-roti",
+  "country": "Sri Lanka",
+  "countryId": "sri-lanka",
+  "region": "South Asia",
+  "name": "Kottu roti",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sri-lanka--hoppers",
+  "country": "Sri Lanka",
+  "countryId": "sri-lanka",
+  "region": "South Asia",
+  "name": "Hoppers",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sudan--ful-medames",
+  "country": "Sudan",
+  "countryId": "sudan",
+  "region": "Northeast Africa",
+  "name": "Ful medames",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sudan--kisra",
+  "country": "Sudan",
+  "countryId": "sudan",
+  "region": "Northeast Africa",
+  "name": "Kisra",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sudan--shaiyah",
+  "country": "Sudan",
+  "countryId": "sudan",
+  "region": "Northeast Africa",
+  "name": "Shaiyah",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "suriname--pom",
+  "country": "Suriname",
+  "countryId": "suriname",
+  "region": "South America",
+  "name": "Pom",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "suriname--roti",
+  "country": "Suriname",
+  "countryId": "suriname",
+  "region": "South America",
+  "name": "Roti",
+  "slot": "Breakfast",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "suriname--saoto-soup",
+  "country": "Suriname",
+  "countryId": "suriname",
+  "region": "South America",
+  "name": "Saoto soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sweden--kottbullar",
+  "country": "Sweden",
+  "countryId": "sweden",
+  "region": "Nordics",
+  "name": "Köttbullar",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sweden--gravlax",
+  "country": "Sweden",
+  "countryId": "sweden",
+  "region": "Nordics",
+  "name": "Gravlax",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "sweden--janssons-frestelse",
+  "country": "Sweden",
+  "countryId": "sweden",
+  "region": "Nordics",
+  "name": "Janssons frestelse",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "switzerland--fondue",
+  "country": "Switzerland",
+  "countryId": "switzerland",
+  "region": "Central Europe",
+  "name": "Fondue",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "switzerland--rosti",
+  "country": "Switzerland",
+  "countryId": "switzerland",
+  "region": "Central Europe",
+  "name": "Rösti",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "switzerland--ticinese-polenta",
+  "country": "Switzerland",
+  "countryId": "switzerland",
+  "region": "Central Europe",
+  "name": "Ticinese polenta",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "syria--kibbeh",
+  "country": "Syria",
+  "countryId": "syria",
+  "region": "Levant",
+  "name": "Kibbeh",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "syria--fatteh",
+  "country": "Syria",
+  "countryId": "syria",
+  "region": "Levant",
+  "name": "Fatteh",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "syria--muhammara",
+  "country": "Syria",
+  "countryId": "syria",
+  "region": "Levant",
+  "name": "Muhammara",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tajikistan--qurutob",
+  "country": "Tajikistan",
+  "countryId": "tajikistan",
+  "region": "Central Asia",
+  "name": "Qurutob",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tajikistan--plov",
+  "country": "Tajikistan",
+  "countryId": "tajikistan",
+  "region": "Central Asia",
+  "name": "Plov",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tajikistan--oshi-palav",
+  "country": "Tajikistan",
+  "countryId": "tajikistan",
+  "region": "Central Asia",
+  "name": "Oshi palav",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tanzania--zanzibar-pilau",
+  "country": "Tanzania",
+  "countryId": "tanzania",
+  "region": "East Africa",
+  "name": "Zanzibar pilau",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tanzania--chipsi-mayai",
+  "country": "Tanzania",
+  "countryId": "tanzania",
+  "region": "East Africa",
+  "name": "Chipsi mayai",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tanzania--ugali-with-mchicha",
+  "country": "Tanzania",
+  "countryId": "tanzania",
+  "region": "East Africa",
+  "name": "Ugali with mchicha",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "thailand--pad-thai",
+  "country": "Thailand",
+  "countryId": "thailand",
+  "region": "Southeast Asia",
+  "name": "Pad thai",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "thailand--som-tam",
+  "country": "Thailand",
+  "countryId": "thailand",
+  "region": "Southeast Asia",
+  "name": "Som tam",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "thailand--khao-soi",
+  "country": "Thailand",
+  "countryId": "thailand",
+  "region": "Southeast Asia",
+  "name": "Khao soi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "timor-leste--batar-daan",
+  "country": "Timor-Leste",
+  "countryId": "timor-leste",
+  "region": "Southeast Asia",
+  "name": "Batar daan",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "timor-leste--ikan-pepes",
+  "country": "Timor-Leste",
+  "countryId": "timor-leste",
+  "region": "Southeast Asia",
+  "name": "Ikan pepes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "timor-leste--tukir",
+  "country": "Timor-Leste",
+  "countryId": "timor-leste",
+  "region": "Southeast Asia",
+  "name": "Tukir",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "togo--fufu-with-sauce",
+  "country": "Togo",
+  "countryId": "togo",
+  "region": "West Africa",
+  "name": "Fufu with sauce",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "togo--akoume",
+  "country": "Togo",
+  "countryId": "togo",
+  "region": "West Africa",
+  "name": "Akoumé",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "togo--ablo",
+  "country": "Togo",
+  "countryId": "togo",
+  "region": "West Africa",
+  "name": "Ablo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tonga--lu-pulu",
+  "country": "Tonga",
+  "countryId": "tonga",
+  "region": "Pacific",
+  "name": "Lu pulu",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tonga--ota-ika",
+  "country": "Tonga",
+  "countryId": "tonga",
+  "region": "Pacific",
+  "name": "Ota ika",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tonga--umu-dishes",
+  "country": "Tonga",
+  "countryId": "tonga",
+  "region": "Pacific",
+  "name": "Umu dishes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "trinidad-and-tobago--doubles",
+  "country": "Trinidad and Tobago",
+  "countryId": "trinidad-and-tobago",
+  "region": "Caribbean",
+  "name": "Doubles",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "trinidad-and-tobago--pelau",
+  "country": "Trinidad and Tobago",
+  "countryId": "trinidad-and-tobago",
+  "region": "Caribbean",
+  "name": "Pelau",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "trinidad-and-tobago--callaloo",
+  "country": "Trinidad and Tobago",
+  "countryId": "trinidad-and-tobago",
+  "region": "Caribbean",
+  "name": "Callaloo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tunisia--couscous",
+  "country": "Tunisia",
+  "countryId": "tunisia",
+  "region": "North Africa",
+  "name": "Couscous",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tunisia--brik",
+  "country": "Tunisia",
+  "countryId": "tunisia",
+  "region": "North Africa",
+  "name": "Brik",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tunisia--lablabi",
+  "country": "Tunisia",
+  "countryId": "tunisia",
+  "region": "North Africa",
+  "name": "Lablabi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "turkiye--imam-bay-ld",
+  "country": "Türkiye",
+  "countryId": "turkiye",
+  "region": "West Asia & Europe",
+  "name": "İmam bayıldı",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "turkiye--manti",
+  "country": "Türkiye",
+  "countryId": "turkiye",
+  "region": "West Asia & Europe",
+  "name": "Manti",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "turkiye--kebabs",
+  "country": "Türkiye",
+  "countryId": "turkiye",
+  "region": "West Asia & Europe",
+  "name": "Kebabs",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "turkmenistan--plov",
+  "country": "Turkmenistan",
+  "countryId": "turkmenistan",
+  "region": "Central Asia",
+  "name": "Plov",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "turkmenistan--dograma",
+  "country": "Turkmenistan",
+  "countryId": "turkmenistan",
+  "region": "Central Asia",
+  "name": "Dograma",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "turkmenistan--manti",
+  "country": "Turkmenistan",
+  "countryId": "turkmenistan",
+  "region": "Central Asia",
+  "name": "Manti",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tuvalu--pulaka",
+  "country": "Tuvalu",
+  "countryId": "tuvalu",
+  "region": "Pacific",
+  "name": "Pulaka",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tuvalu--coconut-fish",
+  "country": "Tuvalu",
+  "countryId": "tuvalu",
+  "region": "Pacific",
+  "name": "Coconut fish",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "tuvalu--taro-dishes",
+  "country": "Tuvalu",
+  "countryId": "tuvalu",
+  "region": "Pacific",
+  "name": "Taro dishes",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uganda--matoke",
+  "country": "Uganda",
+  "countryId": "uganda",
+  "region": "East Africa",
+  "name": "Matoke",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uganda--rolex",
+  "country": "Uganda",
+  "countryId": "uganda",
+  "region": "East Africa",
+  "name": "Rolex",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uganda--luwombo",
+  "country": "Uganda",
+  "countryId": "uganda",
+  "region": "East Africa",
+  "name": "Luwombo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ukraine--borscht",
+  "country": "Ukraine",
+  "countryId": "ukraine",
+  "region": "Eastern Europe",
+  "name": "Borscht",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ukraine--varenyky",
+  "country": "Ukraine",
+  "countryId": "ukraine",
+  "region": "Eastern Europe",
+  "name": "Varenyky",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ukraine--holubtsi",
+  "country": "Ukraine",
+  "countryId": "ukraine",
+  "region": "Eastern Europe",
+  "name": "Holubtsi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-arab-emirates--machboos",
+  "country": "United Arab Emirates",
+  "countryId": "united-arab-emirates",
+  "region": "Gulf",
+  "name": "Machboos",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-arab-emirates--harees",
+  "country": "United Arab Emirates",
+  "countryId": "united-arab-emirates",
+  "region": "Gulf",
+  "name": "Harees",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-arab-emirates--thareed",
+  "country": "United Arab Emirates",
+  "countryId": "united-arab-emirates",
+  "region": "Gulf",
+  "name": "Thareed",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-kingdom--fish-chips",
+  "country": "United Kingdom",
+  "countryId": "united-kingdom",
+  "region": "Western Europe",
+  "name": "Fish & chips",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-kingdom--haggis",
+  "country": "United Kingdom",
+  "countryId": "united-kingdom",
+  "region": "Western Europe",
+  "name": "Haggis",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-kingdom--welsh-cawl",
+  "country": "United Kingdom",
+  "countryId": "united-kingdom",
+  "region": "Western Europe",
+  "name": "Welsh cawl",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-states--gumbo",
+  "country": "United States",
+  "countryId": "united-states",
+  "region": "North America",
+  "name": "Gumbo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-states--clam-chowder",
+  "country": "United States",
+  "countryId": "united-states",
+  "region": "North America",
+  "name": "Clam chowder",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "united-states--barbecue",
+  "country": "United States",
+  "countryId": "united-states",
+  "region": "North America",
+  "name": "Barbecue",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uruguay--asado",
+  "country": "Uruguay",
+  "countryId": "uruguay",
+  "region": "South America",
+  "name": "Asado",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uruguay--chivito",
+  "country": "Uruguay",
+  "countryId": "uruguay",
+  "region": "South America",
+  "name": "Chivito",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uruguay--milanesa",
+  "country": "Uruguay",
+  "countryId": "uruguay",
+  "region": "South America",
+  "name": "Milanesa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uzbekistan--plov",
+  "country": "Uzbekistan",
+  "countryId": "uzbekistan",
+  "region": "Central Asia",
+  "name": "Plov",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uzbekistan--lagman",
+  "country": "Uzbekistan",
+  "countryId": "uzbekistan",
+  "region": "Central Asia",
+  "name": "Lagman",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "uzbekistan--samsa",
+  "country": "Uzbekistan",
+  "countryId": "uzbekistan",
+  "region": "Central Asia",
+  "name": "Samsa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vanuatu--lap-lap",
+  "country": "Vanuatu",
+  "countryId": "vanuatu",
+  "region": "Pacific",
+  "name": "Lap-lap",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vanuatu--tuluk",
+  "country": "Vanuatu",
+  "countryId": "vanuatu",
+  "region": "Pacific",
+  "name": "Tuluk",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vanuatu--coconut-crab",
+  "country": "Vanuatu",
+  "countryId": "vanuatu",
+  "region": "Pacific",
+  "name": "Coconut crab",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vatican-city--roman-style-pasta",
+  "country": "Vatican City",
+  "countryId": "vatican-city",
+  "region": "Italy / Rome",
+  "name": "Roman-style pasta",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vatican-city--carciofi-alla-romana",
+  "country": "Vatican City",
+  "countryId": "vatican-city",
+  "region": "Italy / Rome",
+  "name": "Carciofi alla romana",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vatican-city--suppli",
+  "country": "Vatican City",
+  "countryId": "vatican-city",
+  "region": "Italy / Rome",
+  "name": "Supplì",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "venezuela--arepas",
+  "country": "Venezuela",
+  "countryId": "venezuela",
+  "region": "South America",
+  "name": "Arepas",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "venezuela--pabellon-criollo",
+  "country": "Venezuela",
+  "countryId": "venezuela",
+  "region": "South America",
+  "name": "Pabellón criollo",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "venezuela--hallaca",
+  "country": "Venezuela",
+  "countryId": "venezuela",
+  "region": "South America",
+  "name": "Hallaca",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vietnam--pho",
+  "country": "Vietnam",
+  "countryId": "vietnam",
+  "region": "Southeast Asia",
+  "name": "Phở",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vietnam--bun-bo-hue",
+  "country": "Vietnam",
+  "countryId": "vietnam",
+  "region": "Southeast Asia",
+  "name": "Bún bò Huế",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "vietnam--com-tam",
+  "country": "Vietnam",
+  "countryId": "vietnam",
+  "region": "Southeast Asia",
+  "name": "Cơm tấm",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "yemen--saltah",
+  "country": "Yemen",
+  "countryId": "yemen",
+  "region": "Arabian Peninsula",
+  "name": "Saltah",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "yemen--mandi",
+  "country": "Yemen",
+  "countryId": "yemen",
+  "region": "Arabian Peninsula",
+  "name": "Mandi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "yemen--fahsa",
+  "country": "Yemen",
+  "countryId": "yemen",
+  "region": "Arabian Peninsula",
+  "name": "Fahsa",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "zambia--nshima",
+  "country": "Zambia",
+  "countryId": "zambia",
+  "region": "Southern Africa",
+  "name": "Nshima",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "zambia--ifisashi",
+  "country": "Zambia",
+  "countryId": "zambia",
+  "region": "Southern Africa",
+  "name": "Ifisashi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "zambia--chikanda",
+  "country": "Zambia",
+  "countryId": "zambia",
+  "region": "Southern Africa",
+  "name": "Chikanda",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "zimbabwe--sadza",
+  "country": "Zimbabwe",
+  "countryId": "zimbabwe",
+  "region": "Southern Africa",
+  "name": "Sadza",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "zimbabwe--dovi",
+  "country": "Zimbabwe",
+  "countryId": "zimbabwe",
+  "region": "Southern Africa",
+  "name": "Dovi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "zimbabwe--muriwo-unedovi",
+  "country": "Zimbabwe",
+  "countryId": "zimbabwe",
+  "region": "Southern Africa",
+  "name": "Muriwo unedovi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki country atlas",
+  "curated": false
+ },
+ {
+  "id": "ghana--waakye",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Waakye",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--kelewele",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Kelewele",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--kontomire-stew",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Kontomire stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--ghanaian-light-soup",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Ghanaian light soup",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--groundnut-soup-with-rice-balls",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Groundnut soup with rice balls",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--banku-with-okro-stew",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Banku with okro stew",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--tuo-zaafi",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "West Africa",
+  "name": "Tuo zaafi",
+  "slot": "Lunch / Dinner",
+  "source": "Girki kitchen",
+  "curated": true
+ },
+ {
+  "id": "ghana--fante-kenkey-with-fried-fish-pepper",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "Coastal Ghana",
+  "name": "Fante kenkey with fried fish & pepper",
+  "slot": "Discovery",
+  "source": "Girki editorial discovery record",
+  "curated": false
+ },
+ {
+  "id": "ghana--ampesi-with-kontomire",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "Ashanti & southern Ghana",
+  "name": "Ampesi with kontomire",
+  "slot": "Discovery",
+  "source": "Girki editorial discovery record",
+  "curated": false
+ },
+ {
+  "id": "ghana--palm-nut-soup-with-fufu",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "Southern Ghana",
+  "name": "Palm nut soup with fufu",
+  "slot": "Discovery",
+  "source": "Girki editorial discovery record",
+  "curated": false
+ },
+ {
+  "id": "ghana--ghanaian-suya-chinchinga",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "Northern Ghana & urban Ghana",
+  "name": "Ghanaian suya (chinchinga)",
+  "slot": "Discovery",
+  "source": "Girki editorial discovery record",
+  "curated": false
+ },
+ {
+  "id": "ghana--hausa-koko-with-koose",
+  "country": "Ghana",
+  "countryId": "ghana",
+  "region": "Northern Ghana & Zongo communities",
+  "name": "Hausa koko with koose",
+  "slot": "Discovery",
+  "source": "Girki editorial discovery record",
+  "curated": false
+ }
+]

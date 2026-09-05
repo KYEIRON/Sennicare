@@ -1,0 +1,389 @@
+[
+ {
+  "id": "noodlesoup",
+  "name": "noodle soup",
+  "ingredients": [
+   "150g rice or wheat noodles",
+   "1 litre chicken or vegetable stock",
+   "A thumb of ginger, sliced",
+   "2 garlic cloves",
+   "200g chicken, tofu or prawns",
+   "2 pak choi or a handful of greens",
+   "2 spring onions",
+   "1 tbsp soy sauce",
+   "1 lime",
+   "Fresh herbs"
+  ],
+  "steps": [
+   "Simmer the stock with the ginger and garlic for 15 minutes so it takes on flavour, then lift them out.",
+   "Cook the noodles separately as the packet says, usually 4 to 6 minutes, and rinse so they do not cloud the broth.",
+   "Poach the chicken, tofu or prawns in the broth for 6 to 8 minutes, until cooked through.",
+   "Add the greens for the last 2 minutes so they stay bright.",
+   "Build the bowl: noodles first, then the protein, then the hot broth. Finish with soy, lime, spring onion and herbs."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 45
+   },
+   {
+    "name": "Fibre",
+    "percentage": 22
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 30
+   },
+   {
+    "name": "Iron",
+    "percentage": 20
+   }
+  ],
+  "minutes": 35,
+  "kcal": 490,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "rice",
+  "name": "rice dish",
+  "ingredients": [
+   "250g long grain rice",
+   "1 onion, sliced",
+   "2 garlic cloves",
+   "300g chicken, lamb or chickpeas",
+   "2 carrots or a mix of vegetables",
+   "2 tsp of the region’s warm spice mix (cumin, coriander, paprika)",
+   "600ml stock",
+   "2 tbsp oil",
+   "Fresh herbs"
+  ],
+  "steps": [
+   "Rinse the rice until the water runs clear, then soak 20 minutes. This is what keeps the grains separate.",
+   "Brown the protein in the oil over high heat for 6 minutes, then set aside.",
+   "Cook the onion over medium heat for 8 to 10 minutes until deep gold, then add garlic and spices for 1 minute.",
+   "Return the protein with the stock, cover and simmer 20 minutes.",
+   "Drain the rice, stir it in, cover tightly and cook on the lowest heat for 15 minutes without lifting the lid.",
+   "Rest 10 minutes off the heat, then fork through and finish with herbs."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 48
+   },
+   {
+    "name": "Fibre",
+    "percentage": 26
+   },
+   {
+    "name": "Iron",
+    "percentage": 26
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 40
+   }
+  ],
+  "minutes": 60,
+  "kcal": 580,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "stew",
+  "name": "slow stew",
+  "ingredients": [
+   "400g meat, or 2 tins of beans or lentils",
+   "1 large onion",
+   "3 garlic cloves",
+   "400g tin chopped tomatoes",
+   "2 carrots",
+   "2 tsp ground spices from the region",
+   "500ml stock",
+   "2 tbsp oil",
+   "Fresh herbs"
+  ],
+  "steps": [
+   "Brown the meat in the oil over high heat for 6 to 8 minutes for colour, then lift out. Skip this if using beans.",
+   "Cook the onion over medium heat for 10 minutes until properly golden, not just soft.",
+   "Add garlic and spices and stir for 1 minute, until they smell toasted rather than raw.",
+   "Add tomatoes, carrots, stock and the meat. Bring to the boil, then drop to the lowest simmer.",
+   "Cover and cook 45 minutes for meat, or 20 minutes for beans, until everything gives easily.",
+   "Season, rest 5 minutes and finish with herbs."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 44
+   },
+   {
+    "name": "Fibre",
+    "percentage": 40
+   },
+   {
+    "name": "Iron",
+    "percentage": 34
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 45
+   }
+  ],
+  "minutes": 70,
+  "kcal": 520,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "grill",
+  "name": "grilled dish",
+  "ingredients": [
+   "500g chicken thighs, lamb or firm vegetables",
+   "3 tbsp oil",
+   "2 garlic cloves",
+   "1 tbsp of the region’s spice blend",
+   "1 lemon or lime",
+   "1 onion",
+   "Flatbread or rice to serve",
+   "Salad and yoghurt"
+  ],
+  "steps": [
+   "Mix the oil, garlic, spices and citrus into a marinade and coat the meat or vegetables.",
+   "Leave for at least 30 minutes at room temperature, or overnight in the fridge. This is where nearly all the flavour comes from.",
+   "Get the grill, griddle or oven properly hot — 220°C, or coals with a white ash.",
+   "Cook for 5 to 7 minutes each side for chicken thighs, 3 to 4 for lamb, until charred outside and cooked through with no pink.",
+   "Rest for 5 minutes before slicing. Serve with bread or rice, salad and yoghurt."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 70
+   },
+   {
+    "name": "Iron",
+    "percentage": 28
+   },
+   {
+    "name": "B12",
+    "percentage": 40
+   },
+   {
+    "name": "Zinc",
+    "percentage": 35
+   }
+  ],
+  "minutes": 45,
+  "kcal": 560,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "flatbread",
+  "name": "bread or filled dough",
+  "ingredients": [
+   "300g plain flour",
+   "1/2 tsp salt",
+   "180ml warm water",
+   "2 tbsp oil",
+   "1 onion",
+   "200g filling: spiced vegetables, lentils or minced meat",
+   "1 tsp ground spices"
+  ],
+  "steps": [
+   "Mix flour, salt, water and 1 tbsp oil into a soft dough and knead for 6 to 8 minutes until smooth and springy.",
+   "Cover and rest for 30 minutes. Rested dough rolls thin without tearing.",
+   "Cook the onion in the rest of the oil for 8 minutes, add the filling and spices and cook 8 minutes more. Cool before filling.",
+   "Divide the dough, roll each piece thin, and fill or leave plain.",
+   "Cook in a dry hot pan for 1 to 2 minutes a side until blistered, or bake at 220°C for 12 to 15 minutes until golden."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 26
+   },
+   {
+    "name": "Protein",
+    "percentage": 30
+   },
+   {
+    "name": "Iron",
+    "percentage": 24
+   },
+   {
+    "name": "Folate",
+    "percentage": 20
+   }
+  ],
+  "minutes": 60,
+  "kcal": 440,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "salad",
+  "name": "fresh dish",
+  "ingredients": [
+   "300g very fresh fish suitable for raw preparation, or 2 tins of beans",
+   "2 limes",
+   "1 cucumber",
+   "2 tomatoes",
+   "1 red onion",
+   "A large bunch of herbs",
+   "1 chilli",
+   "3 tbsp olive oil or 200ml coconut milk",
+   "Salt"
+  ],
+  "steps": [
+   "If using raw fish, buy it from a fishmonger, tell them it is for raw preparation, and keep it cold until the moment you cut it.",
+   "Cut the fish into 1.5cm pieces and cover with the lime juice. Chill 15 to 20 minutes, until the outside turns opaque.",
+   "Finely dice the cucumber, tomato and onion while it sits.",
+   "Drain off most of the lime, then fold everything together with the oil or coconut milk, chilli and herbs.",
+   "Season and eat within the hour — this does not keep."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 48
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 60
+   },
+   {
+    "name": "Omega 3",
+    "percentage": 35
+   },
+   {
+    "name": "Folate",
+    "percentage": 25
+   }
+  ],
+  "minutes": 30,
+  "kcal": 390,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "porridge",
+  "name": "staple and sauce",
+  "ingredients": [
+   "300g of the staple: maize meal, semolina, cassava flour or couscous",
+   "700ml water or stock",
+   "1 onion",
+   "400g tin chopped tomatoes",
+   "300g fish, chicken or beans",
+   "2 tbsp oil",
+   "Greens or spinach",
+   "1 tsp ground spices"
+  ],
+  "steps": [
+   "Make the sauce first: cook the onion in the oil for 8 minutes, add spices for 1 minute, then tomatoes and 200ml water.",
+   "Simmer the sauce for 15 minutes, add the protein and cook 10 to 15 minutes until done through.",
+   "Fold the greens in for the last 2 minutes.",
+   "For the staple, bring the water to the boil, then rain the meal in slowly while stirring hard to stop lumps.",
+   "Keep stirring over low heat for 8 to 10 minutes until thick and smooth and it pulls away from the pan. Serve alongside the sauce."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 34
+   },
+   {
+    "name": "Protein",
+    "percentage": 40
+   },
+   {
+    "name": "Iron",
+    "percentage": 30
+   },
+   {
+    "name": "Vitamin A",
+    "percentage": 35
+   }
+  ],
+  "minutes": 45,
+  "kcal": 520,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "seafood",
+  "name": "fish dish",
+  "ingredients": [
+   "500g whole fish or 2 fillets",
+   "1 lemon",
+   "2 garlic cloves",
+   "1 tsp ground spices from the region",
+   "3 tbsp oil",
+   "1 onion",
+   "2 tomatoes",
+   "Potatoes, rice or bread to serve",
+   "Fresh herbs"
+  ],
+  "steps": [
+   "Score the fish twice on each side if cooking it whole, so the heat and seasoning reach the middle.",
+   "Rub with oil, garlic, spices, salt and lemon and leave 20 minutes.",
+   "Heat the oven to 200°C or get a griddle hot.",
+   "Cook for 12 to 15 minutes a side for a whole fish, or 4 minutes a side for fillets, until the flesh turns opaque and flakes at the thickest point.",
+   "Meanwhile soften the onion and tomato in a little oil for 10 minutes for a simple sauce. Serve with the fish and herbs."
+  ],
+  "nutrients": [
+   {
+    "name": "Protein",
+    "percentage": 62
+   },
+   {
+    "name": "Omega 3",
+    "percentage": 45
+   },
+   {
+    "name": "B12",
+    "percentage": 70
+   },
+   {
+    "name": "Selenium",
+    "percentage": 55
+   }
+  ],
+  "minutes": 40,
+  "kcal": 470,
+  "editorialStatus": "generated"
+ },
+ {
+  "id": "veg",
+  "name": "vegetable dish",
+  "ingredients": [
+   "1 onion",
+   "3 garlic cloves",
+   "600g mixed vegetables from the region",
+   "400g tin beans, lentils or chickpeas",
+   "400g tin chopped tomatoes",
+   "2 tsp ground spices",
+   "2 tbsp oil",
+   "Rice, bread or potatoes to serve",
+   "Fresh herbs"
+  ],
+  "steps": [
+   "Cut the vegetables into even pieces so they cook at the same rate.",
+   "Cook the onion in the oil over medium heat for 8 to 10 minutes until soft and golden.",
+   "Add garlic and spices and stir for 1 minute until fragrant.",
+   "Add the harder vegetables and the tomatoes and simmer 12 minutes.",
+   "Add the softer vegetables and the beans and cook 10 minutes more until everything is tender and the sauce has thickened.",
+   "Season, finish with herbs and serve with rice, bread or potatoes."
+  ],
+  "nutrients": [
+   {
+    "name": "Fibre",
+    "percentage": 48
+   },
+   {
+    "name": "Vitamin C",
+    "percentage": 55
+   },
+   {
+    "name": "Iron",
+    "percentage": 26
+   },
+   {
+    "name": "Folate",
+    "percentage": 38
+   }
+  ],
+  "minutes": 40,
+  "kcal": 430,
+  "editorialStatus": "generated"
+ }
+]

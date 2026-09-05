@@ -1,0 +1,37 @@
+{
+ "vegan": {
+  "test": {
+   "__fn": true,
+   "result": true
+  },
+  "label": "vegan"
+ },
+ "vegetarian": {
+  "test": {
+   "__fn": true,
+   "result": true
+  },
+  "label": "vegetarian"
+ },
+ "fish": {
+  "test": {
+   "__fn": true,
+   "result": false
+  },
+  "label": "fish"
+ },
+ "chicken": {
+  "test": {
+   "__fn": true,
+   "result": false
+  },
+  "label": "chicken"
+ },
+ "dairy free": {
+  "test": {
+   "__fn": true,
+   "result": true
+  },
+  "label": "dairy free"
+ }
+}
