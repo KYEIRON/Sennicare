@@ -461,31 +461,33 @@
    ]
   },
   {
-   "name": "Peruvian ceviche",
+   "name": "Turkish red lentil soup",
    "slot": "Lunch",
-   "duration": 20,
-   "meta": "Peru · Citrus · Chilli · Fish",
-   "cal": 390,
-   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200",
+   "duration": 25,
+   "meta": "Türkiye · Lentils · Tomato · Lemon",
+   "cal": 360,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20lentil%20soup%20from%20Turkey.jpg?width=1200",
    "ingredients": [
-    "180g very fresh fish suitable for raw preparation",
-    "Lime juice",
-    "Red onion",
-    "Chilli",
-    "Coriander",
-    "Sweetcorn",
-    "Sweet potato"
+    "150g red lentils",
+    "1 small onion",
+    "1 carrot",
+    "1 tbsp tomato paste",
+    "750ml vegetable stock",
+    "1 tsp olive oil",
+    "Lemon"
    ],
    "steps": [
-    "Dice the fish and keep it properly chilled.",
-    "Prepare the lime, onion, chilli and coriander.",
-    "Combine shortly before serving according to a trusted food safe method.",
-    "Serve with sweetcorn and sweet potato."
+    "Rinse the lentils.",
+    "Soften the onion and carrot with a little olive oil.",
+    "Add tomato paste, lentils and stock, then simmer until the lentils are very soft.",
+    "Blend until smooth if you prefer a smoother texture.",
+    "Finish with lemon and serve warm."
    ],
-   "fit": "Peruvian ceviche is a traditional dish closely connected with coastal food culture and communal eating.",
-   "culture": "Peru",
+   "fit": "A traditional Turkish soup centred on red lentils. Nourish presents it as a practical, cooked meal option, not as a treatment or a food that heals a medical condition.",
+   "culture": "Türkiye",
    "fits": [
-    "Spicy"
+    "Vegetarian friendly",
+    "Easy"
    ]
   },
   {
@@ -1253,24 +1255,6 @@
     28
    ]
   ],
-  "Peruvian ceviche": [
-   [
-    "Protein",
-    55
-   ],
-   [
-    "Vitamin C",
-    35
-   ],
-   [
-    "Omega 3",
-    45
-   ],
-   [
-    "Selenium",
-    55
-   ]
-  ],
   "Amazonian tacacá": [
    [
     "Protein",
@@ -1338,6 +1322,12 @@
    "tag": "Ghanaian kitchen",
    "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Jollof%20Rice%20in%20Ghana.jpg?width=1200",
    "description": "Ghanaian jollof is built around rice, tomato, aromatics and spices, with beans, fish, chicken or vegetables often alongside it."
+  },
+  "Türkiye": {
+   "region": "West Asia",
+   "tag": "Turkish kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20lentil%20soup%20from%20Turkey.jpg?width=1200",
+   "description": "Turkish cuisine includes a wide range of regional foodways. Mercimek çorbası, a red lentil soup, is a familiar soup tradition found across Türkiye."
   },
   "Mediterranean": {
    "region": "Mediterranean",
@@ -1410,6 +1400,12 @@
    "tag": "Indian kitchen",
    "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200",
    "description": "India contains an extraordinary range of regional cuisines. Dosa is one South Indian example; spices, grains, legumes and fermentation appear in many traditions."
+  },
+  "Bhutan": {
+   "region": "South Asia",
+   "tag": "Bhutanese kitchen",
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Bhutanese%20red%20rice%20with%20chicken%20and%20spinach.jpg?width=1200",
+   "description": "Bhutanese food brings together rice, vegetables, chilli, dairy and mountain ingredients. Red rice is a distinctive staple, and meals often reflect a strong connection to local agriculture and place."
   },
   "Peru": {
    "region": "South America",
@@ -1640,31 +1636,33 @@
    ]
   },
   {
-   "name": "Peruvian ceviche",
+   "name": "Turkish red lentil soup",
    "slot": "Lunch",
-   "duration": 20,
-   "meta": "Peru · Citrus · Chilli · Fish",
-   "cal": 390,
-   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200",
+   "duration": 25,
+   "meta": "Türkiye · Lentils · Tomato · Lemon",
+   "cal": 360,
+   "img": "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20lentil%20soup%20from%20Turkey.jpg?width=1200",
    "ingredients": [
-    "180g very fresh fish suitable for raw preparation",
-    "Lime juice",
-    "Red onion",
-    "Chilli",
-    "Coriander",
-    "Sweetcorn",
-    "Sweet potato"
+    "150g red lentils",
+    "1 small onion",
+    "1 carrot",
+    "1 tbsp tomato paste",
+    "750ml vegetable stock",
+    "1 tsp olive oil",
+    "Lemon"
    ],
    "steps": [
-    "Dice the fish and keep it properly chilled.",
-    "Prepare the lime, onion, chilli and coriander.",
-    "Combine shortly before serving according to a trusted food safe method.",
-    "Serve with sweetcorn and sweet potato."
+    "Rinse the lentils.",
+    "Soften the onion and carrot with a little olive oil.",
+    "Add tomato paste, lentils and stock, then simmer until the lentils are very soft.",
+    "Blend until smooth if you prefer a smoother texture.",
+    "Finish with lemon and serve warm."
    ],
-   "fit": "Peruvian ceviche is a traditional dish closely connected with coastal food culture and communal eating.",
-   "culture": "Peru",
+   "fit": "A traditional Turkish soup centred on red lentils. Nourish presents it as a practical, cooked meal option, not as a treatment or a food that heals a medical condition.",
+   "culture": "Türkiye",
    "fits": [
-    "Spicy"
+    "Vegetarian friendly",
+    "Easy"
    ]
   },
   {
@@ -1761,7 +1759,7 @@
   "Korean bibimbap": "Korea",
   "Fijian kokoda": "Fiji",
   "Masala dosa with sambar": "India",
-  "Peruvian ceviche": "Peru",
+  "Turkish red lentil soup": "Türkiye",
   "Amazonian tacacá": "Amazon",
   "Hawaiian poke bowl": "Hawaiʻi"
  },
@@ -1791,8 +1789,9 @@
    "Vegan friendly",
    "Spicy"
   ],
-  "Peruvian ceviche": [
-   "Spicy"
+  "Turkish red lentil soup": [
+   "Vegetarian friendly",
+   "Easy"
   ],
   "Amazonian tacacá": [
    "Spicy"
@@ -4562,7 +4561,7 @@
   "Vietnam",
   "Fiji",
   "India",
-  "Peru",
+  "Bhutan",
   "France",
   "Mexico",
   "Ethiopia",
@@ -4862,9 +4861,9 @@
    "https://commons.wikimedia.org/wiki/Special:FilePath/Dosa%20India.jpg?width=1200"
   ],
   [
-   "Peru",
-   "Coastal ceviche, Andean ingredients and Amazonian traditions",
-   "https://commons.wikimedia.org/wiki/Special:FilePath/Ceviche%20de%20pescado.jpg?width=1200"
+   "Türkiye",
+   "Mercimek çorbası and regional Turkish foodways",
+   "https://commons.wikimedia.org/wiki/Special:FilePath/Red%20lentil%20soup%20from%20Turkey.jpg?width=1200"
   ],
   [
    "Amazon",

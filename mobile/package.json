@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "typecheck": "tsc --noEmit",
-    "parity": "node scripts/parity.mjs"
+    "parity": "node scripts/parity.mjs",
+    "test:engine": "node scripts/engine-tests.mjs",
+    "test": "npm run typecheck && npm run parity && npm run test:engine"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.1.2",
