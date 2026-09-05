@@ -4,6 +4,10 @@ import { Sheet } from '../components/shell';
 import { Button, Card, Eyebrow, H2, H3, Notice, P, Photo, Small } from '../components/ui';
 import { RecommendationCard } from '../components/discovery';
 import { pantryMatches } from '../lib/discovery';
+import { DAYS } from '../lib/data';
+import { buildShoppingList } from '../lib/girki/shopping';
+import { cookableForDish } from '../lib/girki/recipes';
+import { dishesById } from '../lib/girki/content';
 import { useRouter } from '../nav/router';
 import { useStore } from '../state/store';
 import { colors } from '../theme/tokens';
@@ -108,6 +112,8 @@ export function ShoppingSheet() {
         }}
       />
 
+      <PlanShoppingList />
+
       <ScanBox
         title="Bring in your shop"
         text="Photograph a receipt or import a list."
@@ -189,6 +195,66 @@ export function SmartKitchenSheet() {
         confirm before changing your kitchen.
       </Notice>
     </Sheet>
+  );
+}
+
+/**
+ * What the week needs, as one list.
+ *
+ * Quantities of the same thing are added together across the days, and anything
+ * already in the pantry is left off. Two dishes wanting rice should read as one
+ * line, not as arithmetic to do in the aisle.
+ */
+function PlanShoppingList() {
+  const store = useStore();
+
+  const lines = React.useMemo(() => {
+    const inputs = DAYS.map((day) => {
+      const record = store.plannedRecord(day);
+      if (!record) return null;
+      if (record.kind === 'recipe' && record.mealIndex !== undefined) {
+        return { dish: record.title, ingredients: record.ingredients };
+      }
+      const dish = dishesById.get(record.id);
+      if (!dish) return null;
+      const cookable = cookableForDish(dish, { loose: true });
+      return { dish: cookable.dish, ingredients: cookable.ingredients };
+    }).filter(Boolean) as { dish: string; ingredients: string[] }[];
+
+    return buildShoppingList(inputs, [], { pantryHas: store.pantryHas });
+  }, [store]);
+
+  if (!lines.length) return null;
+
+  return (
+    <Card>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.planTitle}>What your week needs</Text>
+          <Small>
+            {lines.length} {lines.length === 1 ? 'thing' : 'things'}, combined across the days and
+            minus what is already in your pantry.
+          </Small>
+        </View>
+      </View>
+
+      {lines.map((line) => (
+        <View key={line.name} style={styles.planLine}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.planItem}>{line.text}</Text>
+            <Small>
+              {line.from.join(' · ')}
+              {line.combined ? ' · combined' : ''}
+            </Small>
+          </View>
+        </View>
+      ))}
+
+      <Button
+        title="Add all to my list"
+        onPress={() => store.addShoppingText(lines.map((l) => l.text).join('\n'))}
+      />
+    </Card>
   );
 }
 
@@ -291,6 +357,12 @@ const styles = StyleSheet.create({
   tinyBtn: { backgroundColor: colors.warm, borderRadius: 999, paddingVertical: 6, paddingHorizontal: 9 },
   tinyBtnText: { fontSize: 10, fontWeight: '600', color: colors.muted },
   aiResult: { backgroundColor: colors.sage2, borderRadius: 18, padding: 14, marginTop: 10 },
+  planTitle: { fontSize: 15, fontWeight: '700', color: colors.ink },
+  planLine: {
+    flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10,
+    borderBottomWidth: 1, borderBottomColor: colors.line,
+  },
+  planItem: { fontSize: 14, color: colors.ink },
   aiTitle: { fontSize: 12, fontWeight: '700', color: colors.ink },
   matchPct: { fontSize: 10, fontWeight: '800', letterSpacing: 1, color: colors.sage, marginTop: 10 },
   needs: { fontSize: 11, fontWeight: '600', color: colors.accent, marginVertical: 6 },

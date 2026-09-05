@@ -47,7 +47,7 @@ export function You() {
             <Eyebrow>Profile</Eyebrow>
             <H3>{summary}</H3>
           </View>
-          <LinkButton title="Edit" onPress={() => router.present({ type: 'profile' })} />
+          <LinkButton title="Edit" onPress={() => router.present({ type: 'girkiPreferences' })} />
         </View>
         <View style={{ marginTop: 10 }}>
           <Wrap gap={7}>

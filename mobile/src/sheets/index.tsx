@@ -4,6 +4,8 @@ import { useRouter } from '../nav/router';
 import { AskGirkiSheet } from './AskGirki';
 import { CookingSheet } from './CookingSheet';
 import { GirkiDishSheet } from './GirkiDish';
+import { GirkiPreferencesSheet } from './GirkiPreferences';
+import { NotificationsAskSheet } from './NotificationsAsk';
 import { GlobalDishSheet } from './GlobalDishSheet';
 import { OccasionSheet } from './Occasion';
 import {
@@ -42,6 +44,10 @@ export function SheetHost() {
       return <GirkiDishSheet id={sheet.id} />;
     case 'girkiRecipe':
       return <GirkiDishSheet id={sheet.id} kind="recipe" />;
+    case 'girkiPreferences':
+      return <GirkiPreferencesSheet />;
+    case 'notificationsAsk':
+      return <NotificationsAskSheet />;
     case 'occasion':
       return <OccasionSheet id={sheet.id} />;
     case 'ask':

@@ -20,6 +20,7 @@
     "expo": "~53.0.0",
     "expo-image": "~2.1.0",
     "expo-keep-awake": "^57.0.1",
+    "expo-notifications": "^57.0.17",
     "expo-speech": "^57.0.2",
     "expo-status-bar": "~2.2.0",
     "react": "19.0.0",

@@ -8,6 +8,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Photo, Small } from '../components/ui';
 import { Cookable, accessibility } from '../lib/girki/recipes';
 import { CookStep, cookSteps, formatTimer, remainingMinutes } from '../lib/girki/cook';
+import { timerAlert } from '../lib/girki/notifications';
+import { cancelCategory, schedule } from '../lib/girki/notifyPlatform';
 import { clipById, techniqueFor } from '../lib/girki/technique';
 import { useRouter } from '../nav/router';
 import { useStore } from '../state/store';
@@ -45,6 +47,30 @@ export function CookMode({ cookable, image }: { cookable: Cookable; image?: stri
   useEffect(() => {
     AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => {});
   }, []);
+
+  /**
+   * A backgrounded timer still has to fire — this is the functional
+   * notification, and the brief says it must be reliable. It is scheduled when
+   * the timer starts and cancelled the moment it stops, so a paused timer never
+   * shouts from a pocket.
+   */
+  useEffect(() => {
+    if (!running || !step) {
+      cancelCategory('timer').catch(() => {});
+      return;
+    }
+    const fireAt = new Date(Date.now() + secondsLeft * 1000);
+    schedule(timerAlert(index + 1, cookable.dish, fireAt), {
+      settings: store.notifications,
+      now: new Date(),
+      sentAt: [],
+      cooksLogged: store.passport.cooks,
+    }).catch(() => {});
+    // Only when the run state changes: rescheduling every second would spam.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [running, index]);
+
+  useEffect(() => () => { cancelCategory('timer').catch(() => {}); }, []);
 
   // The timer for the step you are on, not for the recipe as a whole.
   useEffect(() => {
@@ -84,6 +110,7 @@ export function CookMode({ cookable, image }: { cookable: Cookable; image?: stri
 
   function finish() {
     Speech.stop();
+    cancelCategory('timer').catch(() => {});
     store.recordCook({
       dish: cookable.dish,
       country: cookable.country,
@@ -92,6 +119,11 @@ export function CookMode({ cookable, image }: { cookable: Cookable; image?: stri
       minutes: cookable.minutes,
     });
     router.close();
+
+    // The permission ask waits until a first meal is cooked, never on launch.
+    if (!store.notifications.permissionGranted && store.passport.cooks === 0) {
+      setTimeout(() => router.present({ type: 'notificationsAsk' }), 600);
+    }
   }
 
   const heroHeight = landscape ? height * 0.5 : Math.min(height * 0.42, 380);

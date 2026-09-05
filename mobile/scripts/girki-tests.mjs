@@ -28,7 +28,8 @@ const check = (name, ok, detail = '') => {
 try {
   execSync(
     `npx tsc src/lib/girki/recipes.ts src/lib/girki/technique.ts src/lib/girki/passport.ts ` +
-      `src/lib/girki/occasions.ts src/lib/girki/cook.ts --outDir ${build} --module commonjs ` +
+      `src/lib/girki/occasions.ts src/lib/girki/cook.ts src/lib/girki/shopping.ts ` +
+      `src/lib/girki/notifications.ts --outDir ${build} --module commonjs ` +
       `--target es2020 --resolveJsonModule --esModuleInterop --skipLibCheck`,
     { cwd: root, stdio: 'inherit' }
   );
@@ -276,6 +277,110 @@ try {
     return cook.cookSteps(c.steps).some((s) => !s.cue);
   });
   check('every step has something to look for', noCue.length === 0);
+
+  // ---- shopping: combined quantities, minus the pantry ----
+  const shopping = lib('shopping');
+  const combined = shopping.buildShoppingList([
+    { dish: 'Kabuli palaw', ingredients: ['250g basmati rice', '1 large onion, sliced', '2 tbsp oil'] },
+    { dish: 'Jollof rice', ingredients: ['300g basmati rice', '2 tbsp oil', 'Fresh herbs'] },
+  ], []);
+  const rice = combined.find((l) => l.name.includes('basmati rice'));
+  check('quantities of the same thing are added up', rice?.text === '550g basmati rice', rice?.text);
+  check('a combined line records both dishes', rice?.from.length === 2, rice?.from.join(' + '));
+  const oil = combined.find((l) => l.name.includes('oil'));
+  check('spoons combine too', oil?.text === '4tbsp oil', oil?.text);
+  check('an unquantified item still appears once',
+    combined.filter((l) => /herbs/i.test(l.name)).length === 1);
+
+  const withPantry = shopping.buildShoppingList(
+    [{ dish: 'Kabuli palaw', ingredients: ['250g basmati rice', '1 onion', '2 tbsp oil'] }],
+    ['rice', 'oil']
+  );
+  check('what is in the pantry is left off the list',
+    withPantry.every((l) => !/rice|oil/.test(l.name)), withPantry.map((l) => l.text).join(', '));
+
+  check('kilograms and grams add up into kilograms',
+    shopping.buildShoppingList([
+      { dish: 'A', ingredients: ['800g potatoes'] },
+      { dish: 'B', ingredients: ['1kg potatoes'] },
+    ], [])[0].text === '1.8kg potatoes');
+
+  check('unparseable lines are kept exactly as written',
+    shopping.buildShoppingList([{ dish: 'A', ingredients: ['A good pinch of saffron'] }], [])[0].text
+      === 'A good pinch of saffron');
+
+  check('different units are never silently added',
+    (() => {
+      const out = shopping.buildShoppingList([
+        { dish: 'A', ingredients: ['2 tbsp olive oil'] },
+        { dish: 'B', ingredients: ['100ml olive oil'] },
+      ], []);
+      return out.length === 2 || (out.length === 1 && out[0].combined);
+    })());
+
+  // ---- notifications: the rules the brief is emphatic about ----
+  const notify = lib('notifications');
+  const settings = { ...notify.DEFAULT_SETTINGS, permissionGranted: true };
+  const ctx = (over = {}) => ({ settings, now: new Date('2026-03-04T12:00:00'), sentAt: [], cooksLogged: 1, ...over });
+
+  check('permission is asked only after the first cook',
+    notify.shouldAskPermission(ctx({ settings: notify.DEFAULT_SETTINGS, cooksLogged: 0 })) === false &&
+      notify.shouldAskPermission(ctx({ settings: notify.DEFAULT_SETTINGS, cooksLogged: 1 })) === true);
+
+  check('nothing is sent before permission',
+    notify.allow(notify.birthdayNote('Waakye', new Date('2026-03-04T09:00:00')),
+      ctx({ settings: notify.DEFAULT_SETTINGS })).send === false);
+
+  const reminder = notify.cookReminder({
+    day: 'Tuesday', slot: 'Dinner', dish: 'Kimchi jjigae',
+    at: new Date('2026-03-04T19:00:00'), missing: ['tofu'],
+  });
+  check('the cook reminder lands 45 minutes before the meal',
+    reminder.at.getHours() === 18 && reminder.at.getMinutes() === 15,
+    reminder.at.toTimeString().slice(0, 5));
+  check('the cook reminder says what is missing', /except tofu/.test(reminder.body), reminder.body);
+
+  check('no shopping nudge without a plan or a list',
+    notify.shoppingNudge(new Date(), 0, 3) === null && notify.shoppingNudge(new Date(), 3, 0) === null);
+  const nudge = notify.shoppingNudge(new Date('2026-03-04T12:00:00'), 3, 4);
+  check('the shopping nudge lands on a Saturday morning',
+    nudge.at.getDay() === 6 && nudge.at.getHours() === 9, nudge.at.toString().slice(0, 21));
+
+  check('quiet hours push a notification to the morning',
+    (() => {
+      const late = notify.birthdayNote('Waakye', new Date('2026-03-04T23:30:00'));
+      const decision = notify.allow({ ...late, at: new Date('2026-03-04T23:30:00') }, ctx());
+      return decision.send && decision.at.getHours() === settings.quietHours.end;
+    })());
+
+  check('the weekly cap holds outside timers',
+    notify.allow(notify.weeklyDiscovery('Mohinga', 'Myanmar', new Date('2026-03-04T18:00:00')),
+      ctx({ sentAt: [new Date('2026-03-02T10:00:00'), new Date('2026-03-03T10:00:00')] })).send === false);
+
+  check('a timer alert is never rate limited or delayed',
+    (() => {
+      const alert = notify.timerAlert(3, 'Kabuli palaw', new Date('2026-03-04T23:30:00'));
+      const decision = notify.allow(alert, ctx({
+        sentAt: [new Date('2026-03-02T10:00:00'), new Date('2026-03-03T10:00:00'), new Date('2026-03-03T18:00:00')],
+      }));
+      return decision.send === true && decision.at.getHours() === 23;
+    })());
+
+  check('turning a category off silences it',
+    notify.allow(notify.weeklyDiscovery('Mohinga', 'Myanmar', new Date('2026-03-04T18:00:00')),
+      ctx({ settings: { ...settings, enabled: { ...settings.enabled, weeklyDiscovery: false } } })).send === false);
+
+  const everyMessage = [
+    notify.cookReminder({ day: 'Tue', slot: 'Dinner', dish: 'Waakye', at: new Date(), missing: [] }),
+    notify.shoppingNudge(new Date('2026-03-04T12:00:00'), 3, 2),
+    notify.birthdayNote('Kelewele', new Date()),
+    notify.newCountryNote('Ghana', 4, new Date()),
+    notify.weeklyDiscovery('Mohinga', 'Myanmar', new Date()),
+    notify.timerAlert(2, 'Waakye', new Date()),
+  ].filter(Boolean);
+  const banned = everyMessage.filter((m) => !notify.isPermitted(m).ok);
+  check('no streak nag, guilt, day counting or weight talk in any message',
+    banned.length === 0, banned.map((m) => m.title).join(' | '));
 
   // ---- copy discipline: no health claims anywhere in migrated content ----
   const claim = /\b(cures?|heals?|treats?|prevents?|detox|superfood|boосts?|burns fat|weight loss)\b/i;

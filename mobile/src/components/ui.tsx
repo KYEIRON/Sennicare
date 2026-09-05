@@ -10,6 +10,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import { fallbackField } from '../lib/girki/offline';
 import { useLayout } from '../lib/responsive';
 import { colors, radii, shadow } from '../theme/tokens';
 import { displayFont } from '../theme/typography';
@@ -23,19 +24,26 @@ export function Photo({
   height,
   radius = 0,
   style,
+  fallbackSeed,
 }: {
   uri?: string | null;
   height: number;
   radius?: number;
   style?: ImageStyle;
+  /** Used to pick a stable dark field when there is no photograph. */
+  fallbackSeed?: string;
 }) {
+  // Never a broken icon and never an empty box: without a photograph, a plain
+  // dark field carries the card instead.
+  const background = uri ? colors.sage2 : fallbackField(fallbackSeed || 'girki');
   return (
     <Image
       source={uri ? { uri } : undefined}
-      style={[{ width: '100%', height, borderRadius: radius, backgroundColor: colors.sage2 }, style]}
+      style={[{ width: '100%', height, borderRadius: radius, backgroundColor: background }, style]}
       contentFit="cover"
       transition={180}
       cachePolicy="disk"
+      recyclingKey={uri || fallbackSeed}
     />
   );
 }

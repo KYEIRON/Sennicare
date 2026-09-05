@@ -89,6 +89,18 @@ Walked from the prototype. Ticked only when it works in the app.
 cultureWellbeing · legal · move · pantry · plus · plusManage · profile ·
 recovery · shopping · sleep · smartKitchen · wellbeingFood
 
+**Build state (steps 1–5 of the brief's order of work):**
+
+| Step | State |
+| --- | --- |
+| 1 Migrate content and images with proof | Done — `npm run verify:content` |
+| 2 Core screens with the passport | Done — Today, Food, Passport, Plan, Pantry, Wellbeing, You |
+| 3 Cook mode | Done — timers from the method, full-bleed hero, glass controls, step track, wake lock, spoken guidance, background timer alerts |
+| 4 Pantry, shopping, wellbeing, preferences | Done — combined shopping quantities minus pantry; regions, confidence, weeknight, household, interests, discovery |
+| 5 Notifications | Rules and platform layer done; needs a device to confirm delivery |
+| 6 Offline caching | Content is bundled JSON, so it works with no network; images warm on launch with a dark-field fallback |
+| 7 Girki+ and payments | Gate is in place (12 countries, 3 days). Real billing and server-side entitlement outstanding |
+
 **Systems, by prototype prefix:**
 
 | System | What it is | State |

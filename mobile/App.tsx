@@ -14,6 +14,7 @@ import { Plan } from './src/screens/Plan';
 import { Today } from './src/screens/Today';
 import { Wellbeing } from './src/screens/Wellbeing';
 import { You } from './src/screens/You';
+import { prepareOffline } from './src/lib/girki/offline';
 import { SheetHost } from './src/sheets';
 import { StoreProvider, useStore } from './src/state/store';
 import { colors } from './src/theme/tokens';
@@ -40,6 +41,13 @@ export default function App() {
 function Root() {
   const store = useStore();
   const [stage, setStage] = useState<Stage>('loading');
+
+  // Warm the image cache in the background so a kitchen with no signal still
+  // has photographs. Content is bundled, so it never needs the network.
+  useEffect(() => {
+    if (!store.ready) return;
+    prepareOffline().catch(() => {});
+  }, [store.ready]);
 
   useEffect(() => {
     if (!store.ready || stage !== 'loading') return;

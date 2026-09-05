@@ -12,6 +12,8 @@ export type Sheet =
   | { type: 'globalDish'; id: string }
   | { type: 'girkiDish'; id: string }
   | { type: 'girkiRecipe'; id: string }
+  | { type: 'girkiPreferences' }
+  | { type: 'notificationsAsk' }
   | { type: 'occasion'; id: string }
   | { type: 'ask'; seed?: string }
   | { type: 'plusManage' }

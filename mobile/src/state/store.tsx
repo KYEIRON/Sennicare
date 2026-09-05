@@ -3,6 +3,9 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useR
 import { DAYS, Day, meals } from '../lib/data';
 import { UserContext } from '../lib/discovery';
 import { CookLogEntry, Passport, passportFrom } from '../lib/girki/passport';
+import {
+  DEFAULT_SETTINGS, NotificationCategory, NotificationSettings,
+} from '../lib/girki/notifications';
 import { FoodRecord, recordsById } from '../lib/foodGraph';
 import {
   Week, canMove, canPlanGlobal, canPlanMeal, dayIsLocked as isDayLocked,
@@ -13,6 +16,18 @@ import { ageBand, missingIngredients, pantryHas } from '../lib/logic';
 
 export type PlusPlan = 'monthly' | 'yearly';
 
+export type GirkiPreferences = {
+  /** Regions of the world the person wants more of. */
+  regions: string[];
+  /** How much explanation a method should carry. */
+  confidence: string | null;
+  /** What a weeknight realistically allows. */
+  weeknightMinutes: string | null;
+  household: string | null;
+  foodInterests: string[];
+  discovery: string | null;
+};
+
 export type Profile = {
   name?: string;
   dob?: string;
@@ -22,6 +37,7 @@ export type Profile = {
   priorities: string[];
   allergies: string[];
   birthdaySurprises: boolean;
+  girki: GirkiPreferences;
 };
 
 export type Account = {
@@ -33,10 +49,20 @@ export type Account = {
 
 export type { PlannedEntry, Week } from '../lib/planning';
 
+const emptyGirki: GirkiPreferences = {
+  regions: [],
+  confidence: null,
+  weeknightMinutes: null,
+  household: null,
+  foodInterests: [],
+  discovery: null,
+};
+
 const emptyProfile: Profile = {
   priorities: [],
   allergies: [],
   birthdaySurprises: true,
+  girki: emptyGirki,
 };
 
 /**
@@ -61,6 +87,7 @@ const KEYS = {
   rejectedMeals: 'nourishRejectedMeals',
   plusPlan: 'nourishPlusPlan',
   cookLog: 'girkiCookLog',
+  notifications: 'girkiNotifications',
 } as const;
 
 type Store = {
@@ -85,6 +112,7 @@ type Store = {
   /** The passport: every cook, keyed by dish name and country. */
   cookLog: CookLogEntry[];
   passport: Passport;
+  notifications: NotificationSettings;
 
   setProfile: (update: Partial<Profile>) => void;
   togglePriority: (value: string) => void;
@@ -103,6 +131,9 @@ type Store = {
   markCountryExplored: (country: string) => void;
   /** Record a cook. Never keyed by an array index — the brief is explicit. */
   recordCook: (entry: CookLogEntry) => void;
+  setGirkiPreferences: (update: Partial<GirkiPreferences>) => void;
+  setNotificationSettings: (update: Partial<NotificationSettings>) => void;
+  toggleNotificationCategory: (category: NotificationCategory) => void;
   toggleSavedMeal: (index: number) => void;
   rejectMeal: (index: number) => void;
   /** Everything the recommendation engine needs about this person. */
@@ -163,6 +194,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [rejectedMeals, setRejectedMeals] = useState<number[]>([]);
   const [plusPlan, setPlusPlanState] = useState<PlusPlan>('monthly');
   const [cookLog, setCookLog] = useState<CookLogEntry[]>([]);
+  const [notifications, setNotifications] = useState<NotificationSettings>(DEFAULT_SETTINGS);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [dailyOffset, setDailyOffset] = useState(0);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -195,8 +227,13 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         readJson<number[]>(KEYS.rejectedMeals, []),
       ]);
       setCookLog(await readJson<CookLogEntry[]>(KEYS.cookLog, []));
+      setNotifications(await readJson<NotificationSettings>(KEYS.notifications, DEFAULT_SETTINGS));
 
-      setProfileState({ ...emptyProfile, ...storedProfile });
+      setProfileState({
+        ...emptyProfile,
+        ...storedProfile,
+        girki: { ...emptyGirki, ...(storedProfile.girki || {}) },
+      });
       setAccount(storedAccount);
       setPantry(storedPantry);
       setShopping(storedShopping);
@@ -310,6 +347,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setRejectedMeals([]);
     setPlusPlanState('monthly');
     setCookLog([]);
+    setNotifications(DEFAULT_SETTINGS);
   }, []);
 
   const awardTokens = useCallback(
@@ -378,6 +416,33 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       if (current.includes(country)) return current;
       const next = [...current, country].slice(-40);
       writeJson(KEYS.exploredCountries, next);
+      return next;
+    });
+  }, []);
+
+  const setGirkiPreferences = useCallback((update: Partial<GirkiPreferences>) => {
+    setProfileState((current) => {
+      const next = { ...current, girki: { ...current.girki, ...update } };
+      writeJson(KEYS.profile, next);
+      return next;
+    });
+  }, []);
+
+  const setNotificationSettings = useCallback((update: Partial<NotificationSettings>) => {
+    setNotifications((current) => {
+      const next = { ...current, ...update };
+      writeJson(KEYS.notifications, next);
+      return next;
+    });
+  }, []);
+
+  const toggleNotificationCategory = useCallback((category: NotificationCategory) => {
+    setNotifications((current) => {
+      const next = {
+        ...current,
+        enabled: { ...current.enabled, [category]: !current.enabled[category] },
+      };
+      writeJson(KEYS.notifications, next);
       return next;
     });
   }, []);
@@ -646,6 +711,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       exploredCountries,
       cookLog,
       passport: passportFrom(cookLog),
+      notifications,
       savedMeals,
       rejectedMeals,
       plusPlan,
@@ -665,6 +731,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setPlusPlan,
       markCountryExplored,
       recordCook,
+      setGirkiPreferences,
+      setNotificationSettings,
+      toggleNotificationCategory,
       toggleSavedMeal,
       rejectMeal,
       discoveryContext,
@@ -692,7 +761,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       completed, exploredCountries, savedMeals, rejectedMeals, plusPlan, toastMessage, dailyOffset,
       setProfile, togglePriority, toggleAllergy, setDob, signIn, resetDemo, toast, awardTokens,
       markExplored, markMealComplete, setPlus, setPlusPlan, markCountryExplored, recordCook,
-      cookLog, toggleSavedMeal,
+      cookLog, notifications, setGirkiPreferences, setNotificationSettings,
+      toggleNotificationCategory, toggleSavedMeal,
       rejectMeal, discoveryContext, addPantryItem, removePantryItem, addShoppingForMeal,
       addShoppingText, toggleShoppingItem, removeShoppingItem, demoScan, pantryHasItem,
       plannedMealIndex,

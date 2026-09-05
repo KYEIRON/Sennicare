@@ -94,6 +94,8 @@ export function PlusSheet() {
   const plan = store.plusPlan;
 
   const benefits: [string, string][] = [
+    ['All 195 countries', 'Free opens twelve countries. Girki+ opens the rest of the atlas, and every dish in it is cookable.'],
+    ['The whole week', 'Free plans three days. Girki+ plans seven, and lets you plan food from any country.'],
     ['Global food intelligence', 'Ask for fish, breakfast, salads or a cuisine and search the whole library, not the featured screen.'],
     ['Personalised planning', 'Build a full week around your Pantry, preferences, time and variety.'],
     ['Smart Pantry & shopping', 'Use what you already have and see what is genuinely missing.'],
@@ -144,10 +146,10 @@ export function PlusSheet() {
         ))}
       </Card>
 
-      <Notice title="Free access:">
-        explore the world of food, keep a pantry and shopping list, ask Girki, and plan up to
-        three days. Girki+ opens all 195 countries, deeper regional foodways, more meal
-        variations, all seven planning days, flexible swaps and pantry aware planning.
+      <Notice title="What free gives you:">
+        twelve countries, every one of them fully cookable, with the written recipes, the method,
+        the timings and the shopping list. Three planning days. The gate is how much of the world
+        and how many days, never the quality of the food.
       </Notice>
 
       {active ? (
