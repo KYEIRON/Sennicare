@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Nourish",
+    "slug": "nourish",
+    "version": "1.0.0",
+    "orientation": "default",
+    "scheme": "nourish",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#f7f4ee",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sennicare.nourish"
+    },
+    "android": {
+      "package": "com.sennicare.nourish",
+      "adaptiveIcon": {
+        "backgroundColor": "#f7f4ee"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

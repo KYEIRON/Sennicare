@@ -1,0 +1,9 @@
+node_modules/
+.expo/
+dist/
+web-build/
+*.log
+dist-android/
+
+# Nourish app source (the repo-wide lib/ rule is for build output)
+!src/lib/

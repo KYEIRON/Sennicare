@@ -1,4 +1,9 @@
-# Nourish — iOS app
+# Nourish — iOS app (native reference)
+
+> **Not the shipping app.** Nourish ships from `mobile/` (React Native + Expo),
+> which covers iPhone, iPad and Android from one codebase. This SwiftUI build is
+> kept as a native reference for iOS feel and as a second reading of the
+> prototype. It has not been compiled.
 
 A native SwiftUI rebuild of the `Nourish_Global_Experience_V28.html` prototype:
 the same screens, the same copy, the same flows and **the same pictures** — every
