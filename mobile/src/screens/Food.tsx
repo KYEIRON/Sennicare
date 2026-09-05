@@ -172,8 +172,18 @@ function DiscoveryResults({ query }: { query: string }) {
         <P>
           {total
             ? `${total} ideas across ${places.length} food cultures, ranked by what fits you — your pantry, your time and what you have already explored.`
+            : result.unrecognised.length
+            ? `I do not have anything for ${result.unrecognised.join(', ')} in the Nourish food library, and I would rather say so than show you something else.`
             : 'I could not find a match I am confident in. Try another ingredient, a different meal type, or ask Nourish directly.'}
         </P>
+
+        {result.relaxed.length ? (
+          <Notice title="Widened the search:">
+            Nourish holds nothing that matches exactly, so it loosened{' '}
+            {result.relaxed.join(' and ')} to find these. Everything else you asked for still
+            applies.
+          </Notice>
+        ) : null}
 
         {result.allergens.length ? (
           <Notice title="Allergy check:">

@@ -2,7 +2,7 @@ import { continentFor } from './data';
 import {
   Difficulty, FoodRecord, allergensFromIngredients, foodGraph, ingredientKey, recipeRecords,
 } from './foodGraph';
-import { Intent, parseIntent } from './intent';
+import { Intent, hasSubject, parseIntent } from './intent';
 import { Allergen, ALLERGEN_KEYWORDS, MealSlot, MEAL_SLOTS } from './taxonomy';
 
 /**
@@ -404,12 +404,16 @@ function buildRecommendation(
  * not been used yet, allowing a second dish from a country only once every
  * country in the pool has had a turn.
  */
+const MAX_PER_COUNTRY = 2;
+
 function diversify(ranked: Recommendation[], limit: number): Recommendation[] {
   const chosen: Recommendation[] = [];
   const used = new Map<string, number>();
   let round = 0;
 
-  while (chosen.length < limit && round < 4) {
+  // Two rounds: every food culture gets a turn before any gets a second, and
+  // none gets a third. A shorter, varied answer beats a long, repetitive one.
+  while (chosen.length < limit && round < MAX_PER_COUNTRY) {
     for (const candidate of ranked) {
       if (chosen.length >= limit) break;
       if (chosen.includes(candidate)) continue;
@@ -432,18 +436,29 @@ export type DiscoveryResult = {
   excludedForAllergies: number;
   allergens: Allergen[];
   countriesRepresented: string[];
+  /** Constraints Nourish had to loosen to find anything, in plain words. */
+  relaxed: string[];
+  /** Words from the request that exist nowhere in the food library. */
+  unrecognised: string[];
 };
 
-export function discover(
-  query: string | Intent,
-  context: UserContext = EMPTY_CONTEXT,
-  options: { limit?: number; discoveryLimit?: number } = {}
-): DiscoveryResult {
-  const intent = typeof query === 'string' ? parseIntent(query) : query;
-  const allergens = userAllergens(context);
-  const limit = options.limit ?? intent.count ?? 6;
-  const discoveryLimit = options.discoveryLimit ?? Math.max(6, limit);
+/**
+ * When a fully constrained search finds nothing, loosen the least important
+ * constraint and say so — "no Japanese breakfast dishes yet, here is Japanese
+ * food more broadly" — rather than showing an empty screen. The subject and the
+ * place are never relaxed: those are what was actually asked for.
+ */
+const RELAXATIONS: { label: string; apply: (intent: Intent) => Intent }[] = [
+  { label: 'the meal type', apply: (i) => ({ ...i, slots: [] }) },
+  { label: 'the time limit', apply: (i) => ({ ...i, maxMinutes: undefined }) },
+  { label: 'the effort level', apply: (i) => ({ ...i, difficulty: undefined }) },
+];
 
+function collect(
+  intent: Intent,
+  context: UserContext,
+  allergens: Allergen[]
+): { candidates: Recommendation[]; excludedForAllergies: number } {
   let excludedForAllergies = 0;
   const candidates: Recommendation[] = [];
 
@@ -459,15 +474,49 @@ export function discover(
   }
 
   candidates.sort((a, b) => b.score - a.score);
+  return { candidates, excludedForAllergies };
+}
 
-  const recipes = diversify(
-    candidates.filter((c) => c.record.kind === 'recipe'),
-    limit
-  );
-  const discoveries = diversify(
-    candidates.filter((c) => c.record.kind === 'discovery'),
-    discoveryLimit
-  );
+export function discover(
+  query: string | Intent,
+  context: UserContext = EMPTY_CONTEXT,
+  options: { limit?: number; discoveryLimit?: number } = {}
+): DiscoveryResult {
+  const intent = typeof query === 'string' ? parseIntent(query) : query;
+  const allergens = userAllergens(context);
+  const limit = options.limit ?? intent.count ?? 6;
+  const discoveryLimit = options.discoveryLimit ?? Math.max(6, limit);
+
+  const empty: DiscoveryResult = {
+    intent,
+    recipes: [],
+    discoveries: [],
+    excludedForAllergies: 0,
+    allergens,
+    countriesRepresented: [],
+    relaxed: [],
+    unrecognised: intent.unknownTerms,
+  };
+
+  // A request built entirely on words Nourish has never seen is not answered by
+  // quietly serving the one word it did recognise.
+  if (intent.unknownTerms.length && !hasSubject(intent)) return empty;
+
+  let { candidates, excludedForAllergies } = collect(intent, context, allergens);
+  const relaxed: string[] = [];
+  let working = intent;
+
+  for (const relaxation of RELAXATIONS) {
+    if (candidates.length) break;
+    const loosened = relaxation.apply(working);
+    if (JSON.stringify(loosened) === JSON.stringify(working)) continue;
+    working = loosened;
+    relaxed.push(relaxation.label);
+    ({ candidates, excludedForAllergies } = collect(working, context, allergens));
+  }
+
+  const recipes = diversify(candidates.filter((c) => c.record.kind === 'recipe'), limit);
+  const discoveries = diversify(candidates.filter((c) => c.record.kind === 'discovery'), discoveryLimit);
 
   return {
     intent,
@@ -475,9 +524,9 @@ export function discover(
     discoveries,
     excludedForAllergies,
     allergens,
-    countriesRepresented: [
-      ...new Set([...recipes, ...discoveries].map((r) => r.record.country)),
-    ],
+    countriesRepresented: [...new Set([...recipes, ...discoveries].map((r) => r.record.country))],
+    relaxed: candidates.length ? relaxed : [],
+    unrecognised: intent.unknownTerms,
   };
 }
 

@@ -116,7 +116,7 @@ export const INGREDIENT_VOCABULARY = [
   'rice', 'pasta', 'noodle', 'noodles', 'bread', 'oats', 'quinoa', 'couscous', 'barley', 'maize', 'corn', 'potato', 'potatoes', 'sweet potato', 'yam', 'cassava', 'plantain',
   'spinach', 'kale', 'cabbage', 'broccoli', 'cauliflower', 'carrot', 'courgette', 'zucchini', 'aubergine', 'eggplant', 'pepper', 'peppers', 'tomato', 'tomatoes', 'onion', 'onions', 'garlic', 'ginger', 'mushroom', 'mushrooms', 'okra', 'pumpkin', 'squash', 'cucumber', 'avocado', 'olive', 'lemon', 'lime', 'coconut',
   'banana', 'berries', 'apple', 'mango', 'orange',
-  'chilli', 'chili', 'coriander', 'parsley', 'basil', 'mint', 'herbs', 'cumin', 'paprika', 'turmeric', 'soy', 'miso', 'sesame', 'peanut', 'almond', 'walnut', 'cashew', 'honey', 'seeds',
+  'nut', 'nuts', 'chilli', 'chili', 'coriander', 'parsley', 'basil', 'mint', 'herbs', 'cumin', 'paprika', 'turmeric', 'soy', 'miso', 'sesame', 'peanut', 'almond', 'walnut', 'cashew', 'honey', 'seeds',
 ];
 
 /** Words that mean "not this", so a query can exclude as well as include. */

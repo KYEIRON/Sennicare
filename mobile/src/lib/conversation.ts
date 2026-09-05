@@ -43,7 +43,13 @@ function introFor(intent: Intent, result: DiscoveryResult): string {
     return 'I can explain what a meal brings in general terms, using the nutrition Nourish holds. I will not turn that into medical advice.';
   }
   if (!result.recipes.length && !result.discoveries.length) {
+    if (result.unrecognised.length) {
+      return `I do not have anything for ${result.unrecognised.join(', ')} in the Nourish food library. I would rather tell you that than answer a different question.`;
+    }
     return 'I could not find a match I would stand behind. I would rather ask you to adjust the request than invent a dish or a recipe.';
+  }
+  if (result.relaxed.length) {
+    return `Nothing matched all of that, so I loosened ${result.relaxed.join(' and ')} and kept the rest. ${places} food cultures here.`;
   }
   if (intent.wantsPantry) {
     return `Starting with what is already in your kitchen, then keeping the extra shopping small. ${places} food cultures in this shortlist.`;

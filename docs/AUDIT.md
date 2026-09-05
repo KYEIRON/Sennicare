@@ -113,20 +113,37 @@ pantry matching and cannot support "which recipes use salmon" across a library.
 
 ## 6. Plan
 
-| Phase | Work | Gate |
-| --- | --- | --- |
-| 1–2 | This audit | — |
-| 3 | Food graph: typed records, ingredient index, allergens, classification, provenance, cultural status | Graph tests |
-| 4 | Discovery engine: intent parsing, retrieval, safety filter, ranking with diversity, explanations | Scenario tests |
-| 5 | Food intents and search route to the engine, not to featured | The 10 human tests |
-| 6 | Pantry: "uses 4 of 6, you need fish and herbs" | Pantry scenarios |
-| 7 | Plan: plan-a-day across breakfast/lunch/dinner | Day plan test |
-| 8 | Shopping: have / need per recommendation | Shopping test |
-| 9 | Ask Nourish: conversational refinement over a held result set | Follow-up tests |
-| 10 | Plus: monthly/yearly, trial, manage, honest gating | Entitlement tests |
-| 11 | Full journey testing, phone and tablet | Definition of done |
+| Phase | Work | Gate | State |
+| --- | --- | --- | --- |
+| 1–2 | This audit | — | Done |
+| 3 | Food graph: typed records, ingredient index, allergens, classification, provenance, cultural status | Graph tests | Done |
+| 4 | Discovery engine: intent parsing, retrieval, safety filter, ranking with diversity, explanations | Scenario tests | Done |
+| 5 | Food intents and search route to the engine, not to featured | The 10 human tests | Done |
+| 6 | Pantry: "uses 4 of 6, you need fish and herbs" | Pantry scenarios | Done |
+| 7 | Plan: plan-a-day across breakfast/lunch/dinner | Day plan test | Done |
+| 8 | Shopping: have / need per recommendation | Shopping test | Done |
+| 9 | Ask Nourish: conversational refinement over a held result set | Follow-up tests | Done |
+| 10 | Plus: monthly/yearly, trial, manage, honest gating | Entitlement tests | Done |
+| 11 | Full journey testing, phone and tablet | Definition of done | Engine covered; device pass outstanding |
 
-Each phase ends with tests run and a commit.
+Each phase ended with tests run and a commit. `npm test` runs all three suites:
+typecheck, V32.5 parity, and 51 engine and journey scenarios.
+
+### What testing changed
+
+Walking the app as a person, rather than checking functions, found four defects
+that unit-level thinking would have missed:
+
+1. Scores accumulated without matching the request, so "I want more fish"
+   returned chicken phở on pantry points. Anything named is now a hard
+   constraint.
+2. A dish is tagged high protein because it is; a person typing "fish" is not
+   asking for high protein food. Query vocabulary is now separate from dish
+   vocabulary.
+3. "Japanese breakfast" returned an empty screen. The engine now loosens the
+   least important constraint and says which one.
+4. "Grilled unicorn from Atlantis" quietly answered the one word it recognised.
+   Unrecognised words are now named back to the user instead.
 
 ## 7. Explicitly out of scope
 

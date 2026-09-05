@@ -27,6 +27,8 @@ export type Intent = {
   excludeTags: FoodTag[];
   excludeIngredients: string[];
   count?: number;
+  /** Words Nourish could not place anywhere in its food library. */
+  unknownTerms: string[];
 };
 
 /**
@@ -51,6 +53,7 @@ export const EMPTY_INTENT: Intent = {
   wantsPantry: false,
   excludeTags: [],
   excludeIngredients: [],
+  unknownTerms: [],
 };
 
 const NUMBER_WORDS: Record<string, number> = {
@@ -211,6 +214,65 @@ function detectKind(q: string): IntentKind {
   return 'find';
 }
 
+/**
+ * Words that carry no food meaning, so they cannot make a request unanswerable.
+ */
+const FILLER_WORDS = new Set([
+  'something', 'anything', 'give', 'want', 'would', 'like', 'please', 'some', 'more', 'less',
+  'ideas', 'idea', 'food', 'foods', 'meal', 'meals', 'dish', 'dishes', 'recipe', 'recipes',
+  'show', 'find', 'from', 'with', 'that', 'this', 'them', 'those', 'these', 'need', 'have',
+  'make', 'made', 'cook', 'cooking', 'eat', 'eating', 'today', 'tonight', 'tomorrow', 'week',
+  'about', 'tell', 'what', 'which', 'when', 'where', 'could', 'should', 'know', 'nourish',
+  'minute', 'minutes', 'hour', 'hours', 'time', 'quick', 'easy', 'simple', 'new', 'different',
+  'surprise', 'somewhere', 'take', 'plan', 'planning', 'ones', 'only', 'just', 'also', 'still',
+  'good', 'great', 'nice', 'best', 'better', 'really', 'much', 'many', 'other', 'another',
+  'pantry', 'kitchen', 'home', 'shopping', 'today', 'please', 'help', 'thanks',
+  // Qualifiers and quantifiers: they shape a request without naming a food.
+  'high', 'higher', 'more', 'most', 'less', 'least', 'under', 'below', 'over', 'above',
+  'very', 'really', 'quite', 'plenty', 'extra', 'lots', 'little', 'light', 'heavy',
+  'lunch', 'lunches', 'dinner', 'dinners', 'breakfast', 'supper', 'brunch', 'evening',
+  'morning', 'weeknight', 'family', 'people', 'person', 'budget', 'cheap', 'healthy',
+]);
+
+/**
+ * Anything the food library has never heard of.
+ *
+ * "Grilled unicorn from Atlantis" contains one real signal and two words that
+ * exist nowhere in Nourish. Rather than quietly answering the part it
+ * recognised, Nourish records what it could not place so it can say so.
+ */
+function detectUnknownTerms(
+  q: string,
+  known: { ingredients: string[]; countries: string[]; places: string[] },
+  titles: string[]
+): string[] {
+  const recognised = new Set([
+    ...known.ingredients,
+    ...known.countries.map((c) => c.toLowerCase()),
+    ...known.places.map((p) => p.toLowerCase()),
+  ]);
+
+  return q
+    .split(/[^a-zà-ÿ]+/)
+    .filter((word) => word.length >= 4)
+    .filter((word) => !FILLER_WORDS.has(word))
+    .filter((word) => !recognised.has(word))
+    .filter((word) => !INGREDIENT_VOCABULARY.some((v) => v.includes(word) || word.includes(v)))
+    .filter((word) => !QUERY_TAG_PATTERNS.some(([, pattern]) => pattern.test(word)))
+    .filter((word) => !titles.some((title) => title.includes(word)))
+    .filter((word, index, all) => all.indexOf(word) === index);
+}
+
+let cachedTitles: string[] | null = null;
+function graphTitles(): string[] {
+  if (!cachedTitles) {
+    cachedTitles = [
+      ...countries.flatMap((c) => [...c.foods, c.name, c.region]),
+    ].map((t) => t.toLowerCase());
+  }
+  return cachedTitles;
+}
+
 /** Parse a natural request into a structured intent. */
 export function parseIntent(query: string): Intent {
   const q = String(query || '').toLowerCase().trim();
@@ -236,7 +298,26 @@ export function parseIntent(query: string): Intent {
     excludeTags: exclusions.tags,
     excludeIngredients: exclusions.ingredients,
     count: detectCount(q),
+    unknownTerms: detectUnknownTerms(
+      q,
+      { ingredients: detectIngredients(q, excludedIngredients), countries: namedCountries, places },
+      graphTitles()
+    ),
   };
+}
+
+/**
+ * Does this request name a subject at all? "Something light" is a modifier with
+ * no subject, which is fine; "unicorn" is a subject Nourish does not have.
+ */
+export function hasSubject(intent: Intent): boolean {
+  return Boolean(
+    intent.tags.some((tag) => SUBJECT_TAGS.includes(tag)) ||
+      intent.ingredients.length ||
+      intent.countries.length ||
+      intent.places.length ||
+      intent.slots.length
+  );
 }
 
 /**
@@ -275,6 +356,7 @@ export function refineIntent(previous: Intent, followUp: string): Intent {
     excludeTags: [...new Set([...previous.excludeTags, ...next.excludeTags])],
     excludeIngredients: [...new Set([...previous.excludeIngredients, ...next.excludeIngredients])],
     count: next.count ?? undefined,
+    unknownTerms: next.unknownTerms,
   };
 
   // An exclusion added later must win over an earlier inclusion.

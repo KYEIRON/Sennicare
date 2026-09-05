@@ -163,6 +163,80 @@ try {
     featuredOnly.discoveries.length > featuredOnly.recipes.length,
     `${featuredOnly.recipes.length} recipes vs ${featuredOnly.discoveries.length} atlas dishes`);
 
+
+  // ---------------------------------------------------------------
+  // Journey checks added after walking the app as a person would.
+  // ---------------------------------------------------------------
+
+  // Every Food chip must produce a useful answer, not an empty screen.
+  const chips = [
+    'breakfast ideas from around the world', 'lunch ideas', 'dinner ideas', 'more salads',
+    'I want more fish', 'something plant based', 'chicken dishes', 'meat dishes',
+    'something light', 'something comforting', 'high protein meals', 'high fibre meals',
+    'meals under 30 minutes', 'easy tonight, under 30 minutes', 'use what I have in my pantry',
+    'take me somewhere new',
+  ];
+  const chipContext = context({ pantry: ['Rice', 'Spinach', 'Chickpeas', 'Tomatoes', 'Eggs'] });
+  const weakChips = [];
+  for (const chip of chips) {
+    const r = discover(chip, chipContext, { limit: 6, discoveryLimit: 8 });
+    const total = r.recipes.length + r.discoveries.length;
+    const places = new Set([...r.recipes, ...r.discoveries].map((x) => x.record.country)).size;
+    if (total < 3 || places < 2) weakChips.push(`${chip} (${total} results, ${places} places)`);
+  }
+  check('every Food chip returns a useful answer', weakChips.length === 0, weakChips.join(' | '));
+
+  // Country and dish search from the Food search field.
+  for (const [query, expectation] of [
+    ['Japanese breakfast', (r) => r.every((x) => x.record.country === 'Japan')],
+    ['food from Bhutan', (r) => r.every((x) => x.record.country === 'Bhutan')],
+    ['West African food', (r) => r.some((x) => x.record.region.includes('West Africa'))],
+    ['chickpea salad', (r) => r.length > 0],
+    ['20 minute dinner', (r) => r.every((x) => (x.record.minutes ?? 0) <= 20 || x.record.minutes === undefined)],
+  ]) {
+    const r = discover(query, context(), { limit: 6, discoveryLimit: 6 });
+    const all = [...r.recipes, ...r.discoveries];
+    check(`search · ${query}`, all.length > 0 && expectation(all), `${all.length} results`);
+  }
+
+  // Peru left the featured set but must still be reachable.
+  const peru = discover('food from Peru', context(), { limit: 5, discoveryLimit: 5 });
+  check('Peru still discoverable outside featured',
+    [...peru.recipes, ...peru.discoveries].some((r) => r.record.country === 'Peru'));
+
+  // A repeated request should not return the same country over and over.
+  const repeat = discover('I want more fish', context(), { limit: 8, discoveryLimit: 8 });
+  const counts = {};
+  for (const r of [...repeat.recipes, ...repeat.discoveries]) {
+    counts[r.record.country] = (counts[r.record.country] || 0) + 1;
+  }
+  check('no country repeats more than twice in one answer',
+    Math.max(...Object.values(counts)) <= 2, JSON.stringify(counts));
+
+  // Vegan diet ranks animal products down without pretending they are unsafe.
+  const vegan = discover('dinner ideas', context({ diet: 'Vegan' }), { limit: 5 });
+  const animalFirst = vegan.recipes[0]?.record.tags.some((t) => ['meat', 'fish', 'chicken'].includes(t));
+  check('diet preference shapes ranking', !animalFirst, vegan.recipes[0]?.record.title);
+
+  // An impossible request fails honestly rather than inventing something.
+  const impossible = discover('grilled unicorn from Atlantis', context(), { limit: 5 });
+  check('impossible request returns nothing rather than a guess',
+    impossible.recipes.length === 0 && impossible.discoveries.length === 0);
+
+  // Discovery records must never be presented as recipes.
+  const anyResult = discover('breakfast ideas', context(), { limit: 6, discoveryLimit: 6 });
+  check('atlas dishes never claim to be recipes',
+    anyResult.discoveries.every((r) => r.record.kind === 'discovery' && !r.record.steps));
+
+  // A plan for someone with allergies stays safe and still fills the day.
+  const allergicPlan = planDay(context({ allergies: ['Fish', 'Milk'], pantry: ['Rice'] }));
+  const allergicSafe = allergicPlan.slots.every(
+    (s) => !s.recommendation || !s.recommendation.record.allergens.some((a) => ['Fish', 'Milk'].includes(a))
+  );
+  check('day plan respects allergies', allergicSafe);
+  check('day plan still fills the day', allergicPlan.slots.filter((s) => s.recommendation).length >= 2,
+    `${allergicPlan.slots.filter((s) => s.recommendation).length}/3 slots`);
+
   if (failures) {
     console.error(`\n${failures} check(s) failed.`);
     process.exit(1);
