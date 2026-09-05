@@ -63,7 +63,7 @@ export function Onboarding({ onFinished }: { onFinished: () => void }) {
           width: '100%',
         }}
       >
-        <Text style={[styles.brand, { fontSize: layout.brand }]}>nourish</Text>
+        <Text style={[styles.brand, { fontSize: layout.brand }]}>girki</Text>
 
         <View style={styles.progressTrack}>
           <View style={[styles.progressFill, { width: `${(step / 7) * 100}%` }]} />
@@ -74,7 +74,7 @@ export function Onboarding({ onFinished }: { onFinished: () => void }) {
             <Eyebrow>A better way to decide what to eat</Eyebrow>
             <H1>What should I eat today?</H1>
             <P>
-              That is the question Nourish is built around. Tell us a little about you and we will
+              That is the question Girki is built around. Tell us a little about you and we will
               make the choices more relevant.
             </P>
             <View style={[styles.adHero, shadow]}>
@@ -99,7 +99,7 @@ export function Onboarding({ onFinished }: { onFinished: () => void }) {
                 <AdPoint
                   number="03"
                   title="Keep discovering"
-                  text="The more you use Nourish, the more useful its recommendations can become."
+                  text="The more you use Girki, the more useful its recommendations can become."
                 />
               </View>
             </View>
@@ -120,7 +120,7 @@ export function Onboarding({ onFinished }: { onFinished: () => void }) {
               <View style={{ flex: 1 }}>
                 <Text style={styles.rowTitle}>Birthday surprises</Text>
                 <Small>
-                  Let Nourish prepare a thoughtful food or wellbeing idea around your birthday.
+                  Let Girki prepare a thoughtful food or wellbeing idea around your birthday.
                 </Small>
               </View>
               <Switch
@@ -138,7 +138,7 @@ export function Onboarding({ onFinished }: { onFinished: () => void }) {
         {step === 3 ? (
           <View>
             <Eyebrow>About you · 2 of 5</Eyebrow>
-            <H1>How should Nourish understand you?</H1>
+            <H1>How should Girki understand you?</H1>
             <View style={styles.grid}>
               {['Woman', 'Man', 'Non binary', 'Prefer not to say'].map((option) => (
                 <ChoiceTile

@@ -36,7 +36,7 @@ export function ProfileSheet() {
     <Sheet>
       <Eyebrow>Your account</Eyebrow>
       <H2>Your preferences</H2>
-      <P>Keep Nourish relevant as your life changes.</P>
+      <P>Keep Girki relevant as your life changes.</P>
 
       <H3>Date of birth</H3>
       <DateOfBirth />
@@ -99,21 +99,21 @@ export function PlusSheet() {
     ['Smart Pantry & shopping', 'Use what you already have and see what is genuinely missing.'],
     ['Deeper discovery', 'Explore all 195 countries, regional foodways and verified cultural context.'],
     ['More flexibility', 'More swaps, alternatives and ways to reshape a plan without starting again.'],
-    ['Ask Nourish', 'Ask, refine and compare. Nourish uses your context rather than acting like a generic chatbot.'],
+    ['Ask Girki', 'Ask, refine and compare. Girki uses your context rather than acting like a generic chatbot.'],
   ];
 
   return (
     <Sheet>
-      <Eyebrow>Nourish+</Eyebrow>
+      <Eyebrow>Girki+</Eyebrow>
       <View style={styles.plusHero}>
         <View style={styles.plusMark}>
           <Text style={styles.plusMarkText}>NOURISH+</Text>
         </View>
-        <H2>{active ? 'Your wider Nourish experience.' : 'More discovery. Less mental load.'}</H2>
+        <H2>{active ? 'Your wider Girki experience.' : 'More discovery. Less mental load.'}</H2>
         <P>
           {active
             ? 'Your Plus access is active in this prototype.'
-            : 'Unlock the parts of Nourish designed to make the everyday food decision easier.'}
+            : 'Unlock the parts of Girki designed to make the everyday food decision easier.'}
         </P>
       </View>
 
@@ -145,8 +145,8 @@ export function PlusSheet() {
       </Card>
 
       <Notice title="Free access:">
-        explore the world of food, keep a pantry and shopping list, ask Nourish, and plan up to
-        three days. Nourish+ opens all 195 countries, deeper regional foodways, more meal
+        explore the world of food, keep a pantry and shopping list, ask Girki, and plan up to
+        three days. Girki+ opens all 195 countries, deeper regional foodways, more meal
         variations, all seven planning days, flexible swaps and pantry aware planning.
       </Notice>
 
@@ -165,7 +165,7 @@ export function PlusSheet() {
             title="Start 14 day free trial"
             onPress={() => {
               store.setPlus(true);
-              store.toast('Your 14 day Nourish+ trial has started in this prototype.');
+              store.toast('Your 14 day Girki+ trial has started in this prototype.');
             }}
           />
           <Small style={{ marginTop: 8 }}>
@@ -211,12 +211,12 @@ export function PlusManageSheet() {
 
   return (
     <Sheet>
-      <Eyebrow>Nourish+ · Manage</Eyebrow>
+      <Eyebrow>Girki+ · Manage</Eyebrow>
       <H2>Your subscription</H2>
       <Card>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.benefitTitle}>Nourish+</Text>
+            <Text style={styles.benefitTitle}>Girki+</Text>
             <Small>
               {store.plusPlan === 'yearly' ? '£39.99/year' : '£4.99/month'} · prototype active
             </Small>
@@ -277,7 +277,7 @@ export function LegalSheet() {
       <Eyebrow>Safety & legal boundaries</Eyebrow>
       <H2>Designed with care.</H2>
       <P>
-        Nourish is a food discovery and wellbeing product. It should provide general information and
+        Girki is a food discovery and wellbeing product. It should provide general information and
         practical tools, not medical diagnosis or treatment.
       </P>
       <Card>

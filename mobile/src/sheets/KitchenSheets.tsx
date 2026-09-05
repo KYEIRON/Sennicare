@@ -19,7 +19,7 @@ export function PantrySheet() {
       <Eyebrow>Your kitchen</Eyebrow>
       <H2>Pantry</H2>
       <P>
-        Keep a simple picture of what you already have at home. Nourish uses this to reduce
+        Keep a simple picture of what you already have at home. Girki uses this to reduce
         unnecessary shopping and find meals you can make now.
       </P>
 
@@ -89,7 +89,7 @@ export function ShoppingSheet() {
       <Eyebrow>Your kitchen</Eyebrow>
       <H2>Shopping list</H2>
       <P>
-        Everything you want to buy, including ingredients Nourish adds from your meal plan.
+        Everything you want to buy, including ingredients Girki adds from your meal plan.
       </P>
 
       <TextInput
@@ -154,7 +154,7 @@ export function SmartKitchenSheet() {
       <Eyebrow>Smart kitchen</Eyebrow>
       <H2>What can I make?</H2>
       <P>
-        Start with what is already in your pantry. Nourish compares ingredients, your food
+        Start with what is already in your pantry. Girki compares ingredients, your food
         preferences and the kind of meal you are exploring.
       </P>
 
@@ -171,7 +171,7 @@ export function SmartKitchenSheet() {
       ))}
 
       <Button
-        title="Ask Nourish to work with these"
+        title="Ask Girki to work with these"
         variant="secondary"
         onPress={() =>
           router.present({
@@ -183,7 +183,7 @@ export function SmartKitchenSheet() {
         }
       />
 
-      <Notice title="Nourish+ idea:">
+      <Notice title="Girki+ idea:">
         camera and receipt scans, expiry aware suggestions, budget planning and automatic pantry
         updates can save time. Any production scan should show what was recognised and ask you to
         confirm before changing your kitchen.

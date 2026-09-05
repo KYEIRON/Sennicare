@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
-export type Tab = 'today' | 'food' | 'pantry' | 'plan' | 'wellbeing' | 'you';
+export type Tab = 'today' | 'food' | 'passport' | 'pantry' | 'plan' | 'wellbeing' | 'you';
 
 /** Everything V28 opens through `openSheet(type)` and friends. */
 export type Sheet =
@@ -10,6 +10,9 @@ export type Sheet =
   | { type: 'country'; name: string }
   | { type: 'morningDiscovery' }
   | { type: 'globalDish'; id: string }
+  | { type: 'girkiDish'; id: string }
+  | { type: 'girkiRecipe'; id: string }
+  | { type: 'occasion'; id: string }
   | { type: 'ask'; seed?: string }
   | { type: 'plusManage' }
   | { type: 'ingredientDiscovery' }

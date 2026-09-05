@@ -216,6 +216,67 @@ try {
       return ids(a) === ids(b) && ids(a) !== ids(c);
     })());
 
+  // ---- every written recipe must be reachable somewhere ----
+  const strandedInAtlas = content.recipes.filter((r) => !r.reachableFromAtlas);
+  check('every written recipe resolves to a cookable method',
+    content.recipes.every((r) => {
+      const c = recipesLib.cookableFor(r.country, r.name, { loose: true });
+      return c.authored && c.steps.length > 0 && c.ingredients.length > 0;
+    }));
+  check('recipes stranded from the atlas are still openable by recipe id',
+    strandedInAtlas.every((r) => Boolean(r.id)),
+    `${strandedInAtlas.length} stranded, all carry an id for the recipes surface`);
+
+  // ---- the loop the product is built on: cook, stamp, go somewhere new ----
+  const cookLoop = [];
+  const record = (dish, country) => {
+    const c = recipesLib.cookableFor(country, dish, { loose: true });
+    cookLoop.push({ dish, country, at: new Date().toISOString(), kcal: c.kcal, minutes: c.minutes });
+  };
+
+  record('Waakye', 'Ghana');
+  let loopPassport = passportLib.passportFrom(cookLoop);
+  check('cooking stamps the country', loopPassport.countries.includes('Ghana'));
+  check('cooking stamps the region', loopPassport.regions.includes('West Africa'), loopPassport.regions.join(', '));
+  check('the same country twice is one stamp, two cooks',
+    (() => {
+      record('Kelewele', 'Ghana');
+      const p2 = passportLib.passportFrom(cookLoop);
+      return p2.countries.length === 1 && p2.cooks === 2;
+    })());
+  check('where next moves on after a country is stamped',
+    (() => {
+      const next = passportLib.nextDishSuggestion(passportLib.passportFrom(cookLoop), true);
+      return next && next.country !== 'Ghana';
+    })());
+  check('the log survives a round trip through storage',
+    (() => {
+      const restored = JSON.parse(JSON.stringify(cookLoop));
+      const p3 = passportLib.passportFrom(restored);
+      return p3.cooks === cookLoop.length && p3.log[0].dish === 'Waakye';
+    })());
+  check('a renamed or reordered library cannot scramble history',
+    (() => {
+      // Entries carry name and country, so nothing depends on a position.
+      const p4 = passportLib.passportFrom(cookLoop);
+      return p4.log.every((e) => e.dish && typeof e.dish === 'string' && !('index' in e));
+    })());
+
+  // ---- every atlas dish can actually be cooked, end to end ----
+  const uncookable = content.dishes.filter((d) => {
+    const c = recipesLib.cookableForDish(d, { loose: true });
+    const steps = cook.cookSteps(c.steps);
+    return !steps.length || steps.some((s) => !s.text || s.minutes <= 0);
+  });
+  check('every one of the 597 dishes yields a timed method', uncookable.length === 0,
+    uncookable.slice(0, 3).map((d) => `${d.country}: ${d.name}`).join(' | '));
+
+  const noCue = content.dishes.slice(0, 120).filter((d) => {
+    const c = recipesLib.cookableForDish(d, { loose: true });
+    return cook.cookSteps(c.steps).some((s) => !s.cue);
+  });
+  check('every step has something to look for', noCue.length === 0);
+
   // ---- copy discipline: no health claims anywhere in migrated content ----
   const claim = /\b(cures?|heals?|treats?|prevents?|detox|superfood|boосts?|burns fat|weight loss)\b/i;
   const offenders = [

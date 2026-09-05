@@ -10,10 +10,10 @@ import { displayFont } from '../theme/typography';
 import { Photo, Small, Tag, Wrap } from './ui';
 
 /**
- * One recommendation, in the Nourish card language.
+ * One recommendation, in the Girki card language.
  *
  * A recipe-backed record shows its photograph and offers "Cook recipe". A
- * discovery record from the country atlas shows what Nourish actually knows —
+ * discovery record from the country atlas shows what Girki actually knows —
  * dish, country, region — and offers "Explore dish". The two are never blurred.
  */
 export function RecommendationCard({
@@ -51,7 +51,7 @@ export function RecommendationCard({
               {isRecipe ? 'RECIPE' : 'DISCOVERY'}
             </Text>
             <Text style={styles.place} numberOfLines={1}>
-              {record.country === 'Modern home kitchen' ? 'Nourish kitchen' : record.country}
+              {record.country === 'Modern home kitchen' ? 'Girki kitchen' : record.country}
               {record.region && record.country !== record.region ? ` · ${record.region}` : ''}
             </Text>
           </View>
@@ -63,7 +63,7 @@ export function RecommendationCard({
               {meal.cal} kcal · {meal.duration} min · {meal.meta}
             </Small>
           ) : (
-            <Small>A dish from the Nourish country atlas.</Small>
+            <Small>A dish from the Girki country atlas.</Small>
           )}
 
           {record.tags.length ? (
@@ -98,7 +98,7 @@ export function RecommendationCard({
           ) : null}
           {recommendation.allergenUnknown ? (
             <Text style={styles.allergenUnknown}>
-              Not allergen checked — Nourish has no ingredient list for this dish
+              Not allergen checked — Girki has no ingredient list for this dish
             </Text>
           ) : null}
         </View>

@@ -9,6 +9,7 @@ import { Auth } from './src/screens/Auth';
 import { Food } from './src/screens/Food';
 import { Onboarding } from './src/screens/Onboarding';
 import { Pantry } from './src/screens/Pantry';
+import { Passport } from './src/screens/Passport';
 import { Plan } from './src/screens/Plan';
 import { Today } from './src/screens/Today';
 import { Wellbeing } from './src/screens/Wellbeing';
@@ -73,6 +74,8 @@ function AppShell() {
       <Today />
     ) : router.tab === 'food' ? (
       <Food />
+    ) : router.tab === 'passport' ? (
+      <Passport />
     ) : router.tab === 'pantry' ? (
       <Pantry />
     ) : router.tab === 'plan' ? (

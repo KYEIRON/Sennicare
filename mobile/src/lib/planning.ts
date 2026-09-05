@@ -4,7 +4,7 @@ import { FoodRecord, recordsById } from './foodGraph';
 /**
  * Planning rules.
  *
- * V32.6 lets a day hold either a recipe from the Nourish library or a food
+ * V32.6 lets a day hold either a recipe from the Girki library or a food
  * discovery from the 195-country atlas. These are the rules for that, kept pure
  * and in one place so the store and the tests cannot drift apart.
  */
@@ -62,7 +62,7 @@ export function canPlanMeal(week: Week, day: Day, plus: boolean): boolean {
   return plannedDaysCount(week) < FREE_PLANNING_DAYS;
 }
 
-/** Planning from the world atlas is a Nourish+ capability. Exploring it is free. */
+/** Planning from the world atlas is a Girki+ capability. Exploring it is free. */
 export function canPlanGlobal(plus: boolean, recordId: string): boolean {
   if (!plus) return false;
   const record = recordsById.get(recordId);

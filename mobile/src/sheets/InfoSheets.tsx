@@ -96,7 +96,7 @@ export function BreathingSheet() {
   return (
     <Sheet>
       <Eyebrow>Reset</Eyebrow>
-      <H2>Breathe with Nourish</H2>
+      <H2>Breathe with Girki</H2>
       <P>Follow the circle. Inhale as it grows. Exhale as it softens.</P>
       <View style={styles.breath}>
         <Animated.View style={[styles.breathCircle, { transform: [{ scale }] }]}>
@@ -259,14 +259,14 @@ export const RecoverySheet = () => (
 
 export const DiscoverySheet = () => (
   <Info
-    eyebrow="Nourish Discovery · Food & sleep"
+    eyebrow="Girki Discovery · Food & sleep"
     title="Eating immediately before bed?"
     intro="A large meal immediately before sleep can interfere with sleep for some people. It is not a universal rule, and individual responses differ."
     notice={{
       title: 'A practical idea',
       text: 'If you notice late meals affect your sleep, try giving yourself some time between dinner and bed and see what works for you.',
     }}
-    safety="Nourish presents health information to help you explore your choices. It does not diagnose or treat medical conditions."
+    safety="Girki presents health information to help you explore your choices. It does not diagnose or treat medical conditions."
     button="Got it"
   />
 );
@@ -278,7 +278,7 @@ export const AiSleepSheet = () => (
     intro="Some people notice that meal size, timing, alcohol, caffeine or particular foods change how they sleep. Research does not mean the same effect will happen to everyone."
     cards={[
       {
-        label: 'How Nourish approaches it',
+        label: 'How Girki approaches it',
         lines: [
           'We can explain what evidence suggests, what remains uncertain, and what you might observe in your own routine. We should not tell you that a food will cause or cure a sleep problem.',
         ],
@@ -309,7 +309,7 @@ export const AiEnergySheet = () => (
     ]}
     legal={{
       title: 'No diagnosis.',
-      text: 'Nourish should never infer a medical condition from a meal, symptom or pattern.',
+      text: 'Girki should never infer a medical condition from a meal, symptom or pattern.',
     }}
     button="Explore safely"
   />
@@ -338,7 +338,7 @@ export const AiDecideSheet = () => (
 
 export const AiBetaSheet = () => (
   <Info
-    eyebrow="Nourish AI beta"
+    eyebrow="Girki AI beta"
     title="Intelligence that knows its limits."
     intro="AI beta is designed as an explanation and decision support layer across Food, Pantry, Plan and Wellbeing."
     cards={[

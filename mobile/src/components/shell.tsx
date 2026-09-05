@@ -9,6 +9,7 @@ import { displayFont } from '../theme/typography';
 const TABS: { key: Tab; label: string }[] = [
   { key: 'today', label: 'Today' },
   { key: 'food', label: 'Food' },
+  { key: 'passport', label: 'Passport' },
   { key: 'pantry', label: 'Pantry' },
   { key: 'plan', label: 'Plan' },
   { key: 'wellbeing', label: 'Wellbeing' },
@@ -36,6 +37,13 @@ function TabGlyph({ tab, active }: { tab: Tab; active: boolean }) {
         <View style={glyph.box}>
           <View style={[glyph.fork, base]} />
           <View style={[glyph.knife, base]} />
+        </View>
+      );
+    case 'passport':
+      return (
+        <View style={glyph.box}>
+          <View style={[glyph.passportCover, base]} />
+          <View style={[glyph.passportMark, { backgroundColor: tint }]} />
         </View>
       );
     case 'pantry':
@@ -138,12 +146,12 @@ export function Header() {
         },
       ]}
     >
-      <Text style={[header.brand, { fontSize: layout.brand }]}>nourish</Text>
+      <Text style={[header.brand, { fontSize: layout.brand }]}>girki</Text>
       <View style={header.actions}>
         {/* Quiet, always reachable, never floating over the content. */}
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Ask Nourish"
+          accessibilityLabel="Ask Girki"
           onPress={() => router.present({ type: 'ask' })}
           style={header.ask}
         >
@@ -343,6 +351,8 @@ const glyph = StyleSheet.create({
   knife: { width: 5, height: 17, borderRadius: 2, position: 'absolute', right: 3, borderBottomWidth: 0 },
   shelfOuter: { width: 16, height: 18, borderRadius: 2 },
   shelfLine: { position: 'absolute', left: 5, width: 11, height: 1.4, borderRadius: 1 },
+  passportCover: { width: 15, height: 18, borderRadius: 3 },
+  passportMark: { position: 'absolute', width: 7, height: 7, borderRadius: 4, opacity: 0.9 },
   calendar: { width: 17, height: 15, borderRadius: 3, marginTop: 2 },
   calendarTop: { position: 'absolute', top: 5, width: 17, height: 1.6 },
   heartLeft: {

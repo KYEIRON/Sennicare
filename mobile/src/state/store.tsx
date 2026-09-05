@@ -2,13 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { DAYS, Day, meals } from '../lib/data';
 import { UserContext } from '../lib/discovery';
+import { CookLogEntry, Passport, passportFrom } from '../lib/girki/passport';
 import { FoodRecord, recordsById } from '../lib/foodGraph';
 import {
   Week, canMove, canPlanGlobal, canPlanMeal, dayIsLocked as isDayLocked,
   plannedCalories as calories, plannedDaysCount as daysCount, plannedMealIndex as mealIndexFor,
   plannedRecord as recordFor, planOccupied as occupied, withGlobal, withMeal, withMove, withoutDay,
 } from '../lib/planning';
-import { ageBand, missingIngredients } from '../lib/logic';
+import { ageBand, missingIngredients, pantryHas } from '../lib/logic';
 
 export type PlusPlan = 'monthly' | 'yearly';
 
@@ -59,6 +60,7 @@ const KEYS = {
   savedMeals: 'nourishSavedMeals',
   rejectedMeals: 'nourishRejectedMeals',
   plusPlan: 'nourishPlusPlan',
+  cookLog: 'girkiCookLog',
 } as const;
 
 type Store = {
@@ -80,6 +82,9 @@ type Store = {
   plusPlan: PlusPlan;
   toastMessage: string | null;
   dailyOffset: number;
+  /** The passport: every cook, keyed by dish name and country. */
+  cookLog: CookLogEntry[];
+  passport: Passport;
 
   setProfile: (update: Partial<Profile>) => void;
   togglePriority: (value: string) => void;
@@ -96,6 +101,8 @@ type Store = {
   setPlus: (value: boolean) => void;
   setPlusPlan: (plan: PlusPlan) => void;
   markCountryExplored: (country: string) => void;
+  /** Record a cook. Never keyed by an array index — the brief is explicit. */
+  recordCook: (entry: CookLogEntry) => void;
   toggleSavedMeal: (index: number) => void;
   rejectMeal: (index: number) => void;
   /** Everything the recommendation engine needs about this person. */
@@ -108,6 +115,7 @@ type Store = {
   toggleShoppingItem: (index: number) => void;
   removeShoppingItem: (index: number) => void;
   demoScan: (shoppingList: boolean) => void;
+  pantryHas: (ingredient: string) => boolean;
 
   plannedMealIndex: (day: Day) => number | null;
   /** What is planned for a day, recipe or discovery, as one graph record. */
@@ -117,7 +125,7 @@ type Store = {
   plannedCalories: () => number;
   dayIsLocked: (day: Day) => boolean;
   planMeal: (mealIndex: number, day: Day) => boolean;
-  /** Plan a dish from the country atlas. Nourish+ only, as in V32.6. */
+  /** Plan a dish from the country atlas. Girki+ only, as in V32.6. */
   planGlobalDish: (recordId: string, day: Day) => boolean;
   removePlanMeal: (day: Day) => void;
   movePlanMeal: (from: Day, to: Day) => boolean;
@@ -154,6 +162,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [savedMeals, setSavedMeals] = useState<number[]>([]);
   const [rejectedMeals, setRejectedMeals] = useState<number[]>([]);
   const [plusPlan, setPlusPlanState] = useState<PlusPlan>('monthly');
+  const [cookLog, setCookLog] = useState<CookLogEntry[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [dailyOffset, setDailyOffset] = useState(0);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -185,6 +194,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         readJson<number[]>(KEYS.savedMeals, []),
         readJson<number[]>(KEYS.rejectedMeals, []),
       ]);
+      setCookLog(await readJson<CookLogEntry[]>(KEYS.cookLog, []));
 
       setProfileState({ ...emptyProfile, ...storedProfile });
       setAccount(storedAccount);
@@ -299,6 +309,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setSavedMeals([]);
     setRejectedMeals([]);
     setPlusPlanState('monthly');
+    setCookLog([]);
   }, []);
 
   const awardTokens = useCallback(
@@ -308,7 +319,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         AsyncStorage.setItem(KEYS.tokens, String(next)).catch(() => {});
         return next;
       });
-      toast(`+${n} Nourish tokens · ${reason}`);
+      toast(`+${n} Girki tokens · ${reason}`);
     },
     [toast]
   );
@@ -346,7 +357,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     (value: boolean) => {
       setPlusState(value);
       AsyncStorage.setItem(KEYS.plus, value ? '1' : '0').catch(() => {});
-      toast(value ? 'Nourish+ is active in this demo.' : 'Nourish+ preview is off.');
+      toast(value ? 'Girki+ is active in this demo.' : 'Girki+ preview is off.');
     },
     [toast]
   );
@@ -370,6 +381,23 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       return next;
     });
   }, []);
+
+  /**
+   * Record a cook. Keyed by dish name and country, never by an array index —
+   * the prototype's index keying scrambled its own history.
+   */
+  const recordCook = useCallback(
+    (entry: CookLogEntry) => {
+      setCookLog((current) => {
+        const next = [...current, entry];
+        writeJson(KEYS.cookLog, next);
+        return next;
+      });
+      markCountryExplored(entry.country);
+      awardTokens(10, 'meal cooked');
+    },
+    [markCountryExplored, awardTokens]
+  );
 
   const toggleSavedMeal = useCallback(
     (index: number) => {
@@ -516,6 +544,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     [toast]
   );
 
+  const pantryHasItem = useCallback(
+    (ingredient: string) => pantryHas(pantry, ingredient),
+    [pantry]
+  );
+
   const plannedMealIndex = useCallback((day: Day) => mealIndexFor(week, day), [week]);
 
   /** The planned record for a day, whichever kind it is. */
@@ -529,7 +562,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const dayIsLocked = useCallback((day: Day) => isDayLocked(week, day, plus), [week, plus]);
 
-  /** `replacePlanMeal(day, i)` — false when Nourish+ is required. */
+  /** `replacePlanMeal(day, i)` — false when Girki+ is required. */
   const planMeal = useCallback(
     (mealIndex: number, day: Day) => {
       if (!canPlanMeal(week, day, plus)) return false;
@@ -543,7 +576,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   );
 
   /**
-   * Planning a dish from the atlas is a Nourish+ capability: free members can
+   * Planning a dish from the atlas is a Girki+ capability: free members can
    * see the whole world, Plus members can place it in a day.
    */
   const planGlobalDish = useCallback(
@@ -611,6 +644,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       explored,
       completed,
       exploredCountries,
+      cookLog,
+      passport: passportFrom(cookLog),
       savedMeals,
       rejectedMeals,
       plusPlan,
@@ -629,6 +664,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setPlus,
       setPlusPlan,
       markCountryExplored,
+      recordCook,
       toggleSavedMeal,
       rejectMeal,
       discoveryContext,
@@ -639,6 +675,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       toggleShoppingItem,
       removeShoppingItem,
       demoScan,
+      pantryHas: pantryHasItem,
       plannedMealIndex,
       plannedRecord,
       planOccupied,
@@ -654,9 +691,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       ready, profile, account, pantry, shopping, shoppingDone, week, tokens, plus, explored,
       completed, exploredCountries, savedMeals, rejectedMeals, plusPlan, toastMessage, dailyOffset,
       setProfile, togglePriority, toggleAllergy, setDob, signIn, resetDemo, toast, awardTokens,
-      markExplored, markMealComplete, setPlus, setPlusPlan, markCountryExplored, toggleSavedMeal,
+      markExplored, markMealComplete, setPlus, setPlusPlan, markCountryExplored, recordCook,
+      cookLog, toggleSavedMeal,
       rejectMeal, discoveryContext, addPantryItem, removePantryItem, addShoppingForMeal,
-      addShoppingText, toggleShoppingItem, removeShoppingItem, demoScan, plannedMealIndex,
+      addShoppingText, toggleShoppingItem, removeShoppingItem, demoScan, pantryHasItem,
+      plannedMealIndex,
       plannedRecord, planOccupied, plannedDaysCount, plannedCalories, dayIsLocked, planMeal,
       planGlobalDish, removePlanMeal, movePlanMeal,
     ]

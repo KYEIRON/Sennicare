@@ -24,7 +24,7 @@ export function Pantry() {
         <H1>Know what you have. Discover what you can make.</H1>
         <P>
           Pantry is where your kitchen starts. Keep what is already at home here, keep what you want
-          to buy in Shopping, and let Nourish connect the two.
+          to buy in Shopping, and let Girki connect the two.
         </P>
       </View>
 
@@ -61,7 +61,7 @@ export function Pantry() {
           ))}
         </View>
         <Button
-          title="Ask Nourish what to cook tonight"
+          title="Ask Girki what to cook tonight"
           variant="secondary"
           onPress={() =>
             router.present({

@@ -27,7 +27,7 @@ export type Intent = {
   excludeTags: FoodTag[];
   excludeIngredients: string[];
   count?: number;
-  /** Words Nourish could not place anywhere in its food library. */
+  /** Words Girki could not place anywhere in its food library. */
   unknownTerms: string[];
 };
 
@@ -222,7 +222,7 @@ const FILLER_WORDS = new Set([
   'ideas', 'idea', 'food', 'foods', 'meal', 'meals', 'dish', 'dishes', 'recipe', 'recipes',
   'show', 'find', 'from', 'with', 'that', 'this', 'them', 'those', 'these', 'need', 'have',
   'make', 'made', 'cook', 'cooking', 'eat', 'eating', 'today', 'tonight', 'tomorrow', 'week',
-  'about', 'tell', 'what', 'which', 'when', 'where', 'could', 'should', 'know', 'nourish',
+  'about', 'tell', 'what', 'which', 'when', 'where', 'could', 'should', 'know', 'girki',
   'minute', 'minutes', 'hour', 'hours', 'time', 'quick', 'easy', 'simple', 'new', 'different',
   'surprise', 'somewhere', 'take', 'plan', 'planning', 'ones', 'only', 'just', 'also', 'still',
   'good', 'great', 'nice', 'best', 'better', 'really', 'much', 'many', 'other', 'another',
@@ -238,8 +238,8 @@ const FILLER_WORDS = new Set([
  * Anything the food library has never heard of.
  *
  * "Grilled unicorn from Atlantis" contains one real signal and two words that
- * exist nowhere in Nourish. Rather than quietly answering the part it
- * recognised, Nourish records what it could not place so it can say so.
+ * exist nowhere in Girki. Rather than quietly answering the part it
+ * recognised, Girki records what it could not place so it can say so.
  */
 function detectUnknownTerms(
   q: string,
@@ -308,7 +308,7 @@ export function parseIntent(query: string): Intent {
 
 /**
  * Does this request name a subject at all? "Something light" is a modifier with
- * no subject, which is fine; "unicorn" is a subject Nourish does not have.
+ * no subject, which is fine; "unicorn" is a subject Girki does not have.
  */
 export function hasSubject(intent: Intent): boolean {
   return Boolean(
@@ -365,7 +365,7 @@ export function refineIntent(previous: Intent, followUp: string): Intent {
   return merged;
 }
 
-/** A short, human description of what Nourish understood. */
+/** A short, human description of what Girki understood. */
 export function describeIntent(intent: Intent): string {
   const parts: string[] = [];
   if (intent.tags.length) parts.push(intent.tags.slice(0, 3).join(', '));

@@ -97,7 +97,7 @@ export function onboardingError(
 ): string {
   if (step === 2 && !profile.dob) return 'Add your date of birth to continue.';
   if (step === 2 && profile.dob && !profile.age)
-    return 'Please enter a valid date. You need to be 18 or over to use Nourish.';
+    return 'Please enter a valid date. You need to be 18 or over to use Girki.';
   if (step === 3 && !profile.gender) return 'Choose an option to continue.';
   if (step === 4 && !(profile.priorities || []).length) return 'Choose at least one priority.';
   if (step === 5 && !profile.diet) return 'Choose how you like to eat.';

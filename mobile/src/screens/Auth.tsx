@@ -11,7 +11,7 @@ import { useStore } from '../state/store';
 import { colors, shadow } from '../theme/tokens';
 import { displayFont } from '../theme/typography';
 
-/** "Keep your Nourish experience." — V28's account screen. */
+/** "Keep your Girki experience." — V28's account screen. */
 export function Auth({ onBack, onEnter }: { onBack: () => void; onEnter: () => void }) {
   const store = useStore();
   const router = useRouter();
@@ -68,11 +68,11 @@ export function Auth({ onBack, onEnter }: { onBack: () => void; onEnter: () => v
           width: '100%',
         }}
       >
-        <Text style={[styles.brand, { fontSize: layout.brand }]}>nourish</Text>
+        <Text style={[styles.brand, { fontSize: layout.brand }]}>girki</Text>
         <View style={styles.progress} />
 
-        <Eyebrow>A first taste of your Nourish</Eyebrow>
-        <H1>Keep your Nourish experience.</H1>
+        <Eyebrow>A first taste of your Girki</Eyebrow>
+        <H1>Keep your Girki experience.</H1>
         <P>
           We've started shaping a world around what you told us. Take a look before you decide.
         </P>
@@ -158,7 +158,7 @@ export function Auth({ onBack, onEnter }: { onBack: () => void; onEnter: () => v
                 setShowEmail(true);
               }}
             />
-            <Small>By continuing, you agree to Nourish's Terms and Privacy Policy.</Small>
+            <Small>By continuing, you agree to Girki's Terms and Privacy Policy.</Small>
             <Pressable
               accessibilityRole="button"
               onPress={() => {

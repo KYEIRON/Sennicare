@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { CultureCard, MealCard } from '../components/cards';
 import { Page } from '../components/shell';
 import {
   Button, Card, Chip, Eyebrow, H1, H2, P, Photo, Rail, RewardCard, Section, SectionLabel, Small, Wrap,
 } from '../components/ui';
 import { IMAGES, culturePicks, mealIndex, meals, worldInfo } from '../lib/data';
+import { occasions } from '../lib/girki/content';
+import { nextDishSuggestion, whenText } from '../lib/girki/passport';
 import { todaysMeals } from '../lib/logic';
 import { useLayout } from '../lib/responsive';
 import { useRouter } from '../nav/router';
@@ -41,6 +43,29 @@ export function Today() {
           have explored before.
         </P>
       </View>
+
+      <GirkiContinuity />
+
+      <Section>
+        <SectionLabel>What is tonight?</SectionLabel>
+        <Small>
+          Not a filter. The question you actually ask yourself at six o'clock.
+        </Small>
+        <Rail columns={layout.tablet ? 4 : 0} gap={10}>
+          {occasions.map((occasion) => (
+            <Pressable
+              key={occasion.id}
+              accessibilityRole="button"
+              onPress={() => router.present({ type: 'occasion', id: occasion.id })}
+              style={styles.occasion}
+            >
+              <Text style={styles.occasionIcon}>{occasion.icon}</Text>
+              <Text style={styles.occasionName}>{occasion.name}</Text>
+              <Text style={styles.occasionBlurb} numberOfLines={3}>{occasion.blurb}</Text>
+            </Pressable>
+          ))}
+        </Rail>
+      </Section>
 
       {/* .morningFeature */}
       <View style={[styles.feature, shadow]}>
@@ -130,7 +155,7 @@ export function Today() {
                 onPress={() => router.present({ type: 'plus' })}
                 style={styles.moreLink}
               >
-                See more variations with Nourish+
+                See more variations with Girki+
               </Text>
             ) : null}
           </View>
@@ -161,7 +186,7 @@ export function Today() {
 
       <RewardCard
         eyebrow="Keep exploring"
-        title={`${store.tokens} Nourish tokens`}
+        title={`${store.tokens} Girki tokens`}
         token="Cook · learn · discover"
         text="Tomorrow brings a new set of ideas. The world of food never runs out of stories."
       />
@@ -169,7 +194,83 @@ export function Today() {
   );
 }
 
+/**
+ * `girkiContinuityCard` — what you cooked last, and where it points next.
+ * When nothing is cooked yet the card teaches the mechanic instead of
+ * apologising for being empty.
+ */
+function GirkiContinuity() {
+  const store = useStore();
+  const router = useRouter();
+  const passport = store.passport;
+  const next = nextDishSuggestion(passport, store.plus);
+
+  if (!passport.last) {
+    return (
+      <View style={styles.continuity}>
+        <Eyebrow>Your passport</Eyebrow>
+        <H2>Nothing stamped yet.</H2>
+        <Small>
+          Cook anything and the country is stamped. Twelve countries are open without Girki+, and
+          the atlas holds 195.
+        </Small>
+        {next ? (
+          <Button
+            title={`Start with ${next.name}`}
+            onPress={() => router.present({ type: 'girkiDish', id: next.id })}
+          />
+        ) : null}
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.continuity}>
+      <Eyebrow>Your passport</Eyebrow>
+      <H2>
+        {passport.countries.length} {passport.countries.length === 1 ? 'country' : 'countries'}, {passport.cooks} {passport.cooks === 1 ? 'meal' : 'meals'}
+      </H2>
+      <Small>
+        Last: {passport.last.dish}
+        {passport.last.country ? ` from ${passport.last.country}` : ''} · {whenText(passport.last.at)}
+      </Small>
+      <View style={{ flexDirection: 'row', gap: 9, marginTop: 4 }}>
+        <Button
+          title="Open passport"
+          variant="secondary"
+          style={{ flex: 1 }}
+          onPress={() => router.show('passport')}
+        />
+        {next ? (
+          <Button
+            title="Where next"
+            style={{ flex: 1 }}
+            onPress={() => router.present({ type: 'girkiDish', id: next.id })}
+          />
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  continuity: {
+    backgroundColor: colors.sage2,
+    borderRadius: 24,
+    padding: 18,
+    marginTop: 16,
+  },
+  occasion: {
+    width: 180,
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.line,
+    borderRadius: 20,
+    padding: 14,
+  },
+  occasionIcon: { fontSize: 22 },
+  occasionName: { fontFamily: displayFont, fontSize: 19, color: colors.ink, marginTop: 6 },
+  occasionBlurb: { fontSize: 11, lineHeight: 16, color: colors.muted, marginTop: 4 },
   feature: {
     backgroundColor: colors.card,
     borderWidth: 1,

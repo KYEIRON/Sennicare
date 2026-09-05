@@ -1,9 +1,11 @@
 import React from 'react';
 import { Day } from '../lib/data';
 import { useRouter } from '../nav/router';
-import { AskNourishSheet } from './AskNourish';
+import { AskGirkiSheet } from './AskGirki';
 import { CookingSheet } from './CookingSheet';
+import { GirkiDishSheet } from './GirkiDish';
 import { GlobalDishSheet } from './GlobalDishSheet';
+import { OccasionSheet } from './Occasion';
 import {
   CountrySheet, CultureSheet, IngredientDiscoverySheet, MorningDiscoverySheet,
 } from './DiscoverySheets';
@@ -36,8 +38,14 @@ export function SheetHost() {
       return <MorningDiscoverySheet />;
     case 'globalDish':
       return <GlobalDishSheet id={sheet.id} />;
+    case 'girkiDish':
+      return <GirkiDishSheet id={sheet.id} />;
+    case 'girkiRecipe':
+      return <GirkiDishSheet id={sheet.id} kind="recipe" />;
+    case 'occasion':
+      return <OccasionSheet id={sheet.id} />;
     case 'ask':
-      return <AskNourishSheet seed={sheet.seed} />;
+      return <AskGirkiSheet seed={sheet.seed} />;
     case 'plusManage':
       return <PlusManageSheet />;
     case 'ingredientDiscovery':

@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Nourish",
-    "slug": "nourish",
+    "name": "Girki",
+    "slug": "girki",
     "version": "1.0.0",
     "orientation": "default",
-    "scheme": "nourish",
+    "scheme": "girki",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -13,10 +13,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sennicare.nourish"
+      "bundleIdentifier": "com.girki.app"
     },
     "android": {
-      "package": "com.sennicare.nourish",
+      "package": "com.girki.app",
       "adaptiveIcon": {
         "backgroundColor": "#f7f4ee"
       }

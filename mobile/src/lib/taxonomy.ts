@@ -1,5 +1,5 @@
 /**
- * Nourish food taxonomy.
+ * Girki food taxonomy.
  *
  * These are the vocabularies the food graph and the discovery engine share:
  * meal slots, dietary and style tags, allergens, and the keyword evidence used

@@ -10,7 +10,7 @@ import { colors } from '../theme/tokens';
 /**
  * A dish from the country atlas.
  *
- * This is deliberately not a recipe screen. It shows exactly what Nourish holds
+ * This is deliberately not a recipe screen. It shows exactly what Girki holds
  * — the dish, its country, its region and what was inferred — and offers ways
  * to go deeper. A recipe appears only when there is a verified one.
  */
@@ -34,7 +34,7 @@ export function GlobalDishSheet({ id }: { id: string }) {
       <Eyebrow>Food discovery · {record.country}</Eyebrow>
       <H2>{record.title}</H2>
       <P>
-        {record.region} · a dish held in Nourish's country food index.
+        {record.region} · a dish held in Girki's country food index.
       </P>
 
       {record.tags.length ? (
@@ -46,10 +46,10 @@ export function GlobalDishSheet({ id }: { id: string }) {
       ) : null}
 
       <Card>
-        <SectionLabel>What Nourish knows</SectionLabel>
+        <SectionLabel>What Girki knows</SectionLabel>
         <H3>Start with the food, then go deeper.</H3>
         <P>
-          Nourish holds this dish, the country it belongs to and its region. It does not hold a
+          Girki holds this dish, the country it belongs to and its region. It does not hold a
           verified recipe, ingredient list, nutrition or image rights for it yet — so it is offered
           as a dish to explore rather than a recipe to cook.
         </P>
@@ -67,18 +67,18 @@ export function GlobalDishSheet({ id }: { id: string }) {
 
       <Notice title="Recipe status">
         This dish can be added to your plan as a discovery. A production recipe needs verified
-        ingredients, method, nutrition, image rights and cultural review before Nourish will present
+        ingredients, method, nutrition, image rights and cultural review before Girki will present
         cooking instructions for it.
       </Notice>
 
       {record.allergens.length ? (
         <Notice title="Possible allergens:">
-          the name of this dish suggests {record.allergens.join(', ').toLowerCase()}. Nourish has no
+          the name of this dish suggests {record.allergens.join(', ').toLowerCase()}. Girki has no
           ingredient list for it, so this is a flag, not a check. Never treat it as a clearance.
         </Notice>
       ) : (
         <Notice title="Not allergen checked:">
-          Nourish has no verified ingredient list for this dish, so it cannot tell you what it
+          Girki has no verified ingredient list for this dish, so it cannot tell you what it
           contains. Check the recipe you cook from.
         </Notice>
       )}
@@ -89,7 +89,7 @@ export function GlobalDishSheet({ id }: { id: string }) {
         <P>
           {store.plus
             ? 'Add it to any day. You can keep exploring the world and change your mind later.'
-            : 'Planning food from the world atlas is a Nourish+ capability. Exploring it is always free.'}
+            : 'Planning food from the world atlas is a Girki+ capability. Exploring it is always free.'}
         </P>
         <Button
           title="Add to a day"
@@ -150,7 +150,7 @@ export function GlobalDishSheet({ id }: { id: string }) {
       ) : null}
 
       <Notice title="Editorial standard:">
-        Nourish distinguishes a traditional dish from a Nourish adaptation, and will not invent a
+        Girki distinguishes a traditional dish from a Girki adaptation, and will not invent a
         recipe or a history to fill a result.
       </Notice>
     </Sheet>

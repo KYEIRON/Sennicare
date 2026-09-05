@@ -33,7 +33,7 @@ export function Wellbeing() {
           <Eyebrow>Your rhythm</Eyebrow>
           <H3>Eat. Move. Rest. Discover.</H3>
           <P>
-            Nourish does not separate food from life. Explore small ideas that can sit naturally
+            Girki does not separate food from life. Explore small ideas that can sit naturally
             alongside your meals and your day.
           </P>
           <Button
@@ -82,7 +82,7 @@ export function Wellbeing() {
         sheet={{ type: 'cultureWellbeing' }}
       />
 
-      <SmartKitchenBlock text="Tell Nourish what is in your pantry and it can help you find a meal that fits tonight." />
+      <SmartKitchenBlock text="Tell Girki what is in your pantry and it can help you find a meal that fits tonight." />
 
       <View style={styles.ai}>
         <View style={styles.betaMark}>
@@ -91,7 +91,7 @@ export function Wellbeing() {
         <H2>Understand your food, without being told what to do.</H2>
         <P>
           Explore how food, routines and everyday choices may relate to things such as sleep, energy
-          or digestion. Nourish explains evidence with uncertainty and helps you think through
+          or digestion. Girki explains evidence with uncertainty and helps you think through
           choices. It does not diagnose, prescribe or replace professional care.
         </P>
         <AiQuestion
@@ -113,7 +113,7 @@ export function Wellbeing() {
           sheet={{ type: 'aiDecide' }}
         />
         <Button
-          title="Ask Nourish"
+          title="Ask Girki"
           onPress={() => router.present({ type: 'ask' })}
         />
         <Button

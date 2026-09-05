@@ -3,12 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FoodCard } from '../components/cards';
 import { Sheet } from '../components/shell';
 import {
-  Button, Card, Eyebrow, H2, H3, Notice, P, Photo, Small, SourceNote,
+  Button, Card, Eyebrow, H2, H3, Notice, P, Photo, SectionLabel, Small, SourceNote,
 } from '../components/ui';
 import {
   IMAGES, countryByName, cultureNames, knownCommonsImage, mealIndex, mealRefs, meals, worldInfo,
 } from '../lib/data';
 import { useRouter } from '../nav/router';
+import { dishesByCountry as girkiDishesByCountry } from '../lib/girki/content';
 import { useStore } from '../state/store';
 import { colors, shadow } from '../theme/tokens';
 import { findCommonsImage, CommonsImage } from '../lib/commons';
@@ -41,7 +42,7 @@ export function MorningDiscoverySheet() {
         />
       </Card>
       <Notice>
-        Nourish uses food and culture as a way to help you discover new possibilities, without
+        Girki uses food and culture as a way to help you discover new possibilities, without
         telling you what you must eat.
       </Notice>
     </Sheet>
@@ -134,15 +135,31 @@ export function CountrySheet({ name }: { name: string }) {
         />
       ))}
 
+      <Card>
+        <SectionLabel>Cook something from {country.name}</SectionLabel>
+        <P>
+          Every dish in the atlas can be cooked. Where Girki has a written recipe it uses it;
+          otherwise it builds an honest home version and says so.
+        </P>
+        {(girkiDishesByCountry.get(country.name) || []).map((dish) => (
+          <Button
+            key={dish.id}
+            title={dish.name}
+            variant="secondary"
+            onPress={() => router.present({ type: 'girkiDish', id: dish.id })}
+          />
+        ))}
+      </Card>
+
       <View style={styles.explore}>
-        <Eyebrow>Go deeper with Nourish+</Eyebrow>
+        <Eyebrow>Go deeper with Girki+</Eyebrow>
         <H3>More dishes. More regions. More ways to cook.</H3>
         <P>
           Plus opens the full country library, richer regional stories, more recipes and more image
           led discovery. Free members can explore the featured set and see what is waiting beyond
           it.
         </P>
-        <Button title="Explore Nourish+" onPress={() => router.present({ type: 'plus' })} />
+        <Button title="Explore Girki+" onPress={() => router.present({ type: 'plus' })} />
       </View>
 
       <Notice title="Editorial principle:">
@@ -221,7 +238,7 @@ export function IngredientDiscoverySheet() {
       <H2>What else can a courgette do?</H2>
       <P>
         Roast it, fold it through grains, add it to a tray bake or turn it into a simple soup.
-        Nourish can use one ingredient as a starting point for discovery rather than a restriction.
+        Girki can use one ingredient as a starting point for discovery rather than a restriction.
       </P>
       <Card>
         <H3>Try it tonight</H3>

@@ -2,14 +2,14 @@ import { DiscoveryResult, UserContext, discover, planDay, DayPlan } from './disc
 import { EMPTY_INTENT, Intent, describeIntent, parseIntent, refineIntent } from './intent';
 
 /**
- * Ask Nourish.
+ * Ask Girki.
  *
  * The conversation holds the last intent, so a follow-up refines the answer
  * already on screen rather than starting again. "I want more fish" → "which
  * ones use what I have?" → "make them lunches" → "nothing spicy" is one
  * narrowing thread, not four unrelated searches.
  *
- * It is not a chatbot: every turn returns structured Nourish data — records,
+ * It is not a chatbot: every turn returns structured Girki data — records,
  * reasons, a pantry split, a safety note — and the wording is assembled from
  * that data rather than generated.
  */
@@ -20,7 +20,7 @@ export type Turn = {
   kind: TurnKind;
   /** One or two sentences describing the approach taken. */
   intro: string;
-  /** What Nourish understood, shown back so it can be corrected. */
+  /** What Girki understood, shown back so it can be corrected. */
   understood: string;
   result: DiscoveryResult;
   plan?: DayPlan;
@@ -37,14 +37,14 @@ function introFor(intent: Intent, result: DiscoveryResult): string {
     return 'I have shaped the day around variety and practicality rather than picking three recipes at random. Breakfast, lunch and dinner are chosen together.';
   }
   if (intent.kind === 'culture') {
-    return 'I can tell you what Nourish holds about a dish and its food culture. Where a record is only a dish reference rather than a verified history, I will say so instead of filling the gap.';
+    return 'I can tell you what Girki holds about a dish and its food culture. Where a record is only a dish reference rather than a verified history, I will say so instead of filling the gap.';
   }
   if (intent.kind === 'nutrition') {
-    return 'I can explain what a meal brings in general terms, using the nutrition Nourish holds. I will not turn that into medical advice.';
+    return 'I can explain what a meal brings in general terms, using the nutrition Girki holds. I will not turn that into medical advice.';
   }
   if (!result.recipes.length && !result.discoveries.length) {
     if (result.unrecognised.length) {
-      return `I do not have anything for ${result.unrecognised.join(', ')} in the Nourish food library. I would rather tell you that than answer a different question.`;
+      return `I do not have anything for ${result.unrecognised.join(', ')} in the Girki food library. I would rather tell you that than answer a different question.`;
     }
     return 'I could not find a match I would stand behind. I would rather ask you to adjust the request than invent a dish or a recipe.';
   }
@@ -58,12 +58,12 @@ function introFor(intent: Intent, result: DiscoveryResult): string {
     return `Somewhere you have not been yet — without making the ingredients hard to find. ${places} places to consider.`;
   }
   if (intent.countries.length) {
-    return `Here is what Nourish holds for ${intent.countries.slice(0, 2).join(' and ')}, recipes first and then dishes worth exploring.`;
+    return `Here is what Girki holds for ${intent.countries.slice(0, 2).join(' and ')}, recipes first and then dishes worth exploring.`;
   }
   if (intent.places.length) {
     return `Looking across ${intent.places.slice(0, 2).join(' and ')} rather than one country: ${places} food cultures here.`;
   }
-  return `I searched the whole Nourish food library, not just the featured screen — ${places} food cultures in this shortlist.`;
+  return `I searched the whole Girki food library, not just the featured screen — ${places} food cultures in this shortlist.`;
 }
 
 function safetyFor(result: DiscoveryResult): string | undefined {
@@ -72,7 +72,7 @@ function safetyFor(result: DiscoveryResult): string | undefined {
   const flagged = result.discoveries.length
     ? ' Dishes from the country atlas have no verified ingredient list, so they are shown as discovery records rather than as safe options.'
     : '';
-  return `Allergy check: I removed ${result.excludedForAllergies} records that Nourish knows or suspects contain ${list}.${flagged} Packaged products and preparation still need checking — Nourish cannot tell you a dish is safe.`;
+  return `Allergy check: I removed ${result.excludedForAllergies} records that Girki knows or suspects contain ${list}.${flagged} Packaged products and preparation still need checking — Girki cannot tell you a dish is safe.`;
 }
 
 function suggestionsFor(intent: Intent, result: DiscoveryResult): string[] {

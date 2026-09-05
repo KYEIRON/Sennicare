@@ -15,7 +15,7 @@ export function You() {
 
   const summary =
     [store.profile.name, store.profile.age, store.profile.gender].filter(Boolean).join(' · ') ||
-    'Personalise Nourish';
+    'Personalise Girki';
 
   const pills = [
     ...(store.profile.priorities.length ? store.profile.priorities.slice(0, 4) : ['Health priorities']),
@@ -36,7 +36,7 @@ export function You() {
   return (
     <Page>
       <View style={{ marginTop: 12 }}>
-        <Eyebrow>Your Nourish</Eyebrow>
+        <Eyebrow>Your Girki</Eyebrow>
         <H1>Made for you</H1>
         <P>Change your preferences whenever your life or priorities change.</P>
       </View>
@@ -86,14 +86,14 @@ export function You() {
       </Card>
 
       <Card>
-        <Eyebrow>Nourish+</Eyebrow>
-        <H3>{store.plus ? 'Nourish+ is active' : 'More personal. Less mental load.'}</H3>
+        <Eyebrow>Girki+</Eyebrow>
+        <H3>{store.plus ? 'Girki+ is active' : 'More personal. Less mental load.'}</H3>
         <P>
           Smart pantry planning, scans, ingredient rescue, personalised weeks, swaps, advanced
           nutrient goals and family planning.
         </P>
         <Button
-          title={store.plus ? 'Manage Nourish+' : 'Try free for 14 days'}
+          title={store.plus ? 'Manage Girki+' : 'Try free for 14 days'}
           onPress={() => router.present({ type: 'plus' })}
         />
         <Small style={{ marginTop: 8 }}>$4.99/month or $39.99/year after trial.</Small>
@@ -103,7 +103,7 @@ export function You() {
         <Eyebrow>Safety & legal</Eyebrow>
         <H3>Food and health deserve care.</H3>
         <P>
-          Nourish is designed to help people discover food and general nutrition information, not to
+          Girki is designed to help people discover food and general nutrition information, not to
           diagnose, treat or give medical advice.
         </P>
         <Button

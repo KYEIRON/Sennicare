@@ -60,18 +60,18 @@ export function Plan() {
         <Stat value={`${store.plannedDaysCount()}/7`} label="days planned" />
         <Stat
           value={store.plus ? 'Full world planning' : '3 days'}
-          label={store.plus ? 'Nourish+ access' : 'free planning'}
+          label={store.plus ? 'Girki+ access' : 'free planning'}
         />
       </View>
 
-      <View style={styles.planWithNourish}>
-        <Eyebrow>Plan with Nourish</Eyebrow>
+      <View style={styles.planWithGirki}>
+        <Eyebrow>Plan with Girki</Eyebrow>
         <P size={12}>
-          Ask for a whole day and Nourish chooses breakfast, lunch and dinner together — variety
+          Ask for a whole day and Girki chooses breakfast, lunch and dinner together — variety
           across food cultures, your pantry reused, and the shopping kept small.
         </P>
         <Button
-          title="Plan tomorrow with Nourish"
+          title="Plan tomorrow with Girki"
           onPress={() => router.present({ type: 'ask', seed: 'Plan my breakfast, lunch and dinner for tomorrow' })}
         />
       </View>
@@ -80,7 +80,7 @@ export function Plan() {
         <Text style={styles.insightTitle}>Plan around your real cooking rhythm.</Text>
         <P size={12}>
           Research suggests many people plan only a few days ahead, while weekday meals often need
-          convenience and weekends can allow more time. Nourish should learn each person's actual
+          convenience and weekends can allow more time. Girki should learn each person's actual
           rhythm rather than assume one perfect cooking schedule.
         </P>
       </View>
@@ -88,8 +88,8 @@ export function Plan() {
       {!store.plus ? (
         <PlusGate
           title="Plan across the whole week and the whole world."
-          text="Plus unlocks all seven days and lets you choose food discoveries from any country in the Nourish atlas."
-          buttonTitle="Explore Nourish+"
+          text="Plus unlocks all seven days and lets you choose food discoveries from any country in the Girki atlas."
+          buttonTitle="Explore Girki+"
           onPress={() => router.present({ type: 'plus' })}
         />
       ) : (
@@ -128,7 +128,7 @@ export function Plan() {
                 </View>
                 {!record ? (
                   store.dayIsLocked(day) ? (
-                    <Small>Nourish+</Small>
+                    <Small>Girki+</Small>
                   ) : (
                     <LinkButton
                       title="Add a meal"
@@ -160,7 +160,7 @@ export function Plan() {
       )}
 
       <SourceNote>
-        Nutrition and recipe facts are shown only where Nourish holds structured content. Discovery
+        Nutrition and recipe facts are shown only where Girki holds structured content. Discovery
         records stay clearly labelled until they are fully verified.
       </SourceNote>
     </Page>
@@ -232,7 +232,7 @@ function WeekDay({ day, dayIndex }: { day: Day; dayIndex: number }) {
           </View>
         </>
       ) : locked ? (
-        <Small style={{ paddingVertical: 8 }}>Unlock this day with Nourish+.</Small>
+        <Small style={{ paddingVertical: 8 }}>Unlock this day with Girki+.</Small>
       ) : (
         <Button
           title={store.plus ? 'Choose a meal or explore the world' : 'Add a meal'}
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   statValue: { fontFamily: displayFont, fontSize: 21, color: colors.ink },
   insight: { backgroundColor: colors.warmAlt, borderRadius: 20, padding: 15, marginTop: 12 },
-  planWithNourish: {
+  planWithGirki: {
     backgroundColor: colors.sage2,
     borderRadius: 20,
     padding: 15,

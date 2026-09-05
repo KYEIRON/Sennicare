@@ -27,14 +27,14 @@ const QUICK_QUERIES: Record<string, string> = {
 };
 
 /**
- * Ask Nourish.
+ * Ask Girki.
  *
- * Not a chatbot window: each turn is Nourish's own data — recommendation cards,
+ * Not a chatbot window: each turn is Girki's own data — recommendation cards,
  * a pantry split, a day plan, a safety note — with a short sentence explaining
  * the approach. The conversation keeps context, so a follow-up refines the
  * answer already on screen.
  */
-export function AskNourishSheet({ seed }: { seed?: string }) {
+export function AskGirkiSheet({ seed }: { seed?: string }) {
   const store = useStore();
   const router = useRouter();
   const conversation = useRef(new Conversation());
@@ -69,8 +69,8 @@ export function AskNourishSheet({ seed }: { seed?: string }) {
     <Sheet>
       <View style={styles.header}>
         <View style={{ flex: 1 }}>
-          <Eyebrow>Nourish · beta</Eyebrow>
-          <H2>Ask Nourish</H2>
+          <Eyebrow>Girki · beta</Eyebrow>
+          <H2>Ask Girki</H2>
           <P>
             Your food guide for planning, Pantry ideas and discovering what is worth trying next.
           </P>
@@ -84,8 +84,8 @@ export function AskNourishSheet({ seed }: { seed?: string }) {
         <Text style={styles.riskTitle}>Safety first</Text>
         <Small>
           {allergies.length
-            ? `Nourish is keeping these allergies in view: ${allergies.join(', ')}. It removes what it knows or suspects contains them, and never tells you a dish is safe — always check packaged labels and preparation.`
-            : 'Add allergies and intolerances in your preferences so Nourish can treat them as safety constraints.'}
+            ? `Girki is keeping these allergies in view: ${allergies.join(', ')}. It removes what it knows or suspects contains them, and never tells you a dish is safe — always check packaged labels and preparation.`
+            : 'Add allergies and intolerances in your preferences so Girki can treat them as safety constraints.'}
         </Small>
       </View>
 
@@ -133,7 +133,7 @@ export function AskNourishSheet({ seed }: { seed?: string }) {
         {thinking ? (
           <View style={styles.thinking}>
             <ActivityIndicator color={colors.sage} />
-            <Small>Searching the Nourish food library…</Small>
+            <Small>Searching the Girki food library…</Small>
           </View>
         ) : null}
       </ScrollView>
@@ -152,12 +152,12 @@ export function AskNourishSheet({ seed }: { seed?: string }) {
       </View>
 
       <Small style={{ marginTop: 10 }}>
-        Nourish can help you explore choices. It does not diagnose, prescribe or tell you what you
+        Girki can help you explore choices. It does not diagnose, prescribe or tell you what you
         must eat.
       </Small>
 
       <Button
-        title="How Nourish AI works"
+        title="How Girki AI works"
         variant="secondary"
         onPress={() => router.present({ type: 'aiBeta' })}
       />
@@ -262,7 +262,7 @@ function TurnView({ turn, onAsk }: { turn: Turn; onAsk: (q: string) => void }) {
       ) : null}
 
       <Text style={styles.source}>
-        Featured food is only the front door. Recipes come from the Nourish library; discovery
+        Featured food is only the front door. Recipes come from the Girki library; discovery
         records come from the 195-country atlas and are shown as dishes to explore, not recipes.
       </Text>
     </View>

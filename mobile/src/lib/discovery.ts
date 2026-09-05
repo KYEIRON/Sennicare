@@ -6,7 +6,7 @@ import { Intent, hasSubject, parseIntent } from './intent';
 import { Allergen, ALLERGEN_KEYWORDS, MealSlot, MEAL_SLOTS } from './taxonomy';
 
 /**
- * The Nourish recommendation engine.
+ * The Girki recommendation engine.
  *
  * Retrieval runs over the whole food graph — 30 recipes and 585 dishes from the
  * 195-country atlas — never over the featured rail. Ranking then balances
@@ -59,9 +59,9 @@ export type Recommendation = {
   /** Pantry ingredients this recipe already uses, and what is still needed. */
   have: string[];
   need: string[];
-  /** Allergens Nourish knows this record contains. */
+  /** Allergens Girki knows this record contains. */
   containsAllergens: Allergen[];
-  /** True when Nourish has no ingredient list, so nothing can be ruled out. */
+  /** True when Girki has no ingredient list, so nothing can be ruled out. */
   allergenUnknown: boolean;
 };
 
@@ -436,7 +436,7 @@ export type DiscoveryResult = {
   excludedForAllergies: number;
   allergens: Allergen[];
   countriesRepresented: string[];
-  /** Constraints Nourish had to loosen to find anything, in plain words. */
+  /** Constraints Girki had to loosen to find anything, in plain words. */
   relaxed: string[];
   /** Words from the request that exist nowhere in the food library. */
   unrecognised: string[];
@@ -498,7 +498,7 @@ export function discover(
     unrecognised: intent.unknownTerms,
   };
 
-  // A request built entirely on words Nourish has never seen is not answered by
+  // A request built entirely on words Girki has never seen is not answered by
   // quietly serving the one word it did recognise.
   if (intent.unknownTerms.length && !hasSubject(intent)) return empty;
 

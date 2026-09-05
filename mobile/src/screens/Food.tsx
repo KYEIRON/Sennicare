@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { RecommendationCard } from '../components/discovery';
 import { discover } from '../lib/discovery';
 import { AtlasCard, FoodCard, WorldCard } from '../components/cards';
+import { dishesByCountry, recipes as writtenRecipes } from '../lib/girki/content';
 import { Page } from '../components/shell';
 import {
   Button, Card, Chip, Eyebrow, H1, H2, H3, Notice, P, Rail, Section, SectionLabel, Small, Wrap,
@@ -16,6 +17,7 @@ import { useLayout } from '../lib/responsive';
 import { useRouter } from '../nav/router';
 import { useStore } from '../state/store';
 import { colors } from '../theme/tokens';
+import { displayFont } from '../theme/typography';
 
 /**
  * The Food screen's intent chips. These are entry points into the whole food
@@ -77,7 +79,7 @@ export function Food() {
         </View>
       </View>
 
-      <SmartKitchenBlock text="Tell Nourish what you already have. It can find meals that use it first and show you what is missing." />
+      <SmartKitchenBlock text="Tell Girki what you already have. It can find meals that use it first and show you what is missing." />
 
       <Section>
         <SectionLabel>What are you in the mood for?</SectionLabel>
@@ -87,7 +89,7 @@ export function Food() {
           ))}
         </Wrap>
         <Small style={{ marginTop: 8 }}>
-          These search the whole Nourish food library, not the featured rail.
+          These search the whole Girki food library, not the featured rail.
         </Small>
       </Section>
 
@@ -106,10 +108,35 @@ export function Food() {
       </Section>
 
       <Section>
+        <SectionLabel>Written recipes</SectionLabel>
+        <H2>Cooked and written by hand</H2>
+        <Small>
+          {writtenRecipes.length} recipes written for an ordinary kitchen and an ordinary shop,
+          with real timings. Everything else in the atlas gets an honest home version.
+        </Small>
+        <View style={styles.grid}>
+          {writtenRecipes.map((recipe) => (
+            <Pressable
+              key={recipe.id}
+              accessibilityRole="button"
+              onPress={() => router.present({ type: 'girkiRecipe', id: recipe.id })}
+              style={styles.recipeCard}
+            >
+              <Text style={styles.recipeCountry}>{recipe.country.toUpperCase()}</Text>
+              <Text style={styles.recipeName}>{recipe.name}</Text>
+              <Small>
+                {recipe.minutes} min · {recipe.kcal} kcal
+              </Small>
+            </Pressable>
+          ))}
+        </View>
+      </Section>
+
+      <Section>
         <SectionLabel>From somewhere new</SectionLabel>
         <H2>Food worth discovering</H2>
         <Small>
-          The featured rail is the front door. Ask Nourish for any country, ingredient or meal type
+          The featured rail is the front door. Ask Girki for any country, ingredient or meal type
           and it searches the wider global food index.
         </Small>
         <Rail columns={layout.worldColumns}>
@@ -173,13 +200,13 @@ function DiscoveryResults({ query }: { query: string }) {
           {total
             ? `${total} ideas across ${places.length} food cultures, ranked by what fits you — your pantry, your time and what you have already explored.`
             : result.unrecognised.length
-            ? `I do not have anything for ${result.unrecognised.join(', ')} in the Nourish food library, and I would rather say so than show you something else.`
-            : 'I could not find a match I am confident in. Try another ingredient, a different meal type, or ask Nourish directly.'}
+            ? `I do not have anything for ${result.unrecognised.join(', ')} in the Girki food library, and I would rather say so than show you something else.`
+            : 'I could not find a match I am confident in. Try another ingredient, a different meal type, or ask Girki directly.'}
         </P>
 
         {result.relaxed.length ? (
           <Notice title="Widened the search:">
-            Nourish holds nothing that matches exactly, so it loosened{' '}
+            Girki holds nothing that matches exactly, so it loosened{' '}
             {result.relaxed.join(' and ')} to find these. Everything else you asked for still
             applies.
           </Notice>
@@ -189,12 +216,12 @@ function DiscoveryResults({ query }: { query: string }) {
           <Notice title="Allergy check:">
             {result.excludedForAllergies} records removed for {result.allergens.join(', ').toLowerCase()}.
             Dishes from the country atlas have no verified ingredient list, so they are shown as
-            discovery records — Nourish cannot tell you a dish is safe.
+            discovery records — Girki cannot tell you a dish is safe.
           </Notice>
         ) : null}
 
         <Button
-          title="Refine this with Ask Nourish"
+          title="Refine this with Ask Girki"
           variant="secondary"
           onPress={() => router.present({ type: 'ask', seed: query })}
         />
@@ -212,7 +239,7 @@ function DiscoveryResults({ query }: { query: string }) {
           <Section>
             <SectionLabel>More from the world</SectionLabel>
             <Small>
-              Dishes from the 195-country atlas. Nourish knows the dish and where it comes from, so
+              Dishes from the 195-country atlas. Girki knows the dish and where it comes from, so
               these are offered to explore rather than to cook.
             </Small>
             <View style={{ marginTop: 10 }}>
@@ -224,7 +251,7 @@ function DiscoveryResults({ query }: { query: string }) {
         ) : null}
 
         {!total ? (
-          <Button title="Ask Nourish instead" onPress={() => router.present({ type: 'ask', seed: query })} />
+          <Button title="Ask Girki instead" onPress={() => router.present({ type: 'ask', seed: query })} />
         ) : null}
       </View>
     </Page>
@@ -265,7 +292,14 @@ export function WorldAtlas() {
 
   function open(country: Country) {
     const locked = !store.plus && !freeFeatured.includes(country.name);
-    if (locked) router.present({ type: 'plus' });
+    if (locked) {
+      router.present({ type: 'plus' });
+      return;
+    }
+    store.markCountryExplored(country.name);
+    // A country opens onto its dishes, and every one of them is cookable.
+    const dishes = dishesByCountry.get(country.name) || [];
+    if (dishes.length === 1) router.present({ type: 'girkiDish', id: dishes[0].id });
     else router.present({ type: 'country', name: country.name });
   }
 
@@ -327,7 +361,7 @@ export function WorldAtlas() {
           <Small>
             {store.plus
               ? `${visible.length} countries shown.`
-              : 'Explore 12 featured countries free. Nourish+ unlocks the full world atlas, regional foodways and deeper stories.'}
+              : 'Explore 12 featured countries free. Girki+ unlocks the full world atlas, regional foodways and deeper stories.'}
           </Small>
           {!store.plus ? (
             <Button title="Unlock the world" onPress={() => router.present({ type: 'plus' })} />
@@ -339,7 +373,7 @@ export function WorldAtlas() {
         <Eyebrow>Image led discovery</Eyebrow>
         <H3>Every dish should make you curious.</H3>
         <P>
-          Free members get a curated taste of the world. Nourish+ opens the deeper image rich
+          Free members get a curated taste of the world. Girki+ opens the deeper image rich
           library, with more regional dishes, recipes and variations.
         </P>
       </View>
@@ -347,7 +381,7 @@ export function WorldAtlas() {
       <View style={styles.preview}>
         <Text style={styles.previewTitle}>Curiosity is free. Depth is Plus.</Text>
         <Small>
-          Free members can taste the discovery experience. Nourish+ opens the full atlas, deeper
+          Free members can taste the discovery experience. Girki+ opens the full atlas, deeper
           regional exploration and more variations.
         </Small>
       </View>
@@ -376,6 +410,16 @@ const styles = StyleSheet.create({
   },
   searchButtonText: { fontSize: 12, fontWeight: '700', color: '#fff' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 6 },
+  recipeCard: {
+    width: '48%',
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.line,
+    borderRadius: 18,
+    padding: 14,
+  },
+  recipeCountry: { fontSize: 9, fontWeight: '800', letterSpacing: 1.2, color: colors.muted },
+  recipeName: { fontFamily: displayFont, fontSize: 18, color: colors.ink, marginVertical: 4 },
   back: { fontSize: 12, fontWeight: '600', color: colors.sage, marginBottom: 10 },
   atlasSearch: {
     borderWidth: 1,

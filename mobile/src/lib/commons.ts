@@ -31,7 +31,7 @@ export async function findCommonsImage(
 
   try {
     const response = await fetch(url, {
-      headers: { 'User-Agent': 'Nourish/1.0 (prototype)' },
+      headers: { 'User-Agent': 'Girki/1.0 (prototype)' },
     });
     if (!response.ok) return null;
     const data = await response.json();

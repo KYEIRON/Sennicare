@@ -1,17 +1,17 @@
 /**
- * The Nourish food graph.
+ * The Girki food graph.
  *
  * Two kinds of record, and the difference matters everywhere in the product:
  *
- *   'recipe'    — a curated Nourish record with verified ingredients, method,
+ *   'recipe'    — a curated Girki record with verified ingredients, method,
  *                 nutrition and an image. It can be cooked.
- *   'discovery' — a dish from the 195-country atlas. Nourish knows the dish,
+ *   'discovery' — a dish from the 195-country atlas. Girki knows the dish,
  *                 its country and its region, and nothing else it can stand
  *                 behind. It can be explored, never presented as a recipe.
  *
  * Characteristics read from a dish *name* (meal slot, tags, likely allergens)
  * are hints. Every record carries `inference` so the UI and the engine can tell
- * the difference between "Nourish knows" and "Nourish suspects".
+ * the difference between "Girki knows" and "Girki suspects".
  */
 import {
   ALLERGENS, ALLERGEN_KEYWORDS, Allergen, BREAKFAST_KEYWORDS, FoodTag, INGREDIENT_VOCABULARY,
@@ -29,8 +29,8 @@ export type RecordKind = 'recipe' | 'discovery';
 export type CulturalStatus =
   | 'traditional-dish'        // named by the country atlas as part of that food culture
   | 'traditional-recipe'      // a traditional dish with a verified recipe
-  | 'nourish-adaptation'      // a practical home version of a traditional dish
-  | 'nourish-original'        // a Nourish recipe, not claiming a tradition
+  | 'girki-adaptation'      // a practical home version of a traditional dish
+  | 'girki-original'        // a Girki recipe, not claiming a tradition
   | 'unclassified';
 
 export type Difficulty = 'easy' | 'moderate' | 'involved';
@@ -171,7 +171,7 @@ const CURATED_CULTURE_REGION: Record<string, string> = {
 /**
  * A curated meal becomes a recipe record. Its cultural status depends on
  * whether it claims a tradition: a dish with a `culture` is a traditional dish
- * that Nourish has adapted for a home kitchen; the rest are Nourish originals.
+ * that Girki has adapted for a home kitchen; the rest are Girki originals.
  */
 function recipeRecord(meal: Meal, index: number): FoodRecord {
   const country = meal.culture && meal.culture !== 'Modern home kitchen' ? meal.culture : 'Modern home kitchen';
@@ -202,8 +202,8 @@ function recipeRecord(meal: Meal, index: number): FoodRecord {
     difficulty: difficultyFor(meal.duration, meal.steps.length),
     calories: meal.cal,
     steps: meal.steps,
-    culturalStatus: meal.culture ? 'nourish-adaptation' : 'nourish-original',
-    provenance: 'Nourish curated library',
+    culturalStatus: meal.culture ? 'girki-adaptation' : 'girki-original',
+    provenance: 'Girki curated library',
     image: {
       url: meal.img,
       source: /commons\.wikimedia/.test(meal.img) ? 'Wikimedia Commons' : 'Unsplash',
@@ -242,12 +242,12 @@ function discoveryRecord(dish: string, country: string, region: string, index: n
     allergens: allergenHintsFromName(dish),
     // A dish name is not an ingredient list: hints only, never a clearance.
     culturalStatus: 'traditional-dish',
-    provenance: 'Nourish country atlas',
+    provenance: 'Girki country atlas',
     inference: { slots: true, tags: true, ingredients: true, allergens: true },
   };
 }
 
-/** Every curated recipe Nourish can actually cook. */
+/** Every curated recipe Girki can actually cook. */
 export const recipeRecords: FoodRecord[] = meals.map(recipeRecord);
 
 /** Every dish the 195-country atlas knows about. */

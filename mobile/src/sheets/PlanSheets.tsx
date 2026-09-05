@@ -15,7 +15,7 @@ import { displayFont } from '../theme/typography';
  *
  * The whole 195-country atlas, searchable by country, region or dish, so a day
  * can hold a food discovery and not only a saved recipe. Placing one is a
- * Nourish+ capability: free members can see the world, Plus members can plan
+ * Girki+ capability: free members can see the world, Plus members can plan
  * from it.
  */
 function WorldPlanSearch({ day }: { day: Day }) {
@@ -66,9 +66,9 @@ function WorldPlanSearch({ day }: { day: Day }) {
 
       {!store.plus ? (
         <PlusGate
-          title="Plan from any country with Nourish+"
+          title="Plan from any country with Girki+"
           text="Free can preview the world. Plus lets you place discoveries from the full 195-country food index into any day."
-          buttonTitle="Explore Nourish+"
+          buttonTitle="Explore Girki+"
           onPress={() => router.present({ type: 'plus' })}
         />
       ) : null}
@@ -152,7 +152,7 @@ export function PlanDayPickerSheet({
         {store.plus
           ? 'Your full week is open.'
           : isGlobal
-          ? 'Planning food from the world atlas is a Nourish+ capability. Free planning covers three days of your saved recipes.'
+          ? 'Planning food from the world atlas is a Girki+ capability. Free planning covers three days of your saved recipes.'
           : 'Free planning includes three days. You can still view all seven days.'}
       </P>
       <View style={styles.grid}>
@@ -175,13 +175,13 @@ export function PlanDayPickerSheet({
       </View>
       {!store.plus && (used >= 3 || isGlobal) ? (
         <PlusGate
-          title={isGlobal ? 'Plan from any country with Nourish+' : 'Want the whole week?'}
+          title={isGlobal ? 'Plan from any country with Girki+' : 'Want the whole week?'}
           text={
             isGlobal
               ? 'Free can explore all 195 countries. Plus lets you place those discoveries into your week.'
-              : 'Upgrade to Nourish+ to plan all seven days and change meals freely.'
+              : 'Upgrade to Girki+ to plan all seven days and change meals freely.'
           }
-          buttonTitle="Explore Nourish+"
+          buttonTitle="Explore Girki+"
           onPress={() => router.present({ type: 'plus' })}
         />
       ) : null}
@@ -243,9 +243,9 @@ export function MealPickerSheet({ dayIndex }: { dayIndex: number }) {
           ))}
           {!store.plus ? (
             <PlusGate
-              title="More recipes with Nourish+"
+              title="More recipes with Girki+"
               text="Plus opens deeper recipe choices and global planning."
-              buttonTitle="Explore Nourish+"
+              buttonTitle="Explore Girki+"
               onPress={() => router.present({ type: 'plus' })}
             />
           ) : null}
@@ -268,7 +268,7 @@ export function SwapSheet({ day }: { day: Day }) {
     <Sheet>
       <Eyebrow>Change {day}</Eyebrow>
       <H2>Find a different meal.</H2>
-      <P>Search your recipes or explore the world. Nourish keeps this day in place.</P>
+      <P>Search your recipes or explore the world. Girki keeps this day in place.</P>
       {alternatives.map(({ index, meal }) => (
         <MealRow
           key={index}
@@ -283,15 +283,15 @@ export function SwapSheet({ day }: { day: Day }) {
       ))}
       <H3>Or explore the world</H3>
       <Small>
-        Search any country or dish. Nourish keeps this day in place and swaps what sits in it.
+        Search any country or dish. Girki keeps this day in place and swaps what sits in it.
       </Small>
       <WorldPlanSearch day={day} />
 
       {!store.plus ? (
         <PlusGate
-          title="More variations with Nourish+"
+          title="More variations with Girki+"
           text="Free gives you a smaller set of alternatives. Plus opens a deeper pool and global swaps."
-          buttonTitle="See Nourish+"
+          buttonTitle="See Girki+"
           onPress={() => router.present({ type: 'plus' })}
         />
       ) : null}
@@ -330,8 +330,8 @@ export function MoveSheet({ day }: { day: Day }) {
       {!store.plus && store.plannedDaysCount() >= 3 ? (
         <PlusGate
           title="Need another planning day?"
-          text="Nourish+ opens all seven days."
-          buttonTitle="Explore Nourish+"
+          text="Girki+ opens all seven days."
+          buttonTitle="Explore Girki+"
           onPress={() => router.present({ type: 'plus' })}
         />
       ) : null}
@@ -371,7 +371,7 @@ export function PlanPreferencesSheet() {
     <Sheet>
       <Eyebrow>Build your week</Eyebrow>
       <H2>Make eating easier.</H2>
-      <P>Tell Nourish about your real life.</P>
+      <P>Tell Girki about your real life.</P>
       <H3>Cooking time</H3>
       {group(['10–15 minutes', '20–30 minutes', 'I enjoy cooking', 'Batch cooking'], time, setTime)}
       <H3>Planning for</H3>
