@@ -1,5 +1,5 @@
 /**
- * Parity check: runs the V32.5 prototype's own JavaScript next to the app's
+ * Parity check: runs the V32.6 prototype's own JavaScript next to the app's
  * ported logic and asserts they agree.
  *
  *   npm run parity
@@ -10,7 +10,7 @@
  * rotation).
  *
  * It deliberately does NOT lock the recommendation ranking to the prototype's.
- * V32.5 ranks with a flat score, one dish per country and a random tie-break;
+ * V32.5/6 rank with a flat score, one dish per country and a random tie-break;
  * the app's engine ranks over the whole food graph with hard constraints,
  * pantry and shopping weighting, novelty and a diversity pass. That divergence
  * is the point of the global intelligence work, and it is covered by
@@ -25,7 +25,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
-const prototypePath = join(root, '..', 'docs', 'prototypes', 'Nourish_V32.5_Global_Intelligence.html');
+const prototypePath = join(root, '..', 'docs', 'prototypes', 'Nourish_V32.6_Global_Planning_Intelligence.html');
 
 const html = readFileSync(prototypePath, 'utf8');
 const js = html.slice(html.indexOf('<script>') + 8, html.lastIndexOf('</script>'));
@@ -124,7 +124,7 @@ try {
     console.error(`\n${failures.length} parity check(s) failed.`);
     process.exit(1);
   }
-  console.log('\nAll parity checks passed — the app matches V32.5.');
+  console.log('\nAll parity checks passed — the app matches V32.6.');
 } finally {
   rmSync(build, { recursive: true, force: true });
 }

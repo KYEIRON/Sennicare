@@ -19,7 +19,7 @@ export type Sheet =
   | { type: 'plus' }
   | { type: 'planPreferences' }
   | { type: 'profile' }
-  | { type: 'planDayPicker'; mealIndex: number }
+  | { type: 'planDayPicker'; mealIndex?: number; globalId?: string }
   | { type: 'mealPickerForDay'; dayIndex: number }
   | { type: 'swap'; day: string }
   | { type: 'move'; day: string }

@@ -1,9 +1,10 @@
 # Nourish — iPhone, iPad and Android
 
-React Native + Expo. One codebase for all three targets, ported from
-`Nourish_Global_Experience_V28.html`.
+React Native + Expo. One codebase for all three targets.
 
-**V28 is the visual and interaction source of truth.** Colours, typography,
+**The V28 → V30 → V32.x → V32.4 → V32.5 → V32.6 lineage is the visual and
+interaction source of truth.** (The V31 standalone redesign is discarded and is
+not a reference.) Colours, typography,
 spacing, cards, navigation, copy, imagery and every rule (free vs Plus, the
 three planning days, the daily rotation) come from the prototype. Nothing here
 is a redesign.
@@ -20,19 +21,40 @@ npm start                # then press i (iOS), a (Android), or scan the QR code
 Checks:
 
 ```bash
+npm test            # everything below, in order
 npm run typecheck   # tsc --noEmit
-npm run parity      # runs V28's own JS beside the port and asserts they agree
+npm run parity      # runs V32.6's own JS beside the port and asserts they agree
+npm run test:engine # the brief's human scenarios over the discovery engine
+npm run test:plan   # V32.6 planning rules: world food in the week, Plus gating
 ```
 
 `npm run parity` is the guard rail against drift. It loads the prototype's
-JavaScript straight out of the HTML file and compares, for real:
+JavaScript straight out of the HTML file and compares, for real: `smartMatches()`,
+the daily rotation across all 30 offsets, `ingredientBase()` over every
+ingredient, the meal image URLs, the 195-country atlas and the featured set.
 
-- `smartMatches()` — pantry scoring, ordering and missing-ingredient counts
-- `filterFood(term)` — across 16 chips, matching index for index
-- the daily rotation — every slot, every one of the 30 possible daily offsets,
-  free and Plus
-- `ingredientBase()` — across every ingredient string in the library
-- meal image URLs and the 195-country atlas — identical, in order
+It deliberately does not lock the *ranking* to the prototype's — see
+"Global intelligence" below — which `npm run test:engine` covers instead.
+
+## Global intelligence
+
+Recommendations run over a **615-record food graph**, not the featured rail:
+
+- `recipe` records (30) — verified ingredients, method, nutrition, image.
+  *Cook recipe.*
+- `discovery` records (585) — the 195-country atlas: dish, country, region, and
+  nothing Nourish cannot stand behind. *Explore dish.*
+
+`src/lib/discovery.ts` parses a request (subject, meal slot, place, time,
+difficulty, novelty, pantry, exclusions, counts), applies anything named as a
+hard constraint, ranks on relevance + pantry fit + shopping + time + novelty +
+history, then diversifies so no food culture appears more than twice. Every
+recommendation carries "Why this?" and a have/need split. Allergens are removed
+when known or suspected, and nothing is ever marked safe.
+
+`src/lib/planning.ts` holds the V32.6 planning rules — a day can hold a recipe
+or a world discovery, planning from the atlas is a Plus capability, moving never
+overwrites — and both the store and the tests use it, so they cannot drift.
 
 ## Layout
 

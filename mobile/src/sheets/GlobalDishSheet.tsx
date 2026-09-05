@@ -65,6 +65,12 @@ export function GlobalDishSheet({ id }: { id: string }) {
         </View>
       </Card>
 
+      <Notice title="Recipe status">
+        This dish can be added to your plan as a discovery. A production recipe needs verified
+        ingredients, method, nutrition, image rights and cultural review before Nourish will present
+        cooking instructions for it.
+      </Notice>
+
       {record.allergens.length ? (
         <Notice title="Possible allergens:">
           the name of this dish suggests {record.allergens.join(', ').toLowerCase()}. Nourish has no
@@ -76,6 +82,24 @@ export function GlobalDishSheet({ id }: { id: string }) {
           contains. Check the recipe you cook from.
         </Notice>
       )}
+
+      <Card>
+        <SectionLabel>Plan it</SectionLabel>
+        <H3>Put this discovery in your week.</H3>
+        <P>
+          {store.plus
+            ? 'Add it to any day. You can keep exploring the world and change your mind later.'
+            : 'Planning food from the world atlas is a Nourish+ capability. Exploring it is always free.'}
+        </P>
+        <Button
+          title="Add to a day"
+          onPress={() =>
+            store.plus
+              ? router.present({ type: 'planDayPicker', globalId: record.id })
+              : router.present({ type: 'plus' })
+          }
+        />
+      </Card>
 
       <View style={{ flexDirection: 'row', gap: 9 }}>
         <Button

@@ -2,6 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { DAYS, Day, meals } from '../lib/data';
 import { UserContext } from '../lib/discovery';
+import { FoodRecord, recordsById } from '../lib/foodGraph';
+import {
+  Week, canMove, canPlanGlobal, canPlanMeal, dayIsLocked as isDayLocked,
+  plannedCalories as calories, plannedDaysCount as daysCount, plannedMealIndex as mealIndexFor,
+  plannedRecord as recordFor, planOccupied as occupied, withGlobal, withMeal, withMove, withoutDay,
+} from '../lib/planning';
 import { ageBand, missingIngredients } from '../lib/logic';
 
 export type PlusPlan = 'monthly' | 'yearly';
@@ -24,7 +30,7 @@ export type Account = {
   createdAt: string;
 };
 
-export type Week = Partial<Record<Day, { meal: number; addedAt: string }>>;
+export type { PlannedEntry, Week } from '../lib/planning';
 
 const emptyProfile: Profile = {
   priorities: [],
@@ -104,12 +110,17 @@ type Store = {
   demoScan: (shoppingList: boolean) => void;
 
   plannedMealIndex: (day: Day) => number | null;
+  /** What is planned for a day, recipe or discovery, as one graph record. */
+  plannedRecord: (day: Day) => FoodRecord | null;
+  planOccupied: (day: Day) => boolean;
   plannedDaysCount: () => number;
   plannedCalories: () => number;
   dayIsLocked: (day: Day) => boolean;
   planMeal: (mealIndex: number, day: Day) => boolean;
+  /** Plan a dish from the country atlas. Nourish+ only, as in V32.6. */
+  planGlobalDish: (recordId: string, day: Day) => boolean;
   removePlanMeal: (day: Day) => void;
-  movePlanMeal: (from: Day, to: Day) => void;
+  movePlanMeal: (from: Day, to: Day) => boolean;
 };
 
 const StoreContext = createContext<Store | null>(null);
@@ -505,76 +516,71 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     [toast]
   );
 
-  const plannedMealIndex = useCallback(
-    (day: Day) => {
-      const entry = week[day];
-      if (!entry) return null;
-      return Number.isInteger(entry.meal) && meals[entry.meal] ? entry.meal : null;
-    },
-    [week]
-  );
+  const plannedMealIndex = useCallback((day: Day) => mealIndexFor(week, day), [week]);
 
-  const plannedDaysCount = useCallback(
-    () => DAYS.filter((d) => plannedMealIndex(d) !== null).length,
-    [plannedMealIndex]
-  );
+  /** The planned record for a day, whichever kind it is. */
+  const plannedRecord = useCallback((day: Day): FoodRecord | null => recordFor(week, day), [week]);
 
-  const plannedCalories = useCallback(
-    () =>
-      DAYS.reduce((sum, day) => {
-        const index = plannedMealIndex(day);
-        return index === null ? sum : sum + (meals[index]?.cal || 0);
-      }, 0),
-    [plannedMealIndex]
-  );
+  const planOccupied = useCallback((day: Day) => occupied(week, day), [week]);
 
-  const dayIsLocked = useCallback(
-    (day: Day) => !plus && plannedMealIndex(day) === null && plannedDaysCount() >= 3,
-    [plus, plannedMealIndex, plannedDaysCount]
-  );
+  const plannedDaysCount = useCallback(() => daysCount(week), [week]);
+
+  const plannedCalories = useCallback(() => calories(week), [week]);
+
+  const dayIsLocked = useCallback((day: Day) => isDayLocked(week, day, plus), [week, plus]);
 
   /** `replacePlanMeal(day, i)` — false when Nourish+ is required. */
   const planMeal = useCallback(
     (mealIndex: number, day: Day) => {
-      const occupied = plannedMealIndex(day) !== null;
-      if (!plus && !occupied && plannedDaysCount() >= 3) return false;
-      setWeek((current) => {
-        const next = { ...current, [day]: { meal: mealIndex, addedAt: new Date().toISOString() } };
-        writeJson(KEYS.week, next);
-        return next;
-      });
+      if (!canPlanMeal(week, day, plus)) return false;
+      const next = withMeal(week, day, mealIndex);
+      setWeek(next);
+      writeJson(KEYS.week, next);
       toast(`${meals[mealIndex].name} is now planned for ${day}.`);
       return true;
     },
-    [plannedDaysCount, plannedMealIndex, plus, toast]
+    [week, plus, toast]
+  );
+
+  /**
+   * Planning a dish from the atlas is a Nourish+ capability: free members can
+   * see the whole world, Plus members can place it in a day.
+   */
+  const planGlobalDish = useCallback(
+    (recordId: string, day: Day) => {
+      if (!canPlanGlobal(plus, recordId)) return false;
+      const record = recordsById.get(recordId);
+      if (!record) return false;
+      const next = withGlobal(week, day, recordId);
+      setWeek(next);
+      writeJson(KEYS.week, next);
+      toast(`${record.title} added to ${day}.`);
+      return true;
+    },
+    [week, plus, toast]
   );
 
   const removePlanMeal = useCallback(
     (day: Day) => {
-      setWeek((current) => {
-        const next = { ...current };
-        delete next[day];
-        writeJson(KEYS.week, next);
-        return next;
-      });
+      const next = withoutDay(week, day);
+      setWeek(next);
+      writeJson(KEYS.week, next);
       toast(`${day} is open again.`);
     },
-    [toast]
+    [week, toast]
   );
 
+  /** Moving onto an occupied day would silently overwrite it, so it is refused. */
   const movePlanMeal = useCallback(
     (from: Day, to: Day) => {
-      setWeek((current) => {
-        const entry = current[from];
-        if (!entry) return current;
-        const next = { ...current, [to]: entry };
-        delete next[from];
-        writeJson(KEYS.week, next);
-        return next;
-      });
+      if (!canMove(week, from, to)) return false;
+      const next = withMove(week, from, to);
+      setWeek(next);
+      writeJson(KEYS.week, next);
       toast(`Meal moved to ${to}.`);
+      return true;
     },
-    [toast]
+    [week, toast]
   );
 
   const discoveryContext = useCallback(
@@ -634,10 +640,13 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       removeShoppingItem,
       demoScan,
       plannedMealIndex,
+      plannedRecord,
+      planOccupied,
       plannedDaysCount,
       plannedCalories,
       dayIsLocked,
       planMeal,
+      planGlobalDish,
       removePlanMeal,
       movePlanMeal,
     }),
@@ -648,7 +657,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       markExplored, markMealComplete, setPlus, setPlusPlan, markCountryExplored, toggleSavedMeal,
       rejectMeal, discoveryContext, addPantryItem, removePantryItem, addShoppingForMeal,
       addShoppingText, toggleShoppingItem, removeShoppingItem, demoScan, plannedMealIndex,
-      plannedDaysCount, plannedCalories, dayIsLocked, planMeal, removePlanMeal, movePlanMeal,
+      plannedRecord, planOccupied, plannedDaysCount, plannedCalories, dayIsLocked, planMeal,
+      planGlobalDish, removePlanMeal, movePlanMeal,
     ]
   );
 

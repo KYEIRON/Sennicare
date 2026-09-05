@@ -55,7 +55,7 @@ export function SheetHost() {
     case 'profile':
       return <ProfileSheet />;
     case 'planDayPicker':
-      return <PlanDayPickerSheet mealIndex={sheet.mealIndex} />;
+      return <PlanDayPickerSheet mealIndex={sheet.mealIndex} globalId={sheet.globalId} />;
     case 'mealPickerForDay':
       return <MealPickerSheet dayIndex={sheet.dayIndex} />;
     case 'swap':

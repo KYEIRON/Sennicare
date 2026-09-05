@@ -108,17 +108,17 @@ export function RecommendationCard({
         <Pressable accessibilityRole="button" onPress={open} style={styles.action}>
           <Text style={styles.actionText}>{isRecipe ? 'Cook recipe' : 'Explore dish'}</Text>
         </Pressable>
-        {isRecipe && record.mealIndex !== undefined ? (
-          <Pressable
-            accessibilityRole="button"
-            onPress={() =>
-              router.present({ type: 'planDayPicker', mealIndex: record.mealIndex as number })
-            }
-            style={styles.action}
-          >
-            <Text style={styles.actionText}>Add to plan</Text>
-          </Pressable>
-        ) : null}
+        <Pressable
+          accessibilityRole="button"
+          onPress={() =>
+            isRecipe && record.mealIndex !== undefined
+              ? router.present({ type: 'planDayPicker', mealIndex: record.mealIndex })
+              : router.present({ type: 'planDayPicker', globalId: record.id })
+          }
+          style={styles.action}
+        >
+          <Text style={styles.actionText}>Add to plan</Text>
+        </Pressable>
         <Pressable
           accessibilityRole="button"
           onPress={() => setShowWhy((v) => !v)}

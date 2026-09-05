@@ -5,8 +5,8 @@ Covers: what exists today, what is production-ready, what is prototype-only,
 and what has to change for global food intelligence.
 
 Codebase audited: `mobile/` (React Native + Expo, ships to iPhone, iPad,
-Android), commit `61db76c`. Reference prototypes: V28 (`ios/prototype/`) and
-V32.5 (the new source of truth). `ios/` holds a SwiftUI reference build.
+Android), commit `61db76c`. Reference prototypes are in `docs/prototypes/`;
+V32.6 is the current source of truth. `ios/` holds a SwiftUI reference build.
 
 ---
 
@@ -128,6 +128,25 @@ pantry matching and cannot support "which recipes use salmon" across a library.
 
 Each phase ended with tests run and a commit. `npm test` runs all three suites:
 typecheck, V32.5 parity, and 51 engine and journey scenarios.
+
+## 8. V32.6 — global planning intelligence
+
+V32.6 is a Plan-layer increment: identical data, identical layout, 21 changed
+lines plus a planning patch. What it adds, and what the app now does:
+
+| V32.6 | App |
+| --- | --- |
+| A week entry can be a global dish (`{globalId}`) as well as a recipe | `src/lib/planning.ts` — one rule set, shared by the store and the tests |
+| Day picker gains "My recipes" / "World food" tabs with atlas search | `MealPickerSheet`, `WorldPlanSearch` |
+| Swap can search the world | `SwapSheet` |
+| Move only offers unoccupied days | `canMove()` refuses an overwrite |
+| Planning a world dish requires Plus; exploring stays free | `canPlanGlobal()`, gated in every entry point |
+| Plan summary flags that discoveries have no verified nutrition | `weekHasDiscoveries()` |
+| Free 5 / Plus 14 recipes, free 8 / Plus 18 world results | Same numbers |
+
+Planning entry points beyond the prototype's: a discovery card in search results
+or in Ask Nourish can go straight to a day picker, and the dish sheet can plan
+the dish it is showing.
 
 ### What testing changed
 

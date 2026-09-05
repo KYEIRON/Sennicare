@@ -18,6 +18,12 @@ export function Plan() {
   const layout = useLayout();
   const [view, setView] = useState<PlanView>('week');
 
+  // A day holding an atlas dish has no verified nutrition, and the summary says so.
+  const hasDiscoveries = DAYS.some((day) => {
+    const record = store.plannedRecord(day);
+    return record?.kind === 'discovery';
+  });
+
   const dayWidth = layout.weekColumns > 1 ? (`${100 / layout.weekColumns - 1}%` as const) : '100%';
 
   return (
@@ -25,10 +31,7 @@ export function Plan() {
       <View style={{ marginTop: 12 }}>
         <Eyebrow>Plan</Eyebrow>
         <H1>Your week, made easier</H1>
-        <P>
-          Plan ahead, change your mind and keep the whole week visible. Nourish should fit the way
-          you actually cook.
-        </P>
+        <P>Plan around real life, then change your mind without starting again.</P>
       </View>
 
       <View style={styles.views}>
@@ -48,10 +51,15 @@ export function Plan() {
       </View>
 
       <View style={styles.summary}>
-        <Stat value={store.plannedCalories().toLocaleString()} label="planned kcal" />
+        <Stat
+          value={store.plannedCalories().toLocaleString()}
+          label={
+            hasDiscoveries ? 'planned kcal · recipe data pending for discoveries' : 'planned kcal'
+          }
+        />
         <Stat value={`${store.plannedDaysCount()}/7`} label="days planned" />
         <Stat
-          value={store.plus ? 'Full week' : '3 days'}
+          value={store.plus ? 'Full world planning' : '3 days'}
           label={store.plus ? 'Nourish+ access' : 'free planning'}
         />
       </View>
@@ -79,38 +87,46 @@ export function Plan() {
 
       {!store.plus ? (
         <PlusGate
-          title="Three planning days free. Seven with Nourish+."
-          text="Everyone can explore the whole week. Plus unlocks all seven planning days, deeper meal variations and flexible swaps and changes."
+          title="Plan across the whole week and the whole world."
+          text="Plus unlocks all seven days and lets you choose food discoveries from any country in the Nourish atlas."
           buttonTitle="Explore Nourish+"
           onPress={() => router.present({ type: 'plus' })}
         />
-      ) : null}
+      ) : (
+        <View style={styles.insight}>
+          <Text style={styles.insightTitle}>Your plan is a living list, not a rulebook.</Text>
+          <P size={12}>
+            Choose a country, choose a meal, use your Pantry, add missing ingredients to Shopping,
+            cook when a verified recipe is available, and change your mind later.
+          </P>
+        </View>
+      )}
 
       {view === 'calendar' ? (
         <View style={styles.calendar}>
           {DAYS.map((day) => (
             <View key={day} style={styles.calCell}>
               <Text style={styles.calHead}>{day.slice(0, 3)}</Text>
-              <Text style={styles.calMeal}>
-                {(() => {
-                  const index = store.plannedMealIndex(day);
-                  return index === null ? 'Free' : meals[index].name;
-                })()}
-              </Text>
+              <Text style={styles.calMeal}>{store.plannedRecord(day)?.title || 'Free'}</Text>
             </View>
           ))}
         </View>
       ) : view === 'list' ? (
         <View style={{ marginTop: 14, gap: 10 }}>
           {DAYS.map((day, dayIndex) => {
+            const record = store.plannedRecord(day);
             const index = store.plannedMealIndex(day);
             return (
               <View key={day} style={styles.listRow}>
                 <View style={{ flex: 1 }}>
                   <Text style={styles.dayName}>{day}</Text>
-                  <Small>{index === null ? 'Open' : meals[index].name}</Small>
+                  <Small>
+                    {record
+                      ? `${record.title}${record.kind === 'discovery' ? ` · ${record.country} · world food` : ''}`
+                      : 'Open'}
+                  </Small>
                 </View>
-                {index === null ? (
+                {!record ? (
                   store.dayIsLocked(day) ? (
                     <Small>Nourish+</Small>
                   ) : (
@@ -121,8 +137,12 @@ export function Plan() {
                   )
                 ) : (
                   <LinkButton
-                    title="Open meal"
-                    onPress={() => router.present({ type: 'meal', index })}
+                    title={index !== null ? 'Open meal' : 'Open dish'}
+                    onPress={() =>
+                      index !== null
+                        ? router.present({ type: 'meal', index })
+                        : router.present({ type: 'globalDish', id: record.id })
+                    }
                   />
                 )}
               </View>
@@ -140,8 +160,8 @@ export function Plan() {
       )}
 
       <SourceNote>
-        Prototype nutrition and planning figures are illustrative. Production values require
-        verified food data and appropriate review.
+        Nutrition and recipe facts are shown only where Nourish holds structured content. Discovery
+        records stay clearly labelled until they are fully verified.
       </SourceNote>
     </Page>
   );
@@ -150,30 +170,43 @@ export function Plan() {
 function WeekDay({ day, dayIndex }: { day: Day; dayIndex: number }) {
   const store = useStore();
   const router = useRouter();
+  const record = store.plannedRecord(day);
   const index = store.plannedMealIndex(day);
+  const meal = index !== null ? meals[index] : undefined;
   const locked = store.dayIsLocked(day);
+
+  function open() {
+    if (index !== null) router.present({ type: 'meal', index });
+    else if (record) router.present({ type: 'globalDish', id: record.id });
+  }
 
   return (
     <View style={[styles.weekDay, locked && { opacity: 0.7 }]}>
       <View style={styles.weekHead}>
         <Text style={styles.dayName}>{day}</Text>
-        <Small>{index === null ? 'Open' : `${meals[index].cal} kcal`}</Small>
+        <Small>{meal ? `${meal.cal} kcal` : record ? 'World food' : 'Open'}</Small>
       </View>
 
-      {index !== null ? (
+      {record ? (
         <>
-          <Pressable
-            accessibilityRole="button"
-            onPress={() => router.present({ type: 'meal', index })}
-            style={styles.weekMeal}
-          >
-            <View style={{ width: 72 }}>
-              <Photo uri={meals[index].img} height={56} radius={13} />
-            </View>
+          <Pressable accessibilityRole="button" onPress={open} style={styles.weekMeal}>
+            {meal ? (
+              <View style={{ width: 72 }}>
+                <Photo uri={meal.img} height={56} radius={13} />
+              </View>
+            ) : (
+              <View style={styles.worldMark}>
+                <Text style={styles.worldMarkText}>
+                  {record.country.slice(0, 2).toUpperCase()}
+                </Text>
+              </View>
+            )}
             <View style={{ flex: 1 }}>
-              <Text style={styles.weekMealName}>{meals[index].name}</Text>
+              <Text style={styles.weekMealName}>{record.title}</Text>
               <Small>
-                {meals[index].slot} · {meals[index].duration} min
+                {meal
+                  ? `${meal.slot} · ${meal.duration} min`
+                  : `${record.country} · discovery, recipe not yet verified`}
               </Small>
             </View>
           </Pressable>
@@ -202,7 +235,7 @@ function WeekDay({ day, dayIndex }: { day: Day; dayIndex: number }) {
         <Small style={{ paddingVertical: 8 }}>Unlock this day with Nourish+.</Small>
       ) : (
         <Button
-          title="Add a meal"
+          title={store.plus ? 'Choose a meal or explore the world' : 'Add a meal'}
           variant="secondary"
           onPress={() => router.present({ type: 'mealPickerForDay', dayIndex })}
         />
@@ -263,6 +296,15 @@ const styles = StyleSheet.create({
   dayName: { fontSize: 14, fontWeight: '700', color: colors.ink },
   weekMeal: { flexDirection: 'row', gap: 11, alignItems: 'center', marginTop: 10 },
   weekMealName: { fontSize: 13, fontWeight: '700', color: colors.ink },
+  worldMark: {
+    width: 72,
+    height: 56,
+    borderRadius: 13,
+    backgroundColor: colors.sage2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  worldMarkText: { fontFamily: displayFont, fontSize: 18, color: colors.flagInk },
   weekActions: { flexDirection: 'row', gap: 8 },
   weekAction: { flex: 1, paddingHorizontal: 8 },
   calendar: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 14 },
