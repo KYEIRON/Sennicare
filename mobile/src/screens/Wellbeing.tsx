@@ -112,7 +112,15 @@ export function Wellbeing() {
           action="Compare"
           sheet={{ type: 'aiDecide' }}
         />
-        <Button title="Explore AI beta" onPress={() => router.present({ type: 'aiBeta' })} />
+        <Button
+          title="Ask Nourish"
+          onPress={() => router.present({ type: 'ask' })}
+        />
+        <Button
+          title="How AI beta works"
+          variant="secondary"
+          onPress={() => router.present({ type: 'aiBeta' })}
+        />
       </View>
 
       <SourceNote>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Switch, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 import { Sheet } from '../components/shell';
 import { Button, Card, ChoiceTile, Eyebrow, H2, H3, LegalCard, Notice, P, Small } from '../components/ui';
 import { DateOfBirth } from '../screens/Onboarding';
@@ -86,62 +86,177 @@ export function ProfileSheet() {
   );
 }
 
-/** `openSheet('plus')` */
+/** `openSheet('plus')` — the subscription experience. */
 export function PlusSheet() {
   const store = useStore();
   const router = useRouter();
+  const active = store.plus;
+  const plan = store.plusPlan;
 
-  const features = [
-    ['Smart pantry', 'Tell Nourish what you have and find meals that use it first.'],
-    ['Camera & receipt scans', 'Turn a cupboard photo, fridge photo or shopping receipt into a pantry or shopping list.'],
-    ['Ingredient rescue', '“My spinach expires tomorrow. What can I make?”'],
-    ['Smart shopping', 'Combine your weekly meals, pantry and missing ingredients into one practical list.'],
-    ['World food atlas', 'Explore 195 countries, deeper regional foodways and a growing editorial library.'],
-    ['More ways to choose', 'See more meal variations at breakfast, lunch and dinner, with richer swaps and personalised alternatives.'],
-    ['Budget & waste reduction', 'Plan around what you own and buy only what is needed.'],
+  const benefits: [string, string][] = [
+    ['Global food intelligence', 'Ask for fish, breakfast, salads or a cuisine and search the whole library, not the featured screen.'],
+    ['Personalised planning', 'Build a full week around your Pantry, preferences, time and variety.'],
+    ['Smart Pantry & shopping', 'Use what you already have and see what is genuinely missing.'],
+    ['Deeper discovery', 'Explore all 195 countries, regional foodways and verified cultural context.'],
+    ['More flexibility', 'More swaps, alternatives and ways to reshape a plan without starting again.'],
+    ['Ask Nourish', 'Ask, refine and compare. Nourish uses your context rather than acting like a generic chatbot.'],
   ];
 
   return (
     <Sheet>
       <Eyebrow>Nourish+</Eyebrow>
-      <H2>Your world becomes wider. Your kitchen becomes smarter.</H2>
-      <P>
-        Nourish+ is designed to unlock depth and save real mental effort, not to make the free
-        experience feel broken.
-      </P>
+      <View style={styles.plusHero}>
+        <View style={styles.plusMark}>
+          <Text style={styles.plusMarkText}>NOURISH+</Text>
+        </View>
+        <H2>{active ? 'Your wider Nourish experience.' : 'More discovery. Less mental load.'}</H2>
+        <P>
+          {active
+            ? 'Your Plus access is active in this prototype.'
+            : 'Unlock the parts of Nourish designed to make the everyday food decision easier.'}
+        </P>
+      </View>
+
+      <View style={styles.planToggle}>
+        <PlanOption
+          title="Monthly"
+          price="£4.99"
+          selected={plan === 'monthly'}
+          onPress={() => store.setPlusPlan('monthly')}
+        />
+        <PlanOption
+          title="Yearly"
+          price="£39.99 · save"
+          selected={plan === 'yearly'}
+          onPress={() => store.setPlusPlan('yearly')}
+        />
+      </View>
 
       <Card>
-        {features.map(([title, text]) => (
-          <View key={title} style={{ marginBottom: 6 }}>
-            <H3>{title}</H3>
-            <P size={12}>{text}</P>
+        {benefits.map(([title, text]) => (
+          <View key={title} style={styles.benefit}>
+            <Text style={styles.tick}>✓</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.benefitTitle}>{title}</Text>
+              <P size={12}>{text}</P>
+            </View>
           </View>
         ))}
       </Card>
 
       <Notice title="Free access:">
-        explore the world of food, keep a pantry and shopping list, and plan up to three days.
-        Nourish+: unlock all 195 countries, deeper regional foodways, more meal variations, all
-        seven planning days, flexible swaps, intelligent scans, pantry aware planning and deeper
-        food intelligence.
+        explore the world of food, keep a pantry and shopping list, ask Nourish, and plan up to
+        three days. Nourish+ opens all 195 countries, deeper regional foodways, more meal
+        variations, all seven planning days, flexible swaps and pantry aware planning.
       </Notice>
 
+      {active ? (
+        <>
+          <Notice title="Plus is active">
+            Your prototype subscription is set to {plan === 'yearly' ? 'yearly' : 'monthly'}{' '}
+            billing. Real App Store and Google Play billing replaces this demo state in production,
+            and entitlement is verified server-side rather than trusted from the device.
+          </Notice>
+          <Button title="Manage subscription" onPress={() => router.present({ type: 'plusManage' })} />
+        </>
+      ) : (
+        <>
+          <Button
+            title="Start 14 day free trial"
+            onPress={() => {
+              store.setPlus(true);
+              store.toast('Your 14 day Nourish+ trial has started in this prototype.');
+            }}
+          />
+          <Small style={{ marginTop: 8 }}>
+            14 day trial, then {plan === 'yearly' ? '£39.99/year' : '£4.99/month'}. Payment and
+            cancellation are handled by the platform in production. This prototype takes no payment.
+          </Small>
+        </>
+      )}
+
+      <Button title="Not now" variant="secondary" onPress={router.close} />
+    </Sheet>
+  );
+}
+
+function PlanOption({
+  title,
+  price,
+  selected,
+  onPress,
+}: {
+  title: string;
+  price: string;
+  selected: boolean;
+  onPress: () => void;
+}) {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityState={{ selected }}
+      onPress={onPress}
+      style={[styles.planOption, selected && styles.planOptionActive]}
+    >
+      <Text style={[styles.planTitle, selected && { color: '#fff' }]}>{title}</Text>
+      <Text style={[styles.planPrice, selected && { color: 'rgba(255,255,255,0.8)' }]}>{price}</Text>
+    </Pressable>
+  );
+}
+
+/** `openSheet('plusManage')` */
+export function PlusManageSheet() {
+  const store = useStore();
+  const router = useRouter();
+
+  return (
+    <Sheet>
+      <Eyebrow>Nourish+ · Manage</Eyebrow>
+      <H2>Your subscription</H2>
+      <Card>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.benefitTitle}>Nourish+</Text>
+            <Small>
+              {store.plusPlan === 'yearly' ? '£39.99/year' : '£4.99/month'} · prototype active
+            </Small>
+          </View>
+          <View style={styles.activeTag}>
+            <Text style={styles.activeTagText}>ACTIVE</Text>
+          </View>
+        </View>
+      </Card>
+
+      <View style={styles.planToggle}>
+        <PlanOption
+          title="Monthly"
+          price="£4.99"
+          selected={store.plusPlan === 'monthly'}
+          onPress={() => store.setPlusPlan('monthly')}
+        />
+        <PlanOption
+          title="Yearly"
+          price="£39.99"
+          selected={store.plusPlan === 'yearly'}
+          onPress={() => store.setPlusPlan('yearly')}
+        />
+      </View>
+
       <Button
-        title="Start 14 day trial"
+        title="Manage billing"
         onPress={() => {
-          store.setPlus(true);
-          router.closeAndShow('plan');
+          router.close();
+          store.toast('In production this opens the App Store or Google Play settings.');
         }}
       />
       <Button
-        title="Keep free version"
+        title="Turn off Plus demo"
         variant="secondary"
         onPress={() => {
           store.setPlus(false);
-          router.closeAndShow('plan');
+          router.close();
         }}
       />
-      <Small style={{ marginTop: 10 }}>$4.99/month or $39.99/year after trial.</Small>
     </Sheet>
   );
 }
@@ -184,6 +299,34 @@ export function LegalSheet() {
 }
 
 const styles = StyleSheet.create({
+  plusHero: { marginBottom: 12 },
+  plusMark: {
+    alignSelf: 'flex-start',
+    backgroundColor: colors.ink,
+    borderRadius: 999,
+    paddingVertical: 5,
+    paddingHorizontal: 9,
+    marginBottom: 8,
+  },
+  plusMarkText: { fontSize: 9, fontWeight: '800', letterSpacing: 0.8, color: '#fff' },
+  planToggle: { flexDirection: 'row', gap: 9, marginVertical: 10 },
+  planOption: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: colors.line,
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    paddingVertical: 14,
+    alignItems: 'center',
+  },
+  planOptionActive: { backgroundColor: colors.ink, borderColor: colors.ink },
+  planTitle: { fontSize: 14, fontWeight: '700', color: colors.ink },
+  planPrice: { fontSize: 11, color: colors.muted, marginTop: 4 },
+  benefit: { flexDirection: 'row', gap: 10, marginBottom: 8 },
+  tick: { fontSize: 13, fontWeight: '800', color: colors.sage },
+  benefitTitle: { fontSize: 14, fontWeight: '700', color: colors.ink },
+  activeTag: { backgroundColor: colors.sage2, borderRadius: 999, paddingVertical: 5, paddingHorizontal: 9 },
+  activeTagText: { fontSize: 9, fontWeight: '800', color: colors.chipInk },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 9, marginTop: 8 },
   birthdayBox: {
     flexDirection: 'row',

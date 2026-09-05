@@ -13,7 +13,14 @@ import { useStore } from '../state/store';
 import { colors, shadow } from '../theme/tokens';
 import { displayFont } from '../theme/typography';
 
-const FITS = ['Spicy', 'Vegan friendly', 'Keto friendly', 'Kidney aware', 'High fibre', 'Under 30 minutes'];
+const FITS: { label: string; query: string }[] = [
+  { label: 'Spicy', query: 'something spicy' },
+  { label: 'Plant based', query: 'something plant based' },
+  { label: 'High protein', query: 'high protein meals' },
+  { label: 'High fibre', query: 'high fibre meals' },
+  { label: 'Under 30 minutes', query: 'meals under 30 minutes' },
+  { label: 'Something new', query: 'take me somewhere new' },
+];
 
 /** The Today tab — `today()`. */
 export function Today() {
@@ -91,7 +98,7 @@ export function Today() {
         <SectionLabel>How would you like it to fit?</SectionLabel>
         <Wrap>
           {FITS.map((fit) => (
-            <Chip key={fit} title={fit} onPress={() => router.filterFood(fit)} />
+            <Chip key={fit.label} title={fit.label} onPress={() => router.filterFood(fit.query)} />
           ))}
         </Wrap>
         <Small style={{ marginTop: 10 }}>

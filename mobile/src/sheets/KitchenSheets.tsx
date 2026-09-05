@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Sheet } from '../components/shell';
 import { Button, Card, Eyebrow, H2, H3, Notice, P, Photo, Small } from '../components/ui';
-import { smartMatches } from '../lib/logic';
+import { RecommendationCard } from '../components/discovery';
+import { pantryMatches } from '../lib/discovery';
 import { useRouter } from '../nav/router';
 import { useStore } from '../state/store';
 import { colors } from '../theme/tokens';
@@ -146,7 +147,7 @@ export function ShoppingSheet() {
 export function SmartKitchenSheet() {
   const store = useStore();
   const router = useRouter();
-  const matches = smartMatches(store.pantry);
+  const matches = pantryMatches(store.discoveryContext(), 5);
 
   return (
     <Sheet>
@@ -166,35 +167,21 @@ export function SmartKitchenSheet() {
       </View>
 
       {matches.map((match) => (
-        <Card key={match.index}>
-          <Photo uri={match.meal.img} height={150} radius={18} />
-          <Text style={styles.matchPct}>
-            {Math.round(match.score * 100)}% FROM YOUR PANTRY
-          </Text>
-          <H3>{match.meal.name}</H3>
-          <P size={12}>
-            {match.meal.cal} kcal · {match.meal.meta}
-          </P>
-          <Text style={[styles.needs, match.missing.length ? null : { color: colors.sage }]}>
-            {match.missing.length
-              ? `Need ${match.missing.length} more: ${match.missing.slice(0, 3).join(', ')}`
-              : 'You have everything needed.'}
-          </Text>
-          <View style={{ flexDirection: 'row', gap: 9 }}>
-            <Button
-              title="See meal"
-              variant="secondary"
-              style={{ flex: 1 }}
-              onPress={() => router.present({ type: 'meal', index: match.index })}
-            />
-            <Button
-              title="Add missing"
-              style={{ flex: 1 }}
-              onPress={() => store.addShoppingForMeal(match.index)}
-            />
-          </View>
-        </Card>
+        <RecommendationCard key={match.record.id} recommendation={match} />
       ))}
+
+      <Button
+        title="Ask Nourish to work with these"
+        variant="secondary"
+        onPress={() =>
+          router.present({
+            type: 'ask',
+            seed: store.pantry.length
+              ? `I have ${store.pantry.slice(0, 8).join(', ')}. What can I make?`
+              : 'Use my pantry to suggest a meal',
+          })
+        }
+      />
 
       <Notice title="Nourish+ idea:">
         camera and receipt scans, expiry aware suggestions, budget planning and automatic pantry

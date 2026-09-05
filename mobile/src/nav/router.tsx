@@ -9,6 +9,9 @@ export type Sheet =
   | { type: 'culture'; place: string }
   | { type: 'country'; name: string }
   | { type: 'morningDiscovery' }
+  | { type: 'globalDish'; id: string }
+  | { type: 'ask'; seed?: string }
+  | { type: 'plusManage' }
   | { type: 'ingredientDiscovery' }
   | { type: 'pantry' }
   | { type: 'shopping' }

@@ -1,7 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { DAYS, Day, meals } from '../lib/data';
+import { UserContext } from '../lib/discovery';
 import { ageBand, missingIngredients } from '../lib/logic';
+
+export type PlusPlan = 'monthly' | 'yearly';
 
 export type Profile = {
   name?: string;
@@ -46,6 +49,10 @@ const KEYS = {
   completed: 'nourishCompleted',
   lastDay: 'nourishLastDay',
   dailySeed: 'nourishDailySeed',
+  exploredCountries: 'nourishExploredCountries',
+  savedMeals: 'nourishSavedMeals',
+  rejectedMeals: 'nourishRejectedMeals',
+  plusPlan: 'nourishPlusPlan',
 } as const;
 
 type Store = {
@@ -60,6 +67,11 @@ type Store = {
   plus: boolean;
   explored: number[];
   completed: number[];
+  /** Countries whose food the person has opened — feeds "somewhere new". */
+  exploredCountries: string[];
+  savedMeals: number[];
+  rejectedMeals: number[];
+  plusPlan: PlusPlan;
   toastMessage: string | null;
   dailyOffset: number;
 
@@ -76,6 +88,12 @@ type Store = {
   markExplored: (index: number) => void;
   markMealComplete: (index: number) => void;
   setPlus: (value: boolean) => void;
+  setPlusPlan: (plan: PlusPlan) => void;
+  markCountryExplored: (country: string) => void;
+  toggleSavedMeal: (index: number) => void;
+  rejectMeal: (index: number) => void;
+  /** Everything the recommendation engine needs about this person. */
+  discoveryContext: () => UserContext;
 
   addPantryItem: (value: string) => void;
   removePantryItem: (index: number) => void;
@@ -121,6 +139,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [plus, setPlusState] = useState(false);
   const [explored, setExplored] = useState<number[]>([]);
   const [completed, setCompleted] = useState<number[]>([]);
+  const [exploredCountries, setExploredCountries] = useState<string[]>([]);
+  const [savedMeals, setSavedMeals] = useState<number[]>([]);
+  const [rejectedMeals, setRejectedMeals] = useState<number[]>([]);
+  const [plusPlan, setPlusPlanState] = useState<PlusPlan>('monthly');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [dailyOffset, setDailyOffset] = useState(0);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -136,6 +158,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         storedWeek,
         storedExplored,
         storedCompleted,
+        storedCountries,
+        storedSaved,
+        storedRejected,
       ] = await Promise.all([
         readJson<Profile>(KEYS.profile, emptyProfile),
         readJson<Account | null>(KEYS.account, null),
@@ -145,6 +170,9 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         readJson<Week>(KEYS.week, {}),
         readJson<number[]>(KEYS.explored, []),
         readJson<number[]>(KEYS.completed, []),
+        readJson<string[]>(KEYS.exploredCountries, []),
+        readJson<number[]>(KEYS.savedMeals, []),
+        readJson<number[]>(KEYS.rejectedMeals, []),
       ]);
 
       setProfileState({ ...emptyProfile, ...storedProfile });
@@ -155,6 +183,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setWeek(storedWeek);
       setExplored(storedExplored);
       setCompleted(storedCompleted);
+      setExploredCountries(storedCountries);
+      setSavedMeals(storedSaved);
+      setRejectedMeals(storedRejected);
+      const storedPlan = await AsyncStorage.getItem(KEYS.plusPlan);
+      setPlusPlanState(storedPlan === 'yearly' ? 'yearly' : 'monthly');
 
       const storedTokens = await AsyncStorage.getItem(KEYS.tokens);
       setTokens(Number(storedTokens) || 0);
@@ -251,6 +284,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setPlusState(false);
     setExplored([]);
     setCompleted([]);
+    setExploredCountries([]);
+    setSavedMeals([]);
+    setRejectedMeals([]);
+    setPlusPlanState('monthly');
   }, []);
 
   const awardTokens = useCallback(
@@ -299,6 +336,53 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       setPlusState(value);
       AsyncStorage.setItem(KEYS.plus, value ? '1' : '0').catch(() => {});
       toast(value ? 'Nourish+ is active in this demo.' : 'Nourish+ preview is off.');
+    },
+    [toast]
+  );
+
+  const setPlusPlan = useCallback(
+    (plan: PlusPlan) => {
+      setPlusPlanState(plan);
+      AsyncStorage.setItem(KEYS.plusPlan, plan).catch(() => {});
+      toast(plan === 'yearly' ? 'Yearly plan selected.' : 'Monthly plan selected.');
+    },
+    [toast]
+  );
+
+  /** Discovery history: what "somewhere new" is measured against. */
+  const markCountryExplored = useCallback((country: string) => {
+    if (!country || country === 'Modern home kitchen') return;
+    setExploredCountries((current) => {
+      if (current.includes(country)) return current;
+      const next = [...current, country].slice(-40);
+      writeJson(KEYS.exploredCountries, next);
+      return next;
+    });
+  }, []);
+
+  const toggleSavedMeal = useCallback(
+    (index: number) => {
+      setSavedMeals((current) => {
+        const next = current.includes(index)
+          ? current.filter((i) => i !== index)
+          : [...current, index];
+        writeJson(KEYS.savedMeals, next);
+        return next;
+      });
+      toast(savedMeals.includes(index) ? 'Removed from saved.' : 'Saved for later.');
+    },
+    [savedMeals, toast]
+  );
+
+  const rejectMeal = useCallback(
+    (index: number) => {
+      setRejectedMeals((current) => {
+        if (current.includes(index)) return current;
+        const next = [...current, index];
+        writeJson(KEYS.rejectedMeals, next);
+        return next;
+      });
+      toast('Noted — I will show you less like that.');
     },
     [toast]
   );
@@ -493,6 +577,20 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     [toast]
   );
 
+  const discoveryContext = useCallback(
+    (): UserContext => ({
+      allergies: profile.allergies,
+      diet: profile.diet,
+      priorities: profile.priorities,
+      pantry,
+      plus,
+      exploredCountries,
+      recentMeals: [...completed, ...Object.values(week).map((w) => w?.meal ?? -1)].filter((i) => i >= 0),
+      rejectedMeals,
+    }),
+    [profile.allergies, profile.diet, profile.priorities, pantry, plus, exploredCountries, completed, week, rejectedMeals]
+  );
+
   const value = useMemo<Store>(
     () => ({
       ready,
@@ -506,6 +604,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       plus,
       explored,
       completed,
+      exploredCountries,
+      savedMeals,
+      rejectedMeals,
+      plusPlan,
       toastMessage,
       dailyOffset,
       setProfile,
@@ -519,6 +621,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       markExplored,
       markMealComplete,
       setPlus,
+      setPlusPlan,
+      markCountryExplored,
+      toggleSavedMeal,
+      rejectMeal,
+      discoveryContext,
       addPantryItem,
       removePantryItem,
       addShoppingForMeal,
@@ -536,11 +643,12 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     }),
     [
       ready, profile, account, pantry, shopping, shoppingDone, week, tokens, plus, explored,
-      completed, toastMessage, dailyOffset, setProfile, togglePriority, toggleAllergy, setDob,
-      signIn, resetDemo, toast, awardTokens, markExplored, markMealComplete, setPlus,
-      addPantryItem, removePantryItem, addShoppingForMeal, addShoppingText, toggleShoppingItem,
-      removeShoppingItem, demoScan, plannedMealIndex, plannedDaysCount, plannedCalories,
-      dayIsLocked, planMeal, removePlanMeal, movePlanMeal,
+      completed, exploredCountries, savedMeals, rejectedMeals, plusPlan, toastMessage, dailyOffset,
+      setProfile, togglePriority, toggleAllergy, setDob, signIn, resetDemo, toast, awardTokens,
+      markExplored, markMealComplete, setPlus, setPlusPlan, markCountryExplored, toggleSavedMeal,
+      rejectMeal, discoveryContext, addPantryItem, removePantryItem, addShoppingForMeal,
+      addShoppingText, toggleShoppingItem, removeShoppingItem, demoScan, plannedMealIndex,
+      plannedDaysCount, plannedCalories, dayIsLocked, planMeal, removePlanMeal, movePlanMeal,
     ]
   );
 

@@ -139,14 +139,26 @@ export function Header() {
       ]}
     >
       <Text style={[header.brand, { fontSize: layout.brand }]}>nourish</Text>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel="Your profile"
-        onPress={() => router.present({ type: 'profile' })}
-        style={[header.avatar, { width: layout.tablet ? 44 : 40, height: layout.tablet ? 44 : 40 }]}
-      >
-        <Text style={header.avatarText}>R</Text>
-      </Pressable>
+      <View style={header.actions}>
+        {/* Quiet, always reachable, never floating over the content. */}
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Ask Nourish"
+          onPress={() => router.present({ type: 'ask' })}
+          style={header.ask}
+        >
+          <Text style={header.askGlyph}>✦</Text>
+          <Text style={header.askText}>Ask</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Your profile"
+          onPress={() => router.present({ type: 'profile' })}
+          style={[header.avatar, { width: layout.tablet ? 44 : 40, height: layout.tablet ? 44 : 40 }]}
+        >
+          <Text style={header.avatarText}>R</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -229,6 +241,20 @@ const header = StyleSheet.create({
     paddingBottom: 10,
   },
   brand: { fontFamily: displayFont, letterSpacing: -0.6, color: colors.ink },
+  actions: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  ask: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    borderWidth: 1,
+    borderColor: colors.line,
+    backgroundColor: colors.card,
+    borderRadius: 999,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  askGlyph: { fontSize: 12, color: colors.sage },
+  askText: { fontSize: 13, fontWeight: '600', color: colors.ink },
   avatar: {
     borderRadius: 999,
     borderWidth: 1,

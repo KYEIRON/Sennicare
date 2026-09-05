@@ -1,11 +1,20 @@
 /**
- * Parity check: runs the V28 prototype's own JavaScript next to the app's
+ * Parity check: runs the V32.5 prototype's own JavaScript next to the app's
  * ported logic and asserts they agree.
  *
  *   npm run parity
  *
- * This is the guard rail for "do not redesign Nourish": if a rule here drifts
- * from the prototype, the check fails.
+ * This is the guard rail for "do not redesign Nourish". It covers the parts the
+ * app inherits verbatim: the food data, the image URLs, the country atlas, and
+ * the kitchen rules (pantry matching, ingredient normalisation, the daily
+ * rotation).
+ *
+ * It deliberately does NOT lock the recommendation ranking to the prototype's.
+ * V32.5 ranks with a flat score, one dish per country and a random tie-break;
+ * the app's engine ranks over the whole food graph with hard constraints,
+ * pantry and shopping weighting, novelty and a diversity pass. That divergence
+ * is the point of the global intelligence work, and it is covered by
+ * `npm run test:engine` instead.
  */
 import { execSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
@@ -16,15 +25,19 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
-const prototypePath = join(root, '..', 'ios', 'prototype', 'Nourish_Global_Experience_V28.html');
+const prototypePath = join(root, '..', 'docs', 'prototypes', 'Nourish_V32.5_Global_Intelligence.html');
 
 const html = readFileSync(prototypePath, 'utf8');
 const js = html.slice(html.indexOf('<script>') + 8, html.lastIndexOf('</script>'));
 const lines = js.split('\n');
 
 // The prototype's data block, plus the three pure helpers we depend on.
-const dataBlock = lines.slice(0, 339).join('\n');
-const helpers = [lines[444], lines[445], lines[452]].join('\n');
+// Data constants, then the three pure kitchen helpers the app inherits.
+const dataBlock = lines.slice(0, 425).join('\n');
+const helperNames = ['function ingredientBase', 'function pantryHas', 'function smartMatches'];
+const helpers = helperNames
+  .map((name) => lines.find((line) => line.trim().startsWith(name)))
+  .join('\n');
 
 const build = mkdtempSync(join(tmpdir(), 'nourish-parity-'));
 try {
@@ -43,9 +56,8 @@ try {
     ${helpers}
     let pantry = [];
     function setPantry(items) { pantry = items; }
-    function v28Filter(term){const q=String(term).toLowerCase();return meals.map((m,i)=>({m,i})).filter(({m})=>{const text=\`\${m.name} \${m.meta} \${m.fit||''} \${m.ingredients.join(' ')} \${(m.fits||[]).join(' ')}\`.toLowerCase();return text.includes(q)||(q==='under 30 minutes'&&m.duration<=30)||(q==='high fibre'&&text.includes('fibre'))}).map(x=>x.i);}
     function v28Today(slot,offset,plus){const arr=meals.map((m,i)=>[m,i]).filter(([m])=>m.slot===slot);return [...arr].sort((a,b)=>((a[1]+offset)%meals.length)-((b[1]+offset)%meals.length)).slice(0,plus?8:4).map(x=>x[1]);}
-    return { meals, WORLD_COUNTRIES, setPantry, smartMatches, ingredientBase, v28Filter, v28Today };
+    return { meals, WORLD_COUNTRIES, WORLD_FREE_FEATURED, setPantry, smartMatches, ingredientBase, v28Today };
   `)();
 
   const failures = [];
@@ -63,17 +75,9 @@ try {
       JSON.stringify(ported.smartMatches(pantry).map((x) => `${x.meal.name}|${x.score.toFixed(6)}|${x.missing.length}`))
   );
 
-  const terms = ['Spicy', 'Vegan friendly', 'Keto friendly', 'Kidney aware', 'High fibre', 'Under 30 minutes',
-    'Easy tonight', 'Something plant based', 'Fish', 'Chicken', 'Meat', 'Something light', 'Comforting',
-    'High protein', 'Use what I have', 'Something new'];
-  check(
-    `filterFood across ${terms.length} terms`,
-    terms.every(
-      (term) =>
-        JSON.stringify(prototype.v28Filter(term)) ===
-        JSON.stringify(ported.filterMeals(term).map((r) => r.index))
-    )
-  );
+  // V32.5 hands the Food chips to the AI layer, so there is no prototype
+  // `filterFood` predicate left to compare against. The engine's behaviour for
+  // those chips is asserted in scripts/engine-tests.mjs.
 
   let rotationOk = true;
   for (let offset = 0; offset < prototype.meals.length; offset += 1) {
@@ -109,11 +113,18 @@ try {
       JSON.stringify(portedData.countries.map((c) => c.name))
   );
 
+  check(
+    'featured set matches the prototype (Peru out of featured, still in the atlas)',
+    JSON.stringify(prototype.WORLD_FREE_FEATURED) === JSON.stringify(portedData.freeFeatured) &&
+      portedData.countries.some((c) => c.name === 'Peru') &&
+      !portedData.freeFeatured.includes('Peru')
+  );
+
   if (failures.length) {
     console.error(`\n${failures.length} parity check(s) failed.`);
     process.exit(1);
   }
-  console.log('\nAll parity checks passed — the app matches V28.');
+  console.log('\nAll parity checks passed — the app matches V32.5.');
 } finally {
   rmSync(build, { recursive: true, force: true });
 }

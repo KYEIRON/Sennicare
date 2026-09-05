@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { RecommendationCard } from '../components/discovery';
+import { discover } from '../lib/discovery';
 import { AtlasCard, FoodCard, WorldCard } from '../components/cards';
 import { Page } from '../components/shell';
 import {
@@ -15,18 +17,38 @@ import { useRouter } from '../nav/router';
 import { useStore } from '../state/store';
 import { colors } from '../theme/tokens';
 
-const MOODS = [
-  'Easy tonight', 'Something plant based', 'Fish', 'Chicken', 'Meat', 'Something light',
-  'Comforting', 'High protein', 'High fibre', 'Use what I have', 'Under 30 minutes', 'Something new',
+/**
+ * The Food screen's intent chips. These are entry points into the whole food
+ * library — 615 records across 195 countries — not filters over the featured
+ * rail. Each maps to the natural request a person would actually type.
+ */
+const MOODS: { label: string; query: string }[] = [
+  { label: 'Breakfast', query: 'breakfast ideas from around the world' },
+  { label: 'Lunch', query: 'lunch ideas' },
+  { label: 'Dinner', query: 'dinner ideas' },
+  { label: 'Salads', query: 'more salads' },
+  { label: 'Fish', query: 'I want more fish' },
+  { label: 'Plant based', query: 'something plant based' },
+  { label: 'Chicken', query: 'chicken dishes' },
+  { label: 'Meat', query: 'meat dishes' },
+  { label: 'Something light', query: 'something light' },
+  { label: 'Comforting', query: 'something comforting' },
+  { label: 'High protein', query: 'high protein meals' },
+  { label: 'High fibre', query: 'high fibre meals' },
+  { label: 'Under 30 minutes', query: 'meals under 30 minutes' },
+  { label: 'Easy tonight', query: 'easy tonight, under 30 minutes' },
+  { label: 'Use what I have', query: 'use what I have in my pantry' },
+  { label: 'Something new', query: 'take me somewhere new' },
 ];
 
 /** The Food tab — `food()`. */
 export function Food() {
   const router = useRouter();
   const layout = useLayout();
+  const [search, setSearch] = useState('');
   const cardWidth = `${100 / layout.foodColumns - 2}%` as const;
 
-  if (router.filterTerm) return <FilterResults term={router.filterTerm} />;
+  if (router.filterTerm) return <DiscoveryResults query={router.filterTerm} />;
 
   return (
     <Page>
@@ -34,20 +56,39 @@ export function Food() {
         <Eyebrow>Food</Eyebrow>
         <H1>Find something you'll want to make.</H1>
         <P>Explore meals, ingredients, nutrients and food from around the world.</P>
-        <View style={styles.search}>
-          <Text style={styles.searchText}>⌕  Search meals, ingredients or nutrients</Text>
+        <View style={styles.searchRow}>
+          <Text style={styles.searchMark}>⌕</Text>
+          <TextInput
+            value={search}
+            onChangeText={setSearch}
+            placeholder="Try “more fish”, “breakfast from India” or “20 minute lunch”"
+            placeholderTextColor={colors.muted}
+            style={styles.searchInput}
+            returnKeyType="search"
+            onSubmitEditing={() => search.trim() && router.filterFood(search.trim())}
+          />
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => search.trim() && router.filterFood(search.trim())}
+            style={styles.searchButton}
+          >
+            <Text style={styles.searchButtonText}>Search</Text>
+          </Pressable>
         </View>
       </View>
 
       <SmartKitchenBlock text="Tell Nourish what you already have. It can find meals that use it first and show you what is missing." />
 
       <Section>
-        <SectionLabel>What might work today?</SectionLabel>
+        <SectionLabel>What are you in the mood for?</SectionLabel>
         <Wrap>
           {MOODS.map((mood) => (
-            <Chip key={mood} title={mood} onPress={() => router.filterFood(mood)} />
+            <Chip key={mood.label} title={mood.label} onPress={() => router.filterFood(mood.query)} />
           ))}
         </Wrap>
+        <Small style={{ marginTop: 8 }}>
+          These search the whole Nourish food library, not the featured rail.
+        </Small>
       </Section>
 
       <Section>
@@ -67,6 +108,10 @@ export function Food() {
       <Section>
         <SectionLabel>From somewhere new</SectionLabel>
         <H2>Food worth discovering</H2>
+        <Small>
+          The featured rail is the front door. Ask Nourish for any country, ingredient or meal type
+          and it searches the wider global food index.
+        </Small>
         <Rail columns={layout.worldColumns}>
           {worldTiles.map((tile) => (
             <WorldCard
@@ -95,13 +140,26 @@ export function Food() {
   );
 }
 
-/** `filterFood(term)` */
-function FilterResults({ term }: { term: string }) {
+/**
+ * Discovery results.
+ *
+ * This is what a Food chip or a search now opens: the recommendation engine's
+ * answer over the whole graph, with recipes and atlas dishes kept distinct, a
+ * "Why this?" on every card, and a way to keep refining by asking.
+ */
+function DiscoveryResults({ query }: { query: string }) {
+  const store = useStore();
   const router = useRouter();
-  const layout = useLayout();
-  const kidney = term.toLowerCase() === 'kidney aware';
-  const matched = useMemo(() => filterMeals(term), [term]);
-  const cardWidth = `${100 / layout.foodColumns - 2}%` as const;
+
+  const result = useMemo(
+    () => discover(query, store.discoveryContext(), { limit: 8, discoveryLimit: 10 }),
+    // The context is rebuilt on every store change; the query drives the search.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [query, store.pantry, store.plus, store.profile.allergies, store.exploredCountries]
+  );
+
+  const total = result.recipes.length + result.discoveries.length;
+  const places = result.countriesRepresented.filter((c) => c !== 'Modern home kitchen');
 
   return (
     <Page>
@@ -109,42 +167,55 @@ function FilterResults({ term }: { term: string }) {
         <Pressable accessibilityRole="button" onPress={router.clearFilter} hitSlop={8}>
           <Text style={styles.back}>← All food</Text>
         </Pressable>
-        <Eyebrow>Food · {term}</Eyebrow>
-        <H1>{kidney ? 'Kidney aware food' : 'Ideas that fit.'}</H1>
+        <Eyebrow>Food · {query}</Eyebrow>
+        <H1>{total ? 'Ideas from around the world.' : 'Nothing I would stand behind yet.'}</H1>
         <P>
-          {kidney
-            ? 'Kidney diets vary by condition, stage, blood tests and treatment. This demo does not label recipes as kidney friendly without clinical review.'
-            : 'Explore the food itself first. Fit labels help you narrow the field without putting food into good or bad boxes.'}
+          {total
+            ? `${total} ideas across ${places.length} food cultures, ranked by what fits you — your pantry, your time and what you have already explored.`
+            : 'I could not find a match I am confident in. Try another ingredient, a different meal type, or ask Nourish directly.'}
         </P>
 
-        {kidney ? (
-          <Notice title="How Nourish should handle this">
-            In production, kidney related labels will use verified sodium, potassium, phosphorus,
-            protein and portion data, with appropriate clinical review. The app should never imply
-            that one meal is universally safe for everyone with kidney disease.
+        {result.allergens.length ? (
+          <Notice title="Allergy check:">
+            {result.excludedForAllergies} records removed for {result.allergens.join(', ').toLowerCase()}.
+            Dishes from the country atlas have no verified ingredient list, so they are shown as
+            discovery records — Nourish cannot tell you a dish is safe.
           </Notice>
-        ) : matched.length ? (
-          <View style={styles.grid}>
-            {matched.map(({ index, meal }) => (
-              <FoodCard
-                key={index}
-                meal={meal}
-                width={cardWidth}
-                onPress={() => router.present({ type: 'meal', index })}
-              />
-            ))}
-          </View>
-        ) : (
-          <P>No exact matches in this demo yet.</P>
-        )}
+        ) : null}
 
-        <View style={{ marginTop: 14 }}>
-          <Notice title="Health fit note">
-            Vegan labels can often be recipe based. Keto and kidney related suitability is more
-            individual and should only be shown from verified nutrition data and appropriate
-            professional guidance.
-          </Notice>
-        </View>
+        <Button
+          title="Refine this with Ask Nourish"
+          variant="secondary"
+          onPress={() => router.present({ type: 'ask', seed: query })}
+        />
+
+        {result.recipes.length ? (
+          <Section>
+            <SectionLabel>Recipe-backed matches</SectionLabel>
+            {result.recipes.map((recommendation) => (
+              <RecommendationCard key={recommendation.record.id} recommendation={recommendation} />
+            ))}
+          </Section>
+        ) : null}
+
+        {result.discoveries.length ? (
+          <Section>
+            <SectionLabel>More from the world</SectionLabel>
+            <Small>
+              Dishes from the 195-country atlas. Nourish knows the dish and where it comes from, so
+              these are offered to explore rather than to cook.
+            </Small>
+            <View style={{ marginTop: 10 }}>
+              {result.discoveries.map((recommendation) => (
+                <RecommendationCard key={recommendation.record.id} recommendation={recommendation} />
+              ))}
+            </View>
+          </Section>
+        ) : null}
+
+        {!total ? (
+          <Button title="Ask Nourish instead" onPress={() => router.present({ type: 'ask', seed: query })} />
+        ) : null}
       </View>
     </Page>
   );
@@ -275,14 +346,25 @@ export function WorldAtlas() {
 }
 
 const styles = StyleSheet.create({
-  search: {
+  searchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
     backgroundColor: colors.search,
     borderRadius: 15,
-    paddingVertical: 12,
-    paddingHorizontal: 14,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     marginTop: 8,
   },
-  searchText: { fontSize: 13, color: colors.muted },
+  searchMark: { fontSize: 16, color: colors.muted },
+  searchInput: { flex: 1, fontSize: 13, color: colors.ink, paddingVertical: 10 },
+  searchButton: {
+    backgroundColor: colors.ink,
+    borderRadius: 11,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  searchButtonText: { fontSize: 12, fontWeight: '700', color: '#fff' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 6 },
   back: { fontSize: 12, fontWeight: '600', color: colors.sage, marginBottom: 10 },
   atlasSearch: {

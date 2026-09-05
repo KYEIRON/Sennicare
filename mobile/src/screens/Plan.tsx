@@ -56,6 +56,18 @@ export function Plan() {
         />
       </View>
 
+      <View style={styles.planWithNourish}>
+        <Eyebrow>Plan with Nourish</Eyebrow>
+        <P size={12}>
+          Ask for a whole day and Nourish chooses breakfast, lunch and dinner together — variety
+          across food cultures, your pantry reused, and the shopping kept small.
+        </P>
+        <Button
+          title="Plan tomorrow with Nourish"
+          onPress={() => router.present({ type: 'ask', seed: 'Plan my breakfast, lunch and dinner for tomorrow' })}
+        />
+      </View>
+
       <View style={styles.insight}>
         <Text style={styles.insightTitle}>Plan around your real cooking rhythm.</Text>
         <P size={12}>
@@ -231,6 +243,12 @@ const styles = StyleSheet.create({
   },
   statValue: { fontFamily: displayFont, fontSize: 21, color: colors.ink },
   insight: { backgroundColor: colors.warmAlt, borderRadius: 20, padding: 15, marginTop: 12 },
+  planWithNourish: {
+    backgroundColor: colors.sage2,
+    borderRadius: 20,
+    padding: 15,
+    marginTop: 14,
+  },
   insightTitle: { fontSize: 13, fontWeight: '700', color: colors.ink },
   weekGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 14 },
   weekDay: {

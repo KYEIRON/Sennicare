@@ -1,11 +1,10 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { Country, Meal, WorldTile, continentFor } from '../lib/data';
-import { SmartMatch } from '../lib/logic';
 import { useLayout } from '../lib/responsive';
 import { colors, shadow } from '../theme/tokens';
 import { displayFont } from '../theme/typography';
-import { Button, H3, P, Photo, PremiumTag, Small, Tag, Wrap } from './ui';
+import { Button, Photo, PremiumTag, Small, Tag, Wrap } from './ui';
 
 function tags(meal: Meal) {
   const list = (meal.fits || []).slice(0, 3);
@@ -202,36 +201,6 @@ export function KitchenCard({
   );
 }
 
-/** `.pantryMatch` */
-export function PantryMatchRow({
-  match,
-  onPress,
-  buttonTitle = 'Explore this meal',
-}: {
-  match: SmartMatch;
-  onPress: () => void;
-  buttonTitle?: string;
-}) {
-  const l = useLayout();
-  return (
-    <View style={styles.pantryMatch}>
-      <View style={{ width: l.pantryMatchImage }}>
-        <Photo uri={match.meal.img} height={l.pantryMatchImage} radius={18} />
-      </View>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.matchPct}>
-          {Math.round(match.score * 100)}% FROM YOUR PANTRY
-        </Text>
-        <H3>{match.meal.name}</H3>
-        <P size={11}>
-          {match.meal.cal} kcal · {match.meal.duration} min
-        </P>
-        <Button title={buttonTitle} variant="secondary" onPress={onPress} />
-      </View>
-    </View>
-  );
-}
-
 /** A compact meal row for the swap, move and day picker sheets. */
 export function MealRow({
   meal,
@@ -327,14 +296,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.sage2,
     marginBottom: 8,
   },
-  pantryMatch: {
-    flexDirection: 'row',
-    gap: 12,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.line,
-  },
-  matchPct: { fontSize: 10, fontWeight: '800', letterSpacing: 1, color: colors.sage },
   mealRow: {
     flexDirection: 'row',
     gap: 11,

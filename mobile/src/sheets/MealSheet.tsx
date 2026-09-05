@@ -18,6 +18,7 @@ export function MealSheet({ index }: { index: number }) {
 
   useEffect(() => {
     store.markExplored(index);
+    if (meal?.culture) store.markCountryExplored(meal.culture);
     // Only when the sheet opens, exactly as the prototype awards on open.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
@@ -85,9 +86,11 @@ export function MealSheet({ index }: { index: number }) {
           <NutritionBar key={bar.name} bar={bar} />
         ))}
         <Button
-          title="Explore with AI beta"
+          title="Ask about this meal"
           variant="secondary"
-          onPress={() => router.present({ type: 'aiDecide' })}
+          onPress={() =>
+            router.present({ type: 'ask', seed: `Tell me about ${meal.name}` })
+          }
         />
       </Card>
 
@@ -138,6 +141,23 @@ export function MealSheet({ index }: { index: number }) {
         ))}
         <Button title="Start cooking" onPress={() => router.present({ type: 'cooking', index })} />
       </Card>
+
+      <View style={{ flexDirection: 'row', gap: 9 }}>
+        <Button
+          title="Find similar food"
+          variant="secondary"
+          style={{ flex: 1 }}
+          onPress={() =>
+            router.present({ type: 'ask', seed: `Find dishes similar to ${meal.name}` })
+          }
+        />
+        <Button
+          title="Less like this"
+          variant="secondary"
+          style={{ flex: 1 }}
+          onPress={() => store.rejectMeal(index)}
+        />
+      </View>
 
       <Notice>
         Nutrition information is a demo estimate. If you are managing an allergy or medical

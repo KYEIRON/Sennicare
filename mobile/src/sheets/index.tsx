@@ -1,7 +1,9 @@
 import React from 'react';
 import { Day } from '../lib/data';
 import { useRouter } from '../nav/router';
+import { AskNourishSheet } from './AskNourish';
 import { CookingSheet } from './CookingSheet';
+import { GlobalDishSheet } from './GlobalDishSheet';
 import {
   CountrySheet, CultureSheet, IngredientDiscoverySheet, MorningDiscoverySheet,
 } from './DiscoverySheets';
@@ -14,7 +16,7 @@ import { MealSheet } from './MealSheet';
 import {
   MealPickerSheet, MoveSheet, PlanDayPickerSheet, PlanPreferencesSheet, SwapSheet,
 } from './PlanSheets';
-import { LegalSheet, PlusSheet, ProfileSheet } from './ProfileSheets';
+import { LegalSheet, PlusManageSheet, PlusSheet, ProfileSheet } from './ProfileSheets';
 
 /** Routes every overlay — the equivalent of `openSheet(type)`. */
 export function SheetHost() {
@@ -32,6 +34,12 @@ export function SheetHost() {
       return <CountrySheet name={sheet.name} />;
     case 'morningDiscovery':
       return <MorningDiscoverySheet />;
+    case 'globalDish':
+      return <GlobalDishSheet id={sheet.id} />;
+    case 'ask':
+      return <AskNourishSheet seed={sheet.seed} />;
+    case 'plusManage':
+      return <PlusManageSheet />;
     case 'ingredientDiscovery':
       return <IngredientDiscoverySheet />;
     case 'pantry':

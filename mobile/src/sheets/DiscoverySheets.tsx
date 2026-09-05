@@ -9,6 +9,7 @@ import {
   IMAGES, countryByName, cultureNames, knownCommonsImage, mealIndex, mealRefs, meals, worldInfo,
 } from '../lib/data';
 import { useRouter } from '../nav/router';
+import { useStore } from '../state/store';
 import { colors, shadow } from '../theme/tokens';
 import { findCommonsImage, CommonsImage } from '../lib/commons';
 
@@ -86,7 +87,15 @@ export function CultureSheet({ place }: { place: string }) {
 /** `openCountry(name)` */
 export function CountrySheet({ name }: { name: string }) {
   const router = useRouter();
+  const store = useStore();
   const country = countryByName(name);
+
+  useEffect(() => {
+    if (country) store.markCountryExplored(country.name);
+    // Recorded once per opening, so "somewhere new" knows where you have been.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name]);
+
   if (!country) return null;
 
   // The prototype's featured hero: a meal from this culture, else a meal whose
