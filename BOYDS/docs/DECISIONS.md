@@ -1051,3 +1051,23 @@ redirected to `/auth/confirm#access_token=…&type=invite`.
 
 When BOYD'S sets up a business email provider, the templates in
 `docs/DEPLOYMENT.md` can be applied; both paths keep working.
+
+---
+
+## D-052 — Turbopack scope hoisting is off
+
+**Decision:** `next.config.ts` sets `experimental.turbopackScopeHoisting: false`.
+
+**Why:** On the first production deployment, `/settings` failed for Ronald with
+`ReferenceError: unavailableMaps is not defined`. The source is correct; the
+compiled page was not. Turbopack (Next 16.3.6, the newest 16.x) inlined
+`getMaps()`, `getEmail()` and `getSms()` into the page and dropped the
+declarations they return. Reproduced locally by signing in against the live
+project with a production build: 500 with scope hoisting, 200 without it.
+Turning off minification also avoided it, but would have enlarged every
+bundle; scope hoisting is the stage at fault.
+
+Only a signed-in partner reaches Settings, so no existing test could see it. A
+guard test (`tests/guards/next-config.test.ts`) keeps the setting in place; it
+should be removed only after a Next upgrade is shown to render `/settings` for
+a signed-in partner.
