@@ -114,28 +114,80 @@ Moh gets both a `users` row with role `DRIVER` and a `drivers` row, plus a
 npm run verify
 ```
 
-Runs formatting, linting, type checking, 446 unit and guard tests, 258 database
-tests against real PostgreSQL, and a production build. The database tests do not
-skip when no database is reachable — they fail with instructions, because a run
-that quietly did not exercise the security boundary would report success while
-proving nothing.
+Runs formatting, linting, type checking, the unit and guard tests, the database
+tests against a PostgreSQL built to behave like hosted Supabase, a production
+build, and the browser tests (accessibility, route protection and the public
+request form, on a desktop and a phone). The database tests do not skip when no
+database is reachable. They fail with instructions, because a run that quietly
+did not exercise the security boundary would report success while proving
+nothing.
+
+Against the live project, run `scripts/verify-production.sql`. The deploy
+script runs it automatically.
 
 ## Backups
 
-Supabase takes daily backups on paid plans. On the free tier, take a manual dump
-regularly:
-
 ```bash
-supabase db dump -f boyds-backup-$(date +%F).sql
+SUPABASE_DB_URL='<connection string>' ./scripts/backup-database.sh
 ```
 
-**Rehearse a restore before relying on it.** A backup nobody has restored is a
-hope, not a backup.
+Writes `backups/boyds-backup-<UTC time>.sql`, readable only by you. The
+`backups/` folder is git-ignored. **It contains customer and staff personal
+data.** Keep it somewhere private.
+
+It holds every row of BOYD'S data, the sign-in accounts, and the migration
+version it was taken at. It does not hold the schema, because the migrations
+are the schema, or the job state machine table, because the migrations supply
+it and an old copy must never overwrite newer rules.
+
+**It does not hold uploaded files.** Signatures, photos and proof of delivery
+live in Supabase Storage; the database holds only their metadata. Download the
+`boyds-documents` bucket separately, from the Supabase dashboard (Storage →
+`boyds-documents`).
+
+Supabase's own daily backups are a plan feature. Check what the project's plan
+includes rather than assuming. Either way, take a backup with this script
+before every migration and on a regular schedule.
+
+The old advice here, `supabase db dump`, has been removed: it needs Docker and,
+by default, dumps the schema rather than the data. A backup made that way would
+have contained none of the business's records.
+
+### Restoring
+
+Into an **empty** project only:
+
+```bash
+SUPABASE_DB_URL='<new project>' ./scripts/deploy-database.sh --apply
+SUPABASE_DB_URL='<new project>' ./scripts/restore-database.sh backups/boyds-backup-....sql
+```
+
+The restore refuses to run if the target already holds BOYD'S data, or if its
+schema is older than the backup. It loads everything in one transaction, so a
+failure keeps nothing. It pauses triggers during the load, as Supabase's own
+documented restore does: otherwise the job state machine would refuse jobs
+restored at `COMPLETED`, and the audit trail would record every restored row as
+a new change. Then it runs the production verification.
+
+**Rehearsed.** A populated Supabase-like database (1,579 rows across all 33
+tables, 41 sign-in accounts) was backed up as the migrating role, and restored
+into a fresh project deployed with the real CLI. The result:
+
+- every table's row count identical
+- every sign-in account present
+- both sequences positioned exactly where they were, so new incident numbers
+  do not collide with restored ones
+- verification passing
+- the restored database accepting new work from a signed-in partner, audited
+  as a new change
 
 ## Still outstanding for production
 
-- Error monitoring (Sentry or similar)
-- A backup and restore rehearsal
-- An accessibility audit
-- A Playwright suite covering the job lifecycle through the interface — the
-  database-level equivalent exists and passes
+- **A signed-in journey through the interface.** The browser suite covers the
+  public site, route protection and the request form. Signing in needs Supabase
+  Auth, so the full job lifecycle is tested at the database instead
+  (`tests/integration/full-job-lifecycle.test.ts`, every step as the right
+  person). Extend the browser suite once a project exists to test against.
+- **Error alerting.** Server errors reach the host's runtime logs (Vercel keeps
+  them), but nothing alerts anyone. Connect an alerting service (Sentry or
+  similar) when there is an account for it.

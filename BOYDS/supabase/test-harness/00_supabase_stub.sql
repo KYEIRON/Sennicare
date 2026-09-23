@@ -42,6 +42,9 @@
 --       storage.objects from the SQL editor and migrations).
 --   A3. pgcrypto is preinstalled in the `extensions` schema, and the `postgres`
 --       role's search_path is "$user", public, extensions.
+--   A4. `postgres` may SET session_replication_role. Supabase's own documented
+--       restore procedure depends on it (it loads data with triggers paused),
+--       and so does scripts/restore-database.sh.
 --
 -- The emulated `postgres` role is named `supabase_postgres` here, because the
 -- local cluster's own bootstrap superuser is already called `postgres`.
@@ -75,6 +78,9 @@ $$;
 
 -- A2: postgres may manage policies on storage tables.
 grant supabase_storage_admin to supabase_postgres;
+
+-- A4: postgres may pause triggers for a data restore, as on Supabase.
+grant set on parameter session_replication_role to supabase_postgres;
 
 -- The migrating role can act as the API roles, as on Supabase.
 grant anon, authenticated, service_role to supabase_postgres;

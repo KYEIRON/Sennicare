@@ -49,3 +49,6 @@ yarn-error.log*
 # project. Without this, every money and calculation module would be missing
 # from the repository while still passing locally.
 !src/lib/
+
+# Database backups contain customer and staff personal data. Never commit them.
+backups/

@@ -868,3 +868,54 @@ controls.
 
 **How it was found:** while writing the production verification script, checking
 every safeguard the documentation claims against the real schema.
+
+---
+
+## D-043 — What a backup holds, and what it deliberately leaves out
+
+**Decision:** `scripts/backup-database.sh` dumps the data only: the `public`
+schema and the sign-in accounts, stamped with the migration version. It leaves
+out the schema and `job_status_transitions`. Restores go into an empty project,
+in one transaction, with triggers paused.
+
+**Why:** The migrations are the schema. A backup that also carried the schema
+would be a second, older source of truth that a restore could quietly roll the
+database back to. `job_status_transitions` _is_ the job state machine, so an old
+copy restored into a newer schema would reinstate old rules without anyone
+noticing. The migration version in the header lets the restore refuse a target
+older than the backup.
+
+Triggers are paused because they would otherwise fight a faithful restore. The
+state machine refuses a job inserted directly at `COMPLETED`. The audit trail
+would record every restored row as a fresh change, burying the real history.
+This is the method Supabase's own restore procedure uses.
+
+Uploaded files are not in the database and cannot be in this backup. That is
+stated in the script, the runbook and here, because a backup that silently
+leaves out every proof of delivery is the kind of gap discovered on the worst
+possible day.
+
+**Impact:** Rehearsed end to end. Row counts identical on all 33 tables,
+sequences positioned exactly, and the restored database accepted new audited
+work.
+
+---
+
+## D-044 — Accessibility fixes keep the brand colour and change the text
+
+**Decision:** The primary call-to-action button keeps the brand orange
+(`#ea580c`) exactly and uses deep navy text instead of white. The secondary text
+colour `light-500` moves from `#64748b` to `#8090a6`.
+
+**Why:** White on the brand orange measures 3.55:1, below WCAG AA's 4.5:1, on
+the most important button on every page. The two fixes were to darken the orange
+or to change the text. The mockup is authoritative for colour, so the orange
+stayed. Navy on orange measures 5.47:1, and 6.94:1 on hover.
+
+`light-500` measured 3.3 to 4.1:1 against the navy backgrounds. It is the colour
+of footers, hints and captions across both the site and the operations app.
+`#8090a6` is 4.8:1 or better on every navy surface text sits on, and is still
+clearly dimmer than `light-400`, so the visual hierarchy survives.
+
+**Impact:** `e2e/accessibility.spec.ts` scans every page in the sitemap, so a
+page added later is covered the day it is added.

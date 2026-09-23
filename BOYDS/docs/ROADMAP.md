@@ -264,10 +264,26 @@ Rate limiting is in place on all three public entry points — the delivery
 request form, the AI chat route and sign-in — and is honest about being
 in-memory (D-028).
 
-**Still outstanding for production:** error monitoring, a backup and restore
-rehearsal, an accessibility audit, and a Playwright suite covering the same
-journey through the interface. Each of these needs a deployed environment and
-therefore a Supabase project, so none can be finished before BOYD'S has one.
+**Production readiness, since:**
+
+- The test database now behaves like hosted Supabase: a non-superuser migrating
+  role, Supabase's default grants, a storage schema, and modern PostgREST
+  claims. That found two security holes and a launch blocker that 304 passing
+  tests had missed (D-039 to D-041).
+- Deployment is scripted and rehearsed with the real Supabase CLI: preflight,
+  dry run, apply, verify, and a refused apply when the preflight fails.
+- Backup and restore are scripted and rehearsed, down to sequence positions.
+- Accessibility is measured: every public page passes WCAG 2.1 AA on desktop
+  and phone, after fixing the contrast of the main call to action and of the
+  secondary text colour.
+- The public request form was losing everything a customer typed on any failed
+  submission, and pointing them to a phone number the site does not publish.
+  Both are fixed and covered by browser tests.
+- Next.js upgraded past a critical remote-code-execution advisory.
+
+**Still outstanding for production:** a signed-in journey through the browser,
+and error alerting. Both need accounts BOYD'S does not have yet; see
+`docs/DEPLOYMENT.md`.
 
 ### Phase 16 — Closing the gaps between screens ✅ complete
 
