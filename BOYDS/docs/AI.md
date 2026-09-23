@@ -114,9 +114,11 @@ contribution, contribution per mile, minimum contribution, service area, special
 requirements, customer value, and return-load opportunities, then `ACCEPT`,
 `REVIEW`, or `DECLINE`.
 
-Until the real integrations exist and are trusted, this is prohibited.
-`company_settings.auto_acceptance_enabled` defaults to `false`, and the decision
-path refuses to run when any required input is unavailable.
+Until the real integrations exist and are trusted, this is prohibited — and it
+is prohibited by absence: **no automatic decision path exists in the code.**
+Nothing can accept, decline or schedule a job except a partner. When the
+capability is built, it must arrive with a database flag defaulting to off and
+must refuse to run when any required input is unavailable (D-042).
 
 ## Internal assistant
 

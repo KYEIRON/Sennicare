@@ -44,7 +44,7 @@ Drivers must not reach company-wide financial information. Enforced by:
 - Column-level exclusion: the driver application reads the `driver_jobs` view,
   which contains no price, cost, contribution, or margin column.
 - No driver-role grant on `customers`, `quotes`, `invoices`, `payments`,
-  `pricing_rules`, `contracts`, `audit_logs`, or `company_settings`.
+  `pricing_rules`, `contracts`, or `audit_logs`.
 - Server guards that reject a driver-role session on every partner endpoint.
 
 A test suite authenticates as a driver **against real PostgreSQL** and asserts

@@ -752,3 +752,119 @@ a negative rate.
 **Impact:** Contracts had a table and a display panel but no way to create one,
 and the panel was hidden when empty — so there was no path to a contract at
 all. There is now, on the Invoices screen.
+
+---
+
+## D-039 — The test database imitates hosted Supabase, not plain PostgreSQL
+
+**Decision:** The test harness now applies migrations as a non-superuser role
+with `BYPASSRLS`, reproduces Supabase's default grants to `anon`,
+`authenticated` and `service_role`, provides a `storage` schema with row level
+security already on, and passes the signed-in user the way current PostgREST
+does (`request.jwt.claims`, not `request.jwt.claim.sub`).
+
+**Why:** The old harness applied migrations as a superuser and granted nothing
+by default. Every one of those differences can hide a failure that only
+appears in production. A superuser ignores every policy. Without Supabase's
+default grants, a view or sequence that a migration forgot to revoke looks
+private in the tests and is public in production. And with no storage schema,
+nothing tested file uploads at all.
+
+Making the harness honest found two security holes and a launch blocker on the
+first run (D-040, D-041). 304 tests had passed against the old harness while all
+three existed.
+
+**Assumptions it rests on**, written at the top of
+`supabase/test-harness/00_supabase_stub.sql`: Supabase's `postgres` role is not
+a superuser but has `BYPASSRLS`; it can create policies on `storage.objects`;
+`pgcrypto` is preinstalled in `extensions`. The first is load-bearing, since
+forced row level security, the audit and notification triggers, and the two
+owner-permission views all depend on it. So the production preflight checks it
+on the real project before any migration runs, and stops if it is false.
+
+**Impact:** `tests/integration/supabase-privileges.test.ts` also checks the
+harness itself: if the migrations were ever applied as a superuser again, the
+suite fails rather than quietly proving less.
+
+---
+
+## D-040 — Close the default grants Supabase gives the public role
+
+**Decision:** Migration 0025 revokes Supabase's default grants from the two
+driver views and the audit sequence, and changes the default so future tables,
+views, sequences and functions are closed to `anon` and `authenticated` unless
+a migration grants them.
+
+**Why:** Earlier migrations revoked the defaults on every table but not on the
+two views or on `audit_logs_id_seq`. Against the faithful harness:
+
+- An anonymous visitor could insert maintenance records against any vehicle
+  through `driver_vehicle_maintenance`. The view runs with its owner's rights
+  and PostgreSQL can write through it, so the row bypassed row level security.
+  Supabase's REST API exposes views in `public`, so on a live project this was
+  one web request. Maintenance records feed cost per mile and every profit
+  figure. A signed-in driver could do the same for any van.
+- Anyone could call `setval` on the audit sequence. Resetting it makes every
+  audited write collide with an existing id and fail. This was demonstrated
+  against the test database: a sequence change survives a rollback, so it
+  stayed broken until the database was rebuilt. Supabase's REST API does not
+  expose `setval`, so this was defence in depth rather than an open door.
+
+Closing future defaults means the next object added without explicit grants is
+unreachable, not public. Every existing migration already grants explicitly, so
+nothing that works today stops working.
+
+**Impact:** `supabase-privileges.test.ts` asserts the exact set of relations the
+public can reach (`job_types` and `service_areas`, read-only), that no signed-in
+role can write through a view, and that no API role holds a sequence.
+
+---
+
+## D-041 — The document store is created by a migration
+
+**Decision:** Migration 0026 creates the private `boyds-documents` bucket and the
+policies on `storage.objects`. Partners can reach every file. A driver can upload
+to and read only `jobs/<their job id>/...`. Nobody can delete a filed proof of
+delivery except a partner. The public can reach nothing.
+
+**Why:** Uploads run under the signed-in user's own session, so they are subject
+to row level security on `storage.objects`. Supabase turns that on and ships no
+policies. Before this migration there was no bucket and no storage policy
+anywhere in the repository. The deployment runbook said to create the bucket by
+hand but gave no policies, so on a real project every signature and photo from
+the van would have been refused. Proof of delivery is required before
+`POD_RECEIVED`, so no job could have been completed.
+
+If a bucket was already created in the dashboard, the migration forces it
+private rather than trusting it. It deliberately does not run `alter table
+storage.objects enable row level security`: Supabase has already done that, and
+the statement fails on a hosted project because Supabase's storage role owns the
+table.
+
+**Impact:** `tests/integration/document-storage.test.ts`, ten tests, run under
+the same user sessions the app uses.
+
+---
+
+## D-042 — Correction: D-009 was never implemented
+
+**Decision:** D-009 said automatic acceptance was disabled by a
+`company_settings.auto_acceptance_enabled` column defaulting to `false`. No
+migration ever created `company_settings`, and no code reads such a flag. The
+documentation that repeated the claim (the roadmap, the AI, security, database
+and business specification documents) has been corrected.
+
+**What is actually true:** automatic acceptance is disabled because **no
+automatic decision path exists in the code.** Nothing can accept, decline or
+schedule a job except a partner. That is a stronger guarantee than a flag, not a
+weaker one: there is no code that could run if the flag were ever flipped.
+
+**Why not build the table now:** a flag that nothing reads is protection in name
+only. It is the same mistake D-029 refused to make with a no-op
+`ALTER DEFAULT PRIVILEGES`: a line that looks like protection and is not is worse
+than no line. When automatic acceptance is eventually built, the flag arrives
+with it, defaulting to off at the database, in the same migration as the code it
+controls.
+
+**How it was found:** while writing the production verification script, checking
+every safeguard the documentation claims against the real schema.

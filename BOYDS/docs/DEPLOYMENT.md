@@ -44,21 +44,47 @@ Migrations are plain SQL in `supabase/migrations/`, numbered and applied in
 order. They are immutable once applied — a correction is a new migration, never
 an edit to an old one.
 
+Use the deployment script. It runs a read-only preflight on the real project,
+shows the plan, applies only when told to, and then verifies the result:
+
 ```bash
-supabase link --project-ref <ref>
-supabase db push
+# Dry run: checks the project and lists what would be applied. Changes nothing.
+SUPABASE_DB_URL='<connection string>' ./scripts/deploy-database.sh
+
+# Apply, then verify.
+SUPABASE_DB_URL='<connection string>' ./scripts/deploy-database.sh --apply
 ```
 
-Then create the private storage bucket:
+The connection string is in Supabase → Project Settings → Database. Use the
+**Session pooler** URI; it works from any network. It contains the database
+password. Keep it out of chat, out of files and out of shell history.
 
-```sql
-insert into storage.buckets (id, name, public)
-values ('boyds-documents', 'boyds-documents', false);
-```
+Any `STOP` row from the preflight means nothing is applied. Any `STOP` row from
+the verification means the project must not be put into service yet. The two
+scripts, `scripts/preflight-production.sql` and
+`scripts/verify-production.sql`, are single read-only `SELECT` statements, so
+they can also be pasted into the Supabase SQL editor or run through the Supabase
+MCP to inspect a project at any time.
 
-**Public must be false.** Proof of delivery, receipts and signatures are
-customer records. The application issues short-lived signed URLs after checking
-the caller is entitled to see the file.
+**Use one way of applying migrations, and only one.** The script uses the
+Supabase CLI, which records each migration under its file number (`0001` …
+`0026`). The Supabase MCP's `apply_migration` records a timestamp instead. Mix
+the two and the CLI will not recognise migrations the MCP applied: it will try
+to apply them again, and fail halfway through. Use the MCP for read-only
+inspection, and apply migrations with the script.
+
+The whole sequence (preflight, dry run, apply, verify, and a refused apply when
+the preflight fails) was rehearsed against a local database built to behave like
+hosted Supabase, using the same CLI version the script pins.
+
+The private storage bucket, `boyds-documents`, and its access policies are
+created by migration 0026. Do not create the bucket by hand. If one already
+exists, the migration forces it private and applies the application's size and
+file-type limits rather than trusting whatever was set in the dashboard.
+
+**The bucket must never be public.** Proof of delivery, receipts and signatures
+are customer records. Partners can reach every file; a driver can upload to and
+read only the folders of jobs assigned to them; the public can reach nothing.
 
 ## Creating the first accounts
 

@@ -252,12 +252,10 @@ behind that.
 change cannot escape the log by taking a different code path. **Append-only: no
 role holds UPDATE or DELETE on this table.**
 
-**`company_settings`** — `id` (singleton), `company_name`, `legal_name`,
-`base_address_*`, `timezone` (`America/New_York`), `currency` (`USD`),
-`distance_unit` (`MILES`), `volume_unit` (`GALLONS`), `default_payment_terms_days`,
-`minimum_contribution_cents`, `minimum_contribution_per_mile_cents`,
-`target_margin_bps`, `after_hours_start`, `after_hours_end`,
-`auto_acceptance_enabled` (**hard default `false`**), timestamps.
+There is no `company_settings` table. It was planned and never built (D-042).
+The pricing decisions — minimum contribution, target margin — live in
+`pricing_rules`, and read `NOT CONFIGURED` until a rule exists. Time zone,
+currency and units are fixed in code for V1 (`CLAUDE.md` §4).
 
 ---
 
@@ -342,24 +340,56 @@ Guards on specific transitions:
 
 ## Migrations
 
-Plain SQL under `supabase/migrations/`, ordered and immutable once applied.
+Plain SQL under `supabase/migrations/`, applied in order and immutable once
+applied — a correction is a new migration. **The migrations are the
+authoritative schema.** Where this document and a migration disagree, the
+migration is right.
 
 ```
-0001_extensions_and_enums.sql
-0002_identity.sql              users, partners, drivers
-0003_fleet.sql                 vehicles, vehicle_cost_model, maintenance_records
-0004_commercial.sql            customers, leads, service_types, service_areas
-0005_jobs.sql                  jobs, job_stops, job_expenses
-0006_operations.sql            mileage_logs, fuel_transactions
-0007_quotes_pricing.sql        quotes, quote_items, pricing_rules
-0008_money.sql                 invoices, invoice_lines, payments, contracts
-0009_supporting.sql            documents, notifications, ai_*, company_settings
-0010_audit.sql                 audit_logs + triggers
-0011_views.sql                 job_profitability, driver_jobs
-0012_rls.sql                   RLS policies for every table
-0013_state_machine.sql         job status transition trigger
-0014_seed_reference.sql        service_types, service_areas (reference data only)
+0001_extensions_and_enums.sql       pgcrypto, citext, identity enums
+0002_identity.sql                   users, partners, drivers
+0003_identity_rls.sql               row level security for identity
+0004_operations_enums.sql           operational enums
+0005_reference_data.sql             industries, job_types, service_areas
+0006_customers.sql                  customers, contacts, locations, notes
+0007_fleet.sql                      vehicles, vehicle_status_history
+0008_jobs.sql                       jobs, job_stops, mileage_logs
+0009_job_state_machine.sql          lifecycle trigger, job_status_transitions
+0010_dispatch.sql                   double-booking prevention
+0011_audit.sql                      audit_logs and its triggers
+0012_job_requests.sql               job_requests (an enquiry is not a job)
+0013_operations_rls.sql             operational policies, driver_jobs view
+0014_fix_driver_column_guards.sql   D-020
+0015_driver_jobs_view_and_rls_gap.sql
+0016_dispatch_check_timing.sql      D-021
+0017_documents_expenses_fuel.sql    documents, job_expenses, fuel_transactions
+0018_vehicle_economics.sql          vehicle_cost_entries, maintenance_records
+0019_crm_and_quoting.sql            leads, pricing_rules, quotes, quote_items
+0020_invoices_and_contracts.sql     contracts, invoices, invoice_lines, payments
+0021_public_intake.sql              the one public function
+0022_notifications.sql              notifications and their triggers
+0023_lock_down_function_execute.sql D-029
+0024_incidents.sql                  incidents
+0025_supabase_default_privileges.sql D-040
+0026_document_storage.sql           private bucket and storage policies, D-041
 ```
 
-Development-only seed data (Ronald, Moh, BOYD-001, sample jobs) lives in
-`supabase/seed.dev.sql` and is **never** applied to production.
+### Where this document differs from what was built
+
+The table descriptions above were written as the plan, before the migrations.
+Most match. These do not:
+
+- **Planned, not built:** `ai_conversations`, `ai_messages`, `ai_insights` (AI
+  conversations are not stored), `company_settings` (D-042),
+  `vehicle_cost_model` (built as `vehicle_cost_entries`, one row per real cost
+  rather than one row of rates, per D-012), and `service_types` (built as
+  `job_types`).
+- **Built, not described above:** `industries`, `job_types`,
+  `customer_contacts`, `customer_locations`, `customer_notes`,
+  `vehicle_status_history`, `job_status_transitions`, `job_requests`,
+  `vehicle_cost_entries`, and the owner-permission views `driver_jobs` and
+  `driver_vehicle_maintenance`. Each migration's header explains its tables.
+
+Development-only seed data lives in `supabase/seed.dev.sql`. It is **never**
+applied to production, and the Supabase CLI will not pick it up: the CLI only
+loads `supabase/seed.sql`, and a dry-run push confirms it reports no seeds.

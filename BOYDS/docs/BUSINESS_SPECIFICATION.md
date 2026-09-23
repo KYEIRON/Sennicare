@@ -226,9 +226,9 @@ unsupported certification or compliance claim may be made anywhere** in the
 product or on the website. That rule is not a placeholder awaiting a decision; it
 is permanent, and it applies regardless of what limits are eventually set.
 
-**8. Automatic acceptance.** DISABLED. `company_settings.auto_acceptance_enabled`
-defaults to `false` at the database level, and the AI decision path refuses to
-run when any required input is unavailable. See docs/DECISIONS.md D-009.
+**8. Automatic acceptance.** DISABLED. No automatic decision path exists in the
+code, so nothing can accept a job except a partner. See docs/DECISIONS.md D-042,
+which corrects D-009.
 
 ---
 

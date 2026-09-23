@@ -5,9 +5,9 @@
  * is tested against an actual database rather than mocked. A mocked policy
  * proves nothing.
  *
- * Sessions are simulated exactly as Supabase does it: SET ROLE authenticated,
- * then set request.jwt.claim.sub to the auth user id. auth.uid() reads that
- * setting, so the policies under test behave identically here and in production.
+ * Sessions are simulated as Supabase does it: SET ROLE authenticated, with the
+ * user in request.jwt.claims. auth.uid() is Supabase's own definition, so the
+ * policies under test behave identically here and in production.
  */
 
 import { Client } from 'pg';
@@ -64,9 +64,12 @@ export async function sessionClient(authUserId: string | null): Promise<Client> 
   if (authUserId === null) {
     await client.query('set role anon');
   } else {
+    // PostgREST passes the signed-in user as JSON claims. Only that form is set
+    // here, so SQL that read the legacy `request.jwt.claim.sub` setting
+    // directly would fail in the tests exactly as it would in production.
     await client.query('select set_config($1, $2, false)', [
-      'request.jwt.claim.sub',
-      authUserId,
+      'request.jwt.claims',
+      JSON.stringify({ sub: authUserId, role: 'authenticated' }),
     ]);
     await client.query('set role authenticated');
   }

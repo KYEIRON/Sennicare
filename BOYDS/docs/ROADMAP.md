@@ -236,10 +236,12 @@ Building them now would mean feeding them invented inputs, and an automated
 decision made from invented inputs is worse than no automation: it would commit
 BOYD'S to work nobody checked.
 
-The architecture is ready for them. `company_settings.auto_acceptance_enabled`
-defaults to `false` at the database, the maps abstraction is in place with an
-honest unavailable adapter, and the profitability engine already produces the
-figures such a decision would need.
+Nothing can auto-accept a job because no automatic decision path exists — a
+partner makes every decision. (An earlier version of this roadmap said a
+`company_settings.auto_acceptance_enabled` flag enforced this at the database.
+That table was never built; D-042 corrects it.) The maps abstraction is in place
+with an honest unavailable adapter, and the profitability engine already
+produces the figures such a decision would need.
 
 ### Phase 15 — Production hardening ✅ substantially complete
 
