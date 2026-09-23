@@ -708,3 +708,47 @@ written into the page. No component re-implements a formula.
 **Impact:** Early on, most customers will read `DATA INCOMPLETE`. That is the
 honest state, and the badge names the jobs whose costs are missing, so it also
 says what to do about it.
+
+---
+
+## D-037 — A multi-drop run is one job
+
+**Decision:** The New Job form takes as many stops as the work has. It opens
+with two, because most BOYD'S work is one collection and one delivery, but
+neither the count nor the types are fixed. The server takes each stop's
+sequence from its position on screen, not from anything the browser sends.
+
+**Why:** The data model and `createJobSchema` have allowed multi-stop work from
+the start; only the form was fixed at two. That gap had a cost: a one-collection
+four-delivery run would have to be entered as four jobs, which invents three
+collections that never happened and splits one run's mileage, fuel and time
+across records that cannot be reconciled afterwards. Every profitability figure
+downstream would be wrong, and wrong in the flattering direction, because each
+invented job carries a full price and a fraction of the cost.
+
+Taking the sequence from screen order rather than a posted field means a
+tampered form cannot produce a delivery before its collection. The schema checks
+that rule again afterwards regardless.
+
+**Impact:** `tests/unit/multi-stop-jobs.test.ts` covers one-to-many, many-to-one,
+a call-in on the way, and the four shapes of run that could not be driven.
+
+---
+
+## D-038 — A contract can exist without a rate
+
+**Decision:** `contracts.agreed_rate_cents` is nullable, the form leaves it
+blank by default, and a blank is stored as null.
+
+**Why:** "Two runs a week, rate to be settled" is a real agreement and worth
+recording — it is how BOYD'S knows what work is coming. Storing it at zero
+would tell the profitability engine BOYD'S agreed to work for nothing, and
+unlike a missing cost, a zero rate reads as a decision someone made.
+
+The database refuses the other half-agreed states outright: a contract cannot
+be `ACTIVE` without a start date, cannot end before it starts, and cannot carry
+a negative rate.
+
+**Impact:** Contracts had a table and a display panel but no way to create one,
+and the panel was hidden when empty — so there was no path to a contract at
+all. There is now, on the Invoices screen.

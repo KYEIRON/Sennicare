@@ -464,3 +464,80 @@ export const incidentReviewSchema = z
       path: ['resolutionNotes'],
     },
   );
+
+// --- Contracts ---------------------------------------------------------------
+
+/**
+ * A recurring work agreement.
+ *
+ * The rate is optional on purpose. A contract can be agreed in principle —
+ * "two runs a week, rate to be settled" — and recording it without a rate is
+ * honest. Recording it with a rate of zero would tell the profitability engine
+ * BOYD'S agreed to work for nothing.
+ */
+export const contractSchema = z
+  .object({
+    customerId: z.string().uuid('Choose a customer.'),
+    title: z.string().trim().min(1, 'Give the contract a name.').max(200),
+    status: z.enum(['DRAFT', 'ACTIVE', 'PAUSED', 'ENDED', 'CANCELLED']).default('DRAFT'),
+    startDate: z
+      .string()
+      .date()
+      .nullable()
+      .optional()
+      .or(z.literal('').transform(() => null)),
+    endDate: z
+      .string()
+      .date()
+      .nullable()
+      .optional()
+      .or(z.literal('').transform(() => null)),
+    frequency: optionalText(150),
+    agreedRateCents: optionalUsdCents,
+    rateBasis: optionalText(100),
+    minimumVolume: z
+      .union([z.string(), z.number()])
+      .optional()
+      .nullable()
+      .transform((value, ctx) => {
+        if (value === null || value === undefined || value === '') return null;
+        const parsed = Number(value);
+        if (!Number.isInteger(parsed) || parsed < 0) {
+          ctx.addIssue({
+            code: 'custom',
+            message: 'Enter a whole number, or leave blank.',
+          });
+          return null;
+        }
+        return parsed;
+      }),
+    paymentTermsDays: z
+      .union([z.string(), z.number()])
+      .optional()
+      .nullable()
+      .transform((value, ctx) => {
+        if (value === null || value === undefined || value === '') return null;
+        const parsed = Number(value);
+        if (!Number.isInteger(parsed) || parsed < 0 || parsed > 180) {
+          ctx.addIssue({
+            code: 'custom',
+            message: 'Enter a number of days between 0 and 180, or leave blank.',
+          });
+          return null;
+        }
+        return parsed;
+      }),
+    terms: optionalText(8000),
+    notes: optionalText(4000),
+  })
+  .refine(
+    (contract) =>
+      !contract.startDate || !contract.endDate || contract.endDate >= contract.startDate,
+    { message: 'The end date cannot be before the start date.', path: ['endDate'] },
+  )
+  .refine((contract) => contract.status !== 'ACTIVE' || !!contract.startDate, {
+    message: 'A live contract needs a start date.',
+    path: ['startDate'],
+  });
+
+export type ContractInput = z.infer<typeof contractSchema>;

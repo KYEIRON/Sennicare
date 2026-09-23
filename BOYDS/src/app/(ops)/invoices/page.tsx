@@ -15,6 +15,7 @@ import { addCents } from '@/lib/money';
 import { InvoiceForm } from './invoice-form';
 import { PaymentForm } from './payment-form';
 import { SendInvoiceButton } from './send-invoice-button';
+import { ContractForm, ContractStatusControl } from './contract-form';
 
 export const metadata: Metadata = { title: 'Invoices' };
 
@@ -176,8 +177,13 @@ export default async function InvoicesPage() {
             )}
           </Panel>
 
-          {contracts.length > 0 && (
-            <Panel title={`Contracts (${contracts.length})`}>
+          <Panel title={`Contracts (${contracts.length})`}>
+            {contracts.length === 0 ? (
+              <EmptyState>
+                No recurring agreements yet. A contract is how one-off jobs become work
+                BOYD&rsquo;S can count on.
+              </EmptyState>
+            ) : (
               <ul className="space-y-2">
                 {contracts.map((contract) => (
                   <li
@@ -204,12 +210,20 @@ export default async function InvoicesPage() {
                           formatCents(cents(contract.agreedRateCents))
                         )}
                       </p>
+                      <ContractStatusControl
+                        contractId={contract.id}
+                        status={contract.status}
+                      />
                     </div>
                   </li>
                 ))}
               </ul>
-            </Panel>
-          )}
+            )}
+          </Panel>
+
+          <Panel title="Add a contract">
+            <ContractForm customers={customers} />
+          </Panel>
         </div>
 
         <Panel title="Raise an invoice">

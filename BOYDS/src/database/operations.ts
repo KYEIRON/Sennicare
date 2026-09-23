@@ -772,6 +772,14 @@ export interface ContractRow {
   agreedRateCents: number | null;
 }
 
+export async function nextContractNumber(client: SupabaseClient): Promise<string> {
+  const { count } = await client
+    .from('contracts')
+    .select('id', { count: 'exact', head: true });
+  const year = new Date().getFullYear();
+  return `BK-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+}
+
 export async function listContracts(
   client: SupabaseClient,
 ): Promise<Result<ContractRow[]>> {

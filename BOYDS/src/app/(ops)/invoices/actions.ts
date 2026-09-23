@@ -3,7 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { requirePartner } from '@/lib/auth/session';
 import { getServerClient } from '@/lib/supabase/server';
-import { nextInvoiceNumber } from '@/database/operations';
+import { nextContractNumber, nextInvoiceNumber } from '@/database/operations';
+import { contractSchema } from '@/validation/operations';
 import type { FormState } from '@/app/(ops)/customers/actions';
 
 /**
@@ -168,4 +169,111 @@ export async function sendInvoice(
     success:
       'Marked as sent. No email provider is connected, so send the invoice to the customer yourself.',
   };
+}
+
+/**
+ * Record a recurring work agreement.
+ *
+ * Contracts are how BOYD'S turns one-off jobs into predictable work, and the
+ * reason the table exists is so a regular customer's terms are written down
+ * once rather than remembered differently by each partner.
+ *
+ * The rate may be left blank. An agreement without a settled rate is a real
+ * thing; a contract priced at zero is not, and would tell the profitability
+ * engine BOYD'S agreed to work for nothing.
+ */
+export async function createContract(
+  _previous: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const auth = await requirePartner();
+  if (!auth.ok) return { error: 'You do not have access to this.' };
+
+  const parsed = contractSchema.safeParse({
+    customerId: formData.get('customerId'),
+    title: formData.get('title'),
+    status: formData.get('status') || 'DRAFT',
+    startDate: formData.get('startDate'),
+    endDate: formData.get('endDate'),
+    frequency: formData.get('frequency'),
+    agreedRateCents: formData.get('agreedRate'),
+    rateBasis: formData.get('rateBasis'),
+    minimumVolume: formData.get('minimumVolume'),
+    paymentTermsDays: formData.get('paymentTermsDays'),
+    terms: formData.get('terms'),
+    notes: formData.get('notes'),
+  });
+
+  if (!parsed.success) {
+    const flattened = parsed.error.flatten();
+    return {
+      fieldErrors: flattened.fieldErrors as Record<string, string[]>,
+      error: flattened.formErrors[0],
+    };
+  }
+
+  const supabase = await getServerClient();
+  if (!supabase) return { error: 'The database is not connected.' };
+
+  const { error } = await supabase.from('contracts').insert({
+    contract_number: await nextContractNumber(supabase),
+    customer_id: parsed.data.customerId,
+    title: parsed.data.title,
+    status: parsed.data.status,
+    start_date: parsed.data.startDate ?? null,
+    end_date: parsed.data.endDate ?? null,
+    frequency: parsed.data.frequency ?? null,
+    // Null, never zero: see the note above.
+    agreed_rate_cents: parsed.data.agreedRateCents,
+    rate_basis: parsed.data.rateBasis ?? null,
+    minimum_volume: parsed.data.minimumVolume,
+    payment_terms_days: parsed.data.paymentTermsDays,
+    terms: parsed.data.terms ?? null,
+    notes: parsed.data.notes ?? null,
+    created_by: auth.value.id,
+    provenance: 'REAL',
+  });
+
+  if (error) return { error: 'Could not save the contract.' };
+
+  revalidatePath('/invoices');
+  revalidatePath(`/customers/${parsed.data.customerId}`);
+  return { success: 'Contract saved.' };
+}
+
+/** Move a contract between draft, live, paused and ended. */
+export async function setContractStatus(
+  _previous: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const auth = await requirePartner();
+  if (!auth.ok) return { error: 'You do not have access to this.' };
+
+  const contractId = String(formData.get('contractId') ?? '');
+  const status = String(formData.get('status') ?? '');
+
+  if (!['DRAFT', 'ACTIVE', 'PAUSED', 'ENDED', 'CANCELLED'].includes(status)) {
+    return { error: 'That is not a contract status.' };
+  }
+
+  const supabase = await getServerClient();
+  if (!supabase) return { error: 'The database is not connected.' };
+
+  const { error } = await supabase
+    .from('contracts')
+    .update({ status })
+    .eq('id', contractId);
+
+  if (error) {
+    // A database constraint refuses an ACTIVE contract with no start date.
+    return {
+      error:
+        status === 'ACTIVE'
+          ? 'A live contract needs a start date. Add one first.'
+          : 'Could not update the contract.',
+    };
+  }
+
+  revalidatePath('/invoices');
+  return { success: 'Contract updated.' };
 }

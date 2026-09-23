@@ -14,6 +14,49 @@ import type { JobStatus } from '@/types/operations';
 import type { FormState } from '@/app/(ops)/customers/actions';
 
 /**
+ * Read the stops off the form.
+ *
+ * A job is not two addresses. BOYD'S runs multi-drop work, and the data model
+ * has always allowed it; this reads however many the partner entered rather
+ * than assuming a collection and a delivery.
+ *
+ * Sequence comes from the order on screen, not from the browser, so a
+ * tampered form cannot produce a delivery before its collection — and the
+ * schema checks that rule again afterwards.
+ */
+function readStops(formData: FormData): readonly Record<string, unknown>[] {
+  const declared = Number(formData.get('stopCount'));
+  // A sane bound. Not a business rule — just a limit on what one form can post.
+  const count = Number.isSafeInteger(declared) ? Math.min(Math.max(declared, 0), 26) : 0;
+
+  const stops: Record<string, unknown>[] = [];
+
+  for (let index = 0; index < count; index += 1) {
+    const field = (name: string) => formData.get(`stops[${index}].${name}`);
+
+    // A row the partner added and then left empty is not a stop. Skipping it
+    // is kinder than failing the whole form over a blank they never filled in.
+    if (!field('addressLine1') && !field('city') && !field('zip')) continue;
+
+    stops.push({
+      sequence: stops.length + 1,
+      stopType: field('stopType'),
+      addressLine1: field('addressLine1'),
+      city: field('city'),
+      state: field('state'),
+      zip: field('zip'),
+      contactName: field('contactName'),
+      contactPhone: field('contactPhone'),
+      instructions: field('instructions'),
+      scheduledDate: field('scheduledDate') || formData.get('scheduledDate') || null,
+      scheduledTime: field('scheduledTime'),
+    });
+  }
+
+  return stops;
+}
+
+/**
  * Create a job.
  *
  * Validation happens before anything is written, so a half-finished job never
@@ -28,35 +71,7 @@ export async function createJob(
   const auth = await requirePartner();
   if (!auth.ok) return { error: 'You do not have access to this.' };
 
-  const stops = [
-    {
-      sequence: 1,
-      stopType: 'PICKUP' as const,
-      addressLine1: formData.get('pickupAddress'),
-      city: formData.get('pickupCity'),
-      state: formData.get('pickupState'),
-      zip: formData.get('pickupZip'),
-      contactName: formData.get('pickupContact'),
-      contactPhone: formData.get('pickupPhone'),
-      instructions: formData.get('pickupInstructions'),
-      scheduledDate: formData.get('scheduledDate') || null,
-      scheduledTime: formData.get('pickupTime'),
-    },
-    {
-      sequence: 2,
-      stopType: 'DELIVERY' as const,
-      addressLine1: formData.get('deliveryAddress'),
-      city: formData.get('deliveryCity'),
-      state: formData.get('deliveryState'),
-      zip: formData.get('deliveryZip'),
-      contactName: formData.get('deliveryContact'),
-      contactPhone: formData.get('deliveryPhone'),
-      instructions: formData.get('deliveryInstructions'),
-      scheduledDate:
-        formData.get('deliveryDate') || formData.get('scheduledDate') || null,
-      scheduledTime: formData.get('deliveryTime'),
-    },
-  ];
+  const stops = readStops(formData);
 
   const parsed = createJobSchema.safeParse({
     customerId: formData.get('customerId'),
@@ -69,7 +84,8 @@ export async function createJob(
     pallets: formData.get('pallets') ? Number(formData.get('pallets')) : null,
     specialHandling: formData.get('specialHandling'),
     scheduledDate: formData.get('scheduledDate') || null,
-    scheduledTime: formData.get('pickupTime'),
+    // The job's own time is the first stop's: when the van is due out.
+    scheduledTime: stops[0]?.scheduledTime || null,
     scheduledWindowEnd: formData.get('windowEnd'),
     estimatedMilesTenths: formData.get('estimatedMiles'),
     quotedPriceCents: formData.get('quotedPrice'),

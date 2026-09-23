@@ -1,9 +1,9 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { createJob } from './actions';
 import type { FormState } from '@/app/(ops)/customers/actions';
-import { JOB_PRIORITIES } from '@/types/operations';
+import { JOB_PRIORITIES, type StopType } from '@/types/operations';
 import { Field, Select, SubmitButton, TextArea, TextInput } from '@/components/ui/form';
 
 /**
@@ -12,6 +12,10 @@ import { Field, Select, SubmitButton, TextArea, TextInput } from '@/components/u
  * Everything needed for a real job is validated before anything is saved, so an
  * incomplete job never appears on the schedule as though BOYD'S had agreed to
  * do it. A job starts at REQUESTED and is moved forward deliberately.
+ *
+ * A job is as many stops as the work actually has. Two is the common case and
+ * is what the form opens with, but a multi-drop run is entered as a multi-drop
+ * run rather than being split into jobs that never happened.
  */
 export function NewJobForm({
   customers,
@@ -21,6 +25,29 @@ export function NewJobForm({
   jobTypes: readonly { id: string; name: string }[];
 }>) {
   const [state, action, pending] = useActionState<FormState, FormData>(createJob, {});
+
+  // Two to begin with, because most BOYD'S work is one collection and one
+  // delivery. Neither is fixed — a multi-drop run adds rows.
+  const [stops, setStops] = useState<readonly StopRow[]>([
+    { key: 'stop-1', stopType: 'PICKUP' },
+    { key: 'stop-2', stopType: 'DELIVERY' },
+  ]);
+
+  const addStop = () =>
+    setStops((current) => [
+      ...current,
+      { key: `stop-${Date.now()}`, stopType: 'DELIVERY' },
+    ]);
+
+  const removeStop = (index: number) =>
+    setStops((current) => current.filter((_, position) => position !== index));
+
+  const setStopType = (index: number, stopType: StopType) =>
+    setStops((current) =>
+      current.map((stop, position) =>
+        position === index ? { ...stop, stopType } : stop,
+      ),
+    );
 
   if (customers.length === 0) {
     return (
@@ -69,84 +96,56 @@ export function NewJobForm({
         </Field>
       </div>
 
-      <fieldset className="space-y-3 rounded border border-boyd-navy-700 p-3">
-        <legend className="px-1 text-xs font-semibold tracking-wider text-boyd-orange-400 uppercase">
-          Collection
-        </legend>
-        <Field label="Address" name="pickupAddress" errors={state.fieldErrors}>
-          <TextInput name="pickupAddress" required maxLength={200} />
-        </Field>
-        <div className="grid grid-cols-3 gap-2">
-          <Field label="City" name="pickupCity" errors={state.fieldErrors}>
-            <TextInput name="pickupCity" required maxLength={120} />
-          </Field>
-          <Field label="State" name="pickupState" errors={state.fieldErrors}>
-            <TextInput name="pickupState" required maxLength={2} placeholder="NC" />
-          </Field>
-          <Field label="ZIP" name="pickupZip" errors={state.fieldErrors}>
-            <TextInput name="pickupZip" required maxLength={10} />
-          </Field>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <Field label="Contact" name="pickupContact" errors={state.fieldErrors}>
-            <TextInput name="pickupContact" maxLength={200} />
-          </Field>
-          <Field label="Phone" name="pickupPhone" errors={state.fieldErrors}>
-            <TextInput name="pickupPhone" type="tel" maxLength={40} />
-          </Field>
-        </div>
-        <Field label="Instructions" name="pickupInstructions" errors={state.fieldErrors}>
-          <TextArea name="pickupInstructions" rows={2} />
-        </Field>
-      </fieldset>
+      <input type="hidden" name="stopCount" value={stops.length} />
 
-      <fieldset className="space-y-3 rounded border border-boyd-navy-700 p-3">
-        <legend className="px-1 text-xs font-semibold tracking-wider text-boyd-blue-300 uppercase">
-          Delivery
-        </legend>
-        <Field label="Address" name="deliveryAddress" errors={state.fieldErrors}>
-          <TextInput name="deliveryAddress" required maxLength={200} />
-        </Field>
-        <div className="grid grid-cols-3 gap-2">
-          <Field label="City" name="deliveryCity" errors={state.fieldErrors}>
-            <TextInput name="deliveryCity" required maxLength={120} />
-          </Field>
-          <Field label="State" name="deliveryState" errors={state.fieldErrors}>
-            <TextInput name="deliveryState" required maxLength={2} placeholder="NC" />
-          </Field>
-          <Field label="ZIP" name="deliveryZip" errors={state.fieldErrors}>
-            <TextInput name="deliveryZip" required maxLength={10} />
-          </Field>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <Field label="Contact" name="deliveryContact" errors={state.fieldErrors}>
-            <TextInput name="deliveryContact" maxLength={200} />
-          </Field>
-          <Field label="Phone" name="deliveryPhone" errors={state.fieldErrors}>
-            <TextInput name="deliveryPhone" type="tel" maxLength={40} />
-          </Field>
-        </div>
-        <Field
-          label="Instructions"
-          name="deliveryInstructions"
-          errors={state.fieldErrors}
+      <div className="space-y-3">
+        {stops.map((stop, index) => (
+          <StopFieldset
+            key={stop.key}
+            index={index}
+            stopType={stop.stopType}
+            position={index + 1}
+            total={stops.length}
+            errors={state.fieldErrors}
+            onTypeChange={(value) => setStopType(index, value)}
+            onRemove={stops.length > 2 ? () => removeStop(index) : undefined}
+          />
+        ))}
+
+        <button
+          type="button"
+          onClick={addStop}
+          className="w-full rounded-md border border-dashed border-boyd-navy-600 px-4 py-2.5 text-sm font-medium text-boyd-light-300 hover:border-boyd-blue-500 hover:text-boyd-light-100"
         >
-          <TextArea name="deliveryInstructions" rows={2} />
-        </Field>
-      </fieldset>
+          Add another stop
+        </button>
+
+        {state.fieldErrors?.stops?.map((message) => (
+          <p key={message} role="alert" className="text-sm text-boyd-negative">
+            {message}
+          </p>
+        ))}
+      </div>
 
       <fieldset className="space-y-3 rounded border border-boyd-navy-700 p-3">
         <legend className="px-1 text-xs font-semibold tracking-wider text-boyd-light-400 uppercase">
           Schedule and shipment
         </legend>
-        <div className="grid grid-cols-3 gap-2">
-          <Field label="Date" name="scheduledDate" errors={state.fieldErrors}>
+        <div className="grid grid-cols-2 gap-2">
+          <Field
+            label="Date"
+            name="scheduledDate"
+            errors={state.fieldErrors}
+            hint="Applies to every stop unless one says otherwise."
+          >
             <TextInput name="scheduledDate" type="date" />
           </Field>
-          <Field label="From" name="pickupTime" errors={state.fieldErrors}>
-            <TextInput name="pickupTime" type="time" />
-          </Field>
-          <Field label="Until" name="windowEnd" errors={state.fieldErrors}>
+          <Field
+            label="Back by"
+            name="windowEnd"
+            errors={state.fieldErrors}
+            hint="The end of the window the customer agreed to."
+          >
             <TextInput name="windowEnd" type="time" />
           </Field>
         </div>
@@ -195,5 +194,115 @@ export function NewJobForm({
 
       <SubmitButton pending={pending}>Create job</SubmitButton>
     </form>
+  );
+}
+
+interface StopRow {
+  readonly key: string;
+  readonly stopType: StopType;
+}
+
+const STOP_TYPE_LABELS: Readonly<Record<StopType, string>> = {
+  PICKUP: 'Collect',
+  DELIVERY: 'Deliver',
+  INTERMEDIATE: 'Call at',
+};
+
+const STOP_ACCENTS: Readonly<Record<StopType, string>> = {
+  PICKUP: 'text-boyd-orange-400',
+  DELIVERY: 'text-boyd-blue-300',
+  INTERMEDIATE: 'text-boyd-light-400',
+};
+
+/**
+ * One stop on the run.
+ *
+ * The order on screen is the order of the run, and the server takes the
+ * sequence from that order rather than from anything the browser sends.
+ */
+function StopFieldset({
+  index,
+  stopType,
+  position,
+  total,
+  errors,
+  onTypeChange,
+  onRemove,
+}: Readonly<{
+  index: number;
+  stopType: StopType;
+  position: number;
+  total: number;
+  errors: Record<string, string[]> | undefined;
+  onTypeChange: (value: StopType) => void;
+  onRemove?: (() => void) | undefined;
+}>) {
+  const field = (name: string) => `stops[${index}].${name}`;
+
+  return (
+    <fieldset className="space-y-3 rounded border border-boyd-navy-700 p-3">
+      <legend
+        className={`px-1 text-xs font-semibold tracking-wider uppercase ${STOP_ACCENTS[stopType]}`}
+      >
+        Stop {position} of {total}
+      </legend>
+
+      <div className="flex flex-wrap items-end gap-3">
+        <div className="min-w-40 flex-1">
+          <Field label="What happens here?" name={field('stopType')} errors={errors}>
+            <Select
+              name={field('stopType')}
+              value={stopType}
+              onChange={(event) => onTypeChange(event.target.value as StopType)}
+            >
+              <option value="PICKUP">{STOP_TYPE_LABELS.PICKUP}</option>
+              <option value="DELIVERY">{STOP_TYPE_LABELS.DELIVERY}</option>
+              <option value="INTERMEDIATE">{STOP_TYPE_LABELS.INTERMEDIATE}</option>
+            </Select>
+          </Field>
+        </div>
+        {onRemove && (
+          <button
+            type="button"
+            onClick={onRemove}
+            className="rounded-md border border-boyd-navy-700 px-3 py-2 text-sm text-boyd-light-400 hover:border-boyd-negative hover:text-boyd-negative"
+          >
+            Remove
+          </button>
+        )}
+      </div>
+
+      <Field label="Address" name={field('addressLine1')} errors={errors}>
+        <TextInput name={field('addressLine1')} required maxLength={200} />
+      </Field>
+
+      <div className="grid grid-cols-3 gap-2">
+        <Field label="City" name={field('city')} errors={errors}>
+          <TextInput name={field('city')} required maxLength={120} />
+        </Field>
+        <Field label="State" name={field('state')} errors={errors}>
+          <TextInput name={field('state')} required maxLength={2} placeholder="NC" />
+        </Field>
+        <Field label="ZIP" name={field('zip')} errors={errors}>
+          <TextInput name={field('zip')} required maxLength={10} />
+        </Field>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2">
+        <Field label="Contact" name={field('contactName')} errors={errors}>
+          <TextInput name={field('contactName')} maxLength={200} />
+        </Field>
+        <Field label="Phone" name={field('contactPhone')} errors={errors}>
+          <TextInput name={field('contactPhone')} type="tel" maxLength={40} />
+        </Field>
+        <Field label="Time" name={field('scheduledTime')} errors={errors}>
+          <TextInput name={field('scheduledTime')} type="time" />
+        </Field>
+      </div>
+
+      <Field label="Instructions" name={field('instructions')} errors={errors}>
+        <TextArea name={field('instructions')} rows={2} />
+      </Field>
+    </fieldset>
   );
 }
