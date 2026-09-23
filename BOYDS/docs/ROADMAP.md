@@ -258,12 +258,51 @@ so the financial engine threw on live data (D-026), and an empty string was
 parsing to zero — the "missing treated as free" failure arriving through a type
 coercion.
 
-**Still outstanding for production:** rate limiting on public endpoints, error
-monitoring, a backup and restore rehearsal, an accessibility audit, and a
-Playwright suite covering the same journey through the interface. These need a
-deployed environment.
+Rate limiting is in place on all three public entry points — the delivery
+request form, the AI chat route and sign-in — and is honest about being
+in-memory (D-028).
 
-**Done:** 704 tests passing — 446 unit and guard, 258 against real PostgreSQL.
+**Still outstanding for production:** error monitoring, a backup and restore
+rehearsal, an accessibility audit, and a Playwright suite covering the same
+journey through the interface. Each of these needs a deployed environment and
+therefore a Supabase project, so none can be finished before BOYD'S has one.
+
+### Phase 16 — Closing the gaps between screens ✅ complete
+
+The phases above built every capability. This one removed the places where a
+capability existed but nothing on screen could reach it.
+
+**Vehicle running costs.** A vehicle detail page where a partner records what
+BOYD'S actually pays for the van, and sees cost per mile derived from those
+entries and real recorded mileage. When cost lines are missing the page says
+the figure is partial and is not the van's true cost per mile.
+
+**Request to job conversion.** Enquiries could be read but not acted on. A
+partner can now take one on, decline it with a reason, or mark it as being
+looked at. The job is created at APPROVED with no price, and a complete address
+is required — an earlier version defaulted the state to NC and the ZIP to 00000
+to satisfy the not-null columns, and that was removed (D-030).
+
+**Incident reporting** (migration 0024). Moh had no way to report that
+something went wrong. He can now, from the Record screen, with three required
+yes/no questions that have no default answer, a typed location because there is
+no tracker, and no cost field. A filed report cannot be edited or deleted by a
+driver, and the form says so before he sends it. Partners are told by a database
+trigger (D-032 to D-035).
+
+**The customer record.** Every job, quote, invoice and enquiry for one
+customer, plus the people, the addresses and the notes. Contribution runs
+through the same engine as the Command Centre, so a customer with any
+unrecorded cost reads DATA INCOMPLETE (D-036).
+
+**Multi-drop jobs.** The schema always allowed any number of stops; only the
+form was fixed at two, which would have forced a four-drop run to be entered as
+four jobs that never happened (D-037).
+
+**Contract creation.** Contracts had a table and a panel but no form, and the
+panel was hidden when empty — so there was no path to one at all (D-038).
+
+**Done:** 771 tests passing — 467 unit and guard, 304 against real PostgreSQL.
 
 ## Order of value
 
