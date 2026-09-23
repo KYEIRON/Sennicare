@@ -161,6 +161,27 @@ describe('preflight-production.sql', () => {
     );
   });
 
+  it('accepts storage policy rights granted by supautils, as hosted Supabase does', async () => {
+    // On a hosted project `postgres` is not a member of the storage owner; the
+    // supautils extension grants it policy rights on storage.objects instead.
+    await admin.query('revoke supabase_storage_admin from supabase_postgres');
+    try {
+      let rows = await run('preflight-production.sql');
+      expect(rows.find((row) => row.ord === 6)!.result).toBe('STOP');
+
+      await migrator.query(
+        `set supautils.policy_grants = '{"supabase_postgres": ["storage.objects"]}'`,
+      );
+      rows = await run('preflight-production.sql');
+      const row = rows.find((r) => r.ord === 6)!;
+      expect(row.result).toBe('PASS');
+      expect(row.detail).toContain('by supautils');
+    } finally {
+      await migrator.query('reset supautils.policy_grants');
+      await admin.query('grant supabase_storage_admin to supabase_postgres');
+    }
+  });
+
   it('confirms the migrating role bypasses row level security', async () => {
     const rows = await run('preflight-production.sql');
     expect(rows.find((row) => row.ord === 3)!.result).toBe('PASS');

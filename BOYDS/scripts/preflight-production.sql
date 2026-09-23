@@ -89,6 +89,10 @@ select * from (
               then 'PASS' else 'STOP' end,
          'storage.objects, storage.buckets, storage.foldername() — needed by migration 0026'
 
+  -- Hosted Supabase does not make `postgres` a member of the storage owner.
+  -- It lets `postgres` manage policies on storage.objects through the supautils
+  -- extension instead, listed in the `supautils.policy_grants` setting. Either
+  -- route lets migration 0026 create its policies.
   union all
   select 6, 'may create policies on storage.objects',
          case
@@ -98,10 +102,20 @@ select * from (
              or pg_has_role(current_user,
                   (select relowner from rel where nspname = 'storage' and relname = 'objects'),
                   'MEMBER')
+             or coalesce(
+                  (nullif(current_setting('supautils.policy_grants', true), '')::jsonb
+                     -> current_user) ? 'storage.objects',
+                  false)
            then 'PASS' else 'STOP' end,
          'owner of storage.objects is ' || coalesce(
            (select pg_get_userbyid(relowner) from rel
-             where nspname = 'storage' and relname = 'objects'), 'missing')
+             where nspname = 'storage' and relname = 'objects'), 'missing') ||
+         case when coalesce(
+                (nullif(current_setting('supautils.policy_grants', true), '')::jsonb
+                   -> current_user) ? 'storage.objects',
+                false)
+              then '; policies granted to ' || current_user || ' by supautils'
+              else '' end
 
   union all
   select 7, 'api roles present',
