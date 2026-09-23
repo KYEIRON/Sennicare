@@ -136,6 +136,46 @@ select * from (
                   'none across ' || (select count(*) from demo_rows) || ' tables')
 
   union all
+  select 13, 'only an admin can create or change a person',
+         case when exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'users' and policyname = 'users_insert_admin')
+               and exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'users' and policyname = 'users_update_admin')
+               and exists (select 1 from pg_policies where schemaname = 'public' and tablename = 'partners' and policyname = 'partners_write_admin')
+               and not exists (select 1 from pg_policies where schemaname = 'public'
+                                 and tablename in ('users', 'partners')
+                                 and policyname in ('users_insert_partner', 'users_update_partner', 'partners_write_partner'))
+              then 'PASS' else 'STOP' end,
+         'a partner cannot add people or promote anyone, themselves included (0027)'
+
+  union all
+  select 14, 'identity guardrails enforced',
+         case when exists (select 1 from pg_trigger
+                            where tgrelid = 'public.users'::regclass
+                              and tgname = 'users_management_rules'
+                              and tgenabled = 'O')
+              then 'PASS' else 'STOP' end,
+         'no self role/status change; last admin kept; sign-in cannot be re-pointed'
+
+  union all
+  select 15, 'identity changes are audited',
+         case when (select count(*) from pg_trigger
+                     where tgenabled = 'O'
+                       and (tgrelid, tgname) in (('public.users'::regclass, 'users_audit'),
+                                                 ('public.partners'::regclass, 'partners_audit'),
+                                                 ('public.drivers'::regclass, 'drivers_audit'))) = 3
+               and 'role' = any (public.audited_columns_for('users'))
+               and 'description' = any (public.audited_columns_for('incidents'))
+              then 'PASS' else 'STOP' end,
+         'role, status and incident corrections are recorded, with who and from-what-to-what'
+
+  union all
+  select 16, 'first sign-in activation is available to signed-in users only',
+         case when to_regprocedure('public.record_my_sign_in()') is not null
+               and has_function_privilege('authenticated', 'public.record_my_sign_in()', 'execute')
+               and not has_function_privilege('anon', 'public.record_my_sign_in()', 'execute')
+              then 'PASS' else 'STOP' end,
+         'record_my_sign_in(): never reactivates a deactivated account'
+
+  union all
   select 11, 'people and admins', 'INFO',
          (select count(*) from public.users where role = 'ADMIN' and status = 'ACTIVE') ||
          ' active admin(s); ' ||

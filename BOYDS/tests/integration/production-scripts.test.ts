@@ -71,7 +71,7 @@ describe('verify-production.sql', () => {
     const stops = rows.filter((row) => row.result === 'STOP');
 
     expect(stops).toEqual([]);
-    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(10);
+    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(14);
   });
 
   it('changes nothing', async () => {
@@ -95,6 +95,28 @@ describe('verify-production.sql', () => {
       expect(stopped).toContain('no api role can write through a view');
     } finally {
       await admin.query('revoke insert on driver_vehicle_maintenance from anon');
+    }
+  });
+
+  it('stops if the identity guardrails are switched off', async () => {
+    await admin.query('alter table users disable trigger users_management_rules');
+    try {
+      const rows = await run('verify-production.sql');
+      expect(rows.find((row) => row.ord === 14)!.result).toBe('STOP');
+    } finally {
+      await admin.query('alter table users enable trigger users_management_rules');
+    }
+  });
+
+  it('stops if partners regain the power to change people', async () => {
+    await admin.query(
+      'create policy users_update_partner on users for update using (is_partner()) with check (is_partner())',
+    );
+    try {
+      const rows = await run('verify-production.sql');
+      expect(rows.find((row) => row.ord === 13)!.result).toBe('STOP');
+    } finally {
+      await admin.query('drop policy users_update_partner on users');
     }
   });
 
