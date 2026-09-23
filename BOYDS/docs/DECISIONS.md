@@ -1028,3 +1028,26 @@ logged in full; it was later edits that vanished.)
 
 **How it was found:** by the user-management test asserting that a role change
 was audited. The fix covers incidents too, and there is now a test for each.
+
+---
+
+## D-051 — Email links work with Supabase's default templates
+
+**Decision:** `/auth/confirm` accepts the three shapes an invitation or reset
+link can arrive in: `?token_hash=` (BOYD'S own template), `?code=` (a reset
+requested from the sign-in page), and a session in the `#fragment` (an
+invitation or password-setup email sent with Supabase's default template). The
+fragment is read in the browser by `/sign-in/link`, which accepts only
+`invite` and `recovery` and clears the tokens from the address bar first.
+
+**Why:** Supabase no longer lets a free-tier project change its email templates
+unless it has its own email provider (the API answers "Email template
+modification is not available for free tier projects using the default email
+provider"). The runbook's template step therefore cannot be done on the
+production project, and with the default template every invitation and every
+password reset landed on "link invalid". Found on the live project by
+generating an invitation link (no email sent) and following it: Supabase
+redirected to `/auth/confirm#access_token=…&type=invite`.
+
+When BOYD'S sets up a business email provider, the templates in
+`docs/DEPLOYMENT.md` can be applied; both paths keep working.

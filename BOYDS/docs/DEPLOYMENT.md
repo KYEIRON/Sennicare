@@ -125,8 +125,11 @@ done by hand, once, in the dashboard.
 2. **Authentication → URL Configuration:** set **Site URL** to the production
    address (e.g. `https://<your domain>`), and add `https://<your domain>/auth/confirm`
    to **Redirect URLs**.
-3. **Authentication → Emails → Templates.** Change the link in two templates so
-   it lands on BOYD'S own confirmation page, which verifies it on the server:
+3. **Authentication → Emails → Templates.** _Optional, and only possible once
+   the project has its own email provider (step 4) or a paid plan._ Supabase
+   refuses template changes on a free-tier project using its built-in email.
+   The default templates work as they are: `/auth/confirm` accepts their links
+   too (D-051). With a provider in place, these links verify on the server:
    - **Invite user:**
      `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
    - **Reset password:**

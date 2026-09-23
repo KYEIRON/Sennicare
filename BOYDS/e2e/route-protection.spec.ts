@@ -75,6 +75,29 @@ test.describe('invitation and reset links', () => {
     await expect(page).toHaveURL(/\/sign-in\?reason=link-invalid/);
   });
 
+  // Supabase's default templates (the only ones a free-tier project without its
+  // own email provider may use) put the session in the URL fragment.
+  test('a default-template link with no session in it is refused', async ({ page }) => {
+    await page.goto('/auth/confirm');
+    await expect(page).toHaveURL(/\/sign-in\?reason=link-invalid/);
+  });
+
+  test('a default-template sign-up link is refused — there is no self sign-up', async ({
+    page,
+  }) => {
+    await page.goto('/auth/confirm#access_token=a&refresh_token=b&type=signup');
+    await expect(page).toHaveURL(/\/sign-in\?reason=link-invalid/);
+    expect(page.url()).not.toContain('access_token');
+  });
+
+  test('an expired default-template link says so', async ({ page }) => {
+    await page.goto('/auth/confirm#error=access_denied&error_code=otp_expired');
+    await expect(page).toHaveURL(/\/sign-in\?reason=link-expired/);
+
+    await page.goto('/auth/confirm?error=access_denied&error_code=otp_expired');
+    await expect(page).toHaveURL(/\/sign-in\?reason=link-expired/);
+  });
+
   test('sign-in offers a way back in for a forgotten password', async ({ page }) => {
     await page.goto('/sign-in');
     await page.getByRole('link', { name: 'Forgot your password?' }).click();

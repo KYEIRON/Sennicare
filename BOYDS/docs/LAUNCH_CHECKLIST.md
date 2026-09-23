@@ -33,6 +33,9 @@ In Supabase → **Authentication**:
 - [ ] **URL Configuration:** set **Site URL** to the website address, and add
       `<that address>/auth/confirm` to **Redirect URLs**. If the domain isn't
       ready, use the Vercel address from step 3 and update both later.
+- The two template steps below are optional. Supabase allows them only once
+  the project has its own email provider or a paid plan; the default templates
+  work as they are (`docs/DECISIONS.md` D-051).
 - [ ] **Emails → Templates → Invite user:** set the link to
       `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
 - [ ] **Emails → Templates → Reset password:** set the link to
