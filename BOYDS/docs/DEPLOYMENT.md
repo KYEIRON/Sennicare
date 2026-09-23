@@ -112,27 +112,70 @@ file-type limits rather than trusting whatever was set in the dashboard.
 are customer records. Partners can reach every file; a driver can upload to and
 read only the folders of jobs assigned to them; the public can reach nothing.
 
-## Creating the first accounts
+## Authentication settings
 
-There is no public sign-up, and an auth account with no BOYD'S user row has no
-role and no access. Accounts are created deliberately:
+Set these in Supabase before anyone is invited. The Supabase MCP and the CLI
+cannot set them on a hosted project without an access token, so they are
+done by hand, once, in the dashboard.
 
-1. In Supabase → Authentication → Users, invite the partner's email address.
-2. Then link it:
+1. **Authentication → Sign In / Providers → Email:** turn **off** "Allow new
+   users to sign up". There is no public sign-up; people are added by an admin.
+   (Even if it were left on, a self-registered account has no BOYD'S record and
+   is refused, but there is no reason to allow it.)
+2. **Authentication → URL Configuration:** set **Site URL** to the production
+   address (e.g. `https://<your domain>`), and add `https://<your domain>/auth/confirm`
+   to **Redirect URLs**.
+3. **Authentication → Emails → Templates.** Change the link in two templates so
+   it lands on BOYD'S own confirmation page, which verifies it on the server:
+   - **Invite user:**
+     `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=invite`
+   - **Reset password:**
+     `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
+4. **Email sending.** Supabase's built-in email service sends only a handful of
+   messages an hour and is meant for testing. It is enough to invite a small
+   team. When BOYD'S has a business email provider, set it under
+   **Authentication → Emails → SMTP Settings**.
+5. **Vercel → Environment Variables:** add `SUPABASE_SERVICE_ROLE_KEY`
+   (Supabase → Project Settings → API keys → the secret / service_role key).
+   **Never** prefix it `NEXT_PUBLIC_`. It is used only to send invitations and
+   manage sign-in accounts, never to read business data. Without it, people can
+   still be added and managed, and the Team screen says plainly that invitations
+   cannot be sent yet.
 
-```sql
-insert into users (auth_user_id, email, first_name, role, status)
-values ('<auth uuid>', '<email>', 'Ronald', 'PARTNER', 'ACTIVE');
+## Creating the first admin
 
-insert into partners (user_id, name, role_title, responsibilities)
-select id, 'Ronald', 'Business & Operations Partner',
-       array['business strategy', 'operations management', 'sales', 'pricing',
-             'profitability', 'finance oversight', 'technology', 'growth']
-from users where email = '<email>';
-```
+Everyone is added from the **Team** screen by an admin, except the first admin,
+because nobody exists yet to add them. Once, on a freshly deployed project:
 
-Moh gets both a `users` row with role `DRIVER` and a `drivers` row, plus a
-`partners` row — he is a partner who drives, and the two records are independent.
+1. **Supabase → Authentication → Users → Add user → Create new user.** Enter
+   the admin's real email and a strong password, and tick **Auto Confirm User**.
+2. Open `scripts/bootstrap-first-admin.sql`, edit the four values at the top
+   (email, first name, last name, role in the business), and run it in the
+   Supabase SQL editor.
+3. Sign in at `/sign-in`. The admin lands on the Command Centre and has the
+   Team screen.
+
+The script refuses to run if its values are unedited, if an active admin
+already exists, or if the sign-in account from step 1 does not exist. It changes
+nothing unless every check passes. The email is typed into the script at run
+time; it is never stored in the repository.
+
+## Adding everyone else
+
+From **Team → Add a person**, as an admin. Any role: Admin, Partner or Driver,
+plus "a business partner" (a partner record) and "drives for BOYD'S" (a driver
+record), in any combination. A partner who drives, like Moh, is a Driver-role
+user with both records.
+
+**No email yet?** Leave it blank. The person is saved, with their partner and
+driver records, as _Waiting for email_. When the address is known, **Save
+email** on their card sends the invitation, and the records already in place are
+theirs the moment they sign in. No code or schema change is involved.
+
+The invitation email links to `/auth/confirm`, then to _Set your password_.
+Their first sign-in activates them. Deactivating someone removes every
+permission at the database immediately and blocks their sign-in account;
+reactivating restores it.
 
 ## Verifying a deployment
 

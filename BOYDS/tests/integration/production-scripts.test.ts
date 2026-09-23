@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Client } from 'pg';
 import { adminClient, connectionConfig } from './helpers/db';
@@ -25,6 +25,18 @@ interface CheckRow {
 
 const SCRIPTS = join(__dirname, '..', '..', 'scripts');
 
+/** The newest migration in the repository, e.g. "0027". */
+const LATEST_MIGRATION = readdirSync(
+  join(__dirname, '..', '..', 'supabase', 'migrations'),
+)
+  .filter((file) => /^\d+_.*\.sql$/.test(file))
+  .map((file) => file.split('_')[0]!)
+  .sort()
+  .at(-1)!;
+const MIGRATION_COUNT = readdirSync(
+  join(__dirname, '..', '..', 'supabase', 'migrations'),
+).filter((file) => /^\d+_.*\.sql$/.test(file)).length;
+
 let admin: Client;
 let migrator: Client;
 
@@ -46,6 +58,14 @@ async function run(script: string): Promise<CheckRow[]> {
 }
 
 describe('verify-production.sql', () => {
+  it('requires every migration in the repository, not an older set', () => {
+    // Otherwise production verification could pass on a project missing the
+    // newest — often security — migration.
+    const sql = readFileSync(join(SCRIPTS, 'verify-production.sql'), 'utf8');
+    expect(sql).toContain(`>= ${MIGRATION_COUNT}`);
+    expect(sql).toContain(`>= '${LATEST_MIGRATION}'`);
+  });
+
   it('passes every check on a correctly migrated database', async () => {
     const rows = await run('verify-production.sql');
     const stops = rows.filter((row) => row.result === 'STOP');
@@ -115,7 +135,7 @@ describe('preflight-production.sql', () => {
 
     expect(rows.filter((row) => row.result === 'STOP')).toEqual([]);
     expect(rows.find((row) => row.check === 'database state')!.detail).toContain(
-      'already migrated through 0026',
+      `already migrated through ${LATEST_MIGRATION}`,
     );
   });
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { isDatabaseConfigured } from '@/lib/env';
 import { SignInForm } from './sign-in-form';
 
@@ -36,14 +37,32 @@ export default async function SignInPage({
         </div>
       )}
 
+      {(params.reason === 'link-expired' || params.reason === 'link-invalid') && (
+        <p
+          role="alert"
+          className="mb-4 rounded-lg border border-boyd-warning/40 bg-boyd-warning/10 p-4 text-sm text-boyd-light-200"
+        >
+          {params.reason === 'link-expired'
+            ? 'That link has expired or has already been used. Use “Forgot your password?” below, or ask a BOYD’S admin to send a new invitation.'
+            : 'That link is not valid. Use the most recent email you were sent.'}
+        </p>
+      )}
       {params.reason === 'not-configured' && configured && (
         <p className="mb-4 text-sm text-boyd-light-400">Please sign in to continue.</p>
       )}
 
       <SignInForm disabled={!configured} />
 
+      <p className="mt-4 text-center text-sm">
+        <Link
+          href="/sign-in/reset"
+          className="text-boyd-blue-300 hover:text-boyd-blue-400"
+        >
+          Forgot your password?
+        </Link>
+      </p>
       <p className="mt-8 text-center text-xs text-boyd-light-500">
-        Accounts are created by a BOYD&rsquo;S partner. There is no public sign-up.
+        Accounts are created by a BOYD&rsquo;S admin. There is no public sign-up.
       </p>
     </main>
   );

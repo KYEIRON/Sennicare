@@ -63,17 +63,6 @@ export async function listUsers(client: SupabaseClient): Promise<Result<AppUser[
   return ok((data as UserRow[]).map(toAppUser));
 }
 
-export async function recordSignIn(
-  client: SupabaseClient,
-  userId: string,
-): Promise<void> {
-  // Best effort. A failure to stamp the sign-in time must never block sign-in.
-  await client
-    .from('users')
-    .update({ last_login_at: new Date().toISOString() })
-    .eq('id', userId);
-}
-
 interface PartnerRow {
   id: string;
   user_id: string;

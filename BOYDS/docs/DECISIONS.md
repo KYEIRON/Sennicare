@@ -919,3 +919,112 @@ clearly dimmer than `light-400`, so the visual hierarchy survives.
 
 **Impact:** `e2e/accessibility.spec.ts` scans every page in the sitemap, so a
 page added later is covered the day it is added.
+
+---
+
+## D-045 — People are records an admin manages, not code
+
+**Decision:** Every person is a row in `users`, added, invited, re-roled,
+deactivated and reactivated from the Team screen by an ADMIN. Nothing in the
+code names Ronald or Moh. The one exception is the very first admin, created
+once by `scripts/bootstrap-first-admin.sql`, because nobody exists yet to invite
+them. That script takes the email as a value typed in at run time, and refuses
+to run a second time.
+
+**Why:** A small business adds people: a second driver, a dispatcher, a new
+partner. If each needed a developer, the software would become the bottleneck.
+The roles and the `users.manage` capability already existed; this puts a
+screen and a safe database path behind them rather than inventing a second
+system.
+
+---
+
+## D-046 — A person can exist before their email does
+
+**Decision:** `users.email` is nullable, but only while no sign-in account is
+linked (`users_signin_needs_email`), and nobody can be ACTIVE without one
+(`users_active_needs_signin`).
+
+**Why:** Moh's real email address was not available. The choices were to block
+his record, to invent an address, or to record him without one. Blocking would
+have held up his partner and driver records and everything that hangs off them.
+Inventing an address is forbidden, and it would also send an invitation
+somewhere. Recording him without one is honest, and the two constraints stop the
+missing email mattering: without an email he cannot be given a sign-in, and
+without a sign-in he cannot be active.
+
+When the address arrives, adding it links everything already recorded (his
+partner record, his driver record, any jobs assigned to him) to his sign-in, on
+the same row. No migration and no code change is involved.
+
+---
+
+## D-047 — Only an admin manages people, at the database
+
+**Decision:** Migration 0027 replaces the partner write policies on `users` and
+`partners` with admin-only ones.
+
+**Why:** The application reserved user management for ADMIN, but the database
+let any PARTNER update any user row, including their own role. A partner could
+have made themselves an admin with one UPDATE, and the authoritative layer was
+the one that allowed it. The database is meant to be at least as strict as the
+screen. Now it is.
+
+Driver records keep partner write access: licence details and the active flag
+are operational records partners maintain day to day.
+
+---
+
+## D-048 — Guardrails live in a trigger, so no path avoids them
+
+**Decision:** A trigger on `users` refuses four things:
+
+- anyone changing their own role or status
+- demoting or deactivating the last active admin
+- re-pointing a linked sign-in account
+- changing the email of someone who can already sign in
+
+**Why:** Row level security decides _whether_ an admin may update a row. It
+cannot express "not your own role" or "not the last admin". Those are rules
+about the change itself. In a trigger they hold for the Team screen, for a
+future screen, and for someone typing SQL into the dashboard. The last-admin
+rule holds even for a superuser: a business with no admin could only be
+recovered by a developer.
+
+The trigger's messages are written to be shown to an admin as they are, and the
+Team screen passes them through.
+
+---
+
+## D-049 — The service role key manages sign-in accounts and nothing else
+
+**Decision:** The key is read in one module, `src/integrations/auth-admin/`,
+which creates sign-in accounts, sends password links and blocks or unblocks
+sign-in. People's records are written through the acting admin's own session.
+
+**Why:** The key bypasses row level security. Using it to write `users` would
+make the Team screen a second authorisation path that nobody tests, and the
+audit trail would record no one as the actor. Confining it to Supabase Auth's
+own admin API means the database's rules decide who may change a person, and
+the log shows who did.
+
+The adapter follows the live / unavailable / fake pattern. With no key
+configured, the Team screen still adds and manages people and says plainly that
+invitations cannot be sent. It never reports an invitation that did not go.
+
+---
+
+## D-050 — The audit trail was silently skipping users, partners and incidents
+
+**Decision:** Migration 0027 adds audited columns for `users`, `partners` and
+`incidents` to `audited_columns_for()`.
+
+**Why:** The audit trigger records an update only for the columns listed per
+table. These three had no list: a role change, a deactivation, or a partner
+correcting a driver's incident report was recorded as nothing. For incidents
+this contradicted D-032, which promised corrections leave the original on the
+record. (The original _is_ captured when the report is filed, since inserts are
+logged in full; it was later edits that vanished.)
+
+**How it was found:** by the user-management test asserting that a role change
+was audited. The fix covers incidents too, and there is now a test for each.

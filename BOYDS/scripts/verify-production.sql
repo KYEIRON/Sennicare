@@ -50,8 +50,8 @@ with
 
 select * from (
   select 1 as ord, 'migration history' as "check",
-         case when (select count(*) from supabase_migrations.schema_migrations) >= 26
-               and (select max(version) from supabase_migrations.schema_migrations) >= '0026'
+         case when (select count(*) from supabase_migrations.schema_migrations) >= 27
+               and (select max(version) from supabase_migrations.schema_migrations) >= '0027'
               then 'PASS' else 'STOP' end as result,
          (select count(*) || ' recorded, latest ' || coalesce(max(version), 'none')
             from supabase_migrations.schema_migrations) as detail
@@ -136,10 +136,14 @@ select * from (
                   'none across ' || (select count(*) from demo_rows) || ' tables')
 
   union all
-  select 11, 'sign-in accounts linked to a BOYD''S role', 'INFO',
-         (select count(*) from public.users) || ' linked; ' ||
-         (select count(*) from auth.users) || ' auth accounts. ' ||
-         'An auth account with no users row has no role and no access.'
+  select 11, 'people and admins', 'INFO',
+         (select count(*) from public.users where role = 'ADMIN' and status = 'ACTIVE') ||
+         ' active admin(s); ' ||
+         (select count(*) from public.users) || ' people on the team; ' ||
+         (select count(*) from public.users where email is null) || ' waiting for an email. ' ||
+         case when not exists (select 1 from public.users where role = 'ADMIN' and status = 'ACTIVE')
+              then 'No admin yet: run scripts/bootstrap-first-admin.sql once.'
+              else 'Further people are managed from the Team screen.' end
 
   union all
   select 12, 'pricing policy', 'INFO',

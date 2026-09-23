@@ -313,3 +313,39 @@ describe('the public cannot reach incidents at all', () => {
     await client.end();
   });
 });
+
+describe('a partner’s correction to a report is on the record', () => {
+  it('audits the change to the account of events, from what to what', async () => {
+    const filed = await admin.query<{ id: string }>(
+      `insert into incidents ${REPORT_COLUMNS}
+       values ('DELAY', 'MINOR', $1, $2, 'The original account of events.',
+               false, false, false, false)
+       returning id`,
+      [vehicleId, mohDriverId],
+    );
+
+    const client = await sessionClient(partner.authUserId);
+    await client.query('update incidents set description = $2 where id = $1', [
+      filed.rows[0]!.id,
+      'A corrected account of events.',
+    ]);
+    await client.end();
+
+    const log = await admin.query<{
+      user_id: string;
+      old_value: string;
+      new_value: string;
+    }>(
+      `select user_id, old_value, new_value from audit_logs
+        where entity_table = 'incidents' and entity_id = $1 and field = 'description'`,
+      [filed.rows[0]!.id],
+    );
+    expect(log.rows).toEqual([
+      {
+        user_id: partner.userId,
+        old_value: 'The original account of events.',
+        new_value: 'A corrected account of events.',
+      },
+    ]);
+  });
+});

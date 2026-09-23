@@ -23,7 +23,9 @@ const PRIVATE_ROUTES = [
   '/vehicles',
   '/drivers',
   '/settings',
+  '/team',
   '/assistant',
+  '/account/password',
   '/driver/today',
   '/driver/record',
 ];
@@ -59,4 +61,26 @@ test('the sitemap lists no private route', async ({ request }) => {
     expect(sitemap).not.toContain(`${route}<`);
     expect(sitemap).not.toContain(`${route}/`);
   }
+});
+
+test.describe('invitation and reset links', () => {
+  test('a link with no token is refused, with a plain explanation', async ({ page }) => {
+    await page.goto('/auth/confirm?type=invite');
+    await expect(page).toHaveURL(/\/sign-in\?reason=link-invalid/);
+    await expect(page.locator('main [role="alert"]')).toContainText('not valid');
+  });
+
+  test('a sign-up link is refused — there is no self sign-up', async ({ page }) => {
+    await page.goto('/auth/confirm?type=signup&token_hash=anything');
+    await expect(page).toHaveURL(/\/sign-in\?reason=link-invalid/);
+  });
+
+  test('sign-in offers a way back in for a forgotten password', async ({ page }) => {
+    await page.goto('/sign-in');
+    await page.getByRole('link', { name: 'Forgot your password?' }).click();
+    await expect(page).toHaveURL(/\/sign-in\/reset/);
+    await expect(
+      page.getByRole('heading', { name: 'Forgot your password?' }),
+    ).toBeVisible();
+  });
 });

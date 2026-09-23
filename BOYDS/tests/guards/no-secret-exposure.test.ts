@@ -45,6 +45,40 @@ describe('secrets never reach the browser', () => {
     expect(offenders).toEqual([]);
   });
 
+  it('reads the service role key in exactly two places', () => {
+    // The environment schema, and the auth admin adapter that uses it to manage
+    // sign-in accounts. Anywhere else, it would be a second, unreviewed path
+    // around row level security.
+    const readers = files
+      .filter((f) => f.content.includes('SUPABASE_SERVICE_ROLE_KEY'))
+      .map((f) => f.path.replaceAll('\\', '/'))
+      .sort();
+    expect(readers).toEqual(['src/integrations/auth-admin/index.ts', 'src/lib/env.ts']);
+  });
+
+  it('keeps the auth admin adapter server-only', () => {
+    for (const name of ['index.ts', 'supabase-auth-admin.ts']) {
+      const file = files.find(
+        (f) => f.path.replaceAll('\\', '/') === `src/integrations/auth-admin/${name}`,
+      );
+      expect(file, name).toBeDefined();
+      expect(file!.content).toContain("import 'server-only'");
+    }
+  });
+
+  it('never lets a client component import the auth admin adapter', () => {
+    const offenders = files
+      .filter(
+        (f) =>
+          /^['"]use client['"]/m.test(f.content) &&
+          /from ['"]@\/integrations\/auth-admin(\/(index|supabase-auth-admin))?['"]/.test(
+            f.content,
+          ),
+      )
+      .map((f) => f.path);
+    expect(offenders).toEqual([]);
+  });
+
   it('keeps the authorisation guards server-only', () => {
     const session = files.find((f) => f.path.endsWith('lib/auth/session.ts'));
     expect(session).toBeDefined();

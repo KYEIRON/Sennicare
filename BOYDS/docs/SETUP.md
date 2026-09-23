@@ -38,13 +38,34 @@ system. Treat it like the keys to the van. Do not paste it into a chat, an
 email, or a shared document. If it ever leaks, go back to that same page and
 click to regenerate it — the old one stops working immediately.
 
-### 2. Decide the sign-in email addresses
+### 2. Your sign-in, and everyone else's
 
-BOYD'S needs to know which email addresses you and Moh will sign in with. I have
-deliberately not guessed: the setup script refuses to run without real ones
-rather than inventing them.
+You are the first **admin**: you can do everything a partner can, plus add and
+manage people. Your sign-in is set up once, following "Creating the first
+admin" in `docs/DEPLOYMENT.md`. It takes about three minutes.
 
-Tell me the two addresses. They can be anything you already use.
+After that you never need me to add someone. On the **Team** screen:
+
+- **Add a person.** Their name, their email if you have it, and their role:
+  - **Admin**: everything, including managing people.
+  - **Partner**: runs the business, but cannot manage people.
+  - **Driver**: the driver app only. No prices, costs or customer lists.
+
+  Tick **A business partner** for an owner, and **Drives for BOYD'S** for
+  anyone who drives. Moh is a Driver who is also a business partner.
+
+- **No email yet?** Leave it blank. They wait on the list as _Waiting for email_.
+  When you have it, type it on their card and press **Save email**. The
+  invitation goes, and everything already set up for them is theirs.
+- **They get an email**, click the link, choose a password, and they're in.
+- **Someone leaves:** **Deactivate**. They lose access immediately, even if
+  they're signed in at that moment. **Reactivate** brings them back.
+- **Forgot a password?** They use "Forgot your password?" on the sign-in page,
+  or you press **Send password reset** on their card.
+
+Two safety rules you might run into: nobody can change their own role or
+switch themselves off, and the last admin can't be removed. If you ever need to
+step back as admin, make someone else an admin first.
 
 ### 3. Buy a domain name (optional, for the website)
 

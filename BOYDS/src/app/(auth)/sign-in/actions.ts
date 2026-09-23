@@ -6,6 +6,7 @@ import { getServerClient } from '@/lib/supabase/server';
 import { RATE_LIMITS, callerIdentifier, checkRateLimit } from '@/lib/rate-limit';
 import { signInSchema } from '@/validation/auth';
 import { homeRouteFor } from '@/lib/permissions';
+import { readEnv } from '@/lib/env';
 import type { UserRole } from '@/types/auth';
 
 export interface SignInState {
@@ -64,14 +65,14 @@ export async function signIn(
     return { error: 'Those sign-in details were not recognised.' };
   }
 
-  const { data: row } = await supabase
-    .from('users')
-    .select('id, role, status')
-    .eq('auth_user_id', data.user.id)
-    .maybeSingle();
+  // Activates an invited account on its first sign-in, stamps the sign-in
+  // time, and never reactivates a deactivated or suspended one — that is an
+  // admin's decision (migration 0027).
+  const { data: rows } = await supabase.rpc('record_my_sign_in');
+  const row = (rows as { role: UserRole; status: string }[] | null)?.[0];
 
   // An auth account with no BOYD'S user record has no role and no access.
-  // Accounts are provisioned by a partner, never created implicitly.
+  // Accounts are provisioned by an admin, never created implicitly.
   if (!row) {
     await supabase.auth.signOut();
     return { error: 'Those sign-in details were not recognised.' };
@@ -80,20 +81,63 @@ export async function signIn(
   if (row.status !== 'ACTIVE') {
     await supabase.auth.signOut();
     return {
-      error: 'This account is not active. Ask a BOYD’S partner to reactivate it.',
+      error: 'This account is not active. Ask a BOYD’S admin to reactivate it.',
     };
   }
 
-  await supabase
-    .from('users')
-    .update({ last_login_at: new Date().toISOString() })
-    .eq('id', row.id);
-
-  redirect(homeRouteFor(row.role as UserRole));
+  redirect(homeRouteFor(row.role));
 }
 
 export async function signOut(): Promise<void> {
   const supabase = await getServerClient();
   if (supabase) await supabase.auth.signOut();
   redirect('/sign-in');
+}
+
+export interface ResetState {
+  readonly sent?: boolean;
+  readonly error?: string;
+}
+
+/**
+ * "Forgot your password?"
+ *
+ * The answer is the same whether or not the address has an account, so this
+ * cannot be used to find out who works at BOYD'S. Rate-limited like sign-in.
+ */
+export async function requestPasswordReset(
+  _previous: ResetState,
+  formData: FormData,
+): Promise<ResetState> {
+  const limit = checkRateLimit(
+    RATE_LIMITS.SIGN_IN,
+    callerIdentifier(await headers()),
+    'password-reset',
+  );
+  if (!limit.allowed) {
+    return { error: 'Too many requests. Please wait a few minutes and try again.' };
+  }
+
+  const email = String(formData.get('email') ?? '')
+    .trim()
+    .toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    return { error: 'Enter the email address you sign in with.' };
+  }
+
+  const supabase = await getServerClient();
+  if (!supabase) {
+    return {
+      error: 'This is not available yet: the BOYD’S database has not been connected.',
+    };
+  }
+
+  const site = readEnv().NEXT_PUBLIC_SITE_URL ?? '';
+  // The result is deliberately ignored: success and "no such account" must be
+  // indistinguishable to the person asking.
+  await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${site}/auth/confirm`,
+  });
+
+  return { sent: true };
 }

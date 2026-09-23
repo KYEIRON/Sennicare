@@ -19,6 +19,7 @@ const SECTIONS = [
   { href: '/reports', label: 'Reports' },
   { href: '/vehicles', label: 'Vehicles' },
   { href: '/drivers', label: 'Drivers' },
+  { href: '/team', label: 'Team' },
   { href: '/assistant', label: 'BOYD’S AI' },
   { href: '/settings', label: 'Settings' },
 ] as const;

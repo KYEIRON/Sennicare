@@ -21,7 +21,7 @@ async function publicUrls(page: Page): Promise<string[]> {
     (m) => new URL(m[1]!).pathname,
   );
   expect(urls.length).toBeGreaterThan(10);
-  return [...urls, '/sign-in'];
+  return [...urls, '/sign-in', '/sign-in/reset', '/sign-in?reason=link-expired'];
 }
 
 async function audit(page: Page, path: string) {

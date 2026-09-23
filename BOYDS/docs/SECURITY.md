@@ -12,7 +12,7 @@ without revalidating it, and a cookie is client-supplied data.
 
 **There is no public sign-up.** A Supabase Auth account with no corresponding
 BOYD'S `users` row has no role and therefore no access — it is signed straight
-back out. Accounts are provisioned deliberately by a partner, so nobody can
+back out. Accounts are provisioned deliberately by an admin, so nobody can
 self-provision into the business by registering.
 
 **Sign-in failures are deliberately uniform.** A wrong password, an unknown
@@ -22,6 +22,46 @@ here. See docs/DECISIONS.md D-017.
 
 Passwords require 12 characters and no composition rules. Length resists
 guessing; forced character classes mostly produce predictable substitutions.
+
+## Managing people
+
+People are data. Adding, inviting, re-roling, deactivating and reactivating
+happen on the Team screen, with no code change. The rules are enforced by the
+database (migration 0027), not by the screen:
+
+- **Only an ADMIN can create or change a person, or a partner record.** Before
+  0027 the database let any PARTNER update any user row, including their own
+  role, although the application already reserved user management for ADMIN.
+  The authoritative layer was the weaker one. It no longer is.
+- **Nobody can change their own role or status**, by any route.
+- **The last active admin cannot be demoted or deactivated**, even by a
+  superuser, so the business can never be left with nobody able to manage people.
+- **A linked sign-in account cannot be re-pointed at another person.** That
+  would hand one person's access to someone else.
+- **Nobody is ACTIVE without a sign-in account, and nobody has a sign-in
+  account without an email.** A person may be recorded before their email is
+  known, but nothing is ever filled in for them.
+- **Activation is narrow.** `record_my_sign_in()` turns the caller's own
+  INVITED account ACTIVE on first sign-in. It never reactivates a SUSPENDED or
+  INACTIVE one; that is an admin's decision.
+- **Deactivation is immediate.** Only ACTIVE people resolve in row level
+  security, so every permission goes the moment the status changes, mid-session
+  included. The sign-in account is also blocked, so no fresh session can be
+  obtained.
+- **Every change is audited**: who changed whose role or status, from what, to
+  what.
+
+The **service role key** is used in exactly one place: the auth admin adapter
+(`src/integrations/auth-admin/`), to create and manage sign-in accounts. It never
+reads or writes business data. People's records are written through the acting
+admin's own session, so row level security still decides and the audit trail
+records who acted. A guard test fails the build if the key is read anywhere
+else.
+
+Invitation and password-reset links are verified on the server
+(`/auth/confirm`). Only those two link types are accepted; a sign-up link is
+refused. "Forgot your password?" answers identically whether or not the address
+has an account, and is rate-limited like sign-in.
 
 ## Authorisation — three layers, all mandatory
 
