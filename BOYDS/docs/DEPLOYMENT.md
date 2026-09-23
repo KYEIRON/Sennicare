@@ -73,6 +73,32 @@ the two and the CLI will not recognise migrations the MCP applied: it will try
 to apply them again, and fail halfway through. Use the MCP for read-only
 inspection, and apply migrations with the script.
 
+### From Windows, with the Supabase MCP
+
+The script needs bash and `psql`, which a Windows machine usually lacks. The
+same four steps work from PowerShell, in the `BOYDS` folder, in a Claude Code
+session where the Supabase MCP is authenticated:
+
+1. **Preflight (read-only).** Run the contents of
+   `scripts/preflight-production.sql` through the MCP's SQL tool, or paste it
+   into the Supabase SQL editor. Any `STOP` row means stop.
+2. **Plan (changes nothing).** This needs Node.js. The connection string goes
+   in an environment variable, typed at the prompt, never pasted into chat:
+   ```powershell
+   $env:SUPABASE_DB_URL = Read-Host -MaskInput 'Connection string'
+   npx --yes supabase@2.117.0 db push --dry-run --db-url $env:SUPABASE_DB_URL
+   ```
+3. **Apply.**
+   ```powershell
+   npx --yes supabase@2.117.0 db push --db-url $env:SUPABASE_DB_URL
+   Remove-Item Env:SUPABASE_DB_URL
+   ```
+4. **Verify (read-only).** Run `scripts/verify-production.sql` the same way as
+   step 1. Any `STOP` row means the project is not ready for service.
+
+Apply with the CLI, as above, never with the MCP's `apply_migration`, for the
+reason below.
+
 The whole sequence (preflight, dry run, apply, verify, and a refused apply when
 the preflight fails) was rehearsed against a local database built to behave like
 hosted Supabase, using the same CLI version the script pins.
