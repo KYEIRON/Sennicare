@@ -10,6 +10,50 @@ export interface RequestState {
   readonly fieldErrors?: Record<string, string[]> | undefined;
   /** The reference number, once a request has been recorded. */
   readonly reference?: string | undefined;
+  /**
+   * What was submitted, handed back when a request does not go through, so the
+   * form can be refilled rather than wiped.
+   */
+  readonly values?: Readonly<Record<string, string>> | undefined;
+  /** Counts submissions, so the form remounts and re-applies the values. */
+  readonly attempt?: number | undefined;
+}
+
+/** Every field the form sends. Nothing else is echoed back. */
+const FORM_FIELDS = [
+  'companyName',
+  'contactName',
+  'contactEmail',
+  'contactPhone',
+  'pickupAddress',
+  'pickupCity',
+  'pickupState',
+  'pickupZip',
+  'pickupDate',
+  'pickupTime',
+  'deliveryAddress',
+  'deliveryCity',
+  'deliveryState',
+  'deliveryZip',
+  'description',
+  'urgency',
+  'isRecurring',
+  'notes',
+] as const;
+
+/**
+ * The submitted values, as strings, bounded in length. Only the known fields
+ * are copied, so the response can never carry anything the form did not send.
+ */
+function submittedValues(formData: FormData): Record<string, string> {
+  const values: Record<string, string> = {};
+  for (const field of FORM_FIELDS) {
+    const value = formData.get(field);
+    if (typeof value === 'string' && value.length > 0) {
+      values[field] = value.slice(0, 4000);
+    }
+  }
+  return values;
 }
 
 const requestSchema = z.object({
@@ -61,6 +105,13 @@ export async function submitDeliveryRequest(
   _previous: RequestState,
   formData: FormData,
 ): Promise<RequestState> {
+  const attempt = (_previous.attempt ?? 0) + 1;
+  const failed = (outcome: Omit<RequestState, 'values' | 'attempt'>): RequestState => ({
+    ...outcome,
+    values: submittedValues(formData),
+    attempt,
+  });
+
   // This form is reachable by anybody, and a flood of submissions would bury
   // real requests. The limit is generous enough that a customer who mistypes an
   // address and resubmits is never blocked.
@@ -71,10 +122,10 @@ export async function submitDeliveryRequest(
   );
 
   if (!limit.allowed) {
-    return {
+    return failed({
       error:
-        'You have sent several requests already. If one of them was wrong, call us rather than sending another — we will sort it out.',
-    };
+        'You have sent several requests in a short time, so this one has not been sent. The earlier ones reached us — if one of them was wrong, tell us when we reply and we will put it right.',
+    });
   }
 
   const parsed = requestSchema.safeParse({
@@ -99,19 +150,24 @@ export async function submitDeliveryRequest(
   });
 
   if (!parsed.success) {
-    return { fieldErrors: parsed.error.flatten().fieldErrors };
+    return failed({ fieldErrors: parsed.error.flatten().fieldErrors });
   }
 
   if (!parsed.data.contactEmail && !parsed.data.contactPhone) {
-    return { error: 'Please leave an email address or a phone number so we can reply.' };
+    return failed({
+      error: 'Please leave an email address or a phone number so we can reply.',
+    });
   }
 
+  // Not "please call us": BOYD'S publishes no phone number, and this form is the
+  // only route to the business. Telling a customer to call a number that
+  // exists nowhere on the site would be a dead end presented as help.
   const supabase = await getServerClient();
   if (!supabase) {
-    return {
+    return failed({
       error:
-        'We could not record your request just now. Please call us instead — we do not want your request going nowhere.',
-    };
+        'We could not record your request just now, so nothing has been sent. Please try again in a few minutes — your details are still in the form.',
+    });
   }
 
   const { data, error } = await supabase.rpc('create_public_job_request', {
@@ -137,10 +193,10 @@ export async function submitDeliveryRequest(
   });
 
   if (error) {
-    return {
+    return failed({
       error:
-        'We could not record your request just now. Please call us instead — we do not want your request going nowhere.',
-    };
+        'We could not record your request just now, so nothing has been sent. Please try again in a few minutes — your details are still in the form.',
+    });
   }
 
   return { reference: String(data) };

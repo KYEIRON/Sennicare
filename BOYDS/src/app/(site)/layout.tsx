@@ -48,7 +48,7 @@ export default function SiteLayout({
             </Link>
             <Link
               href="/request-a-delivery"
-              className="rounded-md bg-boyd-orange-600 px-4 py-2 font-semibold text-white hover:bg-boyd-orange-500"
+              className="rounded-md bg-boyd-orange-600 px-4 py-2 font-semibold text-boyd-navy-950 hover:bg-boyd-orange-500"
             >
               Request a delivery
             </Link>

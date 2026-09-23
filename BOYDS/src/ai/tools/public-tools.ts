@@ -37,7 +37,7 @@ const getServiceAreas: AiTool<Record<string, never>> = {
     return {
       state: 'North Carolina',
       areas: SERVICE_AREAS.map((area) => `${area.city}, ${area.state}`),
-      note: "BOYD'S also takes work into neighbouring states. It has no premises in these cities.",
+      note: "BOYD'S also takes work into neighboring states. It has no premises in these cities.",
     };
   },
 };

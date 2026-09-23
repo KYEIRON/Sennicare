@@ -27,7 +27,7 @@ export default function ContactPage() {
 
       <Link
         href="/request-a-delivery"
-        className="mt-8 inline-block rounded-md bg-boyd-orange-600 px-6 py-3 font-semibold text-white hover:bg-boyd-orange-500"
+        className="mt-8 inline-block rounded-md bg-boyd-orange-600 px-6 py-3 font-semibold text-boyd-navy-950 hover:bg-boyd-orange-500"
       >
         Request a delivery
       </Link>
@@ -38,7 +38,7 @@ export default function ContactPage() {
         </h2>
         <p className="mt-2 text-sm text-boyd-light-400">
           Business delivery and distribution. Based in North Carolina, serving businesses
-          across the state and into neighbouring states.
+          across the state and into neighboring states.
         </p>
       </div>
     </div>

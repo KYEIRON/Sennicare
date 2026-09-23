@@ -29,7 +29,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/request-a-delivery"
-              className="rounded-md bg-boyd-orange-600 px-6 py-3 font-semibold text-white hover:bg-boyd-orange-500"
+              className="rounded-md bg-boyd-orange-600 px-6 py-3 font-semibold text-boyd-navy-950 hover:bg-boyd-orange-500"
             >
               Request a delivery
             </Link>
@@ -70,7 +70,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold text-boyd-light-50">Where we work</h2>
           <p className="mt-3 max-w-2xl text-boyd-light-400">
             BOYD&rsquo;S is based in North Carolina and covers the state, including these
-            areas. We also take work into neighbouring states.
+            areas. We also take work into neighboring states.
           </p>
           <ul className="mt-6 flex flex-wrap gap-2">
             {SERVICE_AREAS.map((area) => (

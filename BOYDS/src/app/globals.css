@@ -35,7 +35,11 @@
   --color-boyd-light-100: #f1f5f9;
   --color-boyd-light-300: #cbd5e1;
   --color-boyd-light-400: #94a3b8;
-  --color-boyd-light-500: #64748b;
+  /* Raised from #64748b, which measured 3.3–4.1:1 on the navy backgrounds and
+     failed WCAG AA for the small secondary text it is used for. #8090a6 is
+     4.8:1 or better on every navy surface text sits on, and stays visibly
+     dimmer than light-400. Found by the axe audit in e2e/accessibility.spec.ts. */
+  --color-boyd-light-500: #8090a6;
 
   /* Semantic — status and money.
      Positive and negative are deliberately distinct hues rather than shades,

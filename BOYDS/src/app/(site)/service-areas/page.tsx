@@ -17,8 +17,8 @@ export default function ServiceAreasPage() {
       </h1>
       <p className="mt-4 max-w-2xl text-boyd-light-300">
         BOYD&rsquo;S Logistics is based in North Carolina and serves businesses across the
-        state. We also take work into neighbouring states. These are service areas we
-        cover — not office locations.
+        state. We also take work into neighboring states. These are service areas we cover
+        — not office locations.
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">

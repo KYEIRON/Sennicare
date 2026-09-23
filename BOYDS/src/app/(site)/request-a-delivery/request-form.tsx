@@ -4,7 +4,7 @@ import { useActionState } from 'react';
 import { submitDeliveryRequest, type RequestState } from './actions';
 
 const CONTROL =
-  'w-full rounded-md border border-boyd-navy-700 bg-boyd-navy-950 px-3 py-2.5 text-boyd-light-100 placeholder:text-boyd-light-600 focus:border-boyd-blue-500 focus:ring-2 focus:ring-boyd-blue-500/40 focus:outline-none';
+  'w-full rounded-md border border-boyd-navy-700 bg-boyd-navy-950 px-3 py-2.5 text-boyd-light-100 placeholder:text-boyd-light-500 focus:border-boyd-blue-500 focus:ring-2 focus:ring-boyd-blue-500/40 focus:outline-none';
 
 function Field({
   label,
@@ -65,8 +65,15 @@ export function RequestForm() {
     );
   }
 
+  // What the customer typed, handed back by the server when a submission does
+  // not go through. React resets a form after its action runs; without these
+  // defaults, every validation error and every outage would wipe the form —
+  // on the only route a customer has to BOYD'S. The key remounts the form on
+  // each attempt so the defaults are re-applied.
+  const v = state.values ?? {};
+
   return (
-    <form action={action} className="space-y-6" noValidate>
+    <form key={state.attempt ?? 0} action={action} className="space-y-6" noValidate>
       <fieldset className="space-y-3">
         <legend className="text-sm font-semibold tracking-wider text-boyd-orange-400 uppercase">
           You
@@ -76,6 +83,7 @@ export function RequestForm() {
           <input
             id="contactName"
             name="contactName"
+            defaultValue={v.contactName}
             required
             maxLength={200}
             className={CONTROL}
@@ -86,6 +94,7 @@ export function RequestForm() {
           <input
             id="companyName"
             name="companyName"
+            defaultValue={v.companyName}
             maxLength={200}
             className={CONTROL}
           />
@@ -96,6 +105,7 @@ export function RequestForm() {
             <input
               id="contactEmail"
               name="contactEmail"
+              defaultValue={v.contactEmail}
               type="email"
               maxLength={254}
               className={CONTROL}
@@ -105,6 +115,7 @@ export function RequestForm() {
             <input
               id="contactPhone"
               name="contactPhone"
+              defaultValue={v.contactPhone}
               type="tel"
               maxLength={40}
               className={CONTROL}
@@ -125,6 +136,7 @@ export function RequestForm() {
           <input
             id="pickupAddress"
             name="pickupAddress"
+            defaultValue={v.pickupAddress}
             required
             maxLength={300}
             className={CONTROL}
@@ -136,6 +148,7 @@ export function RequestForm() {
             <input
               id="pickupCity"
               name="pickupCity"
+              defaultValue={v.pickupCity}
               maxLength={120}
               className={CONTROL}
             />
@@ -144,22 +157,41 @@ export function RequestForm() {
             <input
               id="pickupState"
               name="pickupState"
+              defaultValue={v.pickupState}
               maxLength={2}
               placeholder="NC"
               className={CONTROL}
             />
           </Field>
           <Field label="ZIP" name="pickupZip" errors={state.fieldErrors}>
-            <input id="pickupZip" name="pickupZip" maxLength={10} className={CONTROL} />
+            <input
+              id="pickupZip"
+              name="pickupZip"
+              defaultValue={v.pickupZip}
+              maxLength={10}
+              className={CONTROL}
+            />
           </Field>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <Field label="Date needed" name="pickupDate" errors={state.fieldErrors}>
-            <input id="pickupDate" name="pickupDate" type="date" className={CONTROL} />
+            <input
+              id="pickupDate"
+              name="pickupDate"
+              defaultValue={v.pickupDate}
+              type="date"
+              className={CONTROL}
+            />
           </Field>
           <Field label="Time" name="pickupTime" errors={state.fieldErrors}>
-            <input id="pickupTime" name="pickupTime" type="time" className={CONTROL} />
+            <input
+              id="pickupTime"
+              name="pickupTime"
+              defaultValue={v.pickupTime}
+              type="time"
+              className={CONTROL}
+            />
           </Field>
         </div>
       </fieldset>
@@ -173,6 +205,7 @@ export function RequestForm() {
           <input
             id="deliveryAddress"
             name="deliveryAddress"
+            defaultValue={v.deliveryAddress}
             required
             maxLength={300}
             className={CONTROL}
@@ -184,6 +217,7 @@ export function RequestForm() {
             <input
               id="deliveryCity"
               name="deliveryCity"
+              defaultValue={v.deliveryCity}
               maxLength={120}
               className={CONTROL}
             />
@@ -192,6 +226,7 @@ export function RequestForm() {
             <input
               id="deliveryState"
               name="deliveryState"
+              defaultValue={v.deliveryState}
               maxLength={2}
               placeholder="NC"
               className={CONTROL}
@@ -201,6 +236,7 @@ export function RequestForm() {
             <input
               id="deliveryZip"
               name="deliveryZip"
+              defaultValue={v.deliveryZip}
               maxLength={10}
               className={CONTROL}
             />
@@ -217,6 +253,7 @@ export function RequestForm() {
           <textarea
             id="description"
             name="description"
+            defaultValue={v.description}
             rows={3}
             maxLength={2000}
             placeholder="Size, weight, how many pieces, anything we should handle carefully"
@@ -225,7 +262,12 @@ export function RequestForm() {
         </Field>
 
         <Field label="How urgent is it?" name="urgency" errors={state.fieldErrors}>
-          <select id="urgency" name="urgency" defaultValue="" className={CONTROL}>
+          <select
+            id="urgency"
+            name="urgency"
+            defaultValue={v.urgency ?? ''}
+            className={CONTROL}
+          >
             <option value="">Not sure</option>
             <option value="CRITICAL">Critical — as fast as possible</option>
             <option value="URGENT">Urgent — today</option>
@@ -236,7 +278,12 @@ export function RequestForm() {
         </Field>
 
         <label className="flex items-center gap-2 text-sm text-boyd-light-300">
-          <input type="checkbox" name="isRecurring" className="h-4 w-4" />
+          <input
+            type="checkbox"
+            name="isRecurring"
+            defaultChecked={v.isRecurring === 'on'}
+            className="h-4 w-4"
+          />
           This is something we need regularly
         </label>
 
@@ -244,6 +291,7 @@ export function RequestForm() {
           <textarea
             id="notes"
             name="notes"
+            defaultValue={v.notes}
             rows={2}
             maxLength={2000}
             className={CONTROL}
@@ -263,7 +311,7 @@ export function RequestForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md bg-boyd-orange-600 px-6 py-3.5 font-semibold text-white hover:bg-boyd-orange-500 disabled:opacity-50"
+        className="w-full rounded-md bg-boyd-orange-600 px-6 py-3.5 font-semibold text-boyd-navy-950 hover:bg-boyd-orange-500 disabled:opacity-50"
       >
         {pending ? 'Sending…' : 'Send request'}
       </button>

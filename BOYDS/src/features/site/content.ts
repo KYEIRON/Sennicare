@@ -44,7 +44,7 @@ export const SERVICES: readonly Service[] = [
     slug: 'same-day-delivery',
     name: 'Same Day Delivery',
     summary:
-      'Collected and delivered the same day, across North Carolina and neighbouring states.',
+      'Collected and delivered the same day, across North Carolina and neighboring states.',
     whoItIsFor:
       'Businesses with something that has to be somewhere today — a part, a document, a replacement.',
     whatWeDo: [
@@ -212,7 +212,7 @@ export const FAQ: readonly { question: string; answer: string }[] = [
   {
     question: 'What areas do you cover?',
     answer:
-      'BOYD’S Logistics is based in North Carolina and serves businesses across the state, including Charlotte, Concord, Greensboro, Winston-Salem, Raleigh, Durham and Fayetteville. We also take work into neighbouring states. If you are not sure whether your route suits us, ask — we will tell you honestly.',
+      'BOYD’S Logistics is based in North Carolina and serves businesses across the state, including Charlotte, Concord, Greensboro, Winston-Salem, Raleigh, Durham and Fayetteville. We also take work into neighboring states. If you are not sure whether your route suits us, ask — we will tell you honestly.',
   },
   {
     question: 'How much does a delivery cost?',

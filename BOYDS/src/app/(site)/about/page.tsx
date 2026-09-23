@@ -47,7 +47,7 @@ export default function AboutPage() {
 
       <Link
         href="/request-a-delivery"
-        className="mt-10 inline-block rounded-md bg-boyd-orange-600 px-6 py-3 font-semibold text-white hover:bg-boyd-orange-500"
+        className="mt-10 inline-block rounded-md bg-boyd-orange-600 px-6 py-3 font-semibold text-boyd-navy-950 hover:bg-boyd-orange-500"
       >
         Request a delivery
       </Link>
