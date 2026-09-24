@@ -1,6 +1,12 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { Client } from 'pg';
-import { adminClient, seedUser, sessionClient, type SeededUser } from './helpers/db';
+import {
+  adminClient,
+  seedOrganisation,
+  seedUser,
+  sessionClient,
+  type SeededUser,
+} from './helpers/db';
 
 /**
  * People as data: adding, inviting, activating, re-roling, deactivating and
@@ -16,6 +22,9 @@ let admin: Client; // superuser, for fixtures and inspection only
 let theAdmin: SeededUser; // the business's admin — Ronald's role in production
 let partner: SeededUser; // a partner who is NOT an admin
 let driver: SeededUser;
+// A company of its own, so "the last active admin" means this file's admin
+// whatever other test files have added to BOYD'S.
+let company: string;
 
 const stamp = Date.now();
 
@@ -29,20 +38,24 @@ async function authAccount(email: string): Promise<string> {
 
 beforeAll(async () => {
   admin = await adminClient();
+  company = await seedOrganisation(admin, `um-${stamp}`, { referencePrefix: 'U' });
   theAdmin = await seedUser(admin, {
     email: `um-admin-${stamp}@boyds.test`,
     firstName: 'Admin',
     role: 'ADMIN',
+    organisationId: company,
   });
   partner = await seedUser(admin, {
     email: `um-partner-${stamp}@boyds.test`,
     firstName: 'Partner',
     role: 'PARTNER',
+    organisationId: company,
   });
   driver = await seedUser(admin, {
     email: `um-driver-${stamp}@boyds.test`,
     firstName: 'Driver',
     role: 'DRIVER',
+    organisationId: company,
   });
 }, 30_000);
 
@@ -258,9 +271,10 @@ describe('guardrails no screen can bypass', () => {
 
   it('never lets the business lose its last active admin', async () => {
     const admins = await admin.query<{ n: string }>(
-      "select count(*) as n from users where role = 'ADMIN' and status = 'ACTIVE'",
+      "select count(*) as n from users where role = 'ADMIN' and status = 'ACTIVE' and organisation_id = $1",
+      [company],
     );
-    // Guard the premise: only this file's admin is active.
+    // Guard the premise: only this file's admin is active in its company.
     expect(admins.rows[0]!.n).toBe('1');
 
     // Even the superuser — so no path at all — can remove the last admin.
@@ -344,6 +358,7 @@ describe('deactivating and reactivating', () => {
       email: `um-admin2-${stamp}@boyds.test`,
       firstName: 'Second',
       role: 'ADMIN',
+      organisationId: company,
     });
 
     const client = await sessionClient(second.authUserId);

@@ -83,8 +83,8 @@ with
 
 select * from (
   select 1 as ord, 'migration history' as "check",
-         case when (select count(*) from supabase_migrations.schema_migrations) >= 31
-               and (select max(version) from supabase_migrations.schema_migrations) >= '0031'
+         case when (select count(*) from supabase_migrations.schema_migrations) >= 32
+               and (select max(version) from supabase_migrations.schema_migrations) >= '0032'
               then 'PASS' else 'STOP' end as result,
          (select count(*) || ' recorded, latest ' || coalesce(max(version), 'none')
             from supabase_migrations.schema_migrations) as detail
@@ -104,9 +104,9 @@ select * from (
          coalesce((select string_agg(relname, ', ') from public_tables where not relforcerowsecurity), 'none')
 
   union all
-  select 4, 'public role reaches only the website reference tables',
+  select 4, 'public role reaches no table',
          case when (select coalesce(string_agg(grant_, ',' order by grant_), '') from anon_relations)
-                   = 'job_types:SELECT,service_areas:SELECT'
+                   = ''
               then 'PASS' else 'STOP' end,
          coalesce((select string_agg(grant_, ', ' order by grant_) from anon_relations), 'nothing')
 
@@ -250,6 +250,28 @@ select * from (
                        and conname like '%\_per\_org\_key') = 10
               then 'PASS' else 'STOP' end,
          (select count(*) from public.organisations) || ' compan(ies); numbers unique within each, never across'
+
+  union all
+  select 21, 'every company table is limited to the signed-in person''s company',
+         case when not exists (
+                select 1 from business_tables b
+                 where b.relname <> 'organisation_counters'
+                   and not exists (select 1 from pg_policy p
+                                    where p.polrelid = b.oid and not p.polpermissive
+                                      and p.polcmd = '*'
+                                      and p.polname = b.relname || '_same_company'))
+               and exists (select 1 from pg_policies
+                            where schemaname = 'storage' and tablename = 'objects'
+                              and policyname = 'boyds_documents_partner'
+                              and qual like '%storage_object_company%'
+                              and with_check like '%storage_object_company%')
+              then 'PASS' else 'STOP' end,
+         'missing the company rule: ' ||
+         coalesce((select string_agg(b.relname, ', ') from business_tables b
+                    where b.relname <> 'organisation_counters'
+                      and not exists (select 1 from pg_policy p
+                                       where p.polrelid = b.oid and not p.polpermissive
+                                         and p.polname = b.relname || '_same_company')), 'none')
 
   union all
   select 11, 'people and admins', 'INFO',

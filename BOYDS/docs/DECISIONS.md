@@ -1193,3 +1193,45 @@ real backup and restore scripts.
 **Why:** Found in the rehearsal: the pre-company backup BOYD'S would take
 before this upgrade could not be restored into the upgraded project. A
 backup that cannot be restored is not a backup.
+
+---
+
+## D-060 — Company isolation is one restrictive rule per table
+
+**Decision:** Every company table has one RESTRICTIVE policy,
+`<table>_same_company`: the row's company must be the signed-in person's.
+Restrictive policies are ANDed with the permissive ones, so every existing
+rule (partner-only, a driver's own jobs, a person's own notifications) keeps
+working, now within one company. The rule is generated from the catalogue in
+migration 0032; the isolation matrix and verify-production check 21 fail if
+any company table lacks it. A person always reaches their own user row.
+
+**Why:** Rewriting 58 policies by hand would leave 58 places to forget the
+company. One rule per table, checked from the catalogue, cannot be forgotten
+on a new table without a test failing.
+
+---
+
+## D-061 — The public role reads no table
+
+**Decision:** The anonymous role loses its read of `job_types` and
+`service_areas`. Its only access to the database is the request form
+function.
+
+**Why:** With several companies an anonymous read cannot say whose job types
+or service areas it wants, and the website never used them — its service and
+area content is static. Less public surface, nothing lost.
+
+---
+
+## D-062 — Every elevated-rights function is on a reviewed list
+
+**Decision:** `tests/integration/definer-functions.test.ts` lists every
+SECURITY DEFINER function with the reason it cannot cross companies. Two were
+changed: `find_dispatch_conflicts` (a partner could pass another company's van
+and learn its job numbers) now answers a signed-in caller only about their own
+company, and the last-active-admin rule is per company. A person can no
+longer be moved between companies.
+
+**Why:** These functions bypass row level security, so the same-company rule
+does not protect them. A new one must be reviewed before the build passes.

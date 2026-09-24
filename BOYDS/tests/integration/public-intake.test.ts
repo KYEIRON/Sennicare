@@ -185,17 +185,18 @@ describe('the public can read almost nothing', () => {
     await client.end();
   });
 
-  it('CAN read active service areas and job types — and only those', async () => {
+  it('cannot read even the service areas or job types — whose would they be?', async () => {
     const client = await sessionClient(null);
-    const areas = await client.query('select id from service_areas');
-    const types = await client.query('select id from job_types');
+    await expect(client.query('select id from service_areas')).rejects.toThrow(
+      /permission denied/i,
+    );
+    await expect(client.query('select id from job_types')).rejects.toThrow(
+      /permission denied/i,
+    );
     await client.end();
-
-    expect(areas.rowCount).toBeGreaterThan(0);
-    expect(types.rowCount).toBeGreaterThan(0);
   });
 
-  it('cannot write to the tables it can read', async () => {
+  it('cannot write to the reference tables', async () => {
     const client = await sessionClient(null);
     await expect(
       client.query("insert into job_types (code, name) values ('HACK', 'Injected')"),

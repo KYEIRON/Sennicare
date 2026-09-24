@@ -391,9 +391,31 @@ Migrations `0029_organisations`, `0030_organisation_reference_numbers` and
 Rollback: the migrations only add; restoring the step-1 backup into a project
 at 0028 returns to the previous state exactly.
 
-**Still open, and why no second company may exist until M2 is done:** row level
-security is not yet company-scoped, so a partner would still see every
-company's rows; and the temporary request-function form must be removed.
+### M2 — built and tested (not yet in production)
+
+Migration `0032_company_scoped_access`.
+
+- One restrictive rule per company table (`<table>_same_company`), generated
+  from the catalogue and ANDed with every existing rule: a signed-in person
+  reads and writes only their own company's rows. A person always reaches
+  their own user row, so a suspended account is still told it is not active.
+- The public role reads no table (its reads of job types and service areas
+  could not say whose, and the website never used them). Its only access is
+  the request form.
+- Stored files: a partner reaches a file only if the record its path names
+  is in their company (`storage_object_company`).
+- The dispatch conflict check answers a signed-in caller only about their own
+  company; every company keeps its own last active admin; a person cannot be
+  moved between companies.
+- All 38 elevated-rights functions reviewed; `definer-functions.test.ts`
+  fails on any new one until it is reviewed.
+- `isolation-matrix.test.ts`: a second company with a record in every company
+  table; partners and drivers of each company see, change and delete none of
+  the other's. Proved to fail when a single rule is removed.
+- verify-production check 21 stops if any company table loses its rule.
+
+**Before a second company exists (M4):** remove the temporary pre-company
+request-function form (0030), and give the hosted form its company link.
 
 ---
 

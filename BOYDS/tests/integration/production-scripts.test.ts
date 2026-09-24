@@ -71,7 +71,7 @@ describe('verify-production.sql', () => {
     const stops = rows.filter((row) => row.result === 'STOP');
 
     expect(stops).toEqual([]);
-    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(18);
+    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(19);
   });
 
   it('changes nothing', async () => {
@@ -91,7 +91,7 @@ describe('verify-production.sql', () => {
     try {
       const rows = await run('verify-production.sql');
       const stopped = rows.filter((row) => row.result === 'STOP').map((row) => row.check);
-      expect(stopped).toContain('public role reaches only the website reference tables');
+      expect(stopped).toContain('public role reaches no table');
       expect(stopped).toContain('no api role can write through a view');
     } finally {
       await admin.query('revoke insert on driver_vehicle_maintenance from anon');
@@ -155,6 +155,22 @@ describe('verify-production.sql', () => {
       await admin.query(
         `alter table jobs add constraint jobs_customer_id_same_org_fkey
            foreign key (customer_id, organisation_id) references customers (id, organisation_id)`,
+      );
+    }
+  });
+
+  it('stops if a company table loses its same-company rule', async () => {
+    await admin.query('drop policy invoices_same_company on invoices');
+    try {
+      const rows = await run('verify-production.sql');
+      const row = rows.find((r) => r.ord === 21)!;
+      expect(row.result).toBe('STOP');
+      expect(row.detail).toContain('invoices');
+    } finally {
+      await admin.query(
+        `create policy invoices_same_company on invoices as restrictive for all to authenticated
+           using (organisation_id = (select current_org_id()))
+           with check (organisation_id = (select current_org_id()))`,
       );
     }
   });

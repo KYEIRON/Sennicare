@@ -53,7 +53,7 @@ describe('the harness is faithful to hosted Supabase', () => {
 });
 
 describe('the public role', () => {
-  it('can reach exactly the two reference tables the website reads, and nothing else', async () => {
+  it('can reach no table at all — not even the reference lists (0032)', async () => {
     const result = await admin.query<{ relation: string; privilege: string }>(
       `select c.relname as relation, p.privilege
          from pg_class c
@@ -64,10 +64,9 @@ describe('the public role', () => {
         order by 1, 2`,
     );
 
-    expect(result.rows).toEqual([
-      { relation: 'job_types', privilege: 'SELECT' },
-      { relation: 'service_areas', privilege: 'SELECT' },
-    ]);
+    // Its reads of job_types and service_areas could not say which company's
+    // were meant, and the website never used them.
+    expect(result.rows).toEqual([]);
   });
 
   it('holds nothing on any sequence', async () => {
