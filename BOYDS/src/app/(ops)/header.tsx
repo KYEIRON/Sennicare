@@ -1,6 +1,6 @@
-import { formatOperatingDate, formatOperatingTime } from '@/lib/datetime';
 import { signOut } from '@/app/(auth)/sign-in/actions';
 import type { AppUser } from '@/types/auth';
+import { LiveClock } from './live-clock';
 
 /**
  * The Command Centre header.
@@ -20,10 +20,7 @@ export function OpsHeader({ user, now }: Readonly<{ user: AppUser; now: Date }>)
       </div>
 
       <div className="flex items-center gap-6">
-        <div className="text-right">
-          <p className="text-sm text-boyd-light-300">{formatOperatingDate(now)}</p>
-          <p className="figure text-sm text-boyd-light-400">{formatOperatingTime(now)}</p>
-        </div>
+        <LiveClock initial={now.toISOString()} />
 
         <div className="text-right">
           <p className="text-sm font-semibold text-boyd-light-100">{user.firstName}</p>

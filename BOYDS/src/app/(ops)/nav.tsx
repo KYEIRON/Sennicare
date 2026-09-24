@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { isActiveSection } from '@/lib/navigation';
 
 /**
  * Operations navigation, following the supplied dashboard design.
@@ -24,14 +28,22 @@ const SECTIONS = [
   { href: '/settings', label: 'Settings' },
 ] as const;
 
-export function OpsNav({ currentPath }: Readonly<{ currentPath: string }>) {
+/**
+ * A client component on purpose. The ops layout is rendered once and kept
+ * mounted while the user moves between sections, so a path passed down from
+ * the server goes stale on the first click — the menu kept underlining
+ * whichever page was opened first. usePathname() follows every navigation.
+ */
+export function OpsNav() {
+  const currentPath = usePathname() ?? '';
+
   return (
     <nav
       aria-label="Operations"
       className="flex gap-1 overflow-x-auto border-b border-boyd-navy-800 bg-boyd-navy-900 px-4"
     >
       {SECTIONS.map((section) => {
-        const active = currentPath.startsWith(section.href);
+        const active = isActiveSection(currentPath, section.href);
         return (
           <Link
             key={section.href}

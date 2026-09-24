@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation';
-import { headers } from 'next/headers';
 import { OpsHeader } from './header';
 import { OpsNav } from './nav';
 import { requirePartner } from '@/lib/auth/session';
@@ -25,7 +24,6 @@ export const revalidate = 0;
 export default async function OpsLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const headerList = await headers();
   const result = await requirePartner();
 
   if (!result.ok) {
@@ -41,7 +39,7 @@ export default async function OpsLayout({
   return (
     <div className="min-h-screen bg-boyd-navy-950">
       <OpsHeader user={result.value} now={new Date()} />
-      <OpsNav currentPath={headerList.get('x-pathname') ?? '/command-centre'} />
+      <OpsNav />
       <main className="p-4">{children}</main>
     </div>
   );
