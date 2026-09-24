@@ -36,6 +36,39 @@ with
       and d.objid is null
       and has_function_privilege('anon', p.oid, 'execute')
   ),
+  -- Business tables: everything except the company list itself and the two
+  -- global reference tables every company shares.
+  business_tables as (
+    select oid, relname from public_tables
+    where relname not in ('organisations', 'industries', 'job_status_transitions')
+  ),
+  untenanted as (
+    select b.relname
+    from business_tables b
+    where not exists (select 1 from pg_attribute a
+                       where a.attrelid = b.oid and a.attname = 'organisation_id'
+                         and a.attnotnull and not a.attisdropped)
+  ),
+  -- A reference from one company's record to another's must be impossible:
+  -- every single-column foreign key between company tables needs a composite
+  -- (column, organisation_id) twin.
+  uncovered_references as (
+    select c.conrelid::regclass::text || '.' || a.attname as ref
+    from pg_constraint c
+    join pg_attribute a on a.attrelid = c.conrelid and a.attnum = c.conkey[1]
+    where c.contype = 'f'
+      and c.connamespace = 'public'::regnamespace
+      and array_length(c.conkey, 1) = 1
+      and a.attname <> 'organisation_id'
+      and c.conrelid in (select oid from business_tables)
+      and c.confrelid in (select oid from business_tables)
+      and not exists (
+        select 1 from pg_constraint t
+         where t.contype = 'f' and t.conrelid = c.conrelid and t.confrelid = c.confrelid
+           and array_length(t.conkey, 1) = 2 and t.conkey[1] = c.conkey[1]
+           and t.conkey[2] = (select attnum from pg_attribute
+                               where attrelid = c.conrelid and attname = 'organisation_id'))
+  ),
   -- Every table with a provenance column, and how many DEMO rows it holds.
   -- Illustrative data must never reach production (CLAUDE.md §6).
   demo_rows as (
@@ -50,8 +83,8 @@ with
 
 select * from (
   select 1 as ord, 'migration history' as "check",
-         case when (select count(*) from supabase_migrations.schema_migrations) >= 28
-               and (select max(version) from supabase_migrations.schema_migrations) >= '0028'
+         case when (select count(*) from supabase_migrations.schema_migrations) >= 31
+               and (select max(version) from supabase_migrations.schema_migrations) >= '0031'
               then 'PASS' else 'STOP' end as result,
          (select count(*) || ' recorded, latest ' || coalesce(max(version), 'none')
             from supabase_migrations.schema_migrations) as detail
@@ -78,9 +111,9 @@ select * from (
          coalesce((select string_agg(grant_, ', ' order by grant_) from anon_relations), 'nothing')
 
   union all
-  select 5, 'public role can execute exactly one entry point and the RLS helpers',
+  select 5, 'public role can execute only the request form (two forms of it until milestone 4) and the RLS helpers',
          case when (select coalesce(string_agg(proname, ',' order by proname), '') from anon_functions)
-                   = 'create_public_job_request,current_app_user_id,current_app_user_role,is_driver,is_partner'
+                   = 'create_public_job_request,create_public_job_request,current_app_user_id,current_app_user_role,is_driver,is_partner'
               then 'PASS' else 'STOP' end,
          coalesce((select string_agg(proname, ', ' order by proname) from anon_functions), 'nothing')
 
@@ -107,7 +140,7 @@ select * from (
                      or has_sequence_privilege('authenticated', c.oid, 'usage')
                      or has_sequence_privilege('authenticated', c.oid, 'update')))
               then 'PASS' else 'STOP' end,
-         'audit_logs_id_seq, incident_number_seq'
+         'audit_logs_id_seq, incident_number_seq (unused since 0030); reference numbers come from organisation_counters'
 
   union all
   select 8, 'document bucket exists and is private',
@@ -186,6 +219,37 @@ select * from (
                and not has_function_privilege('anon', 'public.my_assigned_job_ids()', 'execute')
               then 'PASS' else 'STOP' end,
          'jobs and vehicles hold prices and costs; drivers use driver_jobs and driver_advance_job() (0028)'
+
+  union all
+  select 18, 'every business record belongs to a company',
+         case when not exists (select 1 from untenanted)
+               and not exists (select 1 from pg_class c
+                                join business_tables b on b.oid = c.oid
+                               where c.relname <> 'organisation_counters' -- written only by issue_reference_number()
+                                 and not exists (select 1 from pg_trigger t
+                                                  where t.tgrelid = c.oid
+                                                    and t.tgname = c.relname || '_assign_organisation'))
+              then 'PASS' else 'STOP' end,
+         (select count(*) from business_tables) || ' tables; without a company: ' ||
+         coalesce((select string_agg(relname, ', ') from untenanted), 'none')
+
+  union all
+  select 19, 'no record can reference another company''s record',
+         case when not exists (select 1 from uncovered_references) then 'PASS' else 'STOP' end,
+         'unguarded references: ' ||
+         coalesce((select string_agg(ref, ', ' order by ref) from uncovered_references), 'none')
+
+  union all
+  select 20, 'reference numbers are issued per company',
+         case when to_regclass('public.organisation_counters') is not null
+               and to_regprocedure('public.issue_reference_number(uuid, text)') is not null
+               and not has_function_privilege('anon', 'public.issue_reference_number(uuid, text)', 'execute')
+               and not has_function_privilege('authenticated', 'public.issue_reference_number(uuid, text)', 'execute')
+               and (select count(*) from pg_constraint
+                     where connamespace = 'public'::regnamespace
+                       and conname like '%\_per\_org\_key') = 10
+              then 'PASS' else 'STOP' end,
+         (select count(*) from public.organisations) || ' compan(ies); numbers unique within each, never across'
 
   union all
   select 11, 'people and admins', 'INFO',

@@ -17,6 +17,15 @@ const serverSchema = z.object({
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).optional(),
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
   NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+  // Which company the public website's request form belongs to. An anonymous
+  // visitor belongs to no company, so the form must say. Validated on its own:
+  // a mistyped value disables only the request form — it must not knock out
+  // the whole configuration the way an invalid required value would.
+  SITE_ORGANISATION_SLUG: z
+    .string()
+    .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/)
+    .optional()
+    .catch(undefined),
 });
 
 export type ServerEnv = z.infer<typeof serverSchema>;
@@ -44,6 +53,15 @@ export function readEnv(
  */
 export function isDatabaseConfigured(env: ServerEnv = readEnv()): boolean {
   return Boolean(env.NEXT_PUBLIC_SUPABASE_URL && env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+}
+
+/**
+ * The company the public request form and receptionist record requests for,
+ * or null when not configured — in which case they say they cannot take a
+ * request, rather than guessing a company.
+ */
+export function siteOrganisationSlug(env: ServerEnv = readEnv()): string | null {
+  return env.SITE_ORGANISATION_SLUG ?? null;
 }
 
 /** Server-only privileged access. Never read in a browser context. */

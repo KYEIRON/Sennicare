@@ -352,6 +352,49 @@ before any migration. BOYD'S keeps running throughout.
 M1 and M2 are the heart of it, and they change nothing BOYD'S can see. That is
 the point: the foundation moves while the business keeps running on it.
 
+### M1 — built and tested (not yet in production)
+
+Migrations `0029_organisations`, `0030_organisation_reference_numbers` and
+`0031_company_scoped_notifications`.
+
+- `organisations`, with BOYD'S (`boyds`, prefix `B`) as the first company.
+  Every business table (32, including the counters) has a required
+  `organisation_id`; existing rows were given to BOYD'S. Only `industries` and
+  `job_status_transitions` stay shared.
+- A new record's company is inherited from its parent, else the signed-in
+  person's company, else the insert is refused (`assign_organisation`).
+- 70 composite foreign keys: no record can reference another company's
+  record. Checked from the catalogue by a test and by verify-production check 19.
+- The 10 reference numbers are unique per company, issued by one atomic
+  counter per company, kind and year (`issue_reference_number`), carrying on
+  from what BOYD'S has already issued. The count-then-add race in the app is
+  gone. Incident reports are now `BIR-`, no longer clashing with invoices
+  (`BI-`); existing incident numbers are unchanged.
+- The public form names its company (`SITE_ORGANISATION_SLUG`). Unknown or
+  suspended companies are refused.
+- Notifications reach only the partners of the record's own company.
+- Tests: `tenancy.test.ts` (30), `upgrade-to-companies.test.ts` (a populated
+  0028 database upgraded, backed up and restored with the real scripts).
+- The restore script now restores a pre-company backup into the new schema.
+
+**Deploying M1 (from the Windows session, which can reach production):**
+
+1. `scripts/backup-database.sh` — keep the file private.
+2. `scripts/deploy-database.sh` (dry run), then `--apply`. The live website
+   keeps working throughout: a temporary form of the request function accepts
+   the old call while BOYD'S is the only company.
+3. `scripts/verify-production.sql` — every row PASS or INFO.
+4. Vercel → Environment Variables: `SITE_ORGANISATION_SLUG` = `boyds`.
+5. Promote the code to `boyds-production`; check the request form, a new
+   customer's number, and the command centre.
+
+Rollback: the migrations only add; restoring the step-1 backup into a project
+at 0028 returns to the previous state exactly.
+
+**Still open, and why no second company may exist until M2 is done:** row level
+security is not yet company-scoped, so a partner would still see every
+company's rows; and the temporary request-function form must be removed.
+
 ---
 
 ## 9. Risks

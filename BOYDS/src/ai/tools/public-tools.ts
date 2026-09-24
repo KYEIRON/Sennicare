@@ -11,6 +11,7 @@ import 'server-only';
 
 import { z } from 'zod';
 import { SERVICES, SERVICE_AREAS, FAQ } from '@/features/site/content';
+import { siteOrganisationSlug } from '@/lib/env';
 import type { AiTool, ToolRegistry } from './types';
 
 const getServices: AiTool<Record<string, never>> = {
@@ -80,7 +81,19 @@ const createJobRequest: AiTool<z.infer<typeof jobRequestInput>> = {
   schema: jobRequestInput,
   minimumRole: null,
   async execute(input, context) {
+    // The company this receptionist answers for. Never guessed: without it,
+    // no request is recorded, and the customer is told so.
+    const organisation = siteOrganisationSlug();
+    if (!organisation) {
+      return {
+        recorded: false,
+        message:
+          'Requests cannot be recorded right now, so nothing has been sent. Do not tell the customer it went through.',
+      };
+    }
+
     const { data, error } = await context.client.rpc('create_public_job_request', {
+      p_organisation_slug: organisation,
       p_company_name: input.companyName ?? null,
       p_contact_name: input.contactName,
       p_contact_email: input.contactEmail ?? null,
@@ -106,7 +119,7 @@ const createJobRequest: AiTool<z.infer<typeof jobRequestInput>> = {
       return {
         recorded: false,
         message:
-          'The request could not be recorded. Tell the customer to call or use the request form instead — do not tell them it went through.',
+          'The request could not be recorded. Tell the customer to use the request form on the website instead — do not tell them it went through.',
       };
     }
 

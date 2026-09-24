@@ -106,12 +106,28 @@ export async function listCustomers(
  * Sequential and human-readable. Derived from the current count rather than a
  * database sequence so the numbering survives a restore without jumping.
  */
-export async function nextCustomerNumber(client: SupabaseClient): Promise<string> {
-  const { count } = await client
-    .from('customers')
-    .select('id', { count: 'exact', head: true });
+/**
+ * The next reference number of a kind, for the signed-in partner's company.
+ *
+ * Issued by the database (migration 0030), atomically and per company. The
+ * previous approach — count the table, add one — gave two records created at
+ * the same moment the same number, and would have put one company's volume
+ * into another's numbers. A failure throws: a record is never created with a
+ * guessed number.
+ */
+async function issueReferenceNumber(
+  client: SupabaseClient,
+  kind: 'CUSTOMER' | 'JOB' | 'LEAD' | 'QUOTE' | 'INVOICE' | 'CONTRACT',
+): Promise<string> {
+  const { data, error } = await client.rpc('next_reference_number', { p_kind: kind });
+  if (error || typeof data !== 'string') {
+    throw new Error(`Could not issue a ${kind.toLowerCase()} reference number.`);
+  }
+  return data;
+}
 
-  return `BC-${String((count ?? 0) + 1).padStart(4, '0')}`;
+export async function nextCustomerNumber(client: SupabaseClient): Promise<string> {
+  return issueReferenceNumber(client, 'CUSTOMER');
 }
 
 // --- Vehicles ----------------------------------------------------------------
@@ -298,11 +314,7 @@ export async function listUnassignedJobs(
 }
 
 export async function nextJobNumber(client: SupabaseClient): Promise<string> {
-  const { count } = await client
-    .from('jobs')
-    .select('id', { count: 'exact', head: true });
-  const year = new Date().getFullYear();
-  return `BJ-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+  return issueReferenceNumber(client, 'JOB');
 }
 
 // --- The driver's own jobs ---------------------------------------------------
@@ -544,10 +556,7 @@ export async function listLeads(client: SupabaseClient): Promise<Result<LeadRow[
 }
 
 export async function nextLeadNumber(client: SupabaseClient): Promise<string> {
-  const { count } = await client
-    .from('leads')
-    .select('id', { count: 'exact', head: true });
-  return `BL-${String((count ?? 0) + 1).padStart(4, '0')}`;
+  return issueReferenceNumber(client, 'LEAD');
 }
 
 // --- Quotes ------------------------------------------------------------------
@@ -612,11 +621,7 @@ export async function listQuotes(
 }
 
 export async function nextQuoteNumber(client: SupabaseClient): Promise<string> {
-  const { count } = await client
-    .from('quotes')
-    .select('id', { count: 'exact', head: true });
-  const year = new Date().getFullYear();
-  return `BQ-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+  return issueReferenceNumber(client, 'QUOTE');
 }
 
 // --- Pricing policy ----------------------------------------------------------
@@ -717,11 +722,7 @@ export async function listInvoices(
 }
 
 export async function nextInvoiceNumber(client: SupabaseClient): Promise<string> {
-  const { count } = await client
-    .from('invoices')
-    .select('id', { count: 'exact', head: true });
-  const year = new Date().getFullYear();
-  return `BI-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+  return issueReferenceNumber(client, 'INVOICE');
 }
 
 /**
@@ -773,11 +774,7 @@ export interface ContractRow {
 }
 
 export async function nextContractNumber(client: SupabaseClient): Promise<string> {
-  const { count } = await client
-    .from('contracts')
-    .select('id', { count: 'exact', head: true });
-  const year = new Date().getFullYear();
-  return `BK-${year}-${String((count ?? 0) + 1).padStart(4, '0')}`;
+  return issueReferenceNumber(client, 'CONTRACT');
 }
 
 export async function listContracts(

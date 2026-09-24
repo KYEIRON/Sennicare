@@ -70,7 +70,7 @@ describe('commercial data is partner-only', () => {
     'shows a driver zero rows in %s',
     async (table) => {
       await admin.query(
-        `insert into leads (lead_number, company_name) values ($1, 'FIXTURE CO')
+        `insert into leads (organisation_id, lead_number, company_name) values ((select id from organisations where slug = 'boyds'), $1, 'FIXTURE CO')
          on conflict do nothing`,
         [`BL-${Math.random().toString(36).slice(2, 8)}`],
       );
@@ -108,8 +108,8 @@ describe('a lost lead records why', () => {
   it('refuses LOST with no reason', async () => {
     await expect(
       admin.query(
-        `insert into leads (lead_number, company_name, stage)
-         values ($1, 'LOST CO', 'LOST')`,
+        `insert into leads (organisation_id, lead_number, company_name, stage)
+         values ((select id from organisations where slug = 'boyds'), $1, 'LOST CO', 'LOST')`,
         [`BL-${Math.random().toString(36).slice(2, 8)}`],
       ),
     ).rejects.toThrow(/lost_has_reason/i);
@@ -118,8 +118,8 @@ describe('a lost lead records why', () => {
   it('accepts LOST with a reason', async () => {
     await expect(
       admin.query(
-        `insert into leads (lead_number, company_name, stage, lost_reason)
-         values ($1, 'LOST CO', 'LOST', 'Went with an existing supplier')`,
+        `insert into leads (organisation_id, lead_number, company_name, stage, lost_reason)
+         values ((select id from organisations where slug = 'boyds'), $1, 'LOST CO', 'LOST', 'Went with an existing supplier')`,
         [`BL-${Math.random().toString(36).slice(2, 8)}`],
       ),
     ).resolves.toBeTruthy();
@@ -207,7 +207,7 @@ describe('pricing rules', () => {
   it('refuses an impossible target margin', async () => {
     await expect(
       admin.query(
-        `insert into pricing_rules (name, target_margin_bps) values ('Impossible', 10000)`,
+        `insert into pricing_rules (organisation_id, name, target_margin_bps) values ((select id from organisations where slug = 'boyds'), 'Impossible', 10000)`,
       ),
     ).rejects.toThrow(/bps_sane/i);
   });
@@ -215,15 +215,15 @@ describe('pricing rules', () => {
   it('accepts a sane rule', async () => {
     await expect(
       admin.query(
-        `insert into pricing_rules (name, target_margin_bps, minimum_contribution_cents)
-         values ('Standard', 2000, 5000)`,
+        `insert into pricing_rules (organisation_id, name, target_margin_bps, minimum_contribution_cents)
+         values ((select id from organisations where slug = 'boyds'), 'Standard', 2000, 5000)`,
       ),
     ).resolves.toBeTruthy();
   });
 
   it('allows every threshold to be NULL — BOYD’S current state', async () => {
     const result = await admin.query<{ target_margin_bps: number | null }>(
-      `insert into pricing_rules (name) values ('Nothing configured')
+      `insert into pricing_rules (organisation_id, name) values ((select id from organisations where slug = 'boyds'), 'Nothing configured')
        returning target_margin_bps`,
     );
     expect(result.rows[0]!.target_margin_bps).toBeNull();

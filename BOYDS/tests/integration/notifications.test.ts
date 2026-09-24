@@ -73,8 +73,8 @@ function nextScheduleDate(): string {
 
 async function submitRequest(options: { urgency?: string } = {}) {
   const result = await admin.query<{ id: string }>(
-    `insert into job_requests (request_number, source, contact_name, company_name, urgency, is_after_hours)
-     values ($1, 'WEBSITE', 'A Contact', 'A Company', $2, false) returning id`,
+    `insert into job_requests (organisation_id, request_number, source, contact_name, company_name, urgency, is_after_hours)
+     values ((select id from organisations where slug = 'boyds'), $1, 'WEBSITE', 'A Contact', 'A Company', $2, false) returning id`,
     [`BR-TEST-${Math.random().toString(36).slice(2, 8)}`, options.urgency ?? null],
   );
   return result.rows[0]!.id;
@@ -120,8 +120,8 @@ describe('a new request notifies every partner', () => {
 
   it('flags an after-hours request as needing attention', async () => {
     const result = await admin.query<{ id: string }>(
-      `insert into job_requests (request_number, source, contact_name, is_after_hours)
-       values ($1, 'WEBSITE', 'Night Caller', true) returning id`,
+      `insert into job_requests (organisation_id, request_number, source, contact_name, is_after_hours)
+       values ((select id from organisations where slug = 'boyds'), $1, 'WEBSITE', 'Night Caller', true) returning id`,
       [`BR-TEST-${Math.random().toString(36).slice(2, 8)}`],
     );
 
@@ -271,7 +271,7 @@ describe('a notification belongs to one person', () => {
   it('refuses a notification addressed to nobody', async () => {
     await expect(
       admin.query(
-        `insert into notifications (notification_type, title) values ('AI_INSIGHT', 'Nobody')`,
+        `insert into notifications (organisation_id, notification_type, title) values ((select id from organisations where slug = 'boyds'), 'AI_INSIGHT', 'Nobody')`,
       ),
     ).rejects.toThrow(/has_recipient/i);
   });

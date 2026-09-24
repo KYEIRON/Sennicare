@@ -71,7 +71,7 @@ describe('verify-production.sql', () => {
     const stops = rows.filter((row) => row.result === 'STOP');
 
     expect(stops).toEqual([]);
-    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(15);
+    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(18);
   });
 
   it('changes nothing', async () => {
@@ -132,6 +132,33 @@ describe('verify-production.sql', () => {
     }
   });
 
+  it('stops if a business table can hold a record with no company', async () => {
+    await admin.query('alter table leads alter column organisation_id drop not null');
+    try {
+      const rows = await run('verify-production.sql');
+      const row = rows.find((r) => r.ord === 18)!;
+      expect(row.result).toBe('STOP');
+      expect(row.detail).toContain('leads');
+    } finally {
+      await admin.query('alter table leads alter column organisation_id set not null');
+    }
+  });
+
+  it("stops if one company's record could point at another's", async () => {
+    await admin.query('alter table jobs drop constraint jobs_customer_id_same_org_fkey');
+    try {
+      const rows = await run('verify-production.sql');
+      const row = rows.find((r) => r.ord === 19)!;
+      expect(row.result).toBe('STOP');
+      expect(row.detail).toContain('jobs.customer_id');
+    } finally {
+      await admin.query(
+        `alter table jobs add constraint jobs_customer_id_same_org_fkey
+           foreign key (customer_id, organisation_id) references customers (id, organisation_id)`,
+      );
+    }
+  });
+
   it('stops on a public document bucket', async () => {
     await admin.query(
       "update storage.buckets set public = true where id = 'boyds-documents'",
@@ -148,8 +175,8 @@ describe('verify-production.sql', () => {
 
   it('stops on illustrative data', async () => {
     const inserted = await admin.query<{ id: string }>(
-      `insert into customers (customer_number, company_name, provenance)
-       values ($1, 'Illustrative Co', 'DEMO') returning id`,
+      `insert into customers (organisation_id, customer_number, company_name, provenance)
+       values ((select id from organisations where slug = 'boyds'), $1, 'Illustrative Co', 'DEMO') returning id`,
       [`TEST-DEMO-${Date.now()}`],
     );
     try {

@@ -88,7 +88,7 @@ describe('a driver files a report', () => {
     const result = await fileReport(client, mohDriverId);
     await client.end();
 
-    expect(result.rows[0]!.incident_number).toMatch(/^BI-\d{4}-\d{4}$/);
+    expect(result.rows[0]!.incident_number).toMatch(/^BIR-\d{4}-\d{4}$/);
     expect(result.rows[0]!.status).toBe('REPORTED');
   });
 

@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { headers } from 'next/headers';
 import { getServerClient } from '@/lib/supabase/server';
+import { siteOrganisationSlug } from '@/lib/env';
 import { RATE_LIMITS, callerIdentifier, checkRateLimit } from '@/lib/rate-limit';
 
 export interface RequestState {
@@ -163,7 +164,8 @@ export async function submitDeliveryRequest(
   // only route to the business. Telling a customer to call a number that
   // exists nowhere on the site would be a dead end presented as help.
   const supabase = await getServerClient();
-  if (!supabase) {
+  const organisation = siteOrganisationSlug();
+  if (!supabase || !organisation) {
     return failed({
       error:
         'We could not record your request just now, so nothing has been sent. Please try again in a few minutes — your details are still in the form.',
@@ -171,6 +173,7 @@ export async function submitDeliveryRequest(
   }
 
   const { data, error } = await supabase.rpc('create_public_job_request', {
+    p_organisation_slug: organisation,
     p_company_name: parsed.data.companyName ?? null,
     p_contact_name: parsed.data.contactName,
     p_contact_email: parsed.data.contactEmail || null,

@@ -1098,3 +1098,98 @@ database-level fix.
 
 `scripts/verify-production.sql` check 17 stops if a driver policy returns to
 either table.
+
+---
+
+## D-054 — Every business record belongs to one company (Phase 2, M1)
+
+**Decision:** Migration 0029 adds `organisations` and a required
+`organisation_id` to every business table. BOYD'S is the first company and
+owns every record that existed before. A new record takes its parent's
+company, else the signed-in person's; if neither exists the insert is
+refused. Composite `(id, organisation_id)` foreign keys, generated from the
+catalogue, make a reference from one company's record to another's
+impossible at the database. `industries` and `job_status_transitions` stay
+shared reference lists.
+
+**Why:** Phase 2 decision: small logistics companies and 3PLs each get their
+own space, with BOYD'S as customer #1. Isolation that depends on application
+code being right everywhere is not isolation; the database must refuse it.
+The app does not name a company on inserts: the database decides it, so no
+code path can put a record in the wrong company.
+
+**Not yet:** row level security is still role-based, not company-based. That
+is milestone 2, and no second company may be created before it.
+
+---
+
+## D-055 — Reference numbers come from one counter per company
+
+**Decision:** `organisation_counters` holds one row per company, kind and year.
+`issue_reference_number()` increments it in one atomic statement;
+`next_reference_number()` is what the app calls, for partners only, for their
+own company only. Numbers are unique per company, not across companies.
+Counters start from the highest number already issued in the system's own
+format. Each company has a prefix (`B` for BOYD'S); past 9999 a number grows
+(`BC-10000`) rather than being cut short.
+
+**Why:** The app counted rows and added one. Two partners creating a job at
+the same moment got the same number, and a deleted record made the next number
+repeat an old one. With several companies a shared count would also reveal
+one company's volume to another.
+
+---
+
+## D-056 — Incident reports are numbered BIR-, not BI-
+
+**Decision:** New incident reports are `BIR-YYYY-NNNN`. Existing incident
+numbers are left as they are. The old sequence is kept, unused, so backups
+taken before the change still restore.
+
+**Why:** Incidents and invoices were both `BI-YYYY-NNNN`, so "BI-2026-0003"
+could mean either — on the phone, in an email, in a dispute.
+
+---
+
+## D-057 — The public form names its company; the old form works only while one company exists
+
+**Decision:** `create_public_job_request` takes the company's slug first. The
+website supplies it from `SITE_ORGANISATION_SLUG`; without it the form says it
+cannot record requests and sends nothing. Unknown or suspended companies are
+refused with the same message. A temporary copy of the old, slug-less
+function stays so the live website keeps working between the database upgrade
+and the website redeploy; it refuses the moment a second company exists and is
+removed in milestone 4.
+
+**Why:** An anonymous visitor belongs to no company, so the form must say whom
+it is for. A request form is public by nature — anyone may send a request to
+any company that has one — so the slug grants nothing: the visitor still reads
+nothing back.
+
+---
+
+## D-058 — Notifications go only to the record's own company
+
+**Decision:** `notify_partners()` requires the company and notifies only that
+company's active partners and admins (0031). Each notification trigger passes
+the company of the row that caused it.
+
+**Why:** It notified every partner in the database. With a second company,
+BOYD'S partners would have been told about another company's requests,
+customers and incidents.
+
+---
+
+## D-059 — Restoring an old backup into a newer schema
+
+**Decision:** `scripts/restore-database.sh` restores a backup taken before
+companies into the current schema by giving every record to the one company
+there is — refusing if there is more than one — and then brings the
+reference counters up to the restored records. A backup taken after companies
+carries its own. Both paths, and the upgrade of a populated 0028 database,
+are rehearsed by `tests/integration/upgrade-to-companies.test.ts` using the
+real backup and restore scripts.
+
+**Why:** Found in the rehearsal: the pre-company backup BOYD'S would take
+before this upgrade could not be restored into the upgraded project. A
+backup that cannot be restored is not a backup.

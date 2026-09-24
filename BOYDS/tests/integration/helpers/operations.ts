@@ -7,12 +7,21 @@
  */
 
 import type { Client } from 'pg';
+import { organisationId } from './db';
 
-export async function seedCustomer(admin: Client, companyName: string): Promise<string> {
+export async function seedCustomer(
+  admin: Client,
+  companyName: string,
+  organisation?: string,
+): Promise<string> {
   const result = await admin.query<{ id: string }>(
-    `insert into customers (customer_number, company_name, customer_type, customer_status)
-     values ($1, $2, 'BUSINESS', 'ACTIVE') returning id`,
-    [`TEST-C-${Math.random().toString(36).slice(2, 10)}`, companyName],
+    `insert into customers (organisation_id, customer_number, company_name, customer_type, customer_status)
+     values ($1, $2, $3, 'BUSINESS', 'ACTIVE') returning id`,
+    [
+      organisation ?? (await organisationId(admin)),
+      `TEST-C-${Math.random().toString(36).slice(2, 10)}`,
+      companyName,
+    ],
   );
   return result.rows[0]!.id;
 }
@@ -20,20 +29,29 @@ export async function seedCustomer(admin: Client, companyName: string): Promise<
 export async function seedVehicle(
   admin: Client,
   code: string,
-  overrides: { status?: string; active?: boolean } = {},
+  overrides: { status?: string; active?: boolean; organisationId?: string } = {},
 ): Promise<string> {
   const result = await admin.query<{ id: string }>(
-    `insert into vehicles (vehicle_code, status, active)
-     values ($1, $2, $3) returning id`,
-    [code, overrides.status ?? 'AVAILABLE', overrides.active ?? true],
+    `insert into vehicles (organisation_id, vehicle_code, status, active)
+     values ($1, $2, $3, $4) returning id`,
+    [
+      overrides.organisationId ?? (await organisationId(admin)),
+      code,
+      overrides.status ?? 'AVAILABLE',
+      overrides.active ?? true,
+    ],
   );
   return result.rows[0]!.id;
 }
 
-export async function jobTypeId(admin: Client, code = 'SAME_DAY'): Promise<string> {
+export async function jobTypeId(
+  admin: Client,
+  code = 'SAME_DAY',
+  organisation?: string,
+): Promise<string> {
   const result = await admin.query<{ id: string }>(
-    'select id from job_types where code = $1',
-    [code],
+    'select id from job_types where code = $1 and organisation_id = $2',
+    [code, organisation ?? (await organisationId(admin))],
   );
   return result.rows[0]!.id;
 }

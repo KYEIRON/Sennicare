@@ -51,12 +51,12 @@ async function seedRequest(
 ): Promise<string> {
   requestCounter += 1;
   const result = await admin.query<{ id: string }>(
-    `insert into job_requests (
+    `insert into job_requests (organisation_id, 
        request_number, status, source, company_name, contact_name,
        pickup_address, pickup_city, pickup_state, pickup_zip,
        delivery_address, delivery_city, delivery_state, delivery_zip,
        description
-     ) values ($1, 'NEW', 'WEBSITE', $2, $3,
+     ) values ((select id from organisations where slug = 'boyds'), $1, 'NEW', 'WEBSITE', $2, $3,
        '1 Test Street', 'Charlotte', 'NC', '28202',
        '2 Test Avenue', 'Concord', 'NC', '28025',
        'A pallet of test goods')
@@ -72,8 +72,8 @@ async function seedRequest(
 
 async function seedCustomer(): Promise<string> {
   const result = await admin.query<{ id: string }>(
-    `insert into customers (customer_number, company_name, customer_type, customer_status)
-     values ($1, 'A Test Company', 'BUSINESS', 'ACTIVE') returning id`,
+    `insert into customers (organisation_id, customer_number, company_name, customer_type, customer_status)
+     values ((select id from organisations where slug = 'boyds'), $1, 'A Test Company', 'BUSINESS', 'ACTIVE') returning id`,
     [`TEST-C-${Math.random().toString(36).slice(2, 10)}`],
   );
   return result.rows[0]!.id;

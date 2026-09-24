@@ -43,13 +43,17 @@ const VALID_REQUEST = [
   null,
 ];
 
-async function submitAsAnonymous(client: Client, args: unknown[] = VALID_REQUEST) {
+async function submitAsAnonymous(
+  client: Client,
+  args: unknown[] = VALID_REQUEST,
+  organisation = 'boyds',
+) {
   return client.query<{ create_public_job_request: string }>(
     `select create_public_job_request(
-       $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14::date, $15::time,
-       $16, $17, $18, $19
+       $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15::date, $16::time,
+       $17, $18, $19, $20
      )`,
-    args,
+    [organisation, ...args],
   );
 }
 

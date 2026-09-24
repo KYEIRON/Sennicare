@@ -42,7 +42,10 @@ describe('the anonymous surface is one function wide', () => {
     // role — without EXECUTE, an anonymous query fails outright. They are safe:
     // for anon they return null and false, which is what the policies need and
     // tells the caller nothing.
+    // Two create_public_job_request: the company-aware form, and the temporary
+    // pre-company one the live website calls until it is redeployed (0030).
     expect(result.rows.map((r) => r.proname)).toEqual([
+      'create_public_job_request',
       'create_public_job_request',
       'current_app_user_id',
       'current_app_user_role',
@@ -57,7 +60,7 @@ describe('the anonymous surface is one function wide', () => {
     const client = await sessionClient(null);
     await expect(
       client.query(
-        `select notify_partners('NEW_REQUEST', 'URGENT', 'Forged', 'Not real', null, null)`,
+        `select notify_partners(gen_random_uuid(), 'NEW_REQUEST', 'URGENT', 'Forged', 'Not real', null, null)`,
       ),
     ).rejects.toThrow(/permission denied/i);
     await client.end();
@@ -106,7 +109,7 @@ describe('the anonymous surface is one function wide', () => {
     const client = await sessionClient(null);
     const result = await client.query<{ create_public_job_request: string }>(
       `select create_public_job_request(
-        'A Company', 'A Contact', 'a@example.test', null,
+        'boyds', 'A Company', 'A Contact', 'a@example.test', null,
         '1 Test Street', 'Charlotte', 'NC', '28202',
         '2 Test Avenue', 'Concord', 'NC', '28025',
         'Test goods', null, null, 'STANDARD', false, 'WEBSITE', null
@@ -131,7 +134,7 @@ describe('authenticated users get the helpers they need', () => {
     // that can be forged.
     const result = await admin.query<{ has: boolean }>(
       `select has_function_privilege('authenticated',
-        'notify_partners(notification_type, notification_severity, text, text, text, uuid)',
+        'notify_partners(uuid, notification_type, notification_severity, text, text, text, uuid)',
         'execute') as has`,
     );
     expect(result.rows[0]!.has).toBe(false);

@@ -16,6 +16,16 @@
 # same method as Supabase's own documented restore. That is necessary: the job
 # state machine would otherwise refuse to insert a job directly at COMPLETED,
 # and the audit trail would record every restored row as a new change.
+#
+# Companies (migration 0029). A backup taken before 0029 has no company on any
+# record. Restored into a newer schema, every record is given to the one
+# company the migrations created — BOYD'S — exactly as the 0029 upgrade does.
+# If the target somehow holds more than one company this refuses: nobody can
+# say which company unlabelled records belong to. A backup taken at 0029 or
+# later carries its own companies and replaces the migrations' copy.
+#
+# Afterwards the reference-number counters are brought up to the restored
+# records, so the next number continues rather than starting again at 0001.
 # =============================================================================
 set -euo pipefail
 
@@ -63,12 +73,61 @@ echo "== Restoring backup taken at migration ${BACKUP_VERSION} into schema ${TAR
 
 # The migrations seed three reference tables. The backup holds the business's
 # own copy of them — possibly edited since — so the seeded rows make way.
+COMPANIES_IN_BACKUP=yes
+[[ "${BACKUP_VERSION}" < "0029" ]] && COMPANIES_IN_BACKUP=no
+
+if [ "${COMPANIES_IN_BACKUP}" = "yes" ]; then
+  # The backup holds its own companies (and counters): the migrations' copy
+  # of BOYD'S would clash with it. The target is empty, so nothing else goes.
+  PREPARE="truncate public.organisations, public.industries, public.job_types, public.service_areas cascade"
+  FINISH="select 1"
+elif [[ "${TARGET_VERSION}" < "0029" ]]; then
+  PREPARE="truncate public.industries, public.job_types, public.service_areas cascade"
+  FINISH="select 1"
+else
+  COMPANIES="$(query "select count(*) from public.organisations")"
+  if [ "${COMPANIES}" != "1" ]; then
+    echo "This backup predates companies, and the target holds ${COMPANIES} companies." >&2
+    echo "There is no safe way to decide whose records these are. Nothing has been done." >&2
+    exit 1
+  fi
+  echo "   The backup predates companies: every record is given to $(query "select name from public.organisations")."
+  # Records without a company take the only company there is, as a column
+  # default for the length of the load. The defaults are removed in the same
+  # transaction, so they never outlive the restore.
+  PREPARE="truncate public.industries, public.job_types, public.service_areas cascade;
+    do \$\$
+    declare t text; org uuid := (select id from public.organisations);
+    begin
+      for t in select c.table_name from information_schema.columns c
+                where c.table_schema = 'public' and c.column_name = 'organisation_id'
+                  and c.table_name <> 'organisation_counters'
+      loop
+        execute format('alter table public.%I alter column organisation_id set default %L', t, org);
+      end loop;
+    end \$\$"
+  FINISH="do \$\$
+    declare t text;
+    begin
+      for t in select c.table_name from information_schema.columns c
+                where c.table_schema = 'public' and c.column_name = 'organisation_id'
+      loop
+        execute format('alter table public.%I alter column organisation_id drop default', t);
+      end loop;
+    end \$\$"
+fi
+
+SYNC="select 1"
+[[ "${TARGET_VERSION}" < "0030" ]] || SYNC="select public.sync_organisation_counters()"
+
 psql "${SUPABASE_DB_URL}" -X -q -v ON_ERROR_STOP=1 --single-transaction \
   -c "set client_min_messages = warning" \
   -c "set session_replication_role = replica" \
-  -c "truncate public.industries, public.job_types, public.service_areas cascade" \
+  -c "${PREPARE}" \
   -f "${BACKUP}" \
-  -c "set session_replication_role = origin" > /dev/null
+  -c "${FINISH}" \
+  -c "set session_replication_role = origin" \
+  -c "${SYNC}" > /dev/null
 
 echo "   Loaded."
 echo

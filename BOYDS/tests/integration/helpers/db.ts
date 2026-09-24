@@ -77,6 +77,50 @@ export async function sessionClient(authUserId: string | null): Promise<Client> 
   return client;
 }
 
+/**
+ * The id of a company, by its slug. BOYD'S ('boyds') is created by migration
+ * 0029 and is the company every fixture belongs to unless a test says
+ * otherwise.
+ *
+ * Fixtures are written over a superuser connection with nobody signed in, so
+ * the database cannot infer a company for a top-level record — the test must
+ * name one, exactly as production code must.
+ */
+export async function organisationId(admin: Client, slug = 'boyds'): Promise<string> {
+  const result = await admin.query<{ id: string }>(
+    'select id from organisations where slug = $1',
+    [slug],
+  );
+  const id = result.rows[0]?.id;
+  if (!id) throw new Error(`No organisation with slug '${slug}' in the test database.`);
+  return id;
+}
+
+/**
+ * Create a second company for isolation tests. Obviously synthetic.
+ */
+export async function seedOrganisation(
+  admin: Client,
+  slug: string,
+  options: {
+    name?: string;
+    referencePrefix?: string;
+    status?: 'ACTIVE' | 'SUSPENDED';
+  } = {},
+): Promise<string> {
+  const result = await admin.query<{ id: string }>(
+    `insert into organisations (slug, name, reference_prefix, status)
+     values ($1, $2, $3, $4) returning id`,
+    [
+      slug,
+      options.name ?? `TEST COMPANY ${slug}`,
+      options.referencePrefix ?? 'T',
+      options.status ?? 'ACTIVE',
+    ],
+  );
+  return result.rows[0]!.id;
+}
+
 export interface SeededUser {
   authUserId: string;
   userId: string;
@@ -96,8 +140,11 @@ export async function seedUser(
     firstName: string;
     role: 'PARTNER' | 'DRIVER' | 'ADMIN';
     status?: 'ACTIVE' | 'INVITED' | 'SUSPENDED' | 'INACTIVE';
+    organisationId?: string;
   },
 ): Promise<SeededUser> {
+  const organisation = options.organisationId ?? (await organisationId(admin));
+
   const authResult = await admin.query<{ id: string }>(
     'insert into auth.users (email) values ($1) returning id',
     [options.email],
@@ -105,9 +152,10 @@ export async function seedUser(
   const authUserId = authResult.rows[0]!.id;
 
   const userResult = await admin.query<{ id: string }>(
-    `insert into users (auth_user_id, email, first_name, role, status)
-     values ($1, $2, $3, $4, $5) returning id`,
+    `insert into users (organisation_id, auth_user_id, email, first_name, role, status)
+     values ($1, $2, $3, $4, $5, $6) returning id`,
     [
+      organisation,
       authUserId,
       options.email,
       options.firstName,

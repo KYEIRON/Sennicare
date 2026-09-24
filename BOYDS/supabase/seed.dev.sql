@@ -37,8 +37,8 @@ begin;
 -- --- Ronald: Business & Operations Partner (United Kingdom) -------------------
 
 with new_user as (
-  insert into users (email, first_name, role, status)
-  values (:ronald_email, 'Ronald', 'ADMIN', 'INVITED')
+  insert into users (organisation_id, email, first_name, role, status)
+  values ((select id from organisations where slug = 'boyds'), :ronald_email, 'Ronald', 'ADMIN', 'INVITED')
   on conflict (email) do update set first_name = excluded.first_name
   returning id
 )
@@ -61,8 +61,8 @@ on conflict (user_id) do nothing;
 -- drives, not an employee. The two records are independent by design.
 
 with moh as (
-  insert into users (email, first_name, role, status)
-  select :moh_email, 'Moh', 'DRIVER', 'INVITED'
+  insert into users (organisation_id, email, first_name, role, status)
+  select (select id from organisations where slug = 'boyds'), :moh_email, 'Moh', 'DRIVER', 'INVITED'
   where not exists (select 1 from users where first_name = 'Moh' and role = 'DRIVER')
   returning id
 ),

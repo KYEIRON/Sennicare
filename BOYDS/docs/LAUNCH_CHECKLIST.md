@@ -48,7 +48,9 @@ In Supabase → **Authentication**:
 - [ ] Add these environment variables (Supabase → Project Settings):
       `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
       `SUPABASE_SERVICE_ROLE_KEY` (the secret one — **never** with
-      `NEXT_PUBLIC_` in front), and `NEXT_PUBLIC_SITE_URL` (the website address).
+      `NEXT_PUBLIC_` in front), `NEXT_PUBLIC_SITE_URL` (the website address),
+      and `SITE_ORGANISATION_SLUG` = `boyds` (which company the public request
+      form is for; without it the form honestly refuses to send).
 - [ ] Deploy.
       **Worked if:** the home page loads, and `/command-centre` sends you to the
       sign-in page.

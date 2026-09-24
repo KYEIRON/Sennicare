@@ -85,7 +85,8 @@ describe('the public role', () => {
 
   it('cannot plant a maintenance record through the driver view', async () => {
     const vehicle = await admin.query<{ id: string }>(
-      `insert into vehicles (vehicle_code) values ($1) returning id`,
+      `insert into vehicles (organisation_id, vehicle_code)
+       values ((select id from organisations where slug = 'boyds'), $1) returning id`,
       [`TEST-V-PRIV-${Date.now()}`],
     );
 
