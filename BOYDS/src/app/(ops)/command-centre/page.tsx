@@ -20,6 +20,7 @@ import { DataBadge } from '@/components/ui/data-badge';
 import { formatBps, formatCents, formatMiles } from '@/lib/format';
 import { operatingDateKey } from '@/lib/datetime';
 import { NOT_CONFIGURED_LABEL } from '@/lib/format';
+import { DRIVER_AVAILABILITY_LABELS, type DriverAvailability } from '@/types/operations';
 
 export const metadata: Metadata = { title: 'Command Centre' };
 
@@ -249,7 +250,9 @@ export default async function CommandCentrePage() {
                   </p>
                 </div>
                 <span className="rounded bg-boyd-navy-800 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-boyd-light-300">
-                  {driver.availability.replace(/_/g, ' ')}
+                  {DRIVER_AVAILABILITY_LABELS[
+                    driver.availability as DriverAvailability
+                  ] ?? driver.availability}
                 </span>
               </li>
             ))}

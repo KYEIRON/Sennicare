@@ -36,7 +36,7 @@ const OPEN_DECISIONS: Record<string, string> = {
   [BUSINESS_SETTINGS.DEFAULT_PAYMENT_TERMS]: 'Standard invoice payment terms.',
   [BUSINESS_SETTINGS.QUOTE_VALIDITY_PERIOD]: 'How long a quote stays open.',
   [BUSINESS_SETTINGS.AUTO_ACCEPTANCE_THRESHOLDS]:
-    'Not needed yet. Automatic acceptance is disabled at the database and cannot be enabled until the availability, location and pricing integrations are live.',
+    'Not needed yet. The system has no automatic acceptance at all — every job is accepted by a partner. Building it would need live availability, location and trusted pricing first.',
 };
 
 export default async function SettingsPage() {

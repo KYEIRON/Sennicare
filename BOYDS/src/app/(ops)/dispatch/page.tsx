@@ -6,6 +6,7 @@ import { EmptyState, Panel } from '@/components/ui/kpi-card';
 import { isDriverAssignable, isVehicleAssignable } from '@/services/dispatch/conflicts';
 import { AssignForm } from './assign-form';
 import { UnassignButton } from './unassign-button';
+import { DRIVER_AVAILABILITY_LABELS, type DriverAvailability } from '@/types/operations';
 
 export const metadata: Metadata = { title: 'Dispatch' };
 
@@ -151,7 +152,9 @@ export default async function DispatchPage() {
                     {driver.firstName}
                   </span>
                   <span className="text-xs text-boyd-light-400">
-                    {driver.availability.replace(/_/g, ' ')}
+                    {DRIVER_AVAILABILITY_LABELS[
+                      driver.availability as DriverAvailability
+                    ] ?? driver.availability}
                   </span>
                 </li>
               ))}

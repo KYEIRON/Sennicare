@@ -68,6 +68,22 @@ export const DRIVER_AVAILABILITIES = [
 export type DriverAvailability = (typeof DRIVER_AVAILABILITIES)[number];
 
 /**
+ * How a driver's availability is shown.
+ *
+ * Nobody declares availability in BOYD'S — no screen sets it. The value is the
+ * database default, then set to ON_JOB and back by job activity. So AVAILABLE
+ * means only "not on a job": it says nothing about whether the person is
+ * working today, reachable, or able to sign in. Showing it as "Available" put
+ * a claim about a person on screen that nobody had made (CLAUDE.md §6).
+ */
+export const DRIVER_AVAILABILITY_LABELS: Readonly<Record<DriverAvailability, string>> = {
+  AVAILABLE: 'Not on a job',
+  ON_JOB: 'On a job',
+  OFF_DUTY: 'Off duty',
+  UNAVAILABLE: 'Unavailable',
+};
+
+/**
  * The BOYD'S job lifecycle.
  *
  * Follows the Phase 3 instruction, which supersedes the earlier list in

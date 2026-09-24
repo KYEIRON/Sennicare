@@ -4,6 +4,7 @@ import { getServerClient } from '@/lib/supabase/server';
 import { listDrivers } from '@/database/operations';
 import { EmptyState, Panel } from '@/components/ui/kpi-card';
 import { DataBadge } from '@/components/ui/data-badge';
+import { DRIVER_AVAILABILITY_LABELS, type DriverAvailability } from '@/types/operations';
 
 export const metadata: Metadata = { title: 'Drivers' };
 
@@ -39,7 +40,9 @@ export default async function DriversPage() {
                     {driver.status}
                   </span>
                   <span className="rounded bg-boyd-navy-800 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-boyd-light-300">
-                    {driver.availability.replace(/_/g, ' ')}
+                    {DRIVER_AVAILABILITY_LABELS[
+                      driver.availability as DriverAvailability
+                    ] ?? driver.availability}
                   </span>
                 </div>
               </div>
