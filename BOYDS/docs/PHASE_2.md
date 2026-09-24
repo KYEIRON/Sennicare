@@ -1,7 +1,8 @@
 # BOYD'S — Phase 2 requirements (recorded, not started)
 
 Recorded at production closeout on Ronald's instruction. **Nothing here is
-built yet.** Phase 2 begins only with an explicit brief.
+built yet.** The plan for building it, and the decisions it needs, is in
+`docs/PHASE_2_ARCHITECTURE.md`.
 
 ---
 
