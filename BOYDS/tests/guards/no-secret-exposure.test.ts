@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { join, relative, sep } from 'node:path';
 
 /**
  * Standing guard against secrets reaching the browser.
@@ -21,8 +21,10 @@ function sourceFiles(dir: string): string[] {
   });
 }
 
+// Forward slashes on every platform: the checks below match paths such as
+// 'lib/auth/session', which on Windows would otherwise never be found.
 const files = sourceFiles(SRC).map((file) => ({
-  path: relative(process.cwd(), file),
+  path: relative(process.cwd(), file).split(sep).join('/'),
   content: readFileSync(file, 'utf8'),
 }));
 

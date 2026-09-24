@@ -80,9 +80,19 @@ table in `src/lib/permissions.ts`.
 
 Drivers must not reach company-wide financial information. Enforced by:
 
-- RLS on `jobs` restricting rows to `driver_id = current_app_user()`.
-- Column-level exclusion: the driver application reads the `driver_jobs` view,
-  which contains no price, cost, contribution, or margin column.
+- **No direct read of `jobs` or `vehicles` at all** (migration 0028). Both
+  tables hold prices and costs, and partners and drivers share one database
+  role, so a column GRANT cannot hide them from drivers alone. Instead a driver
+  has no policy on either table: a direct query returns nothing, even for their
+  own job. Their work reaches them through the `driver_jobs` and
+  `driver_vehicle_maintenance` views, which contain no price, cost,
+  contribution, or margin column and filter to the caller's own work.
+- Their only two writes to a job, advancing its status and recording mileage,
+  go through `driver_advance_job()` and `driver_record_mileage()`. Each checks
+  the job is assigned to the caller, then runs the ordinary update with the
+  state machine, the driver column guard and the audit trail in force.
+- Field records (expenses, fuel, mileage, incidents, documents, POD files) may
+  name only the driver's own jobs. See docs/DECISIONS.md D-053.
 - No driver-role grant on `customers`, `quotes`, `invoices`, `payments`,
   `pricing_rules`, `contracts`, or `audit_logs`.
 - Server guards that reject a driver-role session on every partner endpoint.

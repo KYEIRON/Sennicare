@@ -149,6 +149,29 @@ describe('a driver records their own expenses', () => {
     await client.end();
   });
 
+  // Rule 30 — "for their own jobs". Their own name on the record is not enough
+  // if the job it is filed against belongs to someone else (0028).
+  it('refuses their own expense or fuel filed against another driver’s job', async () => {
+    const client = await sessionClient(driver.authUserId);
+    const attempts = [
+      client.query(
+        `insert into job_expenses (job_id, vehicle_id, driver_id, category, amount_cents)
+         values ($1, $2, $3, 'PARKING', 1200)`,
+        [otherJobId, vehicleId, driverRecordId],
+      ),
+      client.query(
+        `insert into fuel_transactions (vehicle_id, driver_id, job_id, gallons_thousandths,
+          price_per_gallon_cents, total_cost_cents, odometer_tenths)
+         values ($1, $2, $3, 10000, 400, 4000, 10)`,
+        [vehicleId, driverRecordId, otherJobId],
+      ),
+    ];
+    for (const attempt of attempts) {
+      await expect(attempt).rejects.toThrow(/row-level security/i);
+    }
+    await client.end();
+  });
+
   it('shows a driver only their own expenses', async () => {
     await admin.query(
       `insert into job_expenses (job_id, vehicle_id, driver_id, category, amount_cents)

@@ -132,12 +132,19 @@ describe('jobs: a driver sees only their own work', () => {
     expect(result.rowCount).toBeGreaterThanOrEqual(2);
   });
 
-  it('shows a driver only the job assigned to them', async () => {
+  // Rule 28, by direct query (0028). The jobs table carries every price and
+  // cost, so a driver reads none of it — not even their own job's row. Their
+  // job reaches them through driver_jobs, which has no financial column.
+  it('shows a driver NOTHING from the jobs table, not even their own job', async () => {
     const client = await sessionClient(driver.authUserId);
-    const result = await client.query<{ id: string }>('select id from jobs');
+    const all = await client.query('select id from jobs');
+    const priced = await client.query(
+      'select won_price_cents, quoted_price_cents from jobs where id = $1',
+      [assignedJobId],
+    );
     await client.end();
-    expect(result.rowCount).toBe(1);
-    expect(result.rows[0]!.id).toBe(assignedJobId);
+    expect(all.rowCount).toBe(0);
+    expect(priced.rowCount).toBe(0);
   });
 
   it('shows a DIFFERENT driver none of it', async () => {
@@ -192,43 +199,86 @@ describe('the driver_jobs view has no financial columns at all', () => {
 });
 
 describe('a driver cannot write what they must not write', () => {
-  it('refuses a price change', async () => {
+  it('changes nothing with a direct update, price or otherwise', async () => {
+    const client = await sessionClient(driver.authUserId);
+    const price = await client.query(
+      'update jobs set won_price_cents = 99999 where id = $1',
+      [assignedJobId],
+    );
+    const reassign = await client.query('update jobs set driver_id = $2 where id = $1', [
+      assignedJobId,
+      otherDriverRecordId,
+    ]);
+    const notes = await client.query(
+      "update jobs set internal_notes = 'x' where id = $1",
+      [assignedJobId],
+    );
+    await client.end();
+    expect([price.rowCount, reassign.rowCount, notes.rowCount]).toEqual([0, 0, 0]);
+
+    const after = await admin.query<{ won_price_cents: string; driver_id: string }>(
+      'select won_price_cents, driver_id from jobs where id = $1',
+      [assignedJobId],
+    );
+    expect(Number(after.rows[0]!.won_price_cents)).toBe(30_000);
+    expect(after.rows[0]!.driver_id).toBe(driverRecordId);
+  });
+
+  it('refuses advancing a job assigned to someone else', async () => {
     const client = await sessionClient(driver.authUserId);
     await expect(
-      client.query('update jobs set won_price_cents = 99999 where id = $1', [
-        assignedJobId,
-      ]),
-    ).rejects.toThrow(/not pricing, assignment or internal notes/i);
+      client.query("select driver_advance_job($1, 'DRIVER_ACCEPTED')", [otherJobId]),
+    ).rejects.toThrow(/not assigned to you/i);
     await client.end();
   });
 
-  it('refuses reassigning the job to themselves elsewhere', async () => {
-    const client = await sessionClient(driver.authUserId);
+  it('refuses the job functions to a partner session', async () => {
+    const client = await sessionClient(partner.authUserId);
     await expect(
-      client.query('update jobs set driver_id = $2 where id = $1', [
-        assignedJobId,
-        otherDriverRecordId,
-      ]),
-    ).rejects.toThrow(/not pricing, assignment or internal notes/i);
+      client.query("select driver_advance_job($1, 'DRIVER_ACCEPTED')", [assignedJobId]),
+    ).rejects.toThrow(/only a driver/i);
     await client.end();
   });
 
-  it('refuses editing internal notes', async () => {
+  it('still enforces the state machine through the function', async () => {
     const client = await sessionClient(driver.authUserId);
     await expect(
-      client.query("update jobs set internal_notes = 'x' where id = $1", [assignedJobId]),
-    ).rejects.toThrow(/not pricing, assignment or internal notes/i);
+      client.query("select driver_advance_job($1, 'COMPLETED')", [assignedJobId]),
+    ).rejects.toThrow();
+    await client.end();
+  });
+
+  it('refuses mileage that runs backwards', async () => {
+    const client = await sessionClient(driver.authUserId);
+    await expect(
+      client.query('select driver_record_mileage($1, 1000, 900, 0)', [assignedJobId]),
+    ).rejects.toThrow(/cannot be lower/i);
     await client.end();
   });
 
   it('DOES let a driver record field progress on their own job', async () => {
     const client = await sessionClient(driver.authUserId);
-    const result = await client.query(
-      "update jobs set status = 'DRIVER_ACCEPTED' where id = $1",
+    await client.query("select driver_advance_job($1, 'DRIVER_ACCEPTED')", [
+      assignedJobId,
+    ]);
+    await client.query('select driver_record_mileage($1, 1000, 1250, 50)', [
+      assignedJobId,
+    ]);
+    await client.end();
+
+    const after = await admin.query<{
+      status: string;
+      actual_miles_tenths: number;
+      loaded_miles_tenths: number;
+    }>(
+      'select status, actual_miles_tenths, loaded_miles_tenths from jobs where id = $1',
       [assignedJobId],
     );
-    await client.end();
-    expect(result.rowCount).toBe(1);
+    expect(after.rows[0]).toMatchObject({
+      status: 'DRIVER_ACCEPTED',
+      actual_miles_tenths: 250,
+      loaded_miles_tenths: 200,
+    });
   });
 });
 
@@ -240,18 +290,19 @@ describe('vehicles', () => {
     expect(result.rowCount).toBeGreaterThanOrEqual(1);
   });
 
-  it('shows a driver only the vehicle they are currently in', async () => {
+  // The vehicles table holds purchase price, insurance cost and policy number
+  // (rule 28). The driver's van reaches them as vehicle_code via driver_jobs.
+  it('shows a driver no vehicle row, not even the van they are in', async () => {
     await admin.query('update drivers set current_vehicle_id = $2 where id = $1', [
       driverRecordId,
       vehicleId,
     ]);
 
     const client = await sessionClient(driver.authUserId);
-    const result = await client.query<{ id: string }>('select id from vehicles');
+    const result = await client.query('select purchase_price_cents from vehicles');
     await client.end();
 
-    expect(result.rowCount).toBe(1);
-    expect(result.rows[0]!.id).toBe(vehicleId);
+    expect(result.rowCount).toBe(0);
   });
 
   it('shows a driver with no vehicle nothing', async () => {

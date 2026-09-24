@@ -216,12 +216,13 @@ describe('5. Moh sees the job — and only what he should', () => {
 describe('6. Moh drives the job', () => {
   async function advance(status: string) {
     const client = await sessionClient(moh.authUserId);
-    const result = await client.query('update jobs set status = $2 where id = $1', [
+    // Through the driver's function: a driver cannot touch the jobs table (0028).
+    const result = await client.query('select driver_advance_job($1, $2)', [
       jobId,
       status,
     ]);
     await client.end();
-    return result;
+    return { rowCount: result.rowCount };
   }
 
   it('accepts it', async () => {
@@ -271,7 +272,7 @@ describe('7. Proof of delivery', () => {
 
     const client = await sessionClient(moh.authUserId);
     await expect(
-      client.query("update jobs set status = 'POD_RECEIVED' where id = $1", [jobId]),
+      client.query("select driver_advance_job($1, 'POD_RECEIVED')", [jobId]),
     ).rejects.toThrow(/requires proof of delivery/i);
     await client.end();
   });
@@ -291,10 +292,9 @@ describe('7. Proof of delivery', () => {
 
   it('now allows POD_RECEIVED', async () => {
     const client = await sessionClient(moh.authUserId);
-    const result = await client.query(
-      "update jobs set status = 'POD_RECEIVED' where id = $1",
-      [jobId],
-    );
+    const result = await client.query("select driver_advance_job($1, 'POD_RECEIVED')", [
+      jobId,
+    ]);
     await client.end();
     expect(result.rowCount).toBe(1);
   });
@@ -304,9 +304,7 @@ describe('8. Moh records the real numbers', () => {
   it('records mileage, split loaded and empty', async () => {
     const client = await sessionClient(moh.authUserId);
     const result = await client.query(
-      `update jobs set actual_miles_tenths = 250, loaded_miles_tenths = 190,
-       empty_miles_tenths = 60, start_odometer_tenths = 1000000,
-       end_odometer_tenths = 1000250 where id = $1`,
+      'select driver_record_mileage($1, 1000000, 1000250, 60)',
       [jobId],
     );
     await client.end();
@@ -351,12 +349,18 @@ describe('8. Moh records the real numbers', () => {
     expect(Number(result.rows[0]!.parking_cost_actual_cents)).toBe(1000);
   });
 
-  it('still cannot change the price', async () => {
+  it('still cannot change the price, or even read it', async () => {
     const client = await sessionClient(moh.authUserId);
-    await expect(
-      client.query('update jobs set won_price_cents = 99999 where id = $1', [jobId]),
-    ).rejects.toThrow(/not pricing, assignment or internal notes/i);
+    const update = await client.query(
+      'update jobs set won_price_cents = 99999 where id = $1',
+      [jobId],
+    );
+    const read = await client.query('select won_price_cents from jobs where id = $1', [
+      jobId,
+    ]);
     await client.end();
+    expect(update.rowCount).toBe(0);
+    expect(read.rowCount).toBe(0);
   });
 });
 

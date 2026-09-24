@@ -1071,3 +1071,30 @@ Only a signed-in partner reaches Settings, so no existing test could see it. A
 guard test (`tests/guards/next-config.test.ts`) keeps the setting in place; it
 should be removed only after a Next upgrade is shown to render `/settings` for
 a signed-in partner.
+
+---
+
+## D-053 — A driver has no direct read of jobs or vehicles
+
+**Decision:** Migration 0028 removes the driver policies on `jobs` and
+`vehicles`. A driver reads their work through `driver_jobs` and
+`driver_vehicle_maintenance` as before, and writes to a job only through
+`driver_advance_job()` and `driver_record_mileage()`. Policies that needed "the
+jobs assigned to me" (documents, job stops, the POD storage folders) use
+`my_assigned_job_ids()`, which returns ids only. The driver insert policies on
+expenses, fuel, mileage and incidents now also require the named job to be the
+driver's own.
+
+**Why:** Found during the live production verification. Business rule 28 says a
+driver can never read a price or a cost, and CLAUDE.md §8 says not even by a
+direct database query. The driver app already read only `driver_jobs`, but the
+base-table policy `jobs_select_assigned` still let a signed-in driver's own
+token select every column of their jobs (quoted and won price, every estimated
+and actual cost), and `vehicles_select_own` exposed their van's purchase price,
+insurance cost and policy number. Proved on the live database in a transaction
+that was rolled back. Partners and drivers share the `authenticated` role, so a
+column GRANT could not separate them; removing the row access is the only
+database-level fix.
+
+`scripts/verify-production.sql` check 17 stops if a driver policy returns to
+either table.

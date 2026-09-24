@@ -19,8 +19,8 @@ import { incidentReportSchema } from '@/validation/operations';
 /**
  * A driver advances their own job.
  *
- * Guarded three ways: this action requires a driver, row level security limits
- * the update to jobs assigned to them, and the column trigger stops them
+ * Guarded three ways: this action requires a driver, driver_advance_job()
+ * refuses any job not assigned to them, and the column trigger stops them
  * touching pricing, assignment or internal notes.
  */
 export async function advanceDriverJob(
@@ -52,10 +52,13 @@ export async function advanceDriverJob(
 
   if (!check.ok) return { error: check.error.message };
 
-  const { error } = await supabase
-    .from('jobs')
-    .update({ status: toStatus })
-    .eq('id', jobId);
+  // A driver cannot read or write the jobs table directly (migration 0028): it
+  // holds prices and costs. This function checks the job is theirs and updates
+  // it with the state machine and the driver column guard still in force.
+  const { error } = await supabase.rpc('driver_advance_job', {
+    p_job_id: jobId,
+    p_to_status: toStatus,
+  });
   if (error) return { error: error.message };
 
   revalidatePath('/driver/today');
@@ -97,16 +100,14 @@ export async function recordDriverMileage(
   const supabase = await getServerClient();
   if (!supabase) return { error: 'The database is not connected.' };
 
-  const { error } = await supabase
-    .from('jobs')
-    .update({
-      start_odometer_tenths: Math.round(start * 10),
-      end_odometer_tenths: Math.round(end * 10),
-      actual_miles_tenths: totalTenths,
-      loaded_miles_tenths: totalTenths - emptyTenths,
-      empty_miles_tenths: emptyTenths,
-    })
-    .eq('id', jobId);
+  // Through a function, not the jobs table, for the reason in advanceDriverJob.
+  // The database recomputes the totals from the readings and checks them again.
+  const { error } = await supabase.rpc('driver_record_mileage', {
+    p_job_id: jobId,
+    p_start_odometer_tenths: Math.round(start * 10),
+    p_end_odometer_tenths: Math.round(end * 10),
+    p_empty_miles_tenths: emptyTenths,
+  });
 
   if (error) return { error: error.message };
 

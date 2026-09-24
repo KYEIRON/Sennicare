@@ -50,8 +50,8 @@ with
 
 select * from (
   select 1 as ord, 'migration history' as "check",
-         case when (select count(*) from supabase_migrations.schema_migrations) >= 27
-               and (select max(version) from supabase_migrations.schema_migrations) >= '0027'
+         case when (select count(*) from supabase_migrations.schema_migrations) >= 28
+               and (select max(version) from supabase_migrations.schema_migrations) >= '0028'
               then 'PASS' else 'STOP' end as result,
          (select count(*) || ' recorded, latest ' || coalesce(max(version), 'none')
             from supabase_migrations.schema_migrations) as detail
@@ -174,6 +174,18 @@ select * from (
                and not has_function_privilege('anon', 'public.record_my_sign_in()', 'execute')
               then 'PASS' else 'STOP' end,
          'record_my_sign_in(): never reactivates a deactivated account'
+
+  union all
+  select 17, 'a driver cannot query a price or a cost directly',
+         case when not exists (select 1 from pg_policies
+                                where schemaname = 'public'
+                                  and tablename in ('jobs', 'vehicles')
+                                  and (coalesce(qual, '') like '%is_driver()%'
+                                    or coalesce(with_check, '') like '%is_driver()%'))
+               and to_regprocedure('public.my_assigned_job_ids()') is not null
+               and not has_function_privilege('anon', 'public.my_assigned_job_ids()', 'execute')
+              then 'PASS' else 'STOP' end,
+         'jobs and vehicles hold prices and costs; drivers use driver_jobs and driver_advance_job() (0028)'
 
   union all
   select 11, 'people and admins', 'INFO',

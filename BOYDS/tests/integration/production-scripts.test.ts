@@ -71,7 +71,7 @@ describe('verify-production.sql', () => {
     const stops = rows.filter((row) => row.result === 'STOP');
 
     expect(stops).toEqual([]);
-    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(14);
+    expect(rows.filter((row) => row.result === 'PASS')).toHaveLength(15);
   });
 
   it('changes nothing', async () => {
@@ -117,6 +117,18 @@ describe('verify-production.sql', () => {
       expect(rows.find((row) => row.ord === 13)!.result).toBe('STOP');
     } finally {
       await admin.query('drop policy users_update_partner on users');
+    }
+  });
+
+  it('stops if a driver can read the jobs table again', async () => {
+    await admin.query(
+      'create policy jobs_select_assigned on jobs for select using (is_driver())',
+    );
+    try {
+      const rows = await run('verify-production.sql');
+      expect(rows.find((row) => row.ord === 17)!.result).toBe('STOP');
+    } finally {
+      await admin.query('drop policy jobs_select_assigned on jobs');
     }
   });
 
