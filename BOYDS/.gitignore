@@ -1,0 +1,54 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# testing
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# environment — NEVER commit real credentials
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# supabase local
+supabase/.branches
+supabase/.temp
+
+# editors and os
+.DS_Store
+*.pem
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+
+# vercel
+.vercel
+
+# The repository-root .gitignore is Python-oriented and contains a `lib/` rule,
+# which would silently exclude BOYD'S core library (src/lib). Re-include it here
+# rather than editing the root file, which belongs to the unrelated Sennicare
+# project. Without this, every money and calculation module would be missing
+# from the repository while still passing locally.
+!src/lib/
+
+# Database backups contain customer and staff personal data. Never commit them.
+backups/

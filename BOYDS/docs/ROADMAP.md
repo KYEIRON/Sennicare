@@ -1,0 +1,333 @@
+# BOYD'S — Implementation Roadmap
+
+Every phase ends at the same gate (`CLAUDE.md` §9): functionality, validation,
+permissions, error handling, tests written, tests passing, types passing, lint
+passing, production build passing, documentation updated. `npm run verify` runs
+it. A phase that compiles is not a phase that is done.
+
+Each phase ends in a commit prefixed `BOYDS:`.
+
+---
+
+### Phase 0 — Boundary ✅ complete
+
+Repository inspected. Sennicare identified as a static site in `/website` with no
+build system. `/BOYDS` established as an isolated project with `CLAUDE.md`, the
+full documentation set, the architecture plan, the database plan, the folder
+structure, and this roadmap.
+
+### Phase 1 — Foundation ✅ complete
+
+Next.js 16 + TypeScript 6 (strict) + Tailwind 4 + Zod 4 + Vitest 4. ESLint,
+Prettier, and the `verify` gate. Branded types (`Cents`, `MilesTenths`,
+`GallonsThousandths`, `Bps`, `MpgTenths`). The `Result`, `Calculation` and
+`Configured` types. Money, distance, format and date-time helpers. The economic
+cost vocabulary separating driver labour costing from partner compensation, and
+derived vehicle cost per mile. Three route groups wired. BOYD'S design tokens.
+85 unit tests passing, zero npm vulnerabilities.
+
+### Phase 2 — Authentication and roles ✅ complete
+
+Supabase Auth with SSR session handling and middleware. Migrations 0001-0003:
+`users`, `partners`, `drivers`, with row level security on every table. The
+`PARTNER` / `DRIVER` / `ADMIN` capability table, `requirePartner()`,
+`requireDriver()`, `requireCapability()`. Sign-in, sign-out, and role-based
+routing — partners to the Command Centre, drivers to the driver app. A
+development seed for Ronald and Moh that invents no personal information.
+
+**Done:** 181 tests passing, including 21 row level security tests run against
+real PostgreSQL with the real migrations applied. A driver is proved unable to
+read another person's record, see partner records, promote themselves, create an
+account, or alter their own licence details.
+
+### Phase 3 — Customers, vehicles, drivers, jobs ✅ complete
+
+Migrations 0004-0016. Configurable reference data (industries, job types,
+service areas — North Carolina is a row). Customers with multiple contacts,
+reusable locations and notes. Fleet and drivers, with every vehicle
+specification nullable and reading as NOT CONFIGURED until real documents
+arrive. Jobs with multi-stop support, loaded/empty mileage, and every cost held
+as estimated, actual and a derived state. Job requests kept distinct from jobs.
+The full lifecycle as a state machine in Postgres and TypeScript, proved
+identical by test. Dispatch with double-booking prevention. Trigger-written
+audit trail. Command Centre, jobs, dispatch, customers, vehicles, drivers and
+settings screens, plus the mobile driver application.
+
+**Done:** 401 tests passing — 297 unit and guard, 104 against real PostgreSQL.
+
+### Phase 4 — Moh Driver App ✅ complete
+
+The `/driver` route group: today's work, current job, route with navigation and
+one-tap calling, one large button per step of the lifecycle, odometer-based
+mileage with the loaded/empty split, signature capture on a canvas, camera
+photos for collection and delivery, and a separate Record screen for fuel and
+expenses between jobs.
+
+Migration 0017 adds documents, job expenses and fuel transactions. Expenses roll
+up into the job's actual costs by trigger, so a receipt recorded at the roadside
+immediately makes that job's contribution more complete — and a category with no
+receipt stays MISSING rather than becoming zero. Proof of delivery is now
+required before `POD_RECEIVED`, enforced in the database.
+
+Storage is a private bucket behind the three-adapter pattern: live when the
+database is configured, explicitly unavailable when it is not, and never
+pretending a file was saved.
+
+**Done:** 441 tests passing — 318 unit and guard, 123 against real PostgreSQL.
+
+### Phase 5 — Mileage, fuel, expenses, POD ✅ complete
+
+Delivered with Phase 4: `mileage_logs`, `fuel_transactions`, `job_expenses` and
+`documents`, loaded/empty classification, odometer validation, private storage
+with signed URLs, and receipt and POD capture from the driver app.
+
+### Phase 6 — Profitability engine ✅ complete
+
+Migration 0018 adds `vehicle_cost_entries` and `maintenance_records`. True cost
+per mile is **derived** from real recorded costs and real recorded mileage —
+there is no field anywhere for a manually entered flat rate — and every derived
+rate reports which cost lines it covers, so a partial figure can never be read
+as the whole picture. Completed maintenance with a cost becomes a cost entry
+automatically, so the rate reflects work actually done.
+
+Customer, vehicle and period profitability, average contribution per job,
+contribution per mile, margin and empty mileage share. Loss-making jobs are
+listed separately from jobs whose costs are merely unknown — an unmeasured job
+is not a profitable one, and BOYD'S does not let the two blur.
+
+The Reports screen shows all of it, and names the jobs blocking any figure it
+cannot state.
+
+**Done:** 491 tests passing — 356 unit and guard, 135 against real PostgreSQL.
+
+### Phase 7 — Command Centre ✅ complete
+
+Delivered with Phase 3 and extended in Phase 6: today's revenue, contribution,
+costs, active jobs, miles and empty mileage; live operations; what needs
+attention; fleet and drivers; the open business decisions shown plainly; and the
+Reports screen with customer, vehicle and period profitability.
+
+### Phase 8 — CRM and quoting ✅ complete
+
+Migration 0019 adds leads, pricing rules, quotes and quote items. The full
+pipeline from `NEW` to `CONTRACT_OPPORTUNITY`, with follow-ups surfaced and open
+leads that have no next step called out. A lost lead records why — the reason is
+what eventually improves BOYD'S pricing and targeting.
+
+The pricing engine estimates cost from real recorded inputs only: the latest
+fuel price BOYD'S actually paid, the van's real economy, and the derived vehicle
+cost per mile. Every line names its basis. Minimum contribution and target
+margin stay NOT CONFIGURED, so the engine reports that and names the decision
+rather than substituting an industry default — and the floor check answers
+NOT CONFIGURED rather than "yes", because the system will not imply a price is
+acceptable against a standard that does not exist.
+
+Pricing below a configured floor requires an explicit reason and is audited. An
+expired quote cannot be accepted without being re-issued. Every quote stores its
+full breakdown, so a price given months ago can still be explained.
+
+**Done:** 537 tests passing — 383 unit and guard, 154 against real PostgreSQL.
+
+### Phase 9 — Invoices, contracts, maintenance ✅ complete
+
+Migration 0020 adds contracts, invoices, invoice lines and payments.
+Maintenance arrived with Phase 6.
+
+**An invoice is PAID only when recorded payments cover it.** There is no code
+path that sets the status or the amount paid by hand — both are derived by
+trigger from real payment rows, and an attempt to set either is rejected. A
+reversed payment returns the invoice to DUE or OVERDUE rather than leaving it
+claiming to be settled.
+
+Only completed jobs with an agreed price can be invoiced. The Invoices screen
+shows outstanding, overdue, and — usually the most useful figure for a small
+business — what BOYD'S has earned and not yet billed for.
+
+Marking an invoice sent says plainly that no email provider is connected and the
+partner must send it themselves. Nothing claims an email went out.
+
+**Done:** 561 tests passing — 383 unit and guard, 178 against real PostgreSQL.
+
+### Phase 10 — Public website ✅ complete
+
+Home, services index, seven service pages, service areas index, seven location
+pages, request a delivery, about, FAQ, contact, privacy and terms. Sitemap,
+robots, per-page metadata, canonical URLs, Open Graph, and JSON-LD for services
+and the FAQ — with no fabricated rating or review, because structured data is
+the form search engines treat as authoritative.
+
+**Every claim on the site is true.** A standing guard test
+(`tests/guards/website-claims.test.ts`) fails the build on any claim of
+certification, compliance, licensing, insurance or bonding; any superlative;
+any implied office; any guaranteed delivery time; any 24/7 claim; any overstated
+fleet size; any published price; and any fabricated testimonial or rating. This
+is not stylistic — a medical courier claiming compliance it does not hold is
+making a representation a customer may rely on.
+
+The site says BOYD'S runs one van, and turns that into the reason to use it. The
+contact page shows no phone number because BOYD'S has not supplied one, and an
+invented number would send a customer nowhere.
+
+Migration 0021 adds the public intake: one `SECURITY DEFINER` function, no table
+grants, and no read-back. A request is never a job.
+
+**Done:** 613 tests passing — 406 unit and guard, 207 against real PostgreSQL.
+
+### Phase 11 — BOYD'S AI (internal) ✅ complete
+
+### Phase 12 — AI receptionist and 24/7 intake ✅ complete
+
+A provider abstraction with a live adapter, an explicitly unavailable adapter,
+and no vendor named anywhere in feature code. With no key configured, both AI
+surfaces say so and point at the routes that do work.
+
+**The AI never touches the database.** It reaches data through a registry of
+named tools — each with a Zod schema, a minimum role, and the caller's own
+session-bound client, so it cannot see anything the person asking could not see.
+Tools return the same `Calculation` states as the rest of the system, so the AI
+is handed `DATA INCOMPLETE` rather than a number it could round off.
+
+The public receptionist is built with the public registry only: four tools —
+services, service areas, FAQ, and create a request. Internal tools are absent
+from it, not denied to it. The surface is chosen server-side from the session.
+
+The receptionist opens with the exact required greeting, collects the full
+intake field set conversationally, asks about recurring work, and — having
+recorded a request — says it has been received and will be reviewed. It never
+says booked, confirmed or scheduled, because at that moment nobody has checked
+whether BOYD'S can do it.
+
+The internal assistant tags every statement `FACT`, `ESTIMATE`,
+`RECOMMENDATION` or `DATA INCOMPLETE`. An untagged statement is treated as
+`DATA INCOMPLETE` — the case where the model ignored its instructions must not
+also be the case that looks most authoritative.
+
+**Done:** 649 tests passing — 442 unit and guard, 207 against real PostgreSQL.
+
+### Phase 13 — Maps and notifications ✅ complete
+
+Maps, email and SMS abstractions, each with an explicitly unavailable adapter
+and **no approximate fallback** (D-025). There is no straight-line distance
+standing in for a route, no last-known position standing in for a live one, and
+no "queued" reporting as "sent" — an approximation in maps would flow into a
+fuel estimate, a cost and a price, and reach a customer as a number nobody could
+trace back to a guess.
+
+Migration 0022 adds notifications, raised by database trigger on new requests,
+after-hours arrivals, urgent requests, driver acceptance, delivery, proof of
+delivery and job failure. One row per partner rather than a shared one, so
+nothing is read for Ronald because Moh looked at it. Delivery is recorded per
+channel: `IN_APP` only, because that is the only channel BOYD'S has. Nothing
+claims an email went out.
+
+A Requests screen surfaces what has arrived and states plainly that nothing has
+been quoted, scheduled or confirmed. The Settings screen reports each
+integration's real state, read from the adapter itself rather than a hardcoded
+status that could drift.
+
+**Done:** 663 tests passing — 442 unit and guard, 221 against real PostgreSQL.
+
+### Phase 14 — Advanced automation — deliberately not built
+
+The return-load engine and the `ACCEPT` / `REVIEW` / `DECLINE` decision path are
+**not implemented**, and that is the correct state. Both need real vehicle
+location, real availability and trusted pricing — none of which BOYD'S has.
+Building them now would mean feeding them invented inputs, and an automated
+decision made from invented inputs is worse than no automation: it would commit
+BOYD'S to work nobody checked.
+
+Nothing can auto-accept a job because no automatic decision path exists — a
+partner makes every decision. (An earlier version of this roadmap said a
+`company_settings.auto_acceptance_enabled` flag enforced this at the database.
+That table was never built; D-042 corrects it.) The maps abstraction is in place
+with an honest unavailable adapter, and the profitability engine already
+produces the figures such a decision would need.
+
+### Phase 15 — Production hardening ✅ substantially complete
+
+**The required end-to-end test** (`tests/integration/full-job-lifecycle.test.ts`)
+runs the whole business through real PostgreSQL: Ronald creates a customer and a
+quote, the quote is accepted, a job is created and dispatched, Moh accepts it,
+drives it, captures proof, records mileage, fuel and expenses, and the job
+completes. Every step runs as the person who would really perform it, so the
+security boundary is exercised by the same test as the workflow. It asserts
+$300 revenue against a $240 cost stack yields $60 contribution — and never $300
+profit — plus contribution per mile, margin, empty mileage, the invoice, the
+payment, and the complete audit trail.
+
+It found two real bugs on its first run: PostgreSQL returns `bigint` as strings,
+so the financial engine threw on live data (D-026), and an empty string was
+parsing to zero — the "missing treated as free" failure arriving through a type
+coercion.
+
+Rate limiting is in place on all three public entry points — the delivery
+request form, the AI chat route and sign-in — and is honest about being
+in-memory (D-028).
+
+**Production readiness, since:**
+
+- The test database now behaves like hosted Supabase: a non-superuser migrating
+  role, Supabase's default grants, a storage schema, and modern PostgREST
+  claims. That found two security holes and a launch blocker that 304 passing
+  tests had missed (D-039 to D-041).
+- Deployment is scripted and rehearsed with the real Supabase CLI: preflight,
+  dry run, apply, verify, and a refused apply when the preflight fails.
+- Backup and restore are scripted and rehearsed, down to sequence positions.
+- Accessibility is measured: every public page passes WCAG 2.1 AA on desktop
+  and phone, after fixing the contrast of the main call to action and of the
+  secondary text colour.
+- The public request form was losing everything a customer typed on any failed
+  submission, and pointing them to a phone number the site does not publish.
+  Both are fixed and covered by browser tests.
+- Next.js upgraded past a critical remote-code-execution advisory.
+
+**Still outstanding for production:** a signed-in journey through the browser,
+and error alerting. Both need accounts BOYD'S does not have yet; see
+`docs/DEPLOYMENT.md`.
+
+### Phase 16 — Closing the gaps between screens ✅ complete
+
+The phases above built every capability. This one removed the places where a
+capability existed but nothing on screen could reach it.
+
+**Vehicle running costs.** A vehicle detail page where a partner records what
+BOYD'S actually pays for the van, and sees cost per mile derived from those
+entries and real recorded mileage. When cost lines are missing the page says
+the figure is partial and is not the van's true cost per mile.
+
+**Request to job conversion.** Enquiries could be read but not acted on. A
+partner can now take one on, decline it with a reason, or mark it as being
+looked at. The job is created at APPROVED with no price, and a complete address
+is required — an earlier version defaulted the state to NC and the ZIP to 00000
+to satisfy the not-null columns, and that was removed (D-030).
+
+**Incident reporting** (migration 0024). Moh had no way to report that
+something went wrong. He can now, from the Record screen, with three required
+yes/no questions that have no default answer, a typed location because there is
+no tracker, and no cost field. A filed report cannot be edited or deleted by a
+driver, and the form says so before he sends it. Partners are told by a database
+trigger (D-032 to D-035).
+
+**The customer record.** Every job, quote, invoice and enquiry for one
+customer, plus the people, the addresses and the notes. Contribution runs
+through the same engine as the Command Centre, so a customer with any
+unrecorded cost reads DATA INCOMPLETE (D-036).
+
+**Multi-drop jobs.** The schema always allowed any number of stops; only the
+form was fixed at two, which would have forced a four-drop run to be entered as
+four jobs that never happened (D-037).
+
+**Contract creation.** Contracts had a table and a panel but no form, and the
+panel was hidden when empty — so there was no path to one at all (D-038).
+
+**Done:** 771 tests passing — 467 unit and guard, 304 against real PostgreSQL.
+
+## Order of value
+
+Phases 1–7 give BOYD'S a system that runs the actual business today: jobs
+dispatched, work recorded, and — the point of the whole exercise — a truthful
+contribution figure per job. Phases 8–9 turn that into money management. Phase 10
+brings in customers. Phases 11–14 make the machine intelligent.
+
+The financial engine (Phase 6) is where the most care goes, because every later
+decision BOYD'S makes rests on those numbers being right.
